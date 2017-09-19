@@ -1,0 +1,665 @@
+[2017-09-10 05:16:17] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:17:23] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:17:49] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:21:20] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:21:21] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:21:21] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:21:21] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:21:22] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:21:35] [ log ] localhost/easy-framework1/?r=index/test
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Class 'application\controller\r=index' not found 
+ file : C:\web\php\www\easy-framework1\framework\base\Container.php 
+ line : 89 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('9ca2f75705bc0ef...', Array)
+#1 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(31): framework\base\Component->getComponent('9ca2f75705bc0ef...')
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:27:17] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: r||||||| file: C:\web\php\www\easy-framework1\framework\components\url\Url.php,||||| line: 49 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(49): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 49, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(20): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(36): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-10 05:28:05] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : explode() expects parameter 2 to be string, array given||||||| file: C:\web\php\www\easy-framework1\framework\components\url\Url.php,||||| line: 56 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'explode() expec...', 'C:\\web\\php\\www\\...', 56, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(56): explode('/', Array)
+#2 C:\web\php\www\easy-framework1\framework\components\url\Url.php(20): framework\components\url\Url->formatUrl()
+#3 C:\web\php\www\easy-framework1\framework\web\Application.php(36): framework\components\url\Url->run()
+#4 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#5 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#6 {main}
+
+[2017-09-10 05:37:18] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : components cache not exists maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:38:23] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:40:23] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:40:49] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:40:49] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:40:50] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:40:50] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:40:50] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:40:50] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:41:31] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:41:48] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:42:47] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 maybe this class not instance of Components  
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:44:29] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0||||||| file: C:\web\php\www\easy-framework1\application\conf\conf.php,||||| line: 15 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:45:01] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0 at  file: C:\web\php\www\easy-framework1\application\conf\conf.php, on line: 15 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(39): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 05:53:14] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:15] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:15] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:15] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:21] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:22] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:22] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:22] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 05:53:23] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : not support: redis 
+ file : C:\web\php\www\easy-framework1\framework\components\cache\Redis.php 
+ line : 22 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\base\Component.php(31): framework\components\cache\Redis->init()
+#1 C:\web\php\www\easy-framework1\framework\base\Container.php(93): framework\base\Component->setUniqueId('cache')
+#2 C:\web\php\www\easy-framework1\framework\base\Component.php(20): framework\base\Container->getComponent('cache', Array)
+#3 C:\web\php\www\easy-framework1\framework\web\Controller.php(43): framework\base\Component->getComponent('cache')
+#4 C:\web\php\www\easy-framework1\framework\base\Controller.php(173): framework\web\Controller->getCache()
+#5 C:\web\php\www\easy-framework1\application\controller\Index.php(37): framework\base\Controller->__get('cache')
+#6 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(40): application\controller\Index->indexAction()
+#7 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#8 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#9 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#10 {main}
+
+[2017-09-10 07:31:09] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined variable: content at  file: C:\web\php\www\easy-framework1\application\runtime\compile\index\index.action.compilecache.php, on line: 9 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 07:31:10] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined variable: content at  file: C:\web\php\www\easy-framework1\application\runtime\compile\index\index.action.compilecache.php, on line: 9 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 13:40:36] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined variable: content at  file: C:\web\php\www\easy-framework1\application\runtime\compile\index\index.action.compilecache.php, on line: 9 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 13:40:59] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined variable: content at  file: C:\web\php\www\easy-framework1\application\runtime\compile\index\index.action.compilecache.php, on line: 9 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 13:48:12] [ log ] localhost/easy-framework1/?index/index
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Division by zero at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 180 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 13:49:01] [ log ] localhost/easy-framework1/?index/index
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Division by zero at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 181 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 14:09:41] [ log ] localhost/easy-framework1/?index/index
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0 at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 125 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 14:09:55] [ log ] localhost/easy-framework1/?index/index
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined offset: 0 at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 126 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 14:14:10] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/page/6
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 182 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-10 14:14:35] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/page/6
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: page at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 52 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+

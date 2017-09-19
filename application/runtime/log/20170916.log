@@ -1,0 +1,1079 @@
+[2017-09-16 08:47:36] [ log ] localhost/easy-framework1/index.php?index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:49:57] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:50:07] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:52:20] [ log ] localhost/easy-framework1/index.php?index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:53:24] [ log ] localhost/easy-framework1/?index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:54:05] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:55:22] [ log ] localhost/easy-framework1/?index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:56:11] [ log ] localhost/easy-framework1/?index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 08:58:52] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:00:53] [ log ] localhost/easy-framework1/?index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:01:35] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:02:04] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:02:35] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:05:06] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:05:07] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cookie - headers already sent by (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:06:40] [ log ] localhost/easy-framework1/index.php?tr=ty&page=5
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 81 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:07:49] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: controller at  file: C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php, on line: 15 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 15, Array)
+#1 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#2 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#3 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#4 {main}
+
+[2017-09-16 09:08:12] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: controller at  file: C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php, on line: 15 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 15, Array)
+#1 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#2 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#3 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#4 {main}
+
+[2017-09-16 09:08:29] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: controller at  file: C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php, on line: 15 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 15, Array)
+#1 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#2 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#3 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#4 {main}
+
+[2017-09-16 09:08:38] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: controller at  file: C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php, on line: 15 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 15, Array)
+#1 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#2 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#3 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#4 {main}
+
+[2017-09-16 09:09:03] [ log ] localhost/easy-framework1/index.php/index/index/act/e/m/e/a/r
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: controller at  file: C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php, on line: 16 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php(16): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 16, Array)
+#1 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#2 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#3 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#4 {main}
+
+[2017-09-16 09:10:09] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/act/e/m/e/page/5
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 55 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(55): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 55, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-16 09:10:39] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/act/e/m/e/page/5
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 55 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(55): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 55, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-16 09:10:44] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/act/e/m/e/page/5
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 55 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(55): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 55, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-16 09:11:11] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/act/e/m/e/page/5
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 56 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(56): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 56, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-16 09:11:51] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/act/e/m/e/page/5
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 55 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(55): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 55, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-16 09:11:51] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/act/e/m/e/page/5
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 55 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(55): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 55, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-16 09:11:54] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:11:55] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:11:55] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:11:56] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:11:57] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:11:57] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:11:58] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:11:58] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/act/e/m/e/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:12:01] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: PATH_INFO at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 55 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(55): framework\components\error\Error->handleError(8, 'Undefined index...', 'C:\\web\\php\\www\\...', 55, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-16 09:14:02] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : ltrim() expects parameter 1 to be string, array given at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 56 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'ltrim() expects...', 'C:\\web\\php\\www\\...', 56, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(56): ltrim(Array, '/')
+#2 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#3 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#4 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#5 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#6 {main}
+
+[2017-09-16 09:14:02] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : ltrim() expects parameter 1 to be string, array given at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 56 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'ltrim() expects...', 'C:\\web\\php\\www\\...', 56, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(56): ltrim(Array, '/')
+#2 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#3 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#4 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#5 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#6 {main}
+
+[2017-09-16 09:14:02] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : ltrim() expects parameter 1 to be string, array given at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 56 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'ltrim() expects...', 'C:\\web\\php\\www\\...', 56, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(56): ltrim(Array, '/')
+#2 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#3 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#4 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#5 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#6 {main}
+
+[2017-09-16 09:14:03] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : ltrim() expects parameter 1 to be string, array given at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 56 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'ltrim() expects...', 'C:\\web\\php\\www\\...', 56, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(56): ltrim(Array, '/')
+#2 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#3 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#4 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#5 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#6 {main}
+
+[2017-09-16 09:14:33] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:36] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:37] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:38] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:39] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:40] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:41] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:43] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:49] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:14:56] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:15:10] [ log ] localhost/easy-framework1/index.php/index/index/tr/ty/page/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : A non-numeric value encountered at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 179 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:15:58] [ log ] localhost/easy-framework1/index.php/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : include(C:\web\php\www\easy-framework1/application/controller/public.php): failed to open stream: No such file or directory at  file: C:\web\php\www\easy-framework1\framework\autoloader.php, on line: 5 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:15:59] [ log ] localhost/easy-framework1/index.php/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : include(C:\web\php\www\easy-framework1/application/controller/public.php): failed to open stream: No such file or directory at  file: C:\web\php\www\easy-framework1\framework\autoloader.php, on line: 5 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:15:59] [ log ] localhost/easy-framework1/index.php/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : include(C:\web\php\www\easy-framework1/application/controller/public.php): failed to open stream: No such file or directory at  file: C:\web\php\www\easy-framework1\framework\autoloader.php, on line: 5 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:16:00] [ log ] localhost/easy-framework1/index.php/public/assets/application/images/1457781452.jpg
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : include(C:\web\php\www\easy-framework1/application/controller/public.php): failed to open stream: No such file or directory at  file: C:\web\php\www\easy-framework1\framework\autoloader.php, on line: 5 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 09:17:33] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : session_start(): Cannot send session cache limiter - headers already sent (output started at C:\web\php\www\easy-framework1\index.php:8) at  file: C:\web\php\www\easy-framework1\framework\components\session\Session.php, on line: 99 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(9): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-16 13:28:29] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: type at  file: /var/www/php/easy-framework-swoole/framework/server/Server.php, on line: 25 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/Server.php(25): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 25, Array)
+#1 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#2 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#3 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#4 {main}
+
+[2017-09-16 13:29:00] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: type at  file: /var/www/php/easy-framework-swoole/framework/server/Server.php, on line: 26 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/Server.php(26): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 26, Array)
+#1 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#2 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#3 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#4 {main}
+
+[2017-09-16 13:29:51] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : include(/var/www/php/easy-framework-swoole/BaseServer.php): failed to open stream: No such file or directory at  file: /var/www/php/easy-framework-swoole/framework/autoloader.php, on line: 5 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): framework\components\error\Error->handleError(2, 'include(/var/ww...', '/var/www/php/ea...', 5, Array)
+#1 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): include()
+#2 [internal function]: autoload('BaseServer')
+#3 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(10): spl_autoload_call('BaseServer')
+#4 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): include('/var/www/php/ea...')
+#5 [internal function]: autoload('framework/serve...')
+#6 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): spl_autoload_call('framework\\serve...')
+#7 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#8 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#9 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#10 {main}
+
+[2017-09-16 13:31:49] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : include(/var/www/php/easy-framework-swoole/BaseServer.php): failed to open stream: No such file or directory at  file: /var/www/php/easy-framework-swoole/framework/autoloader.php, on line: 5 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): framework\components\error\Error->handleError(2, 'include(/var/ww...', '/var/www/php/ea...', 5, Array)
+#1 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): include()
+#2 [internal function]: autoload('BaseServer')
+#3 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(10): spl_autoload_call('BaseServer')
+#4 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): include('/var/www/php/ea...')
+#5 [internal function]: autoload('framework/serve...')
+#6 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): spl_autoload_call('framework\\serve...')
+#7 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#8 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#9 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#10 {main}
+
+[2017-09-16 13:32:42] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : include(/var/www/php/easy-framework-swoole/BaseServer.php): failed to open stream: No such file or directory at  file: /var/www/php/easy-framework-swoole/framework/autoloader.php, on line: 5 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): framework\components\error\Error->handleError(2, 'include(/var/ww...', '/var/www/php/ea...', 5, Array)
+#1 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): include()
+#2 [internal function]: autoload('BaseServer')
+#3 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(10): spl_autoload_call('BaseServer')
+#4 /var/www/php/easy-framework-swoole/framework/autoloader.php(5): include('/var/www/php/ea...')
+#5 [internal function]: autoload('framework/serve...')
+#6 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): spl_autoload_call('framework\\serve...')
+#7 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#8 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#9 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#10 {main}
+
+[2017-09-16 13:33:29] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function on() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 64 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(27): framework\server\BaseServer->onConnect()
+#1 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(14): framework\server\BaseServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#7 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#8 {main}
+
+[2017-09-16 13:34:30] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to undefined function swoole_http_server() 
+ file : /var/www/php/easy-framework-swoole/framework/server/HttpServer.php 
+ line : 14 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-16 13:37:19] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to undefined function framework\server\swoole_http_server() 
+ file : /var/www/php/easy-framework-swoole/framework/server/HttpServer.php 
+ line : 14 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-16 13:37:38] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to undefined function swoole_http_server() 
+ file : /var/www/php/easy-framework-swoole/framework/server/HttpServer.php 
+ line : 14 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-16 13:41:20] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 14 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(14): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 14, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-16 13:41:24] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 14 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(14): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 14, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-16 13:41:46] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 14 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(14): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 14, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-16 13:41:47] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 14 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(14): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 14, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-16 13:44:07] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 15 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 15, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(19): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\server\BaseServer->__construct(Array)
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-16 13:44:57] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 15 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 15, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-16 13:44:59] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 15 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 15, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-16 13:45:32] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 15 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 15, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(32): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-16 13:46:07] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: ip at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 15 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(15): framework\components\error\Error->handleError(8, 'Undefined index...', '/var/www/php/ea...', 15, Array)
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(14): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-16 13:47:50] [ log ] 
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Argument 1 passed to framework\server\BaseServer::setEvent() must be an instance of framework\server\SwooleEvent, string given, called in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php on line 21 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 32 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(21): framework\server\BaseServer->setEvent('')
+#1 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(15): framework\server\BaseServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\base\Base->__construct(Array)
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(42): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+

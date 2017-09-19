@@ -1,0 +1,252 @@
+[2017-09-19 13:31:13] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:31:14] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:31:14] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:31:15] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:31:15] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:31:15] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:31:40] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:32:12] [ log ] localhost:81/index/in
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action inAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(35): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 13:35:17] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+Uncaught Exception: Undefined property: swoole_http_request::$get at  file: /var/www/php/easy-framework-swoole/framework/server/HttpServer.php, on line: 30 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(30): framework\components\error\Error->handleError(8, 'Undefined prope...', '/var/www/php/ea...', 30, Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/ (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-19 13:35:17] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+workerid: 0  workerpid: 3211 code: 255
+
+[2017-09-19 13:53:13] [ log ] localhost:81/index
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Call to undefined method application\controller\Index::assign() 
+ file : /var/www/php/easy-framework-swoole/application/controller/Index.php 
+ line : 40 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(38): application\controller\Index->indexAction()
+#1 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(42): framework\components\dispatcher\Dispatcher->run(Array)
+#2 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#7 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#8 {main}
+
+[2017-09-19 13:54:41] [ log ] localhost:81/index
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Array to string conversion at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 51 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(8, 'Array to string...', '/var/www/php/ea...', 51, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(51): swoole_http_response->write(Array)
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(43): framework\components\response\Response->send(Object(swoole_http_response), Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-19 14:01:32] [ log ] localhost:81/index
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Array to string conversion at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 51 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(8, 'Array to string...', '/var/www/php/ea...', 51, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(51): swoole_http_response->write(Array)
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(43): framework\components\response\Response->send(Object(swoole_http_response), Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-19 14:02:47] [ log ] localhost:81/index
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : json_decode() expects parameter 1 to be string, array given at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 52 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'json_decode() e...', '/var/www/php/ea...', 52, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(52): json_decode(Array)
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(43): framework\components\response\Response->send(Object(swoole_http_response), Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-19 14:12:36] [ log ] localhost:81/index
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Declaration of application\lib\Web::beforeAction() should be compatible with framework\base\Controller::beforeAction($data = Array) at  file: /var/www/php/easy-framework-swoole/application/lib/Web.php, on line: 11 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 500 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(42): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-19 14:14:02] [ log ] localhost:81/index
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Declaration of application\lib\Web::afterAction($data) should be compatible with framework\base\Controller::afterAction($data = Array) at  file: /var/www/php/easy-framework-swoole/application/lib/Web.php, on line: 11 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 500 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(42): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+

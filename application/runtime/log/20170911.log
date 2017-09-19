@@ -1,0 +1,54 @@
+[2017-09-11 13:52:53] [ log ] localhost/easy-framework1/index.php?index/index/tr/ty/page/10
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined variable: urlInfo at  file: C:\web\php\www\easy-framework1\framework\components\url\Url.php, on line: 73 
+ file : C:\web\php\www\easy-framework1\framework\components\error\Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\components\url\Url.php(73): framework\components\error\Error->handleError(8, 'Undefined varia...', 'C:\\web\\php\\www\\...', 73, Array)
+#1 C:\web\php\www\easy-framework1\framework\components\url\Url.php(21): framework\components\url\Url->formatUrl()
+#2 C:\web\php\www\easy-framework1\framework\web\Application.php(37): framework\components\url\Url->run()
+#3 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#4 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#5 {main}
+
+[2017-09-11 13:54:34] [ log ] localhost/easy-framework1/index.php?m=index&act=inex&tr=ty&page=8
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to undefined method application\controller\Index::inexAction() 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 40 
+ code : 0 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(40): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-11 14:05:00] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Undefined index: query at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 82 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 8 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-09-11 14:05:50] [ log ] localhost/easy-framework1/
+ server: 0.0.0.0
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : explode() expects parameter 2 to be string, array given at  file: C:\web\php\www\easy-framework1\framework\components\page\Page.php, on line: 83 
+ file : C:\web\php\www\easy-framework1\framework\components\dispatcher\Dispatcher.php 
+ line : 49 
+ code : 2 
+ trace : #0 C:\web\php\www\easy-framework1\framework\web\Application.php(41): framework\components\dispatcher\Dispatcher->run(Array)
+#1 C:\web\php\www\easy-framework1\framework\framework.php(27): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework1\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+

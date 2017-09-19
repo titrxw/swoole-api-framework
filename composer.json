@@ -1,0 +1,26 @@
+{
+    "name": "easy-framework",
+    "description": "the new easy-framework",
+    "type": "project",
+    "keywords": [
+        "framework",
+        "easy"
+    ],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "rxw",
+            "email": "1120309488@qq.com"
+        }
+    ],
+     "repositories": {
+    	"packagist": {
+        	"type": "composer",
+        	"url": "https://packagist.phpcomposer.com"
+    	}
+	},
+    "require": {
+//      作为实例  框架并不使用
+        "monolog/monolog": "1.0.*"
+    }
+}
