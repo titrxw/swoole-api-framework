@@ -18,7 +18,7 @@ class HttpServer extends BaseServer
         $this->onRequest();
     }
 
-    public function onRequest()
+    protected function onRequest()
     {
         $this->_server->on("request", function (\swoole_http_request $request,\swoole_http_response $response)
         {
@@ -33,14 +33,19 @@ class HttpServer extends BaseServer
             if (!empty($request->post)) {
                 $_POST = $request->post;
             }
+            if (!empty($request->files)) {
+                $_FILES = $request->files;
+//                $container->getComponent('upload')->save('file'); 上传文件测试
+            }
 
+            $hasEnd = false;
             try
             {
                 $request->server['host'] = $request->header['host'];
                 $urlInfo = $container->getComponent('url')->run($request->server);
                 if ($urlInfo !== false) {
                     $result = $container->getComponent('dispatcher')->run($urlInfo);
-                    $container->getComponent('response')->send($response, $result);
+                    $hasEnd = $container->getComponent('response')->send($response, $result);
                 }
                 if (!empty($this->_event))
                 {
@@ -60,10 +65,13 @@ class HttpServer extends BaseServer
                 $response->write($e->getMessage());
                 $container->getComponent('exception')->handleException($e);
             }
-
-            $response->end();
+            if (!$hasEnd)
+            {
+                $response->end();
+            }
             $_GET = null;
             $_POST = null;
+            $_FILES = null;
             unset($container,$request,$response);
         });
     }

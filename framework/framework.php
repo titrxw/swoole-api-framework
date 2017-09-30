@@ -25,4 +25,4 @@ $conf = array(
     'app' => require_once APP_ROOT. '/' .APP_NAME.'/conf/conf.php'
 );
 \framework\web\Application::run($conf);
-unset( $conf);
+unset($conf);

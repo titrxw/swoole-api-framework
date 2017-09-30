@@ -22,9 +22,12 @@ abstract class Web extends Api
 
     public function afterAction($data = array())
     {
-        $data = array('ret' => empty($data[0]) ? 200 : $data[0],
-            'data' => empty($data[1]) ? null : $data[1],
-            'msg' => empty($data[2]) ? '' : $data[2]);
+        if (is_array($data))
+        {
+            $data = array('ret' => empty($data[0]) ? 200 : $data[0],
+                'data' => empty($data[1]) ? null : $data[1],
+                'msg' => empty($data[2]) ? '' : $data[2]);
+        }
 //        这里必须把结果结果返回去，该方法是放回结果前的结果
         return $data;
     }

@@ -14,7 +14,8 @@ return array(
     'addComponentsMap' => array(
         'validate' => 'framework\\components\\validate\\Validate',
         'page' => 'framework\\components\\page\\Page',//如果使用api的话这里不需要
-        'view' => 'framework\\components\\view\\View'     //如果使用api的话这里不需要
+        'view' => 'framework\\components\\view\\View',     //如果使用api的话这里不需要,
+        'upload' => 'framework\\components\\upload\\Upload'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
         'cache' => array(
@@ -40,13 +41,16 @@ return array(
             )
         ),
         'server' => array(
-            'event' => 'application\\conf\\ServerEvent',
+            'event' => 'application\\conf\\ServerWebSocketEvent',
             'ip' => '127.0.0.1',
             'port' => '81',
-            'task_worker_num' => 4, //异步任务进程
-            "task_max_request"=>10,
-            'max_request'=>3000,
-            'worker_num'=>4
+            'supportHttp' => true
+        ),
+        'upload' => array(
+            'accept' => array(
+                'jpg',
+                'png'
+            )
         )
     )
 );

@@ -10,11 +10,21 @@ namespace application\conf;
 
 use framework\server\SwooleEvent;
 
-class ServerEvent implements SwooleEvent
+class ServerWebSocketEvent implements SwooleEvent
 {
+    public $_current = 0;
+    public $_connections = array();
+
     public function onConnect(\swoole_server $server, $client_id, $from_id)
     {
         // TODO: Implement onConnect() method.
+
+
+    }
+
+    public function onOpen(\swoole_websocket_server $server, $frame)
+    {
+
     }
 
     public function onWorkerStart(\swoole_server $server, $workerId)
@@ -26,6 +36,20 @@ class ServerEvent implements SwooleEvent
     {
 
     }
+
+    public function onMessage(\swoole_websocket_server $server, &$frame)
+    {
+//        $frame->data = array(
+//            'controller' => 'index',
+//            'action' => 'test'
+//        );
+    }
+
+    public function onClose(\swoole_websocket_server $server, $frame)
+    {
+//        unset($this->_connections[$frame->fd]);
+    }
+
 
     public function onRequest(\swoole_http_request $request,\swoole_http_response $response)
     {

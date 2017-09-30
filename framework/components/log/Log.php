@@ -26,7 +26,7 @@ class Log extends Component
 
             //检测日志文件大小，超过配置大小则备份日志文件重新生成
             if (is_file($destination) && floor($this->getMaxSize()) <= filesize($destination)) {
-                rename($destination, dirname($destination) . '/' . $server['REQUEST_TIME'] . '-' . basename($destination));
+                rename($destination, dirname($destination) . '/' . $server['REQUEST_TIME'] ?? '' . '-' . basename($destination));
             }
 
             $depr = "\r\n---------------------------------------------------------------\r\n";

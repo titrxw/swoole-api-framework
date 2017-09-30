@@ -30,6 +30,7 @@ class Pdo extends Component implements DbInterface
     {
         if (!empty($this->_instances[$this->_currentDb]))
         {
+//            这里也可使用计时器，在数据库将要断开是 发送数据库请求
             if($this->reConnect())
                 return $this->_instances[$this->_currentDb];
             else
@@ -74,6 +75,7 @@ class Pdo extends Component implements DbInterface
         {
             if(strpos($e->getMessage(), 'MySQL server has gone away')!==false)
             {
+                $this->_instances[$this->_currentDb] = null;
                 return false;
             }
         }

@@ -26,13 +26,15 @@ class Server extends Component
         {
             case 'http':
                 $server = new HttpServer(array(
-                    'app' => $this->_appConf
+                    'app' => $this->_appConf,
+                    'default' => $this->_conf
                 ));
                 $server->start();
                 break;
             case "webSocket":
                 $server = new WebSocketServer(array(
-                    'app' => $this->_appConf
+                    'app' => $this->_appConf,
+                    'default' => $this->_conf
                 ));
                 $server->start();
                 break;

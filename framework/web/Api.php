@@ -22,4 +22,12 @@ abstract class Api extends \framework\base\Controller
     {
         return $this->getComponent('cache');
     }
+
+    protected function sendFile($path, $type = 'jpg')
+    {
+        $urlComponent = $this->getComponent('response');
+        $urlComponent->contentType($type);
+        $urlComponent->sendFile($path);
+        return $path;
+    }
 }

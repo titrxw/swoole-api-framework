@@ -7,7 +7,6 @@
  */
 namespace framework\web;
 
-
 abstract class Controller extends \framework\base\Controller
 {
     protected function isAjax()
@@ -42,5 +41,12 @@ abstract class Controller extends \framework\base\Controller
     protected function getPage()
     {
         return $this->getComponent('page');
+    }
+
+    protected function sendFile($path, $type = 'jpg')
+    {
+        $urlComponent = $this->getComponent('response');
+        $urlComponent->contentType($type);
+        return $path;
     }
 }

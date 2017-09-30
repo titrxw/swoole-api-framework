@@ -1,0 +1,240 @@
+[2017-09-22 13:32:51] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:32:52] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:33:09] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:33:35] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:34:25] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:35:14] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(36): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:36:31] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:36:47] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:37:25] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(14): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:37:35] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Call to a member function set() on null 
+ file : /var/www/php/easy-framework-swoole/framework/server/BaseServer.php 
+ line : 21 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(16): framework\server\BaseServer->init()
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\WebSocketServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(35): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-09-22 13:38:50] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+swoole_http_server::start(): require onMessage callback (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:53)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-22 13:43:28] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+Uncaught Error: Class 'framework\server\Container' not found in /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php:28
+Stack trace:
+#0 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(37): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php:28)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-22 13:43:28] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+workerid: 0  workerpid: 5260 code: 255
+
+[2017-09-22 14:20:07] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+Uncaught Exception: Trying to get property of non-object at  file: /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php, on line: 43 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(43): framework\components\error\Error->handleError(8, 'Trying to get p...', '/var/www/php/ea...', 43, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(93): application\conf\ServerWebSocketEvent->onClose(Object(swoole_websocket_server), 1)
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), 1, -1)
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(37): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-22 14:20:07] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+workerid: 0  workerpid: 7193 code: 255
+
+[2017-09-22 14:26:32] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+Uncaught Exception: Trying to get property of non-object at  file: /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php, on line: 44 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(44): framework\components\error\Error->handleError(8, 'Trying to get p...', '/var/www/php/ea...', 44, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(93): application\conf\ServerWebSocketEvent->onClose(Object(swoole_websocket_server), 4)
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), 4, -1)
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(37): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-22 14:26:32] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+workerid: 3  workerpid: 7412 code: 255
+
+[2017-09-22 14:44:27] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: Trying to get property of non-object at  file: /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php, on line: 50 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(50): framework\components\error\Error->handleError(8, 'Trying to get p...', '/var/www/php/ea...', 50, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(93): application\conf\ServerWebSocketEvent->onClose(Object(swoole_websocket_server), 7)
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), 7, -1)
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(37): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-22 14:44:27] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+workerid: 6  workerpid: 8080 code: 255
+

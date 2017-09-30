@@ -6,7 +6,6 @@
  * Time: 下午8:07
  */
 namespace framework\server;
-
 use framework\base\Base;
 use framework\base\Container;
 
@@ -17,9 +16,8 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function init()
     {
-        unset($this->_conf);
         $event = $this->getValueFromConf('event');
-        $this->_server->set($this->_appConf);
+        $this->_server->set($this->_conf);
         $this->setEvent($event);
         $this->onConnect();
         $this->onWorkStart();

@@ -49,7 +49,17 @@ return array(
             'rightDelimiter' => '}'
         ),
         'server' => array(
-            'type' => 'http'
+            'type' => 'webSocket',
+            'task_worker_num' => 4, //异步任务进程
+            "task_max_request"=>10,
+            'max_request'=>3000,
+            'worker_num'=>4,
+            'log_file' => '/tmp/swoole.log',
+            'enable_static_handler' => true,
+            'document_root' => '/var/www/php/easy-framework-swoole/public/assets/application/images/'
+        ),
+        'upload' => array(
+            'maxSize' => 2088960
         )
     )
 );

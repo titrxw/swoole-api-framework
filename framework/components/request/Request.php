@@ -114,11 +114,6 @@ class Request extends Component
         return $this->_rowBody;
     }
 
-    public function file($key)
-    {
-        return empty($_FILES[$key]) ? null : $_FILES[$key];
-    }
-
     public function headers()
     {
         if(!empty($this->_headers))
@@ -151,6 +146,6 @@ class Request extends Component
 
     public function __destruct()
     {
-        unset($_POST,$_GET,$_REQUEST,$_FILES);
+        unset($_POST,$_GET,$_REQUEST);
     }
 }

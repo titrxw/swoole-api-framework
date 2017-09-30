@@ -1,0 +1,1193 @@
+[2017-09-29 13:59:29] [ log ] 
+ client: 0.0.0.0
+---------------------------------------------------------------
+ msg : Illegal string offset 'controller' at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 152 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(152): framework\components\error\Error->handleError(2, 'Illegal string ...', '/var/www/php/ea...', 152, Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:02:39] [ log ] 
+ client: 
+---------------------------------------------------------------
+Uncaught Error: Cannot use object of type stdClass as array in /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php:141
+Stack trace:
+#0 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php:141)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 14:02:39] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 5194 code: 255
+
+[2017-09-29 14:03:42] [ log ] 
+ client: 
+---------------------------------------------------------------
+Uncaught Error: Cannot use object of type stdClass as array in /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php:142
+Stack trace:
+#0 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php:142)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 14:03:42] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 5234 code: 255
+
+[2017-09-29 14:04:09] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : swoole_websocket_server::pack() expects parameter 1 to be string, array given at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 161 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_websocke...', '/var/www/php/ea...', 161, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(161): swoole_websocket_server::pack(Array)
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#7 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#8 {main}
+
+[2017-09-29 14:06:07] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:09] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:09] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:09] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:09] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:10] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:10] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:10] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:10] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:06:10] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action te2st1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(158): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:04] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:04] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:04] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:05] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:05] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:05] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:05] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:05] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:05] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:06] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:06] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:06] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:06] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:06] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:07] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:07] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:18] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:18] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:18] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:19] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:19] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:19] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 14:18:19] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : action test1Action not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 47 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(159): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_websocket_server), Object(swoole_websocket_frame))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2017-09-29 15:24:39] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:24:59] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:25:00] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:25:01] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:25:30] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 66 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 66, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(66): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:26:11] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:27:38] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:28:11] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:28:36] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:26] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:31] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:31] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:32] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:32] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:32] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:32] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:33] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 65 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 65, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(65): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:46] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 66 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 66, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(66): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:46] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 66 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 66, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(66): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:46] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 66 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 66, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(66): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:29:46] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): stat(/var/www/php/easy-framework-swoole/public/application/images/1457781452.jpg) failed. Error: No such file or directory[2]. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 66 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 66, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(66): swoole_http_response->sendfile('/var/www/php/ea...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-29 15:30:23] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:23] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7812 code: 255
+
+[2017-09-29 15:30:26] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:26] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7815 code: 255
+
+[2017-09-29 15:30:26] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:26] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7819 code: 255
+
+[2017-09-29 15:30:26] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:26] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7820 code: 255
+
+[2017-09-29 15:30:27] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:27] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7821 code: 255
+
+[2017-09-29 15:30:27] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:27] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7822 code: 255
+
+[2017-09-29 15:30:27] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:27] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7823 code: 255
+
+[2017-09-29 15:30:28] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:28] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7824 code: 255
+
+[2017-09-29 15:30:28] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:30:28] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7825 code: 255
+
+[2017-09-29 15:31:13] [ log ] localhost:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Exception: swoole_http_response::end(): Http request is end. at  file: /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php, on line: 123 in /var/www/php/easy-framework-swoole/framework/components/error/Error.php:9
+Stack trace:
+#0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 123, Array)
+#1 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(123): swoole_http_response->end()
+#2 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#3 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#4 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#5 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#6 /var/www/php/easy-framework-swoole/framework/framework.php(27): fr (/var/www/php/easy-framework-swoole/framework/components/error/Error.php:9)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-29 15:31:13] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 1  workerpid: 7855 code: 255
+

@@ -37,12 +37,13 @@ class Index extends Web
 //        var_dump($this->cache);
 //        var_dump($this->session);
         //var_dump($this->getComponent('Logger',1));
-
+        return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'zip');
         return [404, ['er','ererer'],'fds'];
     }
 
     public function testAction()
     {
+//        var_dump($this->getComponent('Logger', 1)); composer 获取方式
         $result = $this->_userM->getList();
         return [404, $result,'fds'];
     }

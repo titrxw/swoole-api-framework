@@ -1,0 +1,478 @@
+[2017-09-21 13:27:48] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 13:29:32] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 13:29:53] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 13:29:55] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:09:03] [ log ] localhost:81//public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:09:08] [ log ] localhost:81/public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:15:48] [ log ] localhost:81/public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:15:48] [ log ] localhost:81/public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:15:49] [ log ] localhost:81/public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:15:49] [ log ] localhost:81/public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:15:56] [ log ] localhost:81/public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:16:01] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:16:02] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:16:03] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:16:03] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:19:21] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:20:17] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:20:55] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:20:57] [ log ] localhost:81/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\1457781452.jpg' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('b582dc90e01241b...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('b582dc90e01241b...')
+#2 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(46): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 2)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 0)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 1)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 6)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 3)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 7)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 5)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-09-21 14:52:08] [ log ] localhost:81/index/test
+ client: 127.0.0.1
+---------------------------------------------------------------
+Uncaught Error: Call to undefined method application\conf\ServerEvent::onWorkStop() in /var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93
+Stack trace:
+#0 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 4)
+#1 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(53): swoole_http_server->start()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(31): framework\server\BaseServer->start()
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+  thrown (/var/www/php/easy-framework-swoole/framework/server/BaseServer.php:93)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+

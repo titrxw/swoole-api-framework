@@ -8,6 +8,8 @@ class Response extends Component
     protected $_code = 200;
     protected $_defaultType;
     protected $_defaultCharSet;
+    protected $_curType;
+    protected $_sendFile; //swoole专有数据
     protected $_contentTypes = array(
         'xml'  => 'application/xml,text/xml,application/x-xml',
         'json' => 'application/json,text/x-json,application/jsonrequest,text/json',
@@ -15,7 +17,13 @@ class Response extends Component
         'jpg'  => 'image/jpg,image/jpeg,image/pjpeg',
         'gif'  => 'image/gif',
         'csv'  => 'text/csv',
-        'text' => 'text/html'
+        'txt' => 'text/plain',
+        'html' => 'text/html,application/xhtml+xml,*/*',
+        'pdf' => 'application/pdf',
+        'xls' => 'application/x-xls',
+        'apk' => 'application/vnd.android.package-archive',
+        'doc' => 'application/msword',
+        'zip' => 'application/zip'
     );
 
     protected function initHeader()
@@ -29,7 +37,7 @@ class Response extends Component
     protected function init()
     {
         $this->initHeader();
-        $this->contentType('text');
+        $this->contentType('html');
     }
 
     public function noCache()
@@ -41,21 +49,34 @@ class Response extends Component
 
     public function send($response, $result)
     {
-        $response->status($this->_code);
         foreach ($this->_headers as $key=>$item)
         {
             $response->header($key,$item);
         }
-        if (!empty($result))
+        if (in_array($this->_curType, array('xml','html','json')))
         {
-            if (is_array($result)) {
-                $result = json_encode($result);
+            $response->status($this->_code);
+            if (!empty($result))
+            {
+                if (is_array($result)) {
+                    $result = json_encode($result);
+                }
+                $response->write($result);
             }
-            $response->write($result);
+            unset($result);
+            return false;
         }
-        unset($result);
+        else
+        {
+            unset($result);
+            $response->sendfile($this->_sendFile);
+            $this->_sendFile = '';
+        }
+
         $this->initHeader();
+        $this->_curType = '';
         $this->_code = 200;
+        return true;
     }
 
     public function addHeader($key, $header)
@@ -68,6 +89,7 @@ class Response extends Component
     {
         $contentType = empty($this->_contentTypes[$type])?$this->_contentTypes[$this->getDefaultType()] : $this->_contentTypes[$type];
         $charset = empty($charset) ? $this->getDefaultCharSet(): $charset;
+        $this->_curType = $contentType;
         $this->_headers['Content-Type'] = $contentType . '; charset=' . $charset;
     }
 
@@ -75,7 +97,7 @@ class Response extends Component
     {
         if(empty($this->_defaultType))
         {
-            $this->_defaultType = $this->getValueFromConf('defaultType', 'text');
+            $this->_defaultType = $this->getValueFromConf('defaultType', 'html');
         }
         return $this->_defaultType;
     }
@@ -92,5 +114,10 @@ class Response extends Component
     public function setCode($code)
     {
         $this->_code = $code;
+    }
+
+    public function sendFile($path)
+    {
+        $this->_sendFile = $path;
     }
 }
