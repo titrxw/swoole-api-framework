@@ -1,0 +1,54 @@
+[2017-10-09 13:37:26] [ log ] 127.0.0.1:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): file name is empty. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 72 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 72, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(72): swoole_http_response->sendfile('')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(103): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-10-09 13:38:51] [ log ] 127.0.0.1:81/
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : swoole_http_response::sendfile(): file name is empty. at  file: /var/www/php/easy-framework-swoole/framework/components/response/Response.php, on line: 73 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 2 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(2, 'swoole_http_res...', '/var/www/php/ea...', 73, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/response/Response.php(73): swoole_http_response->sendfile('')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(103): framework\components\response\Response->send(Object(swoole_http_response))
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+
+[2017-10-09 13:40:01] [ log ] 127.0.0.1:81/public/assets/application/images/1457781452.jpg
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : Class 'application\controller\Public' not found 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 90 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('2aa224d88f05d39...', Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(25): framework\base\Component->getComponent('2aa224d88f05d39...')
+#2 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(102): framework\components\dispatcher\Dispatcher->run(Array)
+#3 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#4 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(52): swoole_http_server->start()
+#5 /var/www/php/easy-framework-swoole/framework/server/Server.php(39): framework\server\BaseServer->start()
+#6 /var/www/php/easy-framework-swoole/framework/web/Application.php(40): framework\server\Server->start()
+#7 /var/www/php/easy-framework-swoole/framework/framework.php(27): framework\web\Application::run(Array)
+#8 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#9 {main}
+

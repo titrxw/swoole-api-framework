@@ -146,7 +146,7 @@ class Container extends Base
         unset($this->_instances[$key]);
     }
 
-    protected function destroyComponentsInstance($key)
+    public function destroyComponentsInstance($key)
     {
         if(empty($key))
             return false;

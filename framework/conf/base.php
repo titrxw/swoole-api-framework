@@ -56,7 +56,7 @@ return array(
             'worker_num'=>4,
             'log_file' => '/tmp/swoole.log',
             'enable_static_handler' => true,
-            'document_root' => '/var/www/php/easy-framework-swoole/public/assets/application/images/'
+            'document_root' => '/var/www/php/easy-framework-swoole/public/assets/application/images/' //访问链接是 127.0.0.1:81/jpg文件名
         ),
         'upload' => array(
             'maxSize' => 2088960

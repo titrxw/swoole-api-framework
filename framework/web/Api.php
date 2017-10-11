@@ -30,4 +30,16 @@ abstract class Api extends \framework\base\Controller
         $urlComponent->sendFile($path);
         return $path;
     }
+
+    protected function addTask($className, $funcName, $params, $taskId = -1, $isAsync = false)
+    {
+        if (!$isAsync)
+        {
+            $this->getComponent('taskManager')->addTask($className, $funcName, $params, $taskId);
+        }
+        else
+        {
+            $this->getComponent('taskManager')->addAsyncTask($className, $funcName, $params, $taskId);
+        }
+    }
 }

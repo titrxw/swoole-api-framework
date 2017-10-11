@@ -11,10 +11,7 @@ use framework\base\Component;
 
 class Server extends Component
 {
-    protected function init()
-    {
-        $this->unInstall();
-    }
+    protected $_server = null;
 
     public function start()
     {
@@ -25,19 +22,24 @@ class Server extends Component
         switch ($this->getValueFromConf('type' , 'http'))
         {
             case 'http':
-                $server = new HttpServer(array(
+                $this->_server = new HttpServer(array(
                     'app' => $this->_appConf,
                     'default' => $this->_conf
                 ));
-                $server->start();
+                $this->_server->start();
                 break;
             case "webSocket":
-                $server = new WebSocketServer(array(
+                $this->_server = new WebSocketServer(array(
                     'app' => $this->_appConf,
                     'default' => $this->_conf
                 ));
-                $server->start();
+                $this->_server->start();
                 break;
         }
+    }
+
+    public function getServer()
+    {
+        return $this->_server;
     }
 }

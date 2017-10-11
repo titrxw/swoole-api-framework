@@ -10,7 +10,6 @@ use framework\base\Container;
 
 class WebSocketServer extends BaseServer
 {
-    protected $test;
     protected function init()
     {
         $this->_server = new  \swoole_websocket_server($this->_appConf['ip'], $this->_appConf['port']);
@@ -28,9 +27,18 @@ class WebSocketServer extends BaseServer
     {
         $this->_server->on('open', function (\swoole_websocket_server $server, $request)
         {
-            if (!empty($this->_event))
+            if (empty($this->_event)) return false;
+            try
             {
                 $this->_event->onOpen($server, $request);
+            }
+            catch (\Exception $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
+            catch (\Error $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
             }
         });
     }
@@ -189,9 +197,18 @@ class WebSocketServer extends BaseServer
     protected function onCLose()
     {
         $this->_server->on('close', function (\swoole_websocket_server $server, $fd) {
-            if (!empty($this->_event))
+            if (empty($this->_event)) return false;
+            try
             {
                 $this->_event->onClose($server, $fd);
+            }
+            catch (\Exception $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
+            catch (\Error $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
             }
         });
     }

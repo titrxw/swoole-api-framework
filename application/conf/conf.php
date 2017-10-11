@@ -15,7 +15,8 @@ return array(
         'validate' => 'framework\\components\\validate\\Validate',
         'page' => 'framework\\components\\page\\Page',//如果使用api的话这里不需要
         'view' => 'framework\\components\\view\\View',     //如果使用api的话这里不需要,
-        'upload' => 'framework\\components\\upload\\Upload'
+        'upload' => 'framework\\components\\upload\\Upload',
+        'msgTask' => 'application\\conf\\Task'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
         'cache' => array(

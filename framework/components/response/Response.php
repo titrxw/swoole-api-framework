@@ -69,7 +69,9 @@ class Response extends Component
         else
         {
             unset($result);
-            $response->sendfile($this->_sendFile);
+            if (!empty($this->_sendFile)) {
+                $response->sendfile($this->_sendFile);
+            }
             $this->_sendFile = '';
         }
 
@@ -89,7 +91,7 @@ class Response extends Component
     {
         $contentType = empty($this->_contentTypes[$type])?$this->_contentTypes[$this->getDefaultType()] : $this->_contentTypes[$type];
         $charset = empty($charset) ? $this->getDefaultCharSet(): $charset;
-        $this->_curType = $contentType;
+        $this->_curType = $type;
         $this->_headers['Content-Type'] = $contentType . '; charset=' . $charset;
     }
 

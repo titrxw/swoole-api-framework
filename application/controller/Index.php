@@ -34,10 +34,11 @@ class Index extends Web
 
     public function indexAction()
     {
+        $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
 //        var_dump($this->cache);
 //        var_dump($this->session);
         //var_dump($this->getComponent('Logger',1));
-        return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'zip');
+        //return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'zip');
         return [404, ['er','ererer'],'fds'];
     }
 

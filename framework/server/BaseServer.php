@@ -8,6 +8,7 @@
 namespace framework\server;
 use framework\base\Base;
 use framework\base\Container;
+use framework\task\BaseTask;
 
 abstract class BaseServer extends Base implements ServerInterface
 {
@@ -59,17 +60,39 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->on("Connect",function (\swoole_server $server, $client_id, $from_id)
         {
             if (empty($this->_event)) return false;
-            $this->_event->onConnect($server, $client_id, $from_id);
+            try
+            {
+                $this->_event->onConnect($server, $client_id, $from_id);
+            }
+            catch (\Exception $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
+            catch (\Error $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
         });
     }
 
     public function onStart()
     {
         // TODO: Implement onStart() method.
-        $this->_server->on("start",function (\swoole_http_server $server)
+        $this->_server->on("start",function (\swoole_server $server)
         {
             if (empty($this->_event)) return false;
-            $this->_event->onStart($server);
+            try
+            {
+                $this->_event->onStart($server);
+            }
+            catch (\Exception $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
+            catch (\Error $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
         });
     }
 
@@ -79,7 +102,18 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->on("workerStart",function (\swoole_server $server, $workerId)
         {
             if (empty($this->_event)) return false;
-            $this->_event->onWorkerStart($server,$workerId);
+            try
+            {
+                $this->_event->onWorkerStart($server,$workerId);
+            }
+            catch (\Exception $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
+            catch (\Error $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
         });
     }
 
@@ -89,14 +123,25 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->on("workerStop",function (\swoole_server $server, $workerId)
         {
             if (empty($this->_event)) return false;
-            $this->_event->onWorkStop($server,$workerId);
+            try
+            {
+                $this->_event->onWorkStop($server,$workerId);
+            }
+            catch (\Exception $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
+            catch (\Error $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
         });
     }
 
     public function onWorkerError()
     {
         // TODO: Implement onError() method.
-        $this->_server->on("workererror",function (\swoole_http_server $server,$worker_id, $worker_pid, $exit_code)
+        $this->_server->on("workererror",function (\swoole_server $server,$worker_id, $worker_pid, $exit_code)
         {
             if (empty($this->_event)) return false;
             Container::getInstance()->getComponent('log')->save('workerid: ' . $worker_id . '  workerpid: ' . $worker_pid . ' code: ' . $exit_code);
@@ -108,32 +153,50 @@ abstract class BaseServer extends Base implements ServerInterface
     {
         // TODO: Implement onTask() method.
         $num = $this->getValueFromConf('task_worker_num', 0);
-
         if(!empty($num))
         {
-            $this->_server->on("task",function (\swoole_http_server $server, $taskId, $fromId,$taskObj)
+            $this->_server->on("task",function (\swoole_server $server, $taskId, $fromId,$taskObj)
             {
                 try
                 {
-                    if(is_string($taskObj) && class_exists($taskObj))
+                    if (is_array($taskObj))
                     {
-                        $taskObj = new $taskObj();
+                        if (!empty($taskObj['class']) && !empty($taskObj['func']))
+                        {
+                            $obj = null;
+                            try
+                            {
+                                $obj = Container::getInstance()->getComponent($taskObj['class']);
+                            }
+                            catch (\Exception $e)
+                            {
+                                ;
+                            }
+                            if ($obj && $obj instanceof BaseTask)
+                            {
+                                $obj->run($taskObj['func'], $taskObj['params'], $server, $taskId, $fromId);
+                                unset($obj);
+                            }
+                        }
                     }
-                    $this->_event->onTask($server, $taskId, $fromId,$taskObj);
 
-//                    if($taskObj instanceof AbstractAsyncTask)
-//                    {
-//                        return $taskObj->handler($server, $taskId, $fromId);
-//                    }
-
-                    if($taskObj instanceof Closure)
+                    if($taskObj instanceof \Closure)
                     {
-                        return $taskObj($server, $taskId);
+                        return $taskObj($server, $taskId, $fromId);
                     }
-                    return null;
+
+                    $this->_event->onTask($server, $taskId, $fromId, $taskObj);
+                    return $taskObj;
                 }
-                catch (\Exception $exception){
-                    throw $exception;
+                catch (\Exception $e)
+                {
+                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    return false;
+                }
+                catch (\Error $e)
+                {
+                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    return false;
                 }
             });
         }
@@ -142,9 +205,20 @@ abstract class BaseServer extends Base implements ServerInterface
     public function onShutdown()
     {
         // TODO: Implement onShutDown() method.
-        $this->_server->on("shutdown",function (\swoole_http_server $server){
+        $this->_server->on("shutdown",function (\swoole_server $server){
             if (empty($this->_event)) return false;
-            $this->_event->onShutdown($server);
+            try
+            {
+                $this->_event->onShutdown($server);
+            }
+            catch (\Exception $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
+            catch (\Error $e)
+            {
+                Container::getInstance()->getComponent('exception')->handleException($e);
+            }
         });
     }
 
@@ -154,18 +228,65 @@ abstract class BaseServer extends Base implements ServerInterface
         $num = $this->getValueFromConf('task_worker_num', 0);
         if(!empty($num))
         {
-            $this->_server->on("finish", function (\swoole_http_server $server, $taskId, $taskObj)
+            $this->_server->on("finish", function (\swoole_server $server, $taskId, $taskObj)
             {
                 try
                 {
+                    if (is_array($taskObj))
+                    {
+                        if (!empty($taskObj['class']) && !empty($taskObj['func']))
+                        {
+                            $obj = null;
+                            try
+                            {
+                                $obj = Container::getInstance()->getComponent($taskObj['class']);
+                            }
+                            catch (\Exception $e)
+                            {
+                                ;
+                            }
+                            if ($obj && $obj instanceof BaseTask)
+                            {
+                                $obj->run($taskObj['func'].'Finish', $taskObj['params'],  $server, $taskId, -1);
+                                unset($obj);
+                                Container::getInstance()->destroyComponentsInstance($taskObj['class']);
+                            }
+                        }
+                    }
                     $this->_event->onFinish($server, $taskId, $taskId,$taskObj);
-                    $this->_server->finish();
+                    return false;
                 }
-                catch (\Exception $exception)
+                catch (\Exception $e)
                 {
-                    throw $exception;
+                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    return false;
+                }
+                catch (\Error $e)
+                {
+                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    return false;
                 }
             });
         }
+    }
+
+    public function addTask($data, $taskId)
+    {
+        $num = $this->getValueFromConf('task_worker_num', 0);
+        if ($num <= 0)
+        {
+            return false;
+        }
+        return $this->_server->task($data, $taskId);
+    }
+
+    public function addAsyncTask($data, $taskId)
+    {
+        $num = $this->getValueFromConf('task_worker_num', 0);
+        if ($num <= 0)
+        {
+            return false;
+        }
+        return $this->_server->taskwait($data, $taskId);
     }
 }
