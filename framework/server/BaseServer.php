@@ -14,6 +14,7 @@ abstract class BaseServer extends Base implements ServerInterface
 {
     protected $_event = null;
     protected $_server;
+    protected $_maxTickStep = 86400000;
 
     protected function init()
     {
@@ -296,14 +297,13 @@ abstract class BaseServer extends Base implements ServerInterface
 
     public function addTimer($timeStep, callable $callable, $params= array())
     {
-        if ($timeStep > 86400000) return false;
-        swoole_timer_tick($timeStep, $callable, $params);
-        return true;
+        if ($timeStep > $this->_maxTickStep) return false;
+        return swoole_timer_tick($timeStep, $callable, $params);
     }
 
     public function addTimerAfter($timeStep, callable $callable, $params= array())
     {
-        if ($timeStep > 86400000) return false;
+        if ($timeStep > $this->_maxTickStep) return false;
         return swoole_timer_after($timeStep, $callable, $params);
     }
 }
