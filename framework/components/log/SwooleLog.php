@@ -17,6 +17,7 @@ class SwooleLog extends Log
             $destination = $dirPath . $destination;
             while (is_file($destination) && floor($this->getMaxSize()) <= filesize($destination)) {
                 $destination = $dirPath . date('Ymd') . '(' . $i . ')' . '.log';
+                ++$i;
             }
 
             $depr = "\r\n---------------------------------------------------------------\r\n";

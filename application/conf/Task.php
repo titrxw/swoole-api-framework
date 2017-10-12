@@ -13,7 +13,11 @@ class Task extends BaseTask
 {
     public function sendMsg($params = array(), $server, $taskId, $fromId)
     {
-        $this->getComponent('log')->save(serialize($params));
+        for ($i=0;$i<10;$i++)
+        {
+            $this->getComponent('log')->save(serialize($params));
+        }
+
     }
 
 //    该方法是sendMsg的结束方法

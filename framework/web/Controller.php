@@ -61,4 +61,14 @@ abstract class Controller extends \framework\base\Controller
             $this->getComponent('taskManager')->addAsyncTask($className, $funcName, $params, $taskId);
         }
     }
+
+    public function addTimer($timeStep, callable $callable, $params= array())
+    {
+        return $this->getComponent('server')->getServer()->addTimer($timeStep, $callable, $params);
+    }
+
+    public function addTimerAfter($timeStep, callable $callable, $params= array())
+    {
+        return $this->getComponent('server')->getServer()->addTimerAfter($timeStep, $callable, $params);
+    }
 }

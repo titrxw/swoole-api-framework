@@ -114,6 +114,10 @@ abstract class BaseServer extends Base implements ServerInterface
             {
                 Container::getInstance()->getComponent('exception')->handleException($e);
             }
+//            开启数据库将断开的检测   8小时检测
+            $this->addTimer(28800000, function ($timer_id, $params) {
+                Container::getInstance()->getComponent('Pdo')->heartBeat();
+            });
         });
     }
 
@@ -288,5 +292,18 @@ abstract class BaseServer extends Base implements ServerInterface
             return false;
         }
         return $this->_server->taskwait($data, $taskId);
+    }
+
+    public function addTimer($timeStep, callable $callable, $params= array())
+    {
+        if ($timeStep > 86400000) return false;
+        swoole_timer_tick($timeStep, $callable, $params);
+        return true;
+    }
+
+    public function addTimerAfter($timeStep, callable $callable, $params= array())
+    {
+        if ($timeStep > 86400000) return false;
+        return swoole_timer_after($timeStep, $callable, $params);
     }
 }

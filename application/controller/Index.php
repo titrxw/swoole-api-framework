@@ -34,7 +34,20 @@ class Index extends Web
 
     public function indexAction()
     {
-        $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
+//        定时器
+//        $this->addTimer(10000, function ($id, $params) {
+//            var_dump($params);
+//            swoole_timer_clear($id);
+//        }, ['er','ererer']);
+//        再10000毫秒后执行  执行完后自动清理计时器   该函数返回计时器id
+        $this->addTimerAfter(10000, function ($params) {
+            var_dump($params);
+        }, ['er','ererer']);
+//        for($i=0; $i<10;$i++)
+//        {
+//            $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
+//        }
+//        $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
 //        var_dump($this->cache);
 //        var_dump($this->session);
         //var_dump($this->getComponent('Logger',1));

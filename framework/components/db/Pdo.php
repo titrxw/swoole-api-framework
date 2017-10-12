@@ -11,7 +11,7 @@ use framework\base\Component;
 class Pdo extends Component implements DbInterface
 {
     protected $_execute;
-    protected $_instances;
+    protected $_instances = array();
     protected $_defaultDb;
     protected $_currentDb;
 
@@ -31,10 +31,13 @@ class Pdo extends Component implements DbInterface
         if (!empty($this->_instances[$this->_currentDb]))
         {
 //            这里也可使用计时器，在数据库将要断开是 发送数据库请求
-            if($this->reConnect())
-                return $this->_instances[$this->_currentDb];
-            else
-                return $this->getPdoHandle();
+//            if($this->reConnect())
+//                return $this->_instances[$this->_currentDb];
+//            else
+//                return $this->getPdoHandle();
+
+//            检测用定时器检测
+            return $this->_instances[$this->_currentDb];
         }
 
         if(!empty($this->_appConf['db'][$this->_currentDb]) && is_array($this->_appConf['db'][$this->_currentDb]))
@@ -65,22 +68,30 @@ class Pdo extends Component implements DbInterface
         }
     }
 
-    protected function reConnect()
+    public function heartBeat()
     {
-        try
+        foreach ($this->_instances as $item)
         {
-            $this->_instances[$this->_currentDb]->getAttribute(\PDO::ATTR_SERVER_INFO);
+            $item->getAttribute(\PDO::ATTR_SERVER_INFO);
         }
-        catch (\PDOException $e) 
-        {
-            if(strpos($e->getMessage(), 'MySQL server has gone away')!==false)
-            {
-                $this->_instances[$this->_currentDb] = null;
-                return false;
-            }
-        }
-        return true;
     }
+
+//    protected function reConnect()
+//    {
+//        try
+//        {
+//            $this->_instances[$this->_currentDb]->getAttribute(\PDO::ATTR_SERVER_INFO);
+//        }
+//        catch (\PDOException $e)
+//        {
+//            if(strpos($e->getMessage(), 'MySQL server has gone away')!==false)
+//            {
+//                $this->_instances[$this->_currentDb] = null;
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     public function query($sql)
     {

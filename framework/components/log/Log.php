@@ -20,18 +20,19 @@ class Log extends Component
         if ($this->getIsLog()) {
             $time = date('Y-m-d H:i:s');
             $server = $this->getComponent('url')->getServer();
-            $destination = APP_ROOT . '/' . APP_NAME . '/' . $this->getDefaultSavePath() . date('Ymd') . '.log';
-            $path = dirname($destination);
-            !is_dir($path) && mkdir($path, 0755, true);
+            $dirPath = APP_ROOT . '/' . APP_NAME . '/' . $this->getDefaultSavePath() . date('Ym') . '/';
+            $destination =  date('Ymd') . '.log';
+            !is_dir($dirPath) && mkdir($dirPath, 0755, true);
 
-            //检测日志文件大小，超过配置大小则备份日志文件重新生成
-            if (is_file($destination) && floor($this->getMaxSize()) <= filesize($destination)) {
-                rename($destination, dirname($destination) . '/' . $server['REQUEST_TIME'] ?? '' . '-' . basename($destination));
+            $i = 1;
+            $destination = $dirPath . $destination;
+            while (is_file($destination) && floor($this->getMaxSize()) <= filesize($destination)) {
+                $destination = $dirPath . date('Ymd') . '(' . $i . ')' . '.log';
+                ++$i;
             }
 
             $depr = "\r\n---------------------------------------------------------------\r\n";
             // 获取基本信息
-
             $current_uri = $server['HTTP_HOST'] . $server['REQUEST_URI'];
             $server = isset($server['SERVER_ADDR']) ? $server['SERVER_ADDR'] : '0.0.0.0';
             $remote = isset($server['REMOTE_ADDR']) ? $server['REMOTE_ADDR'] : '0.0.0.0';
