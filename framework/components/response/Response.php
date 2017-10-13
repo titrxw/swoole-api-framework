@@ -53,6 +53,7 @@ class Response extends Component
         {
             $response->header($key,$item);
         }
+        $ret = false;
         if (in_array($this->_curType, array('xml','html','json')))
         {
             $response->status($this->_code);
@@ -64,13 +65,13 @@ class Response extends Component
                 $response->write($result);
             }
             unset($result);
-            return false;
         }
         else
         {
             unset($result);
             if (!empty($this->_sendFile)) {
                 $response->sendfile($this->_sendFile);
+                $ret = true;
             }
             $this->_sendFile = '';
         }
@@ -78,7 +79,7 @@ class Response extends Component
         $this->initHeader();
         $this->_curType = '';
         $this->_code = 200;
-        return true;
+        return $ret;
     }
 
     public function addHeader($key, $header)
