@@ -7,6 +7,28 @@
  */
 namespace application\lib;
 use framework\web\Api;
+//
+//use framework\web\Controller;
+//
+//abstract class Web extends Controller
+//{
+//    public function beforeAction()
+//    {
+//        $result  = $this->validate();
+//        if ($result !== true)
+//        {
+//            return $this->ajax(null,500,$result);
+//        }
+//        $this->getComponent('session')->start();
+//        return true;
+//    }
+//
+//    public function afterAction($data = '')
+//    {
+//        $this->getComponent('session')->destroy();
+//        return $data;
+//    }
+//}
 
 abstract class Web extends Api
 {

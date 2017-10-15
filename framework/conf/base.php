@@ -11,7 +11,7 @@ return array(
     'components' => array(
         'log' => array(
             'path' => 'runtime/log/',
-            'debug' => true,
+            'isLog' => true,
             'maxSize' => 2097152
         ),
         'url' => array(

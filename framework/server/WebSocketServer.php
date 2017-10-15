@@ -114,18 +114,23 @@ class WebSocketServer extends BaseServer
                 {
                     $this->_event->onResponse($request,$response);
                 }
-                $container->finish();
             }
             catch (\Exception $exception)
             {
-                $response->status(404);
-                $response->write($exception->getMessage());
+                $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
+                $response->status($code);
+                if (DEBUG) {
+                    $response->write($exception->getMessage());
+                }
                 $container->getComponent('exception')->handleException($exception);
             }
             catch (\Error $e)
             {
-                $response->status(404);
-                $response->write($e->getMessage());
+                $code = $e->getCode() > 0 ? $e->getCode() : 404;
+                $response->status($code);
+                if (DEBUG) {
+                    $response->write($e->getMessage());
+                }
                 $container->getComponent('exception')->handleException($e);
             }
             if (!$hasEnd)
@@ -136,6 +141,7 @@ class WebSocketServer extends BaseServer
             $_GET = null;
             $_POST = null;
             $_FILES = null;
+            $container->finish();
             unset($container,$request,$response);
         });
     }
@@ -189,6 +195,7 @@ class WebSocketServer extends BaseServer
                 $server->push($frame->fd, $e->getMessage());
                 $container->getComponent('exception')->handleException($e);
             }
+            $container->finish();
             unset($container);
             return false;
         });

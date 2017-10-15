@@ -20,7 +20,7 @@ class Log extends Component
         if ($this->getIsLog()) {
             $time = date('Y-m-d H:i:s');
             $server = $this->getComponent('url')->getServer();
-            $dirPath = APP_ROOT . '/' . APP_NAME . '/' . $this->getDefaultSavePath() . date('Ym') . '/';
+            $dirPath = APP_ROOT . APP_NAME . '/' . $this->getDefaultSavePath() . date('Ym') . '/';
             $destination =  date('Ymd') . '.log';
             !is_dir($dirPath) && mkdir($dirPath, 0755, true);
 
@@ -62,7 +62,7 @@ class Log extends Component
     {
         if (!isset($this->_isLog))
         {
-            $this->_isLog = $this->getValueFromConf('debug', true);
+            $this->_isLog = $this->getValueFromConf('isLog', true);
         }
         return $this->_isLog;
     }

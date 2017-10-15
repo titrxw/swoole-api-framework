@@ -17,7 +17,7 @@ abstract class Controller extends Component
         return true;
     }
 
-    public function afterAction($data = array())
+    public function afterAction($data = '')
     {
         return $data;
     }
@@ -133,16 +133,9 @@ abstract class Controller extends Component
 
     protected function model($name)
     {
-        try
-        {
-            $componentModel = md5(APP_NAME.'application/controller/'.$name);
-            Container::getInstance()->addComponent($componentModel,
-                'application\\model\\'. $name);
-        }
-        catch (\Exception $e)
-        {
-            throw new \Exception($e->getMessage(), 404);
-        }
+        $componentModel = md5(APP_NAME.'application/controller/'.$name);
+        Container::getInstance()->addComponent($componentModel,
+            'application\\model\\'. $name);
         return $this->getComponent($componentModel);
     }
 

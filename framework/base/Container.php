@@ -104,6 +104,7 @@ class Container extends Base
             {
                 if (COMPOSER && $this->_composer->checkComposer($key)) {
                     $this->_instances[$key] = $this->_composer->getComposer($key, $params);
+                    $this->unInstall($key, false);
                 }
                 else
                 {

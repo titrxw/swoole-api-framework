@@ -14,42 +14,34 @@ class Dispatcher extends Component
     {
         $controllerName = $this->getControllerPrefix() . $args['controller'] . $this->getControllerSuffix();
         $controllerName = ucfirst($controllerName);
+        if (!file_exists(APP_ROOT.APP_NAME.'/controller/'.$controllerName.'.php'))
+        {
+            throw new \Exception(APP_ROOT.APP_NAME.'/controller/'.$controllerName.'.phpnot exists', 404);
+        }
+
         $controllerHashName = md5(APP_NAME.'application/controller/'.$controllerName);
 
         Container::getInstance()->addComponent($controllerHashName,
             'application\\controller\\'. $controllerName);
 
         $actionName = $this->getActionPrefix() . $args['action'] . $this->getActionSuffix();
-        try
-        {
-            $controllerInstance = $this->getComponent($controllerHashName);
-            $controllerInstance->setController($controllerName);
-            $controllerInstance->setAction($actionName);
+        $controllerInstance = $this->getComponent($controllerHashName);
+        $controllerInstance->setController($controllerName);
+        $controllerInstance->setAction($actionName);
 
-            $result = $controllerInstance->beforeAction();
-            if ($result !== true)
-            {
-                return $result;
-            }
-            if (!method_exists($controllerInstance, $actionName))
-            {
-                throw new \Exception('action ' . $actionName . ' not found');
-            }
-            $result = $controllerInstance->$actionName();
-            $result = $controllerInstance->afterAction($result);
-            unset($controllerInstance, $args);
+        $result = $controllerInstance->beforeAction();
+        if ($result !== true)
+        {
             return $result;
         }
-        catch (\Exception $e)
+        if (!method_exists($controllerInstance, $actionName))
         {
-            $code = $e->getCode();
-            $code = $code>0 ? $code : 404;
-            throw new \Exception($e->getMessage(), $code);
+            throw new \Exception('action ' . $actionName . ' not found');
         }
-        catch(\Error $e)
-        {
-            throw  $e;
-        }
+        $result = $controllerInstance->$actionName();
+        $result = $controllerInstance->afterAction($result);
+        unset($controllerInstance, $args);
+        return $result;
     }
 
     protected function getControllerPrefix()

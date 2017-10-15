@@ -9,7 +9,7 @@ class SwooleLog extends Log
         if ($this->getIsLog()) {
             $time = date('Y-m-d H:i:s');
             $server = $this->getComponent('url')->getServer();
-            $dirPath = APP_ROOT . '/' . APP_NAME . '/' . $this->getDefaultSavePath() . date('Ym') . '/';
+            $dirPath = APP_ROOT . APP_NAME . '/' . $this->getDefaultSavePath() . date('Ym') . '/';
             $destination =  date('Ymd') . '.log';
             !is_dir($dirPath) && mkdir($dirPath, 0755, true);
 

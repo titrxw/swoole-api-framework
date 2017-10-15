@@ -41,7 +41,7 @@ class Index extends Web
 //        }, ['er','ererer']);
 //        再10000毫秒后执行  执行完后自动清理计时器   该函数返回计时器id
         $this->addTimerAfter(10000, function ($params) {
-            var_dump($params);
+            return false;
         }, ['er','ererer']);
 //        for($i=0; $i<10;$i++)
 //        {
