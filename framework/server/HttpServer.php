@@ -22,6 +22,11 @@ class HttpServer extends BaseServer
     {
         $this->_server->on("request", function (\swoole_http_request $request,\swoole_http_response $response)
         {
+            if (DEBUG)
+            {
+                ob_start();
+            }
+
             if (!empty($this->_event))
             {
                 $this->_event->onRequest($request,$response);
@@ -41,15 +46,16 @@ class HttpServer extends BaseServer
             $hasEnd = false;
             try
             {
+                if (!empty($this->_event))
+                {
+                    $this->_event->onResponse($request,$response);
+                }
                 $request->server['host'] = $request->header['host'];
                 $urlInfo = $container->getComponent('url')->run($request->server);
                 if ($urlInfo !== false) {
                     $result = $container->getComponent('dispatcher')->run($urlInfo);
                     $hasEnd = $container->getComponent('response')->send($response, $result);
-                }
-                if (!empty($this->_event))
-                {
-                    $this->_event->onResponse($request,$response);
+                    unset($result);
                 }
             }
             catch (\Exception $exception)

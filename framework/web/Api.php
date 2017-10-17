@@ -30,10 +30,15 @@ abstract class Api extends \framework\base\Controller
 
     protected function sendFile($path, $type = 'jpg')
     {
+        if (file_exists(!$path))
+        {
+            return false;
+        }
         $urlComponent = $this->getComponent('response');
         $urlComponent->contentType($type);
         $urlComponent->sendFile($path);
-        return $path;
+        unset($urlComponent);
+        return true;
     }
 
     protected function addTask($className, $funcName, $params, $taskId = -1, $isAsync = false)

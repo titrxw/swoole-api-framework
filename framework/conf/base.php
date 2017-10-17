@@ -49,7 +49,7 @@ return array(
             'rightDelimiter' => '}'
         ),
         'server' => array(
-            'type' => 'webSocket',
+            'type' => 'http',
             'task_worker_num' => 4, //异步任务进程
             "task_max_request"=>10,
             'max_request'=>3000,

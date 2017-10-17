@@ -18,8 +18,6 @@ class ServerWebSocketEvent implements SwooleEvent
     public function onConnect(\swoole_server $server, $client_id, $from_id)
     {
         // TODO: Implement onConnect() method.
-
-
     }
 
     public function onOpen(\swoole_websocket_server $server, $frame)

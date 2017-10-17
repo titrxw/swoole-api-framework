@@ -41,7 +41,7 @@ class Index extends Web
 //        }, ['er','ererer']);
 //        再10000毫秒后执行  执行完后自动清理计时器   该函数返回计时器id
         $this->addTimerAfter(10000, function ($params) {
-            return false;
+            var_dump($params);
         }, ['er','ererer']);
 //        for($i=0; $i<10;$i++)
 //        {
@@ -51,14 +51,25 @@ class Index extends Web
 //        var_dump($this->cache);
 //        var_dump($this->session);
         //var_dump($this->getComponent('Logger',1));
-        //return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'zip');
         return [404, ['er','ererer'],'fds'];
     }
 
     public function testAction()
     {
-//        var_dump($this->getComponent('Logger', 1)); composer 获取方式
+//        var_dump($this->getComponent('db'));
+//        var_dump($this->getComponent('log'));
         $result = $this->_userM->getList();
         return [404, $result,'fds'];
+    }
+
+    public function imgAction()
+    {
+//        $this->getComponent('captcha')->getCode();
+        return $this->getComponent('captcha')->send();
+    }
+
+    public function downloadAction()
+    {
+        return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'jpg');
     }
 }

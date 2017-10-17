@@ -32,10 +32,12 @@ class Dispatcher extends Component
         $result = $controllerInstance->beforeAction();
         if ($result !== true)
         {
+            unset($controllerInstance, $args);
             return $result;
         }
         if (!method_exists($controllerInstance, $actionName))
         {
+            unset($controllerInstance, $args);
             throw new \Exception('action ' . $actionName . ' not found');
         }
         $result = $controllerInstance->$actionName();

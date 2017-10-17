@@ -53,7 +53,12 @@ class Response extends Component
         {
             $response->header($key,$item);
         }
-        if (in_array($this->_curType, array('xml','html','json')))
+        if (!empty($this->_sendFile))
+        {
+           $response->sendfile($this->_sendFile);
+            $this->_sendFile = null;
+        }
+        else if (in_array($this->_curType, array('xml','html','json', 'jpg', 'png', 'gif')))
         {
             $response->status($this->_code);
             if (!empty($result))
@@ -61,23 +66,22 @@ class Response extends Component
                 if (is_array($result)) {
                     $result = json_encode($result);
                 }
+                if (DEBUG)
+                {
+                    $elseContent = ob_get_clean();
+                    $result.=$elseContent;
+                }
+
                 $response->write($result);
             }
-            unset($result);
+            unset($result, $response);
             return false;
-        }
-        else
-        {
-            unset($result);
-            if (!empty($this->_sendFile)) {
-                $response->sendfile($this->_sendFile);
-            }
-            $this->_sendFile = '';
         }
 
         $this->initHeader();
         $this->_curType = '';
         $this->_code = 200;
+        unset($result, $response);
         return true;
     }
 

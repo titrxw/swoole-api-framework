@@ -45,9 +45,15 @@ abstract class Controller extends \framework\base\Controller
 
     protected function sendFile($path, $type = 'jpg')
     {
+        if (file_exists(!$path))
+        {
+            return false;
+        }
         $urlComponent = $this->getComponent('response');
         $urlComponent->contentType($type);
-        return $path;
+        $urlComponent->sendFile($path);
+        unset($urlComponent);
+        return true;
     }
 
     protected function addTask($className, $funcName, $params, $taskId = -1, $isAsync = false)

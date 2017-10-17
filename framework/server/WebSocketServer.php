@@ -85,6 +85,10 @@ class WebSocketServer extends BaseServer
     {
         $this->_server->on("request", function (\swoole_http_request $request,\swoole_http_response $response)
         {
+            if (DEBUG)
+            {
+                ob_start();
+            }
             if (!empty($this->_event))
             {
                 $this->_event->onRequest($request,$response);
@@ -109,6 +113,7 @@ class WebSocketServer extends BaseServer
                 if ($urlInfo !== false) {
                     $result = $container->getComponent('dispatcher')->run($urlInfo);
                     $hasEnd = $container->getComponent('response')->send($response, $result);
+                    unset($result);
                 }
                 if (!empty($this->_event))
                 {
@@ -150,6 +155,10 @@ class WebSocketServer extends BaseServer
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
         {
+            if (DEBUG)
+            {
+                ob_start();
+            }
 //            目前不支持过大消息和二进制数据
             if (!$frame->finish || $frame->opcode === 2) {
                 $server->push($frame->fd, '');
@@ -181,6 +190,10 @@ class WebSocketServer extends BaseServer
 
                 if (is_array($result)) {
                     $result = json_encode($result);
+                }
+                if (DEBUG)
+                {
+                    $result.=ob_get_clean();
                 }
                 $server->push($frame->fd, $result);
                 unset($result);

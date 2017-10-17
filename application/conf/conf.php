@@ -16,7 +16,8 @@ return array(
         'page' => 'framework\\components\\page\\Page',//如果使用api的话这里不需要
         'view' => 'framework\\components\\view\\View',     //如果使用api的话这里不需要,
         'upload' => 'framework\\components\\upload\\Upload',
-        'msgTask' => 'application\\conf\\Task'
+        'msgTask' => 'application\\conf\\Task',
+        'captcha' => 'framework\\components\\captcha\\Captcha'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
         'cache' => array(
@@ -29,7 +30,7 @@ return array(
             'persistent'   => true, // 是否长连接,
             'prefix' => ''
         ),
-        'Pdo' => array(
+        'db' => array(
             'db' => array(
                 'db1' => array(
                     'type' => 'mysql',
@@ -52,6 +53,12 @@ return array(
                 'jpg',
                 'png'
             )
+        ),
+        'captcha' => array(
+            'height' => 70,
+            'width' => 200,
+            'num' => 5,
+            'type' => 'png'   //png jpg gif
         )
     )
 );

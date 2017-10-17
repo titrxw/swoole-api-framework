@@ -1,0 +1,232 @@
+[2017-10-15 10:03:13] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:21] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:22] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:52] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:52] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:52] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:53] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:53] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:53] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:53] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:53] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:53] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:03:54] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : not support: swoole 
+ file : C:\web\php\www\easy-framework-swoole\framework\server\Server.php 
+ line : 19 
+ code : 500 
+ trace : #0 C:\web\php\www\easy-framework-swoole\framework\web\Application.php(41): framework\server\Server->start()
+#1 C:\web\php\www\easy-framework-swoole\framework\framework.php(31): framework\web\Application::run(Array)
+#2 C:\web\php\www\easy-framework-swoole\index.php(8): require('C:\\web\\php\\www\\...')
+#3 {main}
+
+[2017-10-15 10:30:18] [ log ] localhost:81/index/img
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : ob_end_flush(): failed to delete and flush buffer. No buffer to delete or flush at  file: /var/www/php/easy-framework-swoole/framework/components/captcha/Captcha.php, on line: 84 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(8, 'ob_end_flush():...', '/var/www/php/ea...', 84, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/captcha/Captcha.php(84): ob_end_flush()
+#2 /var/www/php/easy-framework-swoole/application/controller/Index.php(67): framework\components\captcha\Captcha->send()
+#3 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(41): application\controller\Index->imgAction()
+#4 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(110): framework\components\dispatcher\Dispatcher->run(Array)
+#5 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#6 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#7 /var/www/php/easy-framework-swoole/framework/server/Server.php(36): framework\server\BaseServer->start()
+#8 /var/www/php/easy-framework-swoole/framework/web/Application.php(46): framework\server\Server->start()
+#9 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#10 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#11 {main}
+
+[2017-10-15 10:30:47] [ log ] localhost:81/index/img
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : ob_flush(): failed to flush buffer. No buffer to flush at  file: /var/www/php/easy-framework-swoole/framework/components/captcha/Captcha.php, on line: 84 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(8, 'ob_flush(): fai...', '/var/www/php/ea...', 84, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/captcha/Captcha.php(84): ob_flush()
+#2 /var/www/php/easy-framework-swoole/application/controller/Index.php(67): framework\components\captcha\Captcha->send()
+#3 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(41): application\controller\Index->imgAction()
+#4 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(110): framework\components\dispatcher\Dispatcher->run(Array)
+#5 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#6 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#7 /var/www/php/easy-framework-swoole/framework/server/Server.php(36): framework\server\BaseServer->start()
+#8 /var/www/php/easy-framework-swoole/framework/web/Application.php(46): framework\server\Server->start()
+#9 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#10 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#11 {main}
+
+[2017-10-15 10:31:13] [ log ] localhost:81/index/img
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : ob_end_clean(): failed to delete buffer. No buffer to delete at  file: /var/www/php/easy-framework-swoole/framework/components/captcha/Captcha.php, on line: 84 
+ file : /var/www/php/easy-framework-swoole/framework/components/error/Error.php 
+ line : 9 
+ code : 8 
+ trace : #0 [internal function]: framework\components\error\Error->handleError(8, 'ob_end_clean():...', '/var/www/php/ea...', 84, Array)
+#1 /var/www/php/easy-framework-swoole/framework/components/captcha/Captcha.php(84): ob_end_clean()
+#2 /var/www/php/easy-framework-swoole/application/controller/Index.php(67): framework\components\captcha\Captcha->send()
+#3 /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php(41): application\controller\Index->imgAction()
+#4 /var/www/php/easy-framework-swoole/framework/server/WebSocketServer.php(110): framework\components\dispatcher\Dispatcher->run(Array)
+#5 [internal function]: framework\server\WebSocketServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#6 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#7 /var/www/php/easy-framework-swoole/framework/server/Server.php(36): framework\server\BaseServer->start()
+#8 /var/www/php/easy-framework-swoole/framework/web/Application.php(46): framework\server\Server->start()
+#9 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#10 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#11 {main}
+
+[2017-10-15 13:10:33] [ log ] localhost:81/index/te
+ client: 127.0.0.1
+---------------------------------------------------------------
+ msg : action teAction not found 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 39 
+ code : 0 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(47): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(54): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(46): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+

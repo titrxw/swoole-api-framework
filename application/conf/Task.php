@@ -17,7 +17,6 @@ class Task extends BaseTask
         {
             $this->getComponent('log')->save(serialize($params));
         }
-
     }
 
 //    该方法是sendMsg的结束方法

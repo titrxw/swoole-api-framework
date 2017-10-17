@@ -168,19 +168,17 @@ abstract class BaseServer extends Base implements ServerInterface
                     {
                         if (!empty($taskObj['class']) && !empty($taskObj['func']))
                         {
-                            $obj = null;
-                            try
-                            {
-                                $obj = Container::getInstance()->getComponent($taskObj['class']);
-                            }
-                            catch (\Exception $e)
-                            {
-                                ;
-                            }
+                            $obj = Container::getInstance()->getComponent($taskObj['class']);
+
                             if ($obj && $obj instanceof BaseTask)
                             {
                                 $obj->run($taskObj['func'], $taskObj['params'], $server, $taskId, $fromId);
                                 unset($obj);
+                            }
+                            else
+                            {
+                                throw new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                                    ' or action: ' .$taskObj['func'] . ' not found', 500);
                             }
                         }
                     }
@@ -241,20 +239,18 @@ abstract class BaseServer extends Base implements ServerInterface
                     {
                         if (!empty($taskObj['class']) && !empty($taskObj['func']))
                         {
-                            $obj = null;
-                            try
-                            {
-                                $obj = Container::getInstance()->getComponent($taskObj['class']);
-                            }
-                            catch (\Exception $e)
-                            {
-                                ;
-                            }
+                            $obj = Container::getInstance()->getComponent($taskObj['class']);
+
                             if ($obj && $obj instanceof BaseTask)
                             {
                                 $obj->run($taskObj['func'].'Finish', $taskObj['params'],  $server, $taskId, -1);
                                 unset($obj);
                                 Container::getInstance()->destroyComponentsInstance($taskObj['class']);
+                            }
+                            else
+                            {
+                                throw new \Exception('task at finish: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                                ' or action: ' .$taskObj['func'] . ' not found', 500);
                             }
                         }
                     }
@@ -297,12 +293,16 @@ abstract class BaseServer extends Base implements ServerInterface
 
     public function addTimer($timeStep, callable $callable, $params= array())
     {
+        if (!is_integer($timeStep)) return false;
+        if ($timeStep === 0) return false;
         if ($timeStep > $this->_maxTickStep) return false;
         return swoole_timer_tick($timeStep, $callable, $params);
     }
 
     public function addTimerAfter($timeStep, callable $callable, $params= array())
     {
+        if (!is_integer($timeStep)) return false;
+        if ($timeStep === 0) return false;
         if ($timeStep > $this->_maxTickStep) return false;
         return swoole_timer_after($timeStep, $callable, $params);
     }

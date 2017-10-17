@@ -17,7 +17,7 @@ class Application extends \framework\base\Application
             'server' => 'framework\\server\\Server',
             'log' => 'framework\\components\\log\\SwooleLog',
             'cache' => 'framework\\components\\cache\\Redis',
-            'Pdo' => 'framework\\components\\db\\Pdo',
+            'db' => 'framework\\components\\db\\Pdo',
             'taskManager' => 'framework\\task\\Task'
         );
         $this->_container->addComponents($components);
@@ -33,6 +33,11 @@ class Application extends \framework\base\Application
 
     public static function run($conf)
     {
+        if (PHP_SAPI !== 'cli')
+        {
+            echo 'have to run at cli';
+            return false;
+        }
         if (!empty($conf['server']))
         {
             unset($conf['server']);
