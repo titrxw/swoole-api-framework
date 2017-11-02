@@ -93,6 +93,10 @@ class Validate extends Component
         $result = true;
         foreach ($rule as $key=>$item)
         {
+            if (!$result)
+            {
+                break;
+            }
             switch ($item)
             {
                 case 'require':

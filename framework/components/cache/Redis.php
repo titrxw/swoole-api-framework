@@ -10,24 +10,26 @@
 // +----------------------------------------------------------------------
 
 namespace framework\components\cache;
-use framework\base\Component;
 
-class Redis extends Component implements CacheInterface
+class Redis extends Cache implements CacheInterface
 {
-    protected $_handle = null;
-
     protected function init()
     {
         if (!extension_loaded('redis')) {
-            throw new \Error('not support: redis');
+            throw new \Exception('not support: redis', 500);
         }
         unset($this->_conf);
-        $func = $this->_appConf['persistent'] ? 'pconnect' : 'connect';
-        $this->_handle = new \Redis;
-        $this->_handle->$func($this->_appConf['host'], $this->_appConf['port'], $this->_appConf['timeout']);
+        $this->_handle = new \Redis();
 
-        if ('' != $this->_appConf['password']) {
-            $this->_handle->auth($this->_appConf['password']);
+        $func = $this->getValueFromConf('persistent', false) === true ? 'pconnect' : 'connect';
+        $timeout = $this->getValueFromConf('timeout', null);
+        $this->_handle->$func($this->_appConf['host'], $this->_appConf['port'], $timeout);
+
+        $password = $this->getValueFromConf('password');
+        if ('' != $password) {
+            if ($this->_handle->auth($password) === false) {
+                throw new \Exception('redis auth password error', 500);
+            }
         }
 
         if (0 != $this->_appConf['select']) {
@@ -35,9 +37,17 @@ class Redis extends Component implements CacheInterface
         }
     }
 
-    public function getCacheKey($name)
+    public function selectDb(int $no)
     {
-        return (empty($this->_appConf['prefix'])?'':$this->_appConf['prefix']) . $name;
+        if ($no == 0) {
+            return false;
+        }
+        $this->_handle->select($no);
+    }
+
+    public function selectRollBack()
+    {
+        $this->_handle->select(0);
     }
 
     /**
@@ -48,7 +58,7 @@ class Redis extends Component implements CacheInterface
      */
     public function has($name)
     {
-        return $this->_handle->get($this->getCacheKey($name)) ? true : false;
+        return $this->_handle->exists($this->getCacheKey($name)) ? true : false;
     }
 
     /**
@@ -61,7 +71,7 @@ class Redis extends Component implements CacheInterface
     public function get($name, $default = false)
     {
         $value = $this->_handle->get($this->getCacheKey($name));
-        if (is_null($value)) {
+        if (false !== $value) {
             return $default;
         }
 
@@ -82,7 +92,6 @@ class Redis extends Component implements CacheInterface
         if (is_null($expire)) {
             $expire = $this->_appConf['expire'];
         }
-
         $value = (is_object($value) || is_array($value)) ? json_encode($value) : $value;
         if (is_int($expire) && $expire) {
             $result = $this->_handle->setex($this->getCacheKey($name), $expire, $value);
@@ -127,7 +136,6 @@ class Redis extends Component implements CacheInterface
     {
         return $this->_handle->delete($this->getCacheKey($name));
     }
-
     /**
      * 清除缓存
      * @access public
@@ -137,14 +145,5 @@ class Redis extends Component implements CacheInterface
     public function clear()
     {
         return $this->_handle->flushDB();
-    }
-
-    public function __destruct()
-    {
-        if(isset($this->_appConf['persistent']) && $this->_appConf['persistent'] === false)
-        {
-            $this->_handle->close();
-            $this->_handle = null;
-        }
     }
 }

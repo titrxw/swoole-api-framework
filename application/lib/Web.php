@@ -42,7 +42,7 @@ abstract class Web extends Api
         return true;
     }
 
-    public function afterAction($data = array())
+    public function afterAction($data = array()):array
     {
         if (is_array($data))
         {

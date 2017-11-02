@@ -12,7 +12,6 @@ use framework\server\SwooleEvent;
 
 class ServerWebSocketEvent implements SwooleEvent
 {
-    public $_current = 0;
     public $_connections = array();
 
     public function onConnect(\swoole_server $server, $client_id, $from_id)

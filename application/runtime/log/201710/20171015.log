@@ -230,3 +230,84 @@
 #6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
 #7 {main}
 
+[2017-10-15 12:41:16] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : failed to listen server port[127.0.0.1:81]. Error: Address already in use[98]. 
+ file : /var/www/php/easy-framework-swoole/framework/server/HttpServer.php 
+ line : 16 
+ code : 98 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(16): swoole_server->__construct('127.0.0.1', '81')
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(27): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(46): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(9): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-10-15 12:41:16] [ log ] 
+ client: 
+---------------------------------------------------------------
+PHP Startup: Unable to load dynamic library '/usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/helloworld.so' - /usr/local/php/lib/php/extensions/no-debug-non-zts-20151012/helloworld.so: cannot open shared object file: No such file or directory (Unknown:0)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-10-15 12:53:48] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : failed to listen server port[127.0.0.1:81]. Error: Address already in use[98]. 
+ file : /var/www/php/easy-framework-swoole/framework/server/HttpServer.php 
+ line : 16 
+ code : 98 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(16): swoole_server->__construct('127.0.0.1', '81')
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(27): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(46): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(9): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-10-15 12:53:57] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : failed to listen server port[127.0.0.1:81]. Error: Address already in use[98]. 
+ file : /var/www/php/easy-framework-swoole/framework/server/HttpServer.php 
+ line : 16 
+ code : 98 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(16): swoole_server->__construct('127.0.0.1', '81')
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(27): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(46): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(9): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-10-15 12:54:17] [ log ] localhost:81/index/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Allowed memory size of 134217728 bytes exhausted (tried to allocate 2224793063424 bytes) (/var/www/php/easy-framework-swoole/framework/components/response/Response.php:67)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-10-15 12:54:17] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 0  workerpid: 15537 code: 255
+
+[2017-10-15 13:12:24] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 0  workerpid: 17777 code: 127
+
+[2017-10-15 13:13:26] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 0  workerpid: 19549 code: 0
+
+[2017-10-15 13:13:50] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 0  workerpid: 19580 code: 0
+

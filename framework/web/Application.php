@@ -18,7 +18,8 @@ class Application extends \framework\base\Application
             'log' => 'framework\\components\\log\\SwooleLog',
             'cache' => 'framework\\components\\cache\\Redis',
             'db' => 'framework\\components\\db\\Pdo',
-            'taskManager' => 'framework\\task\\Task'
+            'taskManager' => 'framework\\task\\Task',
+            'redis' => 'framework\\components\\cache\\Redis'
         );
         $this->_container->addComponents($components);
         $this->_container->addComponents($this->_appConf['addComponentsMap']);

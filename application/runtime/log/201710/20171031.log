@@ -1,0 +1,13 @@
+[2017-10-31 12:41:01] [ log ] localhost:81/index/
+ client: 127.0.0.1
+---------------------------------------------------------------
+Declaration of application\lib\Web::afterAction($data = Array) must be compatible with framework\web\Api::afterAction($data = Array): array (/var/www/php/easy-framework-swoole/application/lib/Web.php:33)
+Stack trace:
+#0 unknown(0): framework\components\shutdown\ShutDown->handleShutDown()
+
+
+[2017-10-31 12:41:01] [ log ] 
+ client: 
+---------------------------------------------------------------
+workerid: 0  workerpid: 2974 code: 255
+
