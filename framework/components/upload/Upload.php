@@ -36,6 +36,9 @@ class Upload extends Component
         $this->_accept = $this->getValueFromConf('accept', array());
         $this->_maxSize = $this->getValueFromConf('maxSize', 0);
         $this->_nameType = $this->getValueFromConf('nameType', 'time');
+        if ($this->_nameType !== 'md5')
+            return true;
+
         $this->_deep = $this->getValueFromConf('deep', 2);
         if ($this->_deep > 5)
         {
@@ -69,6 +72,7 @@ class Upload extends Component
                 return $this->_baseDir . '/' . $currentPath . '/' . $name . '.' . $ext;
                 break;
             case 'time':
+            default:
                 $name = mt_rand() . $name;
                 $name = md5($name);
                 $subPath = date('Ymd');
@@ -77,9 +81,6 @@ class Upload extends Component
                     mkdir($this->_baseDir . '/' . $subPath, 0755);
                 }
                 return $this->_baseDir . '/' . $subPath . '/' . $name . '.' . $ext;
-                break;
-            default:
-                return $this->_baseDir . '/' . $name;
                 break;
         }
     }

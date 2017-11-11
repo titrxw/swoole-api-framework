@@ -97,6 +97,7 @@ class Container extends Base
                 }
                 else
                 {
+                    unset($instance);
                     throw new \Exception('instance' . $classPath . 'have to instance of Component', 500);
                 }
             }

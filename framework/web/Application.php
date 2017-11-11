@@ -11,18 +11,21 @@ class Application extends \framework\base\Application
 {
     protected function addBaseComponents()
     {
-        $this->_appConf['addComponentsMap'] = empty($this->_appConf['addComponentsMap']) ? array() : $this->_appConf['addComponentsMap'];
         parent::addBaseComponents();
+
         $components = array(
             'server' => 'framework\\server\\Server',
             'log' => 'framework\\components\\log\\SwooleLog',
             'cache' => 'framework\\components\\cache\\Redis',
             'db' => 'framework\\components\\db\\Pdo',
             'taskManager' => 'framework\\task\\Task',
-            'redis' => 'framework\\components\\cache\\Redis'
+            'redis' => 'framework\\components\\cache\\Redis',
+            'response' => 'framework\\components\\response\\SwooleResponse'
         );
+        $this->_appConf['addComponentsMap'] = empty($this->_appConf['addComponentsMap']) ? array() : $this->_appConf['addComponentsMap'];
+        $components = array_merge($components, $this->_appConf['addComponentsMap']);
         $this->_container->addComponents($components);
-        $this->_container->addComponents($this->_appConf['addComponentsMap']);
+
         unset($this->_appConf['addComponentsMap'], $components);
     }
 

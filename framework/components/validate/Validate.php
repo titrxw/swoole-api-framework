@@ -27,6 +27,7 @@ class Validate extends Component
         {
             $key = explode($this->_separator, $key);
             $_data = $this->getDataByKey($key);
+            unset($key);
             if (!$_data)
             {
                 unset($data, $rule);

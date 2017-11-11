@@ -12,15 +12,23 @@ use framework\task\BaseTask;
 
 abstract class BaseServer extends Base implements ServerInterface
 {
+    /**
+     * @var null
+     * 使用trait 添加triggerException 方法
+     */
+//    use ExceptionTrait;
+
     protected $_event = null;
     protected $_server;
     protected $_maxTickStep = 86400000;
+    protected $_isStart = false;
 
     protected function init()
     {
-        $event = $this->getValueFromConf('event');
+//        防止重新启动
+        if ($this->_isStart) return false;
         $this->_server->set($this->_conf);
-        $this->setEvent($event);
+        $this->setEvent($this->getValueFromConf('event'));
         $this->onConnect();
         $this->onWorkStart();
         $this->onWorkStop();
@@ -51,8 +59,11 @@ abstract class BaseServer extends Base implements ServerInterface
     public function start()
     {
         // TODO: Implement start() method.
-        $this->_server->start();
 
+//        防止重新启动
+        if ($this->_isStart) return false;
+        $this->_isStart = true;
+        $this->_server->start();
     }
 
     public function onConnect()
@@ -67,11 +78,11 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Exception $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             catch (\Error $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
         });
     }
@@ -88,11 +99,11 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Exception $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             catch (\Error $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
         });
     }
@@ -109,11 +120,11 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Exception $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             catch (\Error $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
 //            开启数据库将断开的检测   8小时检测
             $this->addTimer(28800000, function ($timer_id, $params) {
@@ -134,11 +145,11 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Exception $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             catch (\Error $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
         });
     }
@@ -193,12 +204,12 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
                 catch (\Exception $e)
                 {
-                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    $this->triggerException($e);
                     return false;
                 }
                 catch (\Error $e)
                 {
-                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    $this->triggerException($e);
                     return false;
                 }
             });
@@ -216,11 +227,11 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Exception $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             catch (\Error $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
         });
     }
@@ -259,12 +270,12 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
                 catch (\Exception $e)
                 {
-                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    $this->triggerException($e);
                     return false;
                 }
                 catch (\Error $e)
                 {
-                    Container::getInstance()->getComponent('exception')->handleException($e);
+                    $this->triggerException($e);
                     return false;
                 }
             });
@@ -305,5 +316,10 @@ abstract class BaseServer extends Base implements ServerInterface
         if ($timeStep === 0) return false;
         if ($timeStep > $this->_maxTickStep) return false;
         return swoole_timer_after($timeStep, $callable, $params);
+    }
+
+    protected function triggerException ($e)
+    {
+        Container::getInstance()->getComponent('exception')->handleException($e);
     }
 }

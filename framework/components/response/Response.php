@@ -9,7 +9,6 @@ class Response extends Component
     protected $_defaultType;
     protected $_defaultCharSet;
     protected $_curType;
-    protected $_sendFile; //swoole专有数据
     protected $_contentTypes = array(
         'xml'  => 'application/xml,text/xml,application/x-xml',
         'json' => 'application/json,text/x-json,application/jsonrequest,text/json',
@@ -47,40 +46,24 @@ class Response extends Component
 //        header("Cache-Control: post-check=0, pre-check=0", false);
     }
 
-    public function send($response, $result)
+    public function send($result,$else='')
     {
-        foreach ($this->_headers as $key=>$item)
-        {
-            $response->header($key,$item);
+        if (is_array($result)) {
+            $result = json_encode($result);
         }
-        if (!empty($this->_sendFile))
+        if (DEBUG)
         {
-           $response->sendfile($this->_sendFile);
-            $this->_sendFile = null;
-        }
-        else if (in_array($this->_curType, array('xml','html','json', 'jpg', 'png', 'gif')))
-        {
-            $response->status($this->_code);
-            if (!empty($result))
-            {
-                if (is_array($result)) {
-                    $result = json_encode($result);
-                }
-                if (DEBUG)
-                {
-                    $elseContent = ob_get_clean();
-                    $result.=$elseContent;
-                }
-
-                $response->write($result);
+            $elseContent = ob_get_clean();
+            if (is_array($elseContent)) {
+                $elseContent = json_encode($elseContent);
             }
-            unset($result, $response);
-            return false;
+            $result = $elseContent . $result;
+            unset($elseContent);
         }
 
-        $this->initHeader();
-        $this->_curType = '';
-        $this->_code = 200;
+        echo $result;
+
+        $this->rollback();
         unset($result, $response);
         return true;
     }
@@ -122,8 +105,10 @@ class Response extends Component
         $this->_code = $code;
     }
 
-    public function sendFile($path)
+    protected function rollback()
     {
-        $this->_sendFile = $path;
+        $this->initHeader();
+        $this->_curType = '';
+        $this->_code = 200;
     }
 }

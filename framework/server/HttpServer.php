@@ -26,7 +26,6 @@ class HttpServer extends BaseServer
             {
                 ob_start();
             }
-
             if (!empty($this->_event))
             {
                 $this->_event->onRequest($request,$response);
@@ -42,6 +41,10 @@ class HttpServer extends BaseServer
                 $_FILES = $request->files;
 //                $container->getComponent('upload')->save('file'); 上传文件测试
             }
+            if (!empty($request->cookie)) {
+                $_COOKIE = $request->cookie;
+//                $container->getComponent('upload')->save('file'); 上传文件测试
+            }
 
             $hasEnd = false;
             try
@@ -54,6 +57,7 @@ class HttpServer extends BaseServer
                 $urlInfo = $container->getComponent('url')->run($request->server);
                 if ($urlInfo !== false) {
                     $result = $container->getComponent('dispatcher')->run($urlInfo);
+                    $container->getComponent('cookie')->send($response);
                     $hasEnd = $container->getComponent('response')->send($response, $result);
                     unset($result);
                 }
@@ -63,18 +67,20 @@ class HttpServer extends BaseServer
                 $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
                 $response->status($code);
                 if (DEBUG) {
+                    ob_get_clean();
                     $response->write($exception->getMessage());
                 }
-                $container->getComponent('exception')->handleException($exception);
+                $this->triggerException($exception);
             }
             catch (\Error $e)
             {
                 $code = $e->getCode() > 0 ? $e->getCode() : 500;
                 $response->status($code);
                 if (DEBUG) {
+                    ob_get_clean();
                     $response->write($e->getMessage());
                 }
-                $container->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             if (!$hasEnd)
             {
@@ -83,6 +89,7 @@ class HttpServer extends BaseServer
             $_GET = null;
             $_POST = null;
             $_FILES = null;
+            $_COOKIE = null;
             $container->finish();
             unset($container,$request,$response);
         });

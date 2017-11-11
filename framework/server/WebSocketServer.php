@@ -34,11 +34,11 @@ class WebSocketServer extends BaseServer
             }
             catch (\Exception $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             catch (\Error $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
         });
     }
@@ -104,6 +104,10 @@ class WebSocketServer extends BaseServer
                 $_FILES = $request->files;
 //                $container->getComponent('upload')->save('file'); 上传文件测试
             }
+            if (!empty($request->cookie)) {
+                $_COOKIE = $request->cookie;
+//                $container->getComponent('upload')->save('file'); 上传文件测试
+            }
 
             $hasEnd = false;
             try
@@ -112,6 +116,7 @@ class WebSocketServer extends BaseServer
                 $urlInfo = $container->getComponent('url')->run($request->server);
                 if ($urlInfo !== false) {
                     $result = $container->getComponent('dispatcher')->run($urlInfo);
+                    $container->getComponent('cookie')->send($response);
                     $hasEnd = $container->getComponent('response')->send($response, $result);
                     unset($result);
                 }
@@ -125,18 +130,20 @@ class WebSocketServer extends BaseServer
                 $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
                 $response->status($code);
                 if (DEBUG) {
+                    ob_get_clean();
                     $response->write($exception->getMessage());
                 }
-                $container->getComponent('exception')->handleException($exception);
+                $this->triggerException($exception);
             }
             catch (\Error $e)
             {
                 $code = $e->getCode() > 0 ? $e->getCode() : 404;
                 $response->status($code);
                 if (DEBUG) {
+                    ob_get_clean();
                     $response->write($e->getMessage());
                 }
-                $container->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             if (!$hasEnd)
             {
@@ -146,6 +153,7 @@ class WebSocketServer extends BaseServer
             $_GET = null;
             $_POST = null;
             $_FILES = null;
+            $_COOKIE = null;
             $container->finish();
             unset($container,$request,$response);
         });
@@ -193,23 +201,28 @@ class WebSocketServer extends BaseServer
                 }
                 if (DEBUG)
                 {
-                    $result.=ob_get_clean();
+                    $_result = ob_get_clean();
+                    $_result = is_array($_result) ? json_encode($_result) : $_result;
+                    $result = $_result . $result;
+                    unset($_result);
                 }
                 $server->push($frame->fd, $result);
                 unset($result);
             }
             catch (\Exception $exception)
             {
+                ob_get_clean();
                 $server->push($frame->fd, $exception->getMessage());
-                $container->getComponent('exception')->handleException($exception);
+                $this->triggerException($exception);
             }
             catch (\Error $e)
             {
+                ob_get_clean();
                 $server->push($frame->fd, $e->getMessage());
-                $container->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             $container->finish();
-            unset($container);
+            unset($container, $server);
             return false;
         });
     }
@@ -224,11 +237,11 @@ class WebSocketServer extends BaseServer
             }
             catch (\Exception $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
             catch (\Error $e)
             {
-                Container::getInstance()->getComponent('exception')->handleException($e);
+                $this->triggerException($e);
             }
         });
     }

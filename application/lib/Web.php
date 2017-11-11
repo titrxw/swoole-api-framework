@@ -34,6 +34,7 @@ abstract class Web extends Api
 {
     public function beforeAction()
     {
+//        $this->getComponent('session')->start();
         $result  = $this->validate();
         if ($result !== true)
         {
@@ -44,6 +45,7 @@ abstract class Web extends Api
 
     public function afterAction($data = array()):array
     {
+//        $this->getComponent('session')->destroy();
         if (is_array($data))
         {
             $data = array('ret' => empty($data[0]) ? 200 : $data[0],

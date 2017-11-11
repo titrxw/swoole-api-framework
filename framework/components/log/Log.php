@@ -40,8 +40,9 @@ class Log extends Component
             $info   = '[ log ] ' . $current_uri . "\r\n server: " .  $server . "\r\n client: " . $remote  . $depr;
 
             $this->write("[{$time}] {$info}{$data}\r\n\r\n",$destination);
-            unset($server, $data, $destination);
+            unset($server, $destination);
         }
+        unset($data);
     }
 
     public function write($data, $path)
