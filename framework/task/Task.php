@@ -8,10 +8,11 @@
 namespace framework\task;
 
 use framework\base\Component;
+use function Sodium\crypto_aead_aes256gcm_encrypt;
 
 class Task extends Component
 {
-    public function addTask($taskClass, $taskName, $params, $taskId = -1)
+    public function addTask($taskClass, $taskName, $params = array(), $taskId = -1)
     {
         if (empty($taskClass) || empty($taskName) || !is_string($taskClass) || !is_string($taskName))
         {
@@ -24,7 +25,7 @@ class Task extends Component
         ), $taskId);
     }
 
-    public function addAsyncTask($taskClass, $taskName, $params, $taskId = -1)
+    public function addAsyncTask($taskClass, $taskName, $params = array(), $taskId = -1)
     {
         if (empty($taskClass) || empty($taskName))
         {

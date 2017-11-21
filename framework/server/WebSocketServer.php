@@ -27,10 +27,11 @@ class WebSocketServer extends BaseServer
     {
         $this->_server->on('open', function (\swoole_websocket_server $server, $request)
         {
-            if (empty($this->_event)) return false;
             try
             {
-                $this->_event->onOpen($server, $request);
+                if (!empty($this->_event)) {
+                    $this->_event->onOpen($server, $request);
+                }
             }
             catch (\Exception $e)
             {
@@ -47,6 +48,9 @@ class WebSocketServer extends BaseServer
     {
         $this->_server->on('handshake', function (\swoole_http_request $request, \swoole_http_response $response)
         {
+            if (!empty($this->_event)) {
+                $this->_event->onHandShake($request, $response);
+            }
             if (!isset($request->header['sec-websocket-key']))
             {
                 //'Bad protocol implementation: it is not RFC6455.'
@@ -230,10 +234,11 @@ class WebSocketServer extends BaseServer
     protected function onCLose()
     {
         $this->_server->on('close', function (\swoole_websocket_server $server, $fd) {
-            if (empty($this->_event)) return false;
             try
             {
-                $this->_event->onClose($server, $fd);
+                if (!empty($this->_event)) {
+                    $this->_event->onClose($server, $fd);
+                }
             }
             catch (\Exception $e)
             {

@@ -7,6 +7,7 @@
  */
 namespace application\controller;
 use application\lib\Web;
+use framework\crontab\Crontab;
 
 class Index extends Web
 {
@@ -34,7 +35,7 @@ class Index extends Web
 
     public function indexAction()
     {
-        $this->redis->set('er', 123);
+//        $this->redis->set('er', 123);
 //        print_r($this->_userM->getList());
 //        $this->getRedis()->set('test', 12);
 //        if (function_exists('hello_word')) {

@@ -52,7 +52,7 @@ return array(
             'type' => 'http',
             'factory_mode'=>2,
             'dispatch_mode' => 2,
-            'task_worker_num' => 0, //异步任务进程
+            'task_worker_num' => 2, //异步任务进程
             "task_max_request"=>10,
             'max_request'=>3000,
             'worker_num'=>3,

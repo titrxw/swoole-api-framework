@@ -11,6 +11,7 @@ class SwooleLog extends Log
             $server = $this->getComponent('url')->getServer();
             $dirPath = APP_ROOT . APP_NAME . '/' . $this->getDefaultSavePath() . date('Ym') . '/';
             $destination =  date('Ymd') . '.log';
+
             !is_dir($dirPath) && mkdir($dirPath, 0755, true);
 
             $i = 1;

@@ -29,7 +29,7 @@ class Application extends Base
 
     protected function initEnv()
     {
-
+        
     }
 
     protected function initContainer()

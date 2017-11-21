@@ -43,7 +43,6 @@ class HttpServer extends BaseServer
             }
             if (!empty($request->cookie)) {
                 $_COOKIE = $request->cookie;
-//                $container->getComponent('upload')->save('file'); 上传文件测试
             }
 
             $hasEnd = false;

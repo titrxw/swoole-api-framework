@@ -22,6 +22,8 @@ abstract class BaseServer extends Base implements ServerInterface
     protected $_server;
     protected $_maxTickStep = 86400000;
     protected $_isStart = false;
+    protected $_workerNum = -1;
+    protected $_taskWorkerNum = -1;
 
     protected function init()
     {
@@ -71,10 +73,11 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onConnect() method.
         $this->_server->on("Connect",function (\swoole_server $server, $client_id, $from_id)
         {
-            if (empty($this->_event)) return false;
             try
             {
-                $this->_event->onConnect($server, $client_id, $from_id);
+                if (!empty($this->_event)) {
+                    $this->_event->onConnect($server, $client_id, $from_id);
+                }
             }
             catch (\Exception $e)
             {
@@ -92,10 +95,11 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onStart() method.
         $this->_server->on("start",function (\swoole_server $server)
         {
-            if (empty($this->_event)) return false;
             try
             {
-                $this->_event->onStart($server);
+                if (!empty($this->_event)) {
+                    $this->_event->onStart($server);
+                }
             }
             catch (\Exception $e)
             {
@@ -113,10 +117,11 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onWorkStart() method.
         $this->_server->on("workerStart",function (\swoole_server $server, $workerId)
         {
-            if (empty($this->_event)) return false;
             try
             {
-                $this->_event->onWorkerStart($server,$workerId);
+                if (!empty($this->_event)) {
+                    $this->_event->onWorkerStart($server,$workerId);
+                }
             }
             catch (\Exception $e)
             {
@@ -138,10 +143,11 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onWorkStop() method.
         $this->_server->on("workerStop",function (\swoole_server $server, $workerId)
         {
-            if (empty($this->_event)) return false;
             try
             {
-                $this->_event->onWorkStop($server,$workerId);
+                if (!empty($this->_event)) {
+                    $this->_event->onWorkStop($server,$workerId);
+                }
             }
             catch (\Exception $e)
             {
@@ -159,22 +165,26 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onError() method.
         $this->_server->on("workererror",function (\swoole_server $server,$worker_id, $worker_pid, $exit_code)
         {
-            if (empty($this->_event)) return false;
             Container::getInstance()->getComponent('log')->save('workerid: ' . $worker_id . '  workerpid: ' . $worker_pid . ' code: ' . $exit_code);
-            $this->_event->onWorkerError($server, $worker_id, $worker_pid, $exit_code);
+            if (!empty($this->_event)) {
+                $this->_event->onWorkerError($server, $worker_id, $worker_pid, $exit_code);
+            }
         });
     }
 
     public function onTask()
     {
         // TODO: Implement onTask() method.
-        $num = $this->getValueFromConf('task_worker_num', 0);
+        $num = $this->getTaskWorkerNum();
         if(!empty($num))
         {
             $this->_server->on("task",function (\swoole_server $server, $taskId, $fromId,$taskObj)
             {
                 try
                 {
+                    if (!empty($this->_event)) {
+                        $this->_event->onTask($server, $taskId, $fromId, $taskObj);
+                    }
                     if (is_array($taskObj))
                     {
                         if (!empty($taskObj['class']) && !empty($taskObj['func']))
@@ -199,7 +209,6 @@ abstract class BaseServer extends Base implements ServerInterface
                         return $taskObj($server, $taskId, $fromId);
                     }
 
-                    $this->_event->onTask($server, $taskId, $fromId, $taskObj);
                     return $taskObj;
                 }
                 catch (\Exception $e)
@@ -220,10 +229,12 @@ abstract class BaseServer extends Base implements ServerInterface
     {
         // TODO: Implement onShutDown() method.
         $this->_server->on("shutdown",function (\swoole_server $server){
-            if (empty($this->_event)) return false;
+
             try
             {
-                $this->_event->onShutdown($server);
+                if (!empty($this->_event)) {
+                    $this->_event->onShutdown($server);
+                }
             }
             catch (\Exception $e)
             {
@@ -239,13 +250,16 @@ abstract class BaseServer extends Base implements ServerInterface
     public function onFinish()
     {
         // TODO: Implement onFinish() method.
-        $num = $this->getValueFromConf('task_worker_num', 0);
+        $num = $this->getTaskWorkerNum();
         if(!empty($num))
         {
             $this->_server->on("finish", function (\swoole_server $server, $taskId, $taskObj)
             {
                 try
                 {
+                    if (!empty($this->_event)) {
+                        $this->_event->onFinish($server, $taskId, $taskId,$taskObj);
+                    }
                     if (is_array($taskObj))
                     {
                         if (!empty($taskObj['class']) && !empty($taskObj['func']))
@@ -265,7 +279,7 @@ abstract class BaseServer extends Base implements ServerInterface
                             }
                         }
                     }
-                    $this->_event->onFinish($server, $taskId, $taskId,$taskObj);
+
                     return false;
                 }
                 catch (\Exception $e)
@@ -284,7 +298,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
     public function addTask($data, $taskId)
     {
-        $num = $this->getValueFromConf('task_worker_num', 0);
+        $num = $this->getTaskWorkerNum();
         if ($num <= 0)
         {
             return false;
@@ -294,7 +308,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
     public function addAsyncTask($data, $taskId)
     {
-        $num = $this->getValueFromConf('task_worker_num', 0);
+        $num = $this->getTaskWorkerNum();
         if ($num <= 0)
         {
             return false;
@@ -321,5 +335,21 @@ abstract class BaseServer extends Base implements ServerInterface
     protected function triggerException ($e)
     {
         Container::getInstance()->getComponent('exception')->handleException($e);
+    }
+
+    public function getWorkerNum()
+    {
+        if ($this->_workerNum < 0) {
+            $this->_workerNum = $this->getValueFromConf('worker_num', 0);
+        }
+        return $this->_workerNum;
+    }
+
+    public function getTaskWorkerNum()
+    {
+        if ($this->_taskWorkerNum < 0) {
+            $this->_taskWorkerNum = $this->getValueFromConf('task_worker_num', 0);
+        }
+        return $this->_taskWorkerNum;
     }
 }

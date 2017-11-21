@@ -8,11 +8,17 @@
 
 namespace application\conf;
 
+use framework\base\Container;
 use framework\server\SwooleEvent;
 
 class ServerWebSocketEvent implements SwooleEvent
 {
     public $_connections = array();
+
+    public function onHandShake(\swoole_http_request $request, \swoole_http_response $response)
+    {
+
+    }
 
     public function onConnect(\swoole_server $server, $client_id, $from_id)
     {
@@ -27,6 +33,13 @@ class ServerWebSocketEvent implements SwooleEvent
     public function onWorkerStart(\swoole_server $server, $workerId)
     {
         // TODO: Implement onWorkerStart() method.
+//        var_dump($workerId);
+        if ($workerId < Container::getInstance()->getComponent('server')->getServer()->getWorkerNum()) {
+            Container::getInstance()->getComponent('server')->getServer()->addTimer(6000, function ($timer_id, $params) {
+                var_dump($timer_id);
+                Container::getInstance()->getComponent('crontab')->run();
+            });
+        }
     }
 
     public function onWorkStop(\swoole_server $server, $workerId)

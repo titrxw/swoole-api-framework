@@ -17,10 +17,10 @@ return array(
         'view' => 'framework\\components\\view\\View',     //如果使用api的话这里不需要,
         'upload' => 'framework\\components\\upload\\Upload',
         'msgTask' => 'application\\conf\\Task',
-//        'sessionRedis' => 'framework\\components\\cache\\Redis',
-//        'session' => 'framework\\components\\session\\Session',
+        'crontabTask' => 'application\\conf\\CrontabTask',
         'cookie' => 'framework\\components\\cookie\\SwooleCookie',
-        'captcha' => 'framework\\components\\captcha\\Captcha'
+        'captcha' => 'framework\\components\\captcha\\Captcha',
+        'crontab' => 'framework\\crontab\\Crontab'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
         'redis' => array(
@@ -33,16 +33,6 @@ return array(
             'persistent'   => false, // 是否长连接,
             'prefix' => ''
         ),
-//        'sessionRedis' => array(
-//            'host'         => '127.0.0.1', // redis主机
-//            'port'         => 6379, // redis端口
-//            'password'     => '', // 密码
-//            'select'       => 0, // 操作库
-//            'expire'       => 3600, // 有效期(秒)
-//            'timeout'      => 0, // 超时时间(秒)
-//            'persistent'   => true, // 是否长连接,
-//            'prefix' => ''
-//        ),
         'db' => array(
             'db' => array(
                 'db1' => array(
@@ -55,19 +45,6 @@ return array(
                 )
             )
         ),
-//        'session' => array(
-//            'redis' => array(
-//                'session_name' => '', // sessionkey前缀
-//            ),
-//            'httpOnly'=> true,
-//            'driver'=> array(
-//                'type' => 'redis',
-//                'name' => 'sessionRedis'
-//            ),
-//            'path'=> '',
-//            'name' => 'EASYSESSION',
-//            'prefix' => 'easy-'
-//        ),
         'server' => array(
             'event' => 'application\\conf\\ServerWebSocketEvent',
             'ip' => '127.0.0.1',
@@ -85,6 +62,13 @@ return array(
             'width' => 200,
             'num' => 5,
             'type' => 'png'   //png jpg gif
+        ),
+        'crontab' => array(
+            'tasks' => array(
+                '* * * 7-12/2 *--crontabTask test',
+                '2 /2 3-8 3,5,8 1--crontabTask test',
+                '3 /2 3-8/2 3,5 1--crontabTask test'
+            )
         )
     )
 );

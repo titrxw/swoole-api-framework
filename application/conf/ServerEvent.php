@@ -8,6 +8,7 @@
 
 namespace application\conf;
 
+use framework\base\Container;
 use framework\server\SwooleEvent;
 
 class ServerEvent implements SwooleEvent
@@ -20,6 +21,12 @@ class ServerEvent implements SwooleEvent
     public function onWorkerStart(\swoole_server $server, $workerId)
     {
         // TODO: Implement onWorkerStart() method.
+        if ($workerId < Container::getInstance()->getComponent('server')->getServer()->getValueFromConf('worker_num', 0)) {
+            Container::getInstance()->getComponent('server')->getServer()->addTimer(6000, function ($timer_id, $params) {
+                var_dump($timer_id);
+                Container::getInstance()->getComponent('crontab')->run();
+            });
+        }
     }
 
     public function onWorkStop(\swoole_server $server, $workerId)
