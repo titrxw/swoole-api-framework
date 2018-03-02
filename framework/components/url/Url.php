@@ -4,27 +4,21 @@ use framework\base\Component;
 
 class Url extends Component
 {
-    protected $_server;
     protected $_defaultType;
+    protected $_defaultSystem;
     protected $_defaultController;
     protected $_defaultAction;
+    protected $_defaultSystemKey;
     protected $_defaultControllerKey;
     protected $_defaultActionKey;
     protected $_defaultSeparator;
     protected $_currentModule;
-    protected $_curPage = array();
+    protected $_curRoute = [];
 
-    public function run($args = array())
+    public function run()
     {
-        $this->_server = $args;
-        unset($args);
         $this->_currentModule = $this->formatUrl();
         return $this->_currentModule;
-    }
-
-    public function getServer()
-    {
-        return $this->_server;
     }
 
     public function getCurrentModule()
@@ -37,7 +31,9 @@ class Url extends Component
         $type = $this->getType();
         if ($type === '?')
         {
+            $system = empty($_GET[$this->getDefauktSystemKey()]) ? $this->getDefaultSystem() : $_GET[$this->getDefauktSystemKey()];
             $urlInfo =  array(
+                'system' => $system,
                 'controller' => empty($_GET[$this->getDefaultControllerKey()]) ? $this->getDefaultController() : $_GET[$this->getDefaultControllerKey()],
                 'action' => empty($_GET[$this->getDefaultActionKey()]) ? $this->getDefaultAction() : $_GET[$this->getDefaultActionKey()]
             );
@@ -45,9 +41,9 @@ class Url extends Component
         else
         {
             $routerKey = $this->getValueFromConf('routerKey');
-            if (!empty($routerKey))
+            if ($routerKey)
             {
-                $query = empty($_GET[$routerKey])? '' : $_GET[$routerKey];
+                $query = empty($_GET[$routerKey]) ? '' : $_GET[$routerKey];
             }
             else
             {
@@ -55,60 +51,50 @@ class Url extends Component
                 $query = ltrim($query,'/');
             }
             $tmpQuery = explode($this->getSeparator(), $query);
+            $keyStart = 0;
+            if (in_array($tmpQuery[0], $this->getValueFromConf('systems',[]))) {
+                $system = $tmpQuery[0];
+                unset($tmpQuery[0]);
+                $keyStart = 1;
+            } else {
+                $system = $this->getDefaultSystem();
+            }
             $urlInfo =  array(
-                'controller' => empty($tmpQuery[0]) ? $this->getDefaultController() : $tmpQuery[0],
-                'action' => empty($tmpQuery[1]) ? $this->getDefaultAction() : $tmpQuery[1]
+                'system' => $system,
+                'controller' => empty($tmpQuery[0 + $keyStart]) ? $this->getDefaultController() : $tmpQuery[0 + $keyStart],
+                'action' => empty($tmpQuery[1 + $keyStart]) ? $this->getDefaultAction() : $tmpQuery[1 + $keyStart]
             );
-            if ($tmpQuery[0] === 'favicon.ico') {
+            if (!empty($tmpQuery[0]) && $tmpQuery[0] === 'favicon.ico') {
 //                处理图标
                 return false;
             }
             $count = count($tmpQuery);
-            $_GET = array();
-            for($i=2;$i < $count; $i+=2)
+            $_GET = [];
+            for($i=2 + $keyStart;$i < $count; $i+=2)
             {
                 $_GET[$tmpQuery[$i]] = !isset($tmpQuery[$i+1]) ?  '' : $tmpQuery[$i+1];
             }
             unset($tmpQuery);
         }
-        $this->_curPage = $urlInfo;
+        $this->_curRoute = $urlInfo;
         unset($urlInfo);
-        return $this->_curPage;
-    }
 
-    public function getHost()
-    {
-        return $this->_server['HTTP_HOST'];
-    }
-
-    public function getUrl()
-    {
-        return $this->_server['URL'];
-    }
-
-    public function getRequestUrl()
-    {
-        return $this->_server['REQUEST_URI'];
-    }
-
-    public function getMethod()
-    {
-        return $this->_server['REQUEST_METHOD'];
+        return $this->_curRoute;
     }
 
     public function getPathInfo()
     {
-        return empty($this->_server['PATH_INFO']) ? '' : $this->_server['PATH_INFO'];
+        return $_SERVER['PATH_INFO'] ?? '';
     }
 
-    public function getCurPage()
+    public function getCurRoute()
     {
-        return $this->_curPage;
+        return $this->_curRoute;
     }
 
     public function getType()
     {
-        if(empty($this->_defaultType))
+        if(!$this->_defaultType)
         {
             $this->_defaultType = $this->getValueFromConf('type', '?');
 
@@ -121,7 +107,7 @@ class Url extends Component
 
     protected function getSeparator()
     {
-        if(empty($this->_defaultSeparator))
+        if(!$this->_defaultSeparator)
         {
             $this->_defaultSeparator = $this->getValueFromConf('separator', '/');
         }
@@ -130,25 +116,43 @@ class Url extends Component
 
     protected function getDefaultController()
     {
-        if (empty($this->_defaultController))
+        if (!$this->_defaultController)
         {
             $this->_defaultController = $this->getValueFromConf('defaultController', 'index');
         }
         return $this->_defaultController;
     }
 
+    protected function getDefaultSystem()
+    {
+        if (!$this->_defaultSystem)
+        {
+            $this->_defaultSystem = $this->getValueFromConf('defaultSystem');
+        }
+        return $this->_defaultSystem;
+    }
+
     protected function getDefaultAction()
     {
-        if (empty($this->_defaultAction))
+        if (!$this->_defaultAction)
         {
             $this->_defaultAction = $this->getValueFromConf('defaultAction', 'index');
         }
         return $this->_defaultAction;
     }
 
+    protected function getDefauktSystemKey()
+    {
+        if (!$this->_defaultSystemKey)
+        {
+            $this->_defaultSystemKey = $this->getValueFromConf('systemKey', 's');
+        }
+        return $this->_defaultSystemKey;
+    }
+
     protected function getDefaultControllerKey()
     {
-        if (empty($this->_defaultControllerKey))
+        if (!$this->_defaultControllerKey)
         {
             $this->_defaultControllerKey = $this->getValueFromConf('controllerKey', 'm');
         }
@@ -157,10 +161,38 @@ class Url extends Component
 
     protected function getDefaultActionKey()
     {
-        if(empty($this->_defaultActionKey))
+        if(!$this->_defaultActionKey)
         {
             $this->_defaultActionKey = $this->getValueFromConf('actionKey', 'act');
         }
         return $this->_defaultActionKey;
+    }
+
+
+    public function createUrl($url)
+    {
+        $tmpUrl = $_SERVER['HTTP_HOST'] . $_SERVER['URL'] . '?';
+        if ($this->getType() === '?')
+        {
+            if(is_array($url))
+            {
+                foreach ($url as $key=>$item)
+                {
+                    $tmpUrl .= $key . '=' . $item . '&';
+                }
+                $tmpUrl = trim($tmpUrl, '&');
+            }
+            else
+            {
+                $tmpUrl .= $url;
+            }
+        }
+        else
+        {
+            $tmpUrl .= $url;
+        }
+
+        unset($urlModule, $url);
+        return $tmpUrl;
     }
 }

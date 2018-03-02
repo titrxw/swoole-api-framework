@@ -10,9 +10,9 @@ use framework\base\Component;
 
 abstract class BaseTask extends Component
 {
-    public function run($funcName, $params = array(), $server, $taskId, $fromId)
+    public function run($funcName, $params = [], $server, $taskId, $fromId)
     {
-        if (empty($funcName))
+        if (!$funcName)
         {
             return false;
         }

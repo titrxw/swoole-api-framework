@@ -16,11 +16,11 @@ class CrontabTime
         if (empty($rule)) {
             throw new \Exception('rule empty ');
         }
-        $rule = str_replace('  ', ' ', $rule);
-        $rule = str_replace('   ', ' ', $rule);
-        $rule = str_replace('    ', ' ', $rule);
         $rule = str_replace('     ', ' ', $rule);
-
+        $rule = str_replace('    ', ' ', $rule);
+        $rule = str_replace('   ', ' ', $rule);
+        $rule = str_replace('  ', ' ', $rule);
+        
         $_rule = explode(' ', $rule);
         if (count($_rule) != 5) {
             throw new \Exception('rule error ' . $rule);

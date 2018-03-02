@@ -11,13 +11,14 @@ use framework\base\Component;
 class Pdo extends Component implements DbInterface
 {
     protected $_execute;
-    protected $_instances = array();
+    protected $_instances = [];
     protected $_defaultDb;
     protected $_currentDb;
 
     protected function init()
     {
         unset($this->_conf);
+        $this->_appConf['db'] = $this->getValueFromConf('db');
         foreach ($this->_appConf['db'] as $key=>$item)
         {
             $this->_defaultDb = $key;
@@ -95,16 +96,16 @@ class Pdo extends Component implements DbInterface
 
     public function query($sql)
     {
-        if(!empty($sql))
+        if($sql)
         {
             $this->_execute=$this->getPdoHandle()->query($sql);
         }
         return $this;
     }
 
-    protected function prepare($sql,$value=array())
+    protected function prepare($sql,$value=[])
     {
-        if(!empty($sql))
+        if($sql)
         {
             $this->_execute=$this->getPdoHandle()->prepare($sql);
             $this->finish();
@@ -128,9 +129,9 @@ class Pdo extends Component implements DbInterface
             return false;
     }
 
-    public function getRow($sql,$value=array())
+    public function getRow($sql,$value=[])
     {
-        if(!empty($sql))
+        if($sql)
         {
             $this->prepare($sql,$value);
             unset($value);
@@ -140,12 +141,12 @@ class Pdo extends Component implements DbInterface
             }
         }
         else
-            return array();
+            return [];
     }
 
-    public function getAll($sql,$value=array())
+    public function getAll($sql,$value=[])
     {
-        if(!empty($sql))
+        if($sql)
         {
             $this->prepare($sql,$value);
             unset($value);
@@ -155,12 +156,12 @@ class Pdo extends Component implements DbInterface
             }
         }
         else
-            return array();
+            return [];
     }
 
-    public function count($sql,$value=array())
+    public function count($sql,$value=[])
     {
-        if(!empty($sql))
+        if($sql)
         {
             $this->prepare($sql,$value);
             unset($value);
@@ -183,7 +184,7 @@ class Pdo extends Component implements DbInterface
             return $result;
         }
         else
-            return array();
+            return [];
     }
 
     public function lastId()

@@ -32,8 +32,8 @@ class Upload extends Component
 
     protected function init()
     {
-        $this->_baseDir = APP_ROOT . APP_NAME . '/' . $this->getValueFromConf('baseDir','runtime/upload');
-        $this->_accept = $this->getValueFromConf('accept', array());
+        $this->_baseDir = APP_ROOT . $this->getSystem() . '/' . $this->getValueFromConf('baseDir','runtime/upload');
+        $this->_accept = $this->getValueFromConf('accept', []);
         $this->_maxSize = $this->getValueFromConf('maxSize', 0);
         $this->_nameType = $this->getValueFromConf('nameType', 'time');
         if ($this->_nameType !== 'md5')
@@ -153,8 +153,8 @@ class Upload extends Component
 
     public function saveAll()
     {
-        $return = array();
-        if(!empty($_FILES))
+        $return = [];
+        if($_FILES)
         {
             foreach($_FILES as $k=>$f)
             {

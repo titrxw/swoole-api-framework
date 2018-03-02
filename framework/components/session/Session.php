@@ -5,6 +5,8 @@ use framework\base\Component;
 
 class Session extends Component
 {
+    protected $_cookieHandle;
+
     protected  $_prefix;
     protected $_requestSessioId;
     protected $_name;
@@ -33,7 +35,7 @@ class Session extends Component
             session_name($this->_name);
         }
 
-        $this->_driver = $this->getValueFromConf('driver',array());
+        $this->_driver = $this->getValueFromConf('driver',[]);
         if ($this->_driver && !empty($this->_driver['type']) && $this->_driver['type'] !== 'redis')
         {
             $this->_path = $this->getValueFromConf('path','');
@@ -63,7 +65,7 @@ class Session extends Component
             // 检查驱动类
             if (class_exists($driverClass))
             {
-                $conf = empty($this->_appConf[$this->_driver['type']])?array():$this->_appConf[$this->_driver['type']];
+                $conf = empty($this->_appConf[$this->_driver['type']])?[]:$this->_appConf[$this->_driver['type']];
                 if (!empty($this->_driver['name'])) {
                     $conf['_name'] = $this->_driver['name'];
                 }
@@ -77,15 +79,13 @@ class Session extends Component
             }
         }
 
-        $cookie = $this->getComponent('cookie');
-        $sessionid = $cookie->get($this->_name);
+        $sessionid = $this->getCookie()->get($this->_name);
         if (!empty($sessionid))
         {
             session_id($sessionid);
         }
         session_start();
-        $cookie->setCookie($this->_name, $this->getSessionId());
-        unset($cookie);
+        $this->getCookie()->set($this->_name, $this->getSessionId());
         $this->_isStart = true;
     }
 
@@ -209,7 +209,12 @@ class Session extends Component
     public function regenerate($delete = false)
     {
         session_regenerate_id($delete);
-        $this->getComponent('cookie')->setCookie($this->_name, '', -1);
+        if ($delete)
+        {
+            $this->getCookie()->set($this->_name, '', -1);
+        }
+
+        $this->getCookie()->set($this->_name, $this->getSessionId());
     }
 
     /**
@@ -227,4 +232,15 @@ class Session extends Component
     {
         unset($this->_driverHandle);
     }
+
+
+    protected function getCookie()
+    {
+        if (!$this->_cookieHandle)
+        {
+            $this->_cookieHandle = $this->getComponent(SYSTEM_APP_NAME, 'cookie');
+        }
+        return $this->_cookieHandle;
+    }
+
 }

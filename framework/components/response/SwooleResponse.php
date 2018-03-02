@@ -13,19 +13,21 @@ class SwooleResponse extends Response
 
     public function send($response, $result = '')
     {
+        $isEnd = false;
         foreach ($this->_headers as $key=>$item)
         {
             $response->header($key,$item);
         }
-        if (!empty($this->_sendFile))
+        if ($this->_sendFile)
         {
             $response->sendfile($this->_sendFile);
             $this->_sendFile = null;
+            $isEnd = true;
         }
         else if (in_array($this->_curType, array('xml','html','json', 'jpg', 'png', 'gif')))
         {
             $response->status($this->_code);
-            if (!empty($result))
+            if ($result)
             {
                 if (is_array($result)) {
                     $result = json_encode($result);
@@ -45,7 +47,7 @@ class SwooleResponse extends Response
 
         $this->rollback();
         unset($result, $response);
-        return true;
+        return $isEnd;
     }
 
     public function sendFile($path)

@@ -35,6 +35,11 @@ class Server extends Component
                 ));
                 $this->_server->start();
                 break;
+            case 'rpc':
+                $this->_server = new RpcServer(array(
+                    'app' => $this->_appConf,
+                    'default' => $this->_conf
+                ));
         }
     }
 

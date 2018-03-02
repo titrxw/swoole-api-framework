@@ -13,7 +13,6 @@ class Application extends Base
     protected function init()
     {
         $this->beforeInit();
-        $this->initEnv();
         $this->initContainer();
         $this->addBaseComponents();
         $this->setExceptionHandle();
@@ -27,9 +26,15 @@ class Application extends Base
         return true;
     }
 
-    protected function initEnv()
+    public function initEnv()
     {
+
         
+    }
+
+    public function setAppConf($conf)
+    {
+        $this->_appConf = $conf;
     }
 
     protected function initContainer()
@@ -38,14 +43,13 @@ class Application extends Base
             'default' => $this->_conf['components'],
             'app' => $this->_appConf['components']
         );
-
         $this->_container = new Container($conf);
 
         if (COMPOSER)
         {
             $composerConf = array(
                 'default' => $this->_conf['composer'],
-                'app' => $this->_appConf['composer']
+                'app' =>  $this->_appConf['composer']
             );
             $this->_container->setComposer(new Composer($composerConf));
         }
@@ -53,8 +57,8 @@ class Application extends Base
         unset($conf,
             $composerConf,
             $this->_conf['components'],
-            $this->_appConf['components'],
             $this->_conf['composer'],
+            $this->_appConf['components'],
             $this->_appConf['composer']
         );
     }
@@ -65,27 +69,27 @@ class Application extends Base
             'exception' => 'framework\\components\\exception\\Exception',
             'error' => 'framework\\components\\error\\Error',
             'shutdown' => 'framework\\components\\shutdown\\ShutDown',
-            'url' => 'framework\\components\\url\\SwooleUrl',
+            'url' => 'framework\\components\\url\\Url',
             'dispatcher' => 'framework\\components\\dispatcher\\Dispatcher',
             'request' => 'framework\\components\\request\\Request',
             'response' => 'framework\\components\\response\\Response'
         );
-        $this->_container->addComponents($components);
+        $this->_container->addComponents(SYSTEM_APP_NAME, $components);
         unset($components);
     }
 
     protected function setErrorHandle()
     {
-        set_error_handler(array($this->_container->getComponent('error'), 'handleError'));
+        set_error_handler(array($this->_container->getComponent(SYSTEM_APP_NAME, 'error'), 'handleError'));
     }
 
     protected function setExceptionHandle()
     {
-        set_exception_handler(array($this->_container->getComponent('exception'), 'handleException'));
+        set_exception_handler(array($this->_container->getComponent(SYSTEM_APP_NAME, 'exception'), 'handleException'));
     }
 
     protected function setShutDownHandle()
     {
-        register_shutdown_function(array($this->_container->getComponent('shutdown'), 'handleShutDown'));
+        register_shutdown_function(array($this->_container->getComponent(SYSTEM_APP_NAME, 'shutdown'), 'handleShutDown'));
     }
 }

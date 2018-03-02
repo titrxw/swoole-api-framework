@@ -68,16 +68,13 @@ class Request extends Component
 
     public function getMethod()
     {
-        if (empty($this->_method))
-            $this->_method = $this->getServer()->getMethod();
-
-        return $this->_method;
+        return $_SERVER['REQUEST_METHOD'];
     }
 
     public function get($key = '', $default = '')
     {
         $this->checkGet();
-        if(empty($key))
+        if(!$key)
             return $_GET;
         if(!isset($_GET[$key]))
             return $default;
@@ -88,7 +85,7 @@ class Request extends Component
     public function post($key = '', $default = '')
     {
         $this->checkPost();
-        if(empty($key))
+        if(!$key)
             return $_POST;
         if(!isset($_POST[$key]))
             return $default;
@@ -99,7 +96,7 @@ class Request extends Component
     public function request($key = '', $default = '')
     {
         $this->checkRequest();
-        if(empty($key))
+        if(!$key)
             return $_REQUEST;
         if(!isset($_REQUEST[$key]))
             return $default;
@@ -114,34 +111,42 @@ class Request extends Component
         return $this->_rowBody;
     }
 
+    public function isPost()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'post')
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public function isAjax()
+    {
+        $result = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']==='XMLHttpRequest';
+        return $result;
+    }
+
+
     public function headers()
     {
         if(!empty($this->_headers))
             return $this->_headers;
 
-        $tServuer = $this->getServer();
-        foreach ($tServuer as $name => $value)
+        foreach ($_SERVER as $name => $value)
         {
             if (substr($name, 0, 5) == 'HTTP_')
             {
                 $this->_headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
             }
         }
-        unset($tServuer);
         return $this->_headers;
     }
 
     public function header($key)
     {
-        $server = $this->getServer();
-        $result =  empty($server[$key]) ? '' : $server[$key];
-        unset($server);
+        $result =  $_SERVER[$key] ?? '';
         return $result;
-    }
-
-    public function getServer()
-    {
-        return $this->getComponent('url')->getServer();
     }
 
     public function __destruct()

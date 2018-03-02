@@ -19,14 +19,14 @@ class Cookie extends Component
     protected $_domain;
     protected $_secure;
 
-    protected $_cookies = array();
+    protected $_cookies = [];
 
     protected function init()
     {
         $this->unInstall(false);
     }
 
-    public function setCookie($key, $value = '', $expire = 0 , $path = '/', $domain  = '', $secure = false , $httponly = false)
+    public function set($key, $value = '', $expire = 0 , $path = '/', $domain  = '', $secure = false , $httponly = false)
     {
         $params = func_get_args();
         array_shift($params);
@@ -46,12 +46,12 @@ class Cookie extends Component
     protected function rollback()
     {
         unset($this->_cookies);
-        $this->_cookies = array();
+        $this->_cookies = [];
     }
 
     public function get($key)
     {
-        if (empty($key)) {
+        if (!$key) {
             return false;
         }
         return $_COOKIE[$key] ?? '';

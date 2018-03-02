@@ -7,19 +7,29 @@
  */
 return array(
     'composer' => array(
+        'Logger' => function (array $params) {
+            return new \Monolog\Logger($params[0]);      //这里测试composer的加载
+        },
+        'meedo' => function (array $params) {
+           return new \Medoo\Medoo($params);      //这里测试composer的加载
+       }
     ),
     'components' => array(
         'log' => array(
             'path' => 'runtime/log/',
             'isLog' => true,
-            'maxSize' => 2097152
+            'maxSize' => 2097152,
+            'url' => 'url'
         ),
         'url' => array(
             'routerKey' => '',
             'type' => '/',
             'separator' => '/',
+            'defaultSystem' => 'application',
+            'defaultSystemKey' => 's',
             'defaultController' => 'index',
-            'defaultAction' => 'index'
+            'defaultAction' => 'index',
+            'systems' => array('application', 'application1')
         ),
         'dispatcher' => array(
             'controller' => array(
@@ -33,6 +43,7 @@ return array(
         ),
         'resquest' => array(
             'separator' => '/',
+            'url' => 'url'
         ),
         'response' => array(
             'defaultType' => 'text',
@@ -49,6 +60,10 @@ return array(
             'rightDelimiter' => '}'
         ),
         'server' => array(
+            'event' => 'application\\conf\\ServerWebSocketEvent',
+            'ip' => '127.0.0.1',
+            'port' => '85',
+            'supportHttp' => false,
             'type' => 'http',
             'factory_mode'=>2,
             'dispatch_mode' => 2,
@@ -63,6 +78,19 @@ return array(
         ),
         'upload' => array(
             'maxSize' => 2088960
+        ),
+        'captcha' => array(
+            'height' => 70,
+            'width' => 200,
+            'num' => 5,
+            'type' => 'png',   //png jpg gif,
+            'response' => 'response'
+        ),
+        'page' => array(
+            'url' => 'url'
+        ),
+        'model' => array(
+            'db' => 'meedo'
         )
     )
 );

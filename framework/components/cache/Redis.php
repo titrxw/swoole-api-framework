@@ -32,6 +32,7 @@ class Redis extends Cache implements CacheInterface
             }
         }
 
+        $this->_appConf['select'] = $this->getValueFromConf('select', 0);
         if (0 != $this->_appConf['select']) {
             $this->_handle->select($this->_appConf['select']);
         }
@@ -39,7 +40,7 @@ class Redis extends Cache implements CacheInterface
 
     public function selectDb(int $no)
     {
-        if ($no == 0) {
+        if ($no == $this->_appConf['select']) {
             return false;
         }
         $this->_handle->select($no);
@@ -47,7 +48,11 @@ class Redis extends Cache implements CacheInterface
 
     public function selectRollBack()
     {
-        $this->_handle->select(0);
+        if (0 != $this->_appConf['select']) {
+            $this->_handle->select($this->_appConf['select']);
+        } else {
+            $this->_handle->select(0);
+        }
     }
 
     /**
@@ -71,7 +76,7 @@ class Redis extends Cache implements CacheInterface
     public function get($name, $default = false)
     {
         $value = $this->_handle->get($this->getCacheKey($name));
-        if (false !== $value) {
+        if (false === $value) {
             return $default;
         }
 
@@ -147,7 +152,7 @@ class Redis extends Cache implements CacheInterface
         return $this->_handle->flushDB();
     }
 
-    /**
+        /**
      * @param $redisKey
      * @param int $expire   redis key 生存事件
      * @param int $timeout  获取锁失败后的等待时间  微妙级
@@ -156,15 +161,13 @@ class Redis extends Cache implements CacheInterface
      */
     public function lock($redisKey, $expire = 15, $timeout = 0, $waitIntervalUs = 100000)
     {
-        if (empty($redisKey)) {
+        if (!$redisKey) {
             return false;
         }
-
         $now = microtime(true);
         $timeoutAt = $now + $timeout;
         $retIdentifier = false;
         $identifier = md5(base64_encode(openssl_random_pseudo_bytes(32)) + $now);
-
         /**
          * 说明  下面代码中的设置redis有效时间的作用暂时不明白
          */
@@ -180,7 +183,6 @@ class Redis extends Cache implements CacheInterface
             }
             //因为上一步设置值和有效时间不是原子操作  可能再setnx后导致没有设置有效时间，这样的话因为只有锁的所有者才能释放锁，就会导致这个锁无法释放
             //当然这里不是锁的所有者执行，是抢锁的一方执行，避免锁无法释放
-
             if ($expire !== 0 && $this->_handle->ttl($redisKey) < 0) {
                 $this->_handle->expire($redisKey, $expire);
             }
@@ -197,13 +199,10 @@ class Redis extends Cache implements CacheInterface
             //假设都是每隔50毫秒取一次  那么下次就是第100毫秒再取，   但是如果加上随机树后第一个再50毫秒取，下一个再80毫秒取，如果第一个取到锁后再30秒内执行完成，然后让出锁，
             //那么当80毫秒的时候获取锁的时候又可以获取锁，几率比一起获取大
             $rand = mt_rand(0,$waitIntervalUs);
-
             usleep($waitIntervalUs + $rand);
-
         }
         return $retIdentifier;
     }
-
     public function unLock($redisKey, $identifier)
     {
         //保证释放者是锁的拥有者

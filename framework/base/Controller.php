@@ -7,6 +7,13 @@ abstract class Controller extends Component
     protected $_action;
     protected $_view;
 
+    protected $_magicRules = [
+        'url',
+        'request',
+        'redis',
+        'page'
+    ];
+
     protected function init()
     {
         $this->unInstall();
@@ -49,10 +56,8 @@ abstract class Controller extends Component
      */
     public function __get($name)
     {
-        $func = 'get'.ucfirst($name);
-        if (method_exists($this, $func))
-        {
-            $this->$name = $this->$func();
+        if (in_array($name, $this->_magicRules)) {
+            $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
             return $this->$name;
         }
         return null;

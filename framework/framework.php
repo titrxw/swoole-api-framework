@@ -11,9 +11,7 @@ date_default_timezone_set('PRC');
 
 if(!defined('DEBUG'))
     define('DEBUG',TRUE);
-
-if(!defined('APP_NAME'))
-    define('APP_NAME','application');
+define('SYSTEM_APP_NAME', 'APP');
 
 include __DIR__.'/autoloader.php';
 
@@ -23,10 +21,9 @@ if (file_exists(APP_ROOT. 'vendor/autoload.php')) {
 } else {
     define('COMPOSER', false);
 }
-
 $conf = array(
     'default' => require_once __DIR__.'/conf/base.php',
-    'app' => require_once APP_ROOT.APP_NAME.'/conf/conf.php'
+    'app' => []
 );
 \framework\web\Application::run($conf);
 unset($conf);

@@ -8,7 +8,7 @@ class TaskTime
     protected $_step = -1;
     protected $_unit = 1;
     protected $_end = -1;
-    protected $_val = array();
+    protected $_val = [];
     protected $_rule = -1;
 
     public function __construct($conf)
@@ -82,7 +82,7 @@ class TaskTime
         }
         $this->getEnd($val);
         if ($this->_start >= 0 && $this->_end >= 0) {
-            if ($val< $this->_end && is_integer(($val - $this->_start) / $this->_step)) {
+            if ($val<= $this->_end && is_integer(($val - $this->_start) / $this->_step)) {
                 return true;
             }
             return false;

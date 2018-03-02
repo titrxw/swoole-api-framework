@@ -4,10 +4,8 @@ use framework\base\Component;
 
 class Response extends Component
 {
-    protected $_headers = array();
+    protected $_headers = [];
     protected $_code = 200;
-    protected $_defaultType;
-    protected $_defaultCharSet;
     protected $_curType;
     protected $_contentTypes = array(
         'xml'  => 'application/xml,text/xml,application/x-xml',
@@ -70,39 +68,35 @@ class Response extends Component
 
     public function addHeader($key, $header)
     {
-        if(!empty($key) && !empty($header))
+        if($key && $header)
             $this->_headers[$key] = $header;
     }
 
     public function contentType($type, $charset = '')
     {
-        $contentType = empty($this->_contentTypes[$type])?$this->_contentTypes[$this->getDefaultType()] : $this->_contentTypes[$type];
-        $charset = empty($charset) ? $this->getDefaultCharSet(): $charset;
+        $contentType = $this->_contentTypes[$type] ?? $this->_contentTypes[$this->getValueFromConf('defaultType', 'html')];
+        $charset = empty($charset) ? $this->getValueFromConf('charset', 'utf-8') : $charset;
         $this->_curType = $type;
         $this->_headers['Content-Type'] = $contentType . '; charset=' . $charset;
-    }
-
-    protected function getDefaultType()
-    {
-        if(empty($this->_defaultType))
-        {
-            $this->_defaultType = $this->getValueFromConf('defaultType', 'html');
-        }
-        return $this->_defaultType;
-    }
-
-    protected function getDefaultCharSet()
-    {
-        if(empty($this->_defaultCharSet))
-        {
-            $this->_defaultCharSet = $this->getValueFromConf('charset', 'utf-8');
-        }
-        return $this->_defaultCharSet;
     }
 
     public function setCode($code)
     {
         $this->_code = $code;
+    }
+
+    public function ajax($data)
+    {
+        $this->noCache();
+        $this->contentType('json');
+        return $data;
+    }
+
+    protected function rediret($url)
+    {
+        $this->addHeader('Location', $url);
+        $this->setCode(302);
+        return '';
     }
 
     protected function rollback()

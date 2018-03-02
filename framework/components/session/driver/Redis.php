@@ -16,9 +16,9 @@ use framework\base\Container;
 class Redis extends \SessionHandler
 {
     protected $_handler = null;
-    protected $_conf  = array();
+    protected $_conf  = [];
 
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
         if (!extension_loaded('redis')) {
             throw new \Exception('not support: redis', 500);

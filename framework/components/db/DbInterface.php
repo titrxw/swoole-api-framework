@@ -9,8 +9,8 @@ namespace framework\components\db;
 
 interface DbInterface
 {
-    public function getRow($sql,$value=array());
-    public function getAll($sql,$value=array());
+    public function getRow($sql,$value=[]);
+    public function getAll($sql,$value=[]);
     public function query($sql);
     public function fetchAll();
 }

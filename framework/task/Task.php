@@ -8,30 +8,30 @@
 namespace framework\task;
 
 use framework\base\Component;
-use function Sodium\crypto_aead_aes256gcm_encrypt;
+//use function Sodium\crypto_aead_aes256gcm_encrypt;
 
 class Task extends Component
 {
-    public function addTask($taskClass, $taskName, $params = array(), $taskId = -1)
+    public function addTask($taskClass, $taskName, $params = [], $taskId = -1)
     {
-        if (empty($taskClass) || empty($taskName) || !is_string($taskClass) || !is_string($taskName))
+        if (!$taskClass || !$taskName || !is_string($taskClass) || !is_string($taskName))
         {
             return false;
         }
-        $this->getComponent('server')->getServer()->addTask(array(
+        $this->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTask(array(
             'class' => $taskClass,
             'func' => $taskName,
             'params' => $params
         ), $taskId);
     }
 
-    public function addAsyncTask($taskClass, $taskName, $params = array(), $taskId = -1)
+    public function addAsyncTask($taskClass, $taskName, $params = [], $taskId = -1)
     {
-        if (empty($taskClass) || empty($taskName))
+        if (!$taskClass || !$taskName)
         {
             return false;
         }
-        $this->getComponent('server')->getServer()->addAsyncTask(array(
+        $this->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addAsyncTask(array(
             'class' => $taskClass,
             'func' => $taskName,
             'params' => $params

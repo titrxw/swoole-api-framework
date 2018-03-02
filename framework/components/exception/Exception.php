@@ -6,10 +6,10 @@ class Exception extends Component
 {
     public  function handleException($exception)
     {
-        $this->getComponent('log')->save($this->formarMessage($exception));
+        $this->getComponent(SYSTEM_APP_NAME, 'log')->save($this->formartMessage($exception));
     }
 
-    public function formarMessage($exception)
+    public function formartMessage($exception)
     {
         return " msg : " . $exception->getMessage() .
             " \r\n file : " . $exception->getFile().

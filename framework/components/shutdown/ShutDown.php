@@ -30,7 +30,7 @@ class ShutDown extends Component
                 }
                 $log .= "{$t['function']}()\n";
             }
-            $this->getComponent('log')->save($log);
+            $this->getComponent(SYSTEM_APP_NAME, 'log')->save($log);
         }
     }
 }

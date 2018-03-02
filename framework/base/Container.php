@@ -7,13 +7,14 @@ class Container extends Base
     protected $_composer;
     protected $_instances;
     protected $_components;
-    protected $_delInstanceComponents = array();
-    protected $_completeDelInstanceComponents = array();
+    protected $_delInstanceComponents = [];
+    protected $_completeDelInstanceComponents = [];
 
     protected function init()
     {
-        $this->_components = array();
-        $this->_instances = array();
+        $this->_components = [];
+        $this->_components[SYSTEM_APP_NAME] = $this->_conf;
+        $this->_instances = [];
         self::$instance = $this;
     }
 
@@ -28,22 +29,40 @@ class Container extends Base
         $this->_composer = $composer;
     }
 
+    public function appHasComponents($system)
+    {
+        if (!empty($this->_appConf[$system])) {
+            return true;
+        }
+        return false;
+    }
+
+    public function setAppComponents($system, $conf)
+    {
+        $this->_appConf[$system] = $conf['components'];
+        $this->_composer->setComposers($system, $conf['composer']);
+        // $this->_appConf[$system]['composer'] = $conf['composer'];
+    }
+
     /**
      * @param $key
      * @param $classPath
-     * @param $conf   array('default' => array(),'app'=> array())
+     * @param $conf   array('default' => [],'app'=> [])
      * @return bool
      * @throws \Exception
      */
-    public function addComponent($key, $classPath, $conf = array())
+    public function addComponent($system, $key, $classPath, $conf = [])
     {
-        if(!empty($key)&&!empty($classPath))
+        if($key&&$classPath)
         {
-            $this->_components[$key] = $classPath;
-            if(!empty($conf))
+            $this->_components[$system][$key] = $classPath;
+            if($conf)
             {
-                $this->_conf[$key] = empty($conf['default']) ? array() : $conf['default'];
-                $this->_appConf[$key] = empty($conf['app']) ? array() : $conf['app'];
+                if ($system == SYSTEM_APP_NAME) {
+                    $this->_conf[$key] = $conf['default'] ?? [];
+                } else {
+                    $this->_appConf[$system][$key] = $conf['app'] ?? [];
+                }
             }
             unset($conf);
             return true;
@@ -51,13 +70,13 @@ class Container extends Base
         throw new \Exception('components key or classpath can not be empty');
     }
 
-    public function addComponents($components)
+    public function addComponents($system, $components)
     {
         try
         {
             foreach ($components as $key=>$classPath)
             {
-                $this->addComponent($key, $classPath);
+                $this->addComponent($system, $key, $classPath);
             }
             unset($components);
         }
@@ -67,32 +86,43 @@ class Container extends Base
         }
     }
 
-    public function getComponent($key, $params = array())
+    public function setComponentConf($haver, $component, $conf)
+    {
+        $this->_conf[$component] = $conf['default'];
+        $this->_appConf[$haver][$component] = $conf['app'];
+    }
+
+    public function getComponentConf($haver, $component)
+    {
+        if ($haver == SYSTEM_APP_NAME && $component !== 'dispatcher') {
+            $haver = $this->getComponent(SYSTEM_APP_NAME, 'dispatcher')->getSystem();
+        }
+        return array(
+            'default' => $this->_conf[$component] ?? [],
+            'app' => $this->_appConf[$haver][$component] ?? []
+        );
+    }
+
+    public function getComponent($haver, $key, $params = [])
     {
         try
         {
-            if (empty($key)) {
+            if (!$key) {
                 return false;
             }
 
-            if (!empty($this->_instances[$key])) {
-                return $this->_instances[$key];
+            if (!empty($this->_instances[$haver][$key])) {
+                return $this->_instances[$haver][$key];
             }
 
-            $classPath = $this->getClassPathByKey($key);
-            if (!empty($classPath))
+            $classPath = $this->getClassPathByKey($haver, $key);
+            if ($classPath)
             {
-                $conf = array(
-                    'default' => empty($this->_conf[$key]) ? array() : $this->_conf[$key],
-                    'app' => empty($this->_appConf[$key]) ? array() : $this->_appConf[$key]
-                );
-
-                $instance = new $classPath($conf);
-                unset($conf);
+                $instance = new $classPath($this->getComponentConf($haver, $key));
 
                 if ($instance instanceof Component) {
                     $instance->setUniqueId($key);
-                    $this->_instances[$key] = $instance;
+                    $this->_instances[$haver][$key] = $instance;
                     unset($instance);
                 }
                 else
@@ -103,9 +133,9 @@ class Container extends Base
             }
             else
             {
-                if (COMPOSER && $this->_composer->checkComposer($key)) {
-                    $this->_instances[$key] = $this->_composer->getComposer($key, $params);
-                    $this->unInstall($key, false);
+                if (COMPOSER && $this->_composer->checkComposer($haver,$key)) {
+                    $_params = $this->getComponentConf($haver, $key);
+                    $this->_instances[$haver][$key] = $this->_composer->getComposer($haver, $key, array_merge($_params['default'], $_params['app'], $params));
                 }
                 else
                 {
@@ -116,58 +146,60 @@ class Container extends Base
         catch (\Exception $e)
         {
             $msg = $e->getMessage();
-            $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
+            // $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
             throw new \Exception( $msg, 500);
         }
 
-        return $this->_instances[$key];
+        return $this->_instances[$haver][$key];
     }
 
-    public function unInstall($componentKey, $completeDel = true)
+    public function unInstall($haver, $componentKey, $completeDel = true)
     {
         if ($completeDel) {
-            $this->_completeDelInstanceComponents[] = $componentKey;
+            $this->_completeDelInstanceComponents[$haver][] = $componentKey;
         }
         else
         {
-            $this->_delInstanceComponents[] = $componentKey;
+            $this->_delInstanceComponents[$haver][] = $componentKey;
         }
     }
 
-    public function getClassPathByKey($key)
+    public function getClassPathByKey($haver, $key)
     {
-        return empty($this->_components[$key]) ? null : $this->_components[$key];
+        return $this->_components[$haver][$key] ?? null;
     }
 
-    protected function destroyComponent($key)
+    protected function destroyComponent($haver, $key)
     {
-        if(empty($key))
+        if(!$key)
             return false;
 
-        unset($this->_components[$key]);
-        unset($this->_instances[$key]);
+        unset($this->_components[$haver][$key]);
+        unset($this->_instances[$haver][$key]);
     }
 
-    public function destroyComponentsInstance($key)
+    public function destroyComponentsInstance($haver,$key)
     {
-        if(empty($key))
+        if(!$key)
             return false;
 
-        unset($this->_instances[$key]);
+        unset($this->_instances[$haver][$key]);
     }
 
-    public function finish()
+    public function finish($haver)
     {
-        foreach ($this->_delInstanceComponents as $item)
+        $this->_delInstanceComponents[$haver] = $this->_delInstanceComponents[$haver]?? [];
+        $this->_completeDelInstanceComponents[$haver] = $this->_completeDelInstanceComponents[$haver]?? [];
+        foreach ($this->_delInstanceComponents[$haver] as $item)
         {
-            $this->destroyComponentsInstance($item);
+            $this->destroyComponentsInstance($haver, $item);
         }
-        foreach ($this->_completeDelInstanceComponents as $item)
+        foreach ($this->_completeDelInstanceComponents[$haver] as $item)
         {
-            $this->destroyComponent($item);
+            $this->destroyComponent($haver ,$item);
         }
 
-        $this->_delInstanceComponents = array();
-        $this->_completeDelInstanceComponents = array();
+        $this->_delInstanceComponents[$haver] = [];
+        $this->_completeDelInstanceComponents[$haver] = [];
     }
 }

@@ -12,6 +12,6 @@ trait ExceptionTrait
 {
     public function triggerException (\Exception $e)
     {
-        Container::getInstance()->getComponent('exception')->handleException($e);
+        Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'exception')->handleException($e);
     }
 }

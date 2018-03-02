@@ -85,7 +85,7 @@ class Validate extends Component
 
     protected function validateValue($value, $rule)
     {
-        if (empty($rule))
+        if (!$rule)
         {
             unset($value);
             return true;
@@ -117,7 +117,7 @@ class Validate extends Component
 
     protected function checkEmpty($value)
     {
-        if (!empty($value))
+        if ($value)
         {
             return true;
         }
@@ -135,7 +135,7 @@ class Validate extends Component
 
     protected function checkRegex($value,$rule)
     {
-        if(empty($rule))
+        if(!$rule)
         {
             return true;
         }
@@ -148,6 +148,6 @@ class Validate extends Component
 
     protected function finish()
     {
-        $this->_data = array();
+        $this->_data = [];
     }
 }

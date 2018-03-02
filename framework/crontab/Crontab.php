@@ -5,8 +5,7 @@ use framework\base\Component;
 
 class Crontab extends Component
 {
-    protected $_tasks = array();
-    protected $_taskRunHandle;
+    protected $_tasks = [];
 
     protected function init()
     {
@@ -21,7 +20,6 @@ class Crontab extends Component
         {
             $this->_tasks[] = new CrontabTask($item);
         }
-        $this->_taskRunHandle = $this->getComponent('taskManager');
     }
 
     public function addTask($rule)
@@ -35,7 +33,7 @@ class Crontab extends Component
 
         foreach ($this->_tasks as $item)
         {
-            $item->doTask($timeInfo, $this->_taskRunHandle);
+            yield $item->doTask($timeInfo);
         }
     }
 

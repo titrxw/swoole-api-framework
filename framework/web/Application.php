@@ -15,24 +15,23 @@ class Application extends \framework\base\Application
 
         $components = array(
             'server' => 'framework\\server\\Server',
-            'log' => 'framework\\components\\log\\SwooleLog',
-            'cache' => 'framework\\components\\cache\\Redis',
-            'db' => 'framework\\components\\db\\Pdo',
+            'log' => 'framework\\components\\log\\Log',
+            // 'db' => 'framework\\components\\db\\Pdo',
+            'cookie' => 'framework\\components\\cookie\\SwooleCookie',
             'taskManager' => 'framework\\task\\Task',
-            'redis' => 'framework\\components\\cache\\Redis',
             'response' => 'framework\\components\\response\\SwooleResponse'
         );
-        $this->_appConf['addComponentsMap'] = empty($this->_appConf['addComponentsMap']) ? array() : $this->_appConf['addComponentsMap'];
-        $components = array_merge($components, $this->_appConf['addComponentsMap']);
-        $this->_container->addComponents($components);
+        $this->_container->addComponents(SYSTEM_APP_NAME, $components);
 
-        unset($this->_appConf['addComponentsMap'], $components);
+        unset($components);
     }
 
     protected function beforeInit()
     {
-        $this->_conf['components'] = empty($this->_conf['components']) ? array() : $this->_conf['components'];
-        $this->_appConf['components'] = empty($this->_appConf['components']) ? array() : $this->_appConf['components'];
+        $this->_conf['components'] = $this->_conf['components']??[];
+        $this->_appConf['components'] = [];
+        $this->_conf['composer'] = $this->_conf['composer']??[];
+        $this->_appConf['composer'] = [];
     }
 
     public static function run($conf)
@@ -42,12 +41,8 @@ class Application extends \framework\base\Application
             echo 'have to run at cli';
             return false;
         }
-        if (!empty($conf['server']))
-        {
-            unset($conf['server']);
-        }
         $instance = new Application($conf);
-        $instance->_container->getComponent('server')->start();
+        $instance->_container->getComponent(SYSTEM_APP_NAME, 'server')->start();
         unset($default, $conf, $instance);
     }
 }

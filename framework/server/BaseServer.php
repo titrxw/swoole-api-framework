@@ -22,7 +22,6 @@ abstract class BaseServer extends Base implements ServerInterface
     protected $_server;
     protected $_maxTickStep = 86400000;
     protected $_isStart = false;
-    protected $_workerNum = -1;
     protected $_taskWorkerNum = -1;
 
     protected function init()
@@ -43,7 +42,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
     public function setEvent($event)
     {
-        if (empty($event))
+        if (!$event)
         {
             return false;
         }
@@ -75,7 +74,7 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
-                if (!empty($this->_event)) {
+                if ($this->_event) {
                     $this->_event->onConnect($server, $client_id, $from_id);
                 }
             }
@@ -97,7 +96,7 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
-                if (!empty($this->_event)) {
+                if ($this->_event) {
                     $this->_event->onStart($server);
                 }
             }
@@ -119,7 +118,7 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
-                if (!empty($this->_event)) {
+                if ($this->_event) {
                     $this->_event->onWorkerStart($server,$workerId);
                 }
             }
@@ -131,10 +130,6 @@ abstract class BaseServer extends Base implements ServerInterface
             {
                 $this->triggerException($e);
             }
-//            开启数据库将断开的检测   8小时检测
-            $this->addTimer(28800000, function ($timer_id, $params) {
-                Container::getInstance()->getComponent('Pdo')->heartBeat();
-            });
         });
     }
 
@@ -145,7 +140,7 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
-                if (!empty($this->_event)) {
+                if ($this->_event) {
                     $this->_event->onWorkStop($server,$workerId);
                 }
             }
@@ -165,8 +160,8 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onError() method.
         $this->_server->on("workererror",function (\swoole_server $server,$worker_id, $worker_pid, $exit_code)
         {
-            Container::getInstance()->getComponent('log')->save('workerid: ' . $worker_id . '  workerpid: ' . $worker_pid . ' code: ' . $exit_code);
-            if (!empty($this->_event)) {
+            Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'log')->save('workerid: ' . $worker_id . '  workerpid: ' . $worker_pid . ' code: ' . $exit_code);
+            if ($this->_event) {
                 $this->_event->onWorkerError($server, $worker_id, $worker_pid, $exit_code);
             }
         });
@@ -176,20 +171,20 @@ abstract class BaseServer extends Base implements ServerInterface
     {
         // TODO: Implement onTask() method.
         $num = $this->getTaskWorkerNum();
-        if(!empty($num))
+        if($num)
         {
             $this->_server->on("task",function (\swoole_server $server, $taskId, $fromId,$taskObj)
             {
                 try
                 {
-                    if (!empty($this->_event)) {
+                    if ($this->_event) {
                         $this->_event->onTask($server, $taskId, $fromId, $taskObj);
                     }
                     if (is_array($taskObj))
                     {
                         if (!empty($taskObj['class']) && !empty($taskObj['func']))
                         {
-                            $obj = Container::getInstance()->getComponent($taskObj['class']);
+                            $obj = Container::getInstance()->getComponent(SYSTEM_APP_NAME, $taskObj['class']);
 
                             if ($obj && $obj instanceof BaseTask)
                             {
@@ -232,7 +227,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
             try
             {
-                if (!empty($this->_event)) {
+                if ($this->_event) {
                     $this->_event->onShutdown($server);
                 }
             }
@@ -251,20 +246,20 @@ abstract class BaseServer extends Base implements ServerInterface
     {
         // TODO: Implement onFinish() method.
         $num = $this->getTaskWorkerNum();
-        if(!empty($num))
+        if($num)
         {
             $this->_server->on("finish", function (\swoole_server $server, $taskId, $taskObj)
             {
                 try
                 {
-                    if (!empty($this->_event)) {
+                    if ($this->_event) {
                         $this->_event->onFinish($server, $taskId, $taskId,$taskObj);
                     }
                     if (is_array($taskObj))
                     {
                         if (!empty($taskObj['class']) && !empty($taskObj['func']))
                         {
-                            $obj = Container::getInstance()->getComponent($taskObj['class']);
+                            $obj = Container::getInstance()->getComponent(SYSTEM_APP_NAME, $taskObj['class']);
 
                             if ($obj && $obj instanceof BaseTask)
                             {
@@ -316,7 +311,7 @@ abstract class BaseServer extends Base implements ServerInterface
         return $this->_server->taskwait($data, $taskId);
     }
 
-    public function addTimer($timeStep, callable $callable, $params= array())
+    public function addTimer($timeStep, callable $callable, $params= [])
     {
         if (!is_integer($timeStep)) return false;
         if ($timeStep === 0) return false;
@@ -324,7 +319,7 @@ abstract class BaseServer extends Base implements ServerInterface
         return swoole_timer_tick($timeStep, $callable, $params);
     }
 
-    public function addTimerAfter($timeStep, callable $callable, $params= array())
+    public function addTimerAfter($timeStep, callable $callable, $params= [])
     {
         if (!is_integer($timeStep)) return false;
         if ($timeStep === 0) return false;
@@ -334,15 +329,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function triggerException ($e)
     {
-        Container::getInstance()->getComponent('exception')->handleException($e);
-    }
-
-    public function getWorkerNum()
-    {
-        if ($this->_workerNum < 0) {
-            $this->_workerNum = $this->getValueFromConf('worker_num', 0);
-        }
-        return $this->_workerNum;
+        Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'exception')->handleException($e);
     }
 
     public function getTaskWorkerNum()
