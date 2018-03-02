@@ -1,0 +1,103 @@
+[2017-12-30 14:54:25] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : failed to listen server port[127.0.0.1:85]. Error: Permission denied[13]. 
+ file : /var/www/php/easy-framework-swoole/framework/server/HttpServer.php 
+ line : 16 
+ code : 13 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(16): swoole_server->__construct('127.0.0.1', '85')
+#1 /var/www/php/easy-framework-swoole/framework/base/Base.php(13): framework\server\HttpServer->init()
+#2 /var/www/php/easy-framework-swoole/framework/server/Server.php(27): framework\base\Base->__construct(Array)
+#3 /var/www/php/easy-framework-swoole/framework/web/Application.php(50): framework\server\Server->start()
+#4 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#5 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#6 {main}
+
+[2017-12-30 14:55:58] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : Redis::connect(): connect() failed: Connection refused at  file: /var/www/php/easy-framework-swoole/framework/components/cache/Redis.php, on line: 26 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 120 
+ code : 500 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('redis', Array)
+#1 /var/www/php/easy-framework-swoole/application/conf/CrontabTask.php(17): framework\base\Component->getComponent('redis')
+#2 /var/www/php/easy-framework-swoole/framework/task/BaseTask.php(23): application\conf\CrontabTask->test(Array, Object(swoole_process), 0, 0)
+#3 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(53): framework\task\BaseTask->run('test', Array, Object(swoole_process), 0, 0)
+#4 [internal function]: application\conf\ServerWebSocketEvent->application\conf\{closure}(Object(swoole_process))
+#5 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(85): swoole_process->start()
+#6 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(123): application\conf\ServerWebSocketEvent->onWorkerStart(Object(swoole_http_server), 0)
+#7 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 0)
+#8 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#9 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#10 /var/www/php/easy-framework-swoole/framework/web/Application.php(50): framework\server\Server->start()
+#11 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#12 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#13 {main}
+
+[2017-12-30 14:56:03] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : Redis::connect(): connect() failed: Connection refused at  file: /var/www/php/easy-framework-swoole/framework/components/cache/Redis.php, on line: 26 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 120 
+ code : 500 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('redis', Array)
+#1 /var/www/php/easy-framework-swoole/application/conf/CrontabTask.php(17): framework\base\Component->getComponent('redis')
+#2 /var/www/php/easy-framework-swoole/framework/task/BaseTask.php(23): application\conf\CrontabTask->test(Array, Object(swoole_process), 0, 0)
+#3 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(53): framework\task\BaseTask->run('test', Array, Object(swoole_process), 0, 0)
+#4 [internal function]: application\conf\ServerWebSocketEvent->application\conf\{closure}(Object(swoole_process))
+#5 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(85): swoole_process->start()
+#6 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(123): application\conf\ServerWebSocketEvent->onWorkerStart(Object(swoole_http_server), 0)
+#7 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 0)
+#8 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#9 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#10 /var/www/php/easy-framework-swoole/framework/web/Application.php(50): framework\server\Server->start()
+#11 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#12 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#13 {main}
+
+[2017-12-30 14:56:08] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : Redis::connect(): connect() failed: Connection refused at  file: /var/www/php/easy-framework-swoole/framework/components/cache/Redis.php, on line: 26 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 120 
+ code : 500 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('redis', Array)
+#1 /var/www/php/easy-framework-swoole/application/conf/CrontabTask.php(17): framework\base\Component->getComponent('redis')
+#2 /var/www/php/easy-framework-swoole/framework/task/BaseTask.php(23): application\conf\CrontabTask->test(Array, Object(swoole_process), 0, 0)
+#3 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(53): framework\task\BaseTask->run('test', Array, Object(swoole_process), 0, 0)
+#4 [internal function]: application\conf\ServerWebSocketEvent->application\conf\{closure}(Object(swoole_process))
+#5 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(85): swoole_process->start()
+#6 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(123): application\conf\ServerWebSocketEvent->onWorkerStart(Object(swoole_http_server), 0)
+#7 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 0)
+#8 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#9 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#10 /var/www/php/easy-framework-swoole/framework/web/Application.php(50): framework\server\Server->start()
+#11 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#12 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#13 {main}
+
+[2017-12-30 14:56:13] [ log ] 
+ client: 
+---------------------------------------------------------------
+ msg : Redis::connect(): connect() failed: Connection refused at  file: /var/www/php/easy-framework-swoole/framework/components/cache/Redis.php, on line: 26 
+ file : /var/www/php/easy-framework-swoole/framework/base/Container.php 
+ line : 120 
+ code : 500 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/base/Component.php(20): framework\base\Container->getComponent('redis', Array)
+#1 /var/www/php/easy-framework-swoole/application/conf/CrontabTask.php(17): framework\base\Component->getComponent('redis')
+#2 /var/www/php/easy-framework-swoole/framework/task/BaseTask.php(23): application\conf\CrontabTask->test(Array, Object(swoole_process), 0, 0)
+#3 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(53): framework\task\BaseTask->run('test', Array, Object(swoole_process), 0, 0)
+#4 [internal function]: application\conf\ServerWebSocketEvent->application\conf\{closure}(Object(swoole_process))
+#5 /var/www/php/easy-framework-swoole/application/conf/ServerWebSocketEvent.php(85): swoole_process->start()
+#6 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(123): application\conf\ServerWebSocketEvent->onWorkerStart(Object(swoole_http_server), 0)
+#7 [internal function]: framework\server\BaseServer->framework\server\{closure}(Object(swoole_http_server), 0)
+#8 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#9 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#10 /var/www/php/easy-framework-swoole/framework/web/Application.php(50): framework\server\Server->start()
+#11 /var/www/php/easy-framework-swoole/framework/framework.php(31): framework\web\Application::run(Array)
+#12 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#13 {main}
+

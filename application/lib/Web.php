@@ -43,7 +43,7 @@ abstract class Web extends Api
         return true;
     }
 
-    public function afterAction($data = array()):array
+    public function afterAction($data = array())
     {
 //        $this->getComponent('session')->destroy();
         if (is_array($data))

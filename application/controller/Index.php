@@ -7,7 +7,6 @@
  */
 namespace application\controller;
 use application\lib\Web;
-use framework\crontab\Crontab;
 
 class Index extends Web
 {
@@ -35,6 +34,9 @@ class Index extends Web
 
     public function indexAction()
     {
+        var_dump($this->request->get());
+//        php gc 可以理解为只处理循环引用，
+
 //        $this->redis->set('er', 123);
 //        print_r($this->_userM->getList());
 //        $this->getRedis()->set('test', 12);
@@ -67,13 +69,13 @@ class Index extends Web
 //        var_dump($this->getComponent('db'));
 //        var_dump($this->getComponent('log'));
         $result = $this->_userM->getList();
-        return [404, $result,'fds'];
+        return [200, $result,'fds'];
     }
 
     public function imgAction()
     {
 //        $this->getComponent('captcha')->getCode();
-        return $this->getComponent('captcha')->send();
+        return $this->captcha->send();
     }
 
     public function downloadAction()

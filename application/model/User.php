@@ -13,6 +13,6 @@ class User extends Model
 {
     public function getList()
     {
-        return $this->query('select user()')->fetchAll();
+        return $this->db()->select('user', ['id' ,'name']);
     }
 }

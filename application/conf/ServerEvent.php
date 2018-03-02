@@ -21,11 +21,28 @@ class ServerEvent implements SwooleEvent
     public function onWorkerStart(\swoole_server $server, $workerId)
     {
         // TODO: Implement onWorkerStart() method.
-        if ($workerId < Container::getInstance()->getComponent('server')->getServer()->getValueFromConf('worker_num', 0)) {
-            Container::getInstance()->getComponent('server')->getServer()->addTimer(6000, function ($timer_id, $params) {
-                var_dump($timer_id);
-                Container::getInstance()->getComponent('crontab')->run();
-            });
+        // if ($workerId < Container::getInstance()->getComponent('server')->getServer()->getValueFromConf('worker_num', 0)) {
+        //     Container::getInstance()->getComponent('server')->getServer()->addTimer(6000, function ($timer_id, $params) {
+        //         var_dump($timer_id);
+        //         Container::getInstance()->getComponent('crontab')->run();
+        //     });
+        // }
+
+        if ($workerId==0) {
+            $process = new \swoole_process(function(\swoole_process $worker){
+                swoole_set_process_name('php-crontab');
+                while(true)
+                {
+                    Container::getInstance()->getComponent('crontab')->run();
+                    sleep(1);
+                }
+                
+            }, false, false);
+            $pid=$process->start();
+            $ret = \swoole_process::wait();
+            if ($ret) {
+                echo 'crontab exit';
+            }
         }
     }
 

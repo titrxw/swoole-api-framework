@@ -13,17 +13,19 @@ class CrontabTask extends BaseTask
 {
     public function test($params = array(), $server, $taskId, $fromId)
     {
-        $lock = $this->getComponent('redis');
-
-        $id = $lock->lock('testlock',2,0);
-        if ($id !== false) {
-            var_dump($fromId.' got lock');
-//            sleep(2);
-//            $lock->unLock('testlock', $id);
-
-        } else {
-            var_dump($fromId.' have not got lock');
-        }
+        sleep(5);
+        echo 'task';
+//        $lock = $this->getComponent('redis');
+//
+//        $id = $lock->lock('testlock',2,0);
+//        if ($id !== false) {
+//            var_dump($fromId.' got lock');
+////            sleep(2);
+//           $lock->unLock('testlock', $id);
+//
+//        } else {
+//            var_dump($fromId.' have not got lock');
+//        }
     }
 
 //    该方法是sendMsg的结束方法
