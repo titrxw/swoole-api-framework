@@ -1,0 +1,91 @@
+[2018-01-07 17:42:55]  msg : /var/www/php/easy-framework-swoole/application1/controller/A.php not exists 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 22 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(76): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(45): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(28): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2018-01-07 17:44:04]  msg : /var/www/php/easy-framework-swoole/application1/controller/A.php not exists 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 22 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(76): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(45): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(28): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2018-01-07 17:44:09]  msg : /var/www/php/easy-framework-swoole/application1/controller/A.php not exists 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 22 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(77): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(45): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(28): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2018-01-07 17:44:58]  msg : /var/www/php/easy-framework-swoole/application1/controller/A.php not exists 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 22 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(77): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(45): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(28): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2018-01-07 17:45:42]  msg : /var/www/php/easy-framework-swoole/application1/controller/A.php not exists 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 22 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(77): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(45): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(28): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2018-01-07 17:46:21]  msg : /var/www/php/easy-framework-swoole/application1/controller/A.php not exists 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 22 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(77): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(45): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(28): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
+[2018-01-07 17:47:08]  msg : /var/www/php/easy-framework-swoole/application1/controller/Application1.php not exists 
+ file : /var/www/php/easy-framework-swoole/framework/components/dispatcher/Dispatcher.php 
+ line : 22 
+ code : 404 
+ trace : #0 /var/www/php/easy-framework-swoole/framework/server/HttpServer.php(77): framework\components\dispatcher\Dispatcher->run(Array)
+#1 [internal function]: framework\server\HttpServer->framework\server\{closure}(Object(swoole_http_request), Object(swoole_http_response))
+#2 /var/www/php/easy-framework-swoole/framework/server/BaseServer.php(68): swoole_http_server->start()
+#3 /var/www/php/easy-framework-swoole/framework/server/Server.php(29): framework\server\BaseServer->start()
+#4 /var/www/php/easy-framework-swoole/framework/web/Application.php(45): framework\server\Server->start()
+#5 /var/www/php/easy-framework-swoole/framework/framework.php(28): framework\web\Application::run(Array)
+#6 /var/www/php/easy-framework-swoole/index.php(8): require('/var/www/php/ea...')
+#7 {main}
+
