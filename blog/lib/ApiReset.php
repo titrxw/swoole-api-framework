@@ -15,7 +15,7 @@ class ApiReset extends Component
     private $_timestamp;
     private $_nonce;
     private $_sign;
-    private $_timStep;
+    private $_timeStep;
 
     protected function init()
     {
@@ -46,7 +46,7 @@ class ApiReset extends Component
 
     private function checkTime()
     {
-        if ($this->_timestamp - time() > $this->_timStep) {
+        if ($this->_timestamp - time() > $this->_timeStep) {
             return false;
         }
         return true;
