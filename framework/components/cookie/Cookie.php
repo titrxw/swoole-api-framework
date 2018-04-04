@@ -21,10 +21,6 @@ class Cookie extends Component
 
     protected $_cookies = [];
 
-    protected function init()
-    {
-        $this->unInstall(false);
-    }
 
     public function set($key, $value = '', $expire = 0 , $path = '/', $domain  = '', $secure = false , $httponly = false)
     {

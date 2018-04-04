@@ -1,8 +1,12 @@
 <?php
 namespace framework\base;
+use framework\traits\Throwable;
 
-abstract class Base
+
+abstract class Base implements \ArrayAccess
 {
+    use Throwable;
+
     protected $_conf;
     protected $_appConf;
 
@@ -26,23 +30,22 @@ abstract class Base
 
     protected function getValueFromConf($key, $default = '')
     {
-        $hashKey = md5($key);
-        if (!isset($this->{$hashKey})) {
+        if (!isset($this->{$key})) {
             $tmpKey = explode('.',$key);
             if (count($tmpKey) > 1)
             {
-                $_confValue = $this->_conf[$tmpKey[0]] ?? null;
-                $_appConfValue = $this->_appConf[$tmpKey[0]] ?? null;
+                $_confValue = empty($this->_conf[$tmpKey[0]]) ? null : $this->_conf[$tmpKey[0]];
+                $_appConfValue = empty($this->_appConf[$tmpKey[0]]) ? null : $this->_appConf[$tmpKey[0]];
                 unset($tmpKey[0]);
                 foreach ($tmpKey as $item)
                 {
                     if ($_confValue)
                     {
-                        $_confValue = $_confValue[$item];
+                        $_confValue = $_confValue[$item] ?? null;
                     }
                     if ($_appConfValue)
                     {
-                        $_appConfValue = $_appConfValue[$item];
+                        $_appConfValue = $_appConfValue[$item] ?? null;
                     }
                 }
             }
@@ -53,17 +56,47 @@ abstract class Base
             }
             unset($tmpKey);
 
-            $this->{$hashKey} =  !isset($_appConfValue) ?
+            $this->{$key} =  !isset($_appConfValue) ?
                 (!isset($_confValue) ? $default : $_confValue)
                 : $_appConfValue;
         }
 
-        return $this->{$hashKey};
+        return $this->{$key};
     }
 
     protected function init()
     {
         return true;
+    }
+
+
+//    array接口的方法暂时不用
+    public function offsetExists($offset)
+    {
+        if (isset($this->{$offset})) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function offsetGet($offset)
+    {
+        if (!$this->offsetExists($offset)) {
+            $this->{$offset} = $this->getValueFromConf($offset);
+            return $this->{$offset};
+        }
+        return $this->{$offset};
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        $this->{$offset} = $value;
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->{$offset});
     }
 
     public function __destruct()

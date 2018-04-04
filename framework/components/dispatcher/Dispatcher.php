@@ -15,7 +15,7 @@ class Dispatcher extends Component
         $controllerName = ucfirst($controllerName);
         if (!file_exists(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php'))
         {
-            throw new \Exception(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php not exists', 404);
+            $this->triggerException(new \Exception(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php not exists', 404));
         }
 
         $controllerHashName = md5($this->_system.'/controller/'.$controllerName);
@@ -25,10 +25,18 @@ class Dispatcher extends Component
 
         $actionName = $this->getValueFromConf('action.prefix') . $args['action'] . $this->getValueFromConf('action.suffix');
         $controllerInstance = $this->getComponent($this->getSystem(), $controllerHashName);
+        if (!method_exists($controllerInstance, $actionName))
+        {
+            unset($controllerInstance, $args);
+            $this->triggerException(new \Exception('action ' . $actionName . ' not found'));
+        }
+
+
         $controllerInstance->setController($controllerName);
         $controllerInstance->setAction($actionName);
         $this->_controller = $controllerName;
         $this->_action = $actionName;
+
 
         $result = $controllerInstance->beforeAction();
         if ($result !== true)
@@ -36,12 +44,9 @@ class Dispatcher extends Component
             unset($controllerInstance, $args);
             return $result;
         }
-        if (!method_exists($controllerInstance, $actionName))
-        {
-            unset($controllerInstance, $args);
-            throw new \Exception('action ' . $actionName . ' not found');
-        }
+
         $result = $controllerInstance->$actionName();
+        
         $result = $controllerInstance->afterAction($result);
         unset($controllerInstance, $args);
         return $result;

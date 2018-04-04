@@ -16,7 +16,7 @@ class Application extends \framework\base\Application
         $components = array(
             'server' => 'framework\\server\\Server',
             'log' => 'framework\\components\\log\\Log',
-            // 'db' => 'framework\\components\\db\\Pdo',
+            'conf' => 'framework\\base\\Conf',
             'cookie' => 'framework\\components\\cookie\\SwooleCookie',
             'taskManager' => 'framework\\task\\Task',
             'response' => 'framework\\components\\response\\SwooleResponse'
@@ -34,15 +34,53 @@ class Application extends \framework\base\Application
         $this->_appConf['composer'] = [];
     }
 
-    public static function run($conf)
+    public static function run($conf, $command = 'start')
     {
         if (PHP_SAPI !== 'cli')
         {
             echo 'have to run at cli';
             return false;
         }
-        $instance = new Application($conf);
-        $instance->_container->getComponent(SYSTEM_APP_NAME, 'server')->start();
-        unset($default, $conf, $instance);
+        
+        try {
+            switch ($command) {
+                case 'start':
+                    $pidFile = $conf['default']['components']['server']['pid_file'] ?? '';
+                    if ($pidFile && file_exists($pidFile)) {
+                        echo 'server has stated';
+                        return;
+                    }
+                    $instance = new Application($conf);
+                    $instance->_container->getComponent(SYSTEM_APP_NAME, 'server')->start();
+                    unset($default, $conf, $instance);
+                    break;
+                case 'stop':
+                    $pidFile = $conf['default']['components']['server']['pid_file'] ?? '';
+                    if ($pidFile && file_exists($pidFile)) {
+                        $pid = file_get_contents($pidFile);
+                        posix_kill($pid,SIGTERM);
+                        unlink($pidFile);
+                    } else {
+                        echo 'stop server failed';
+                    }
+                    break;
+                case 'restart':
+                    $pidFile = $conf['default']['components']['server']['pid_file'] ?? '';
+                    if ($pidFile && file_exists($pidFile)) {
+                        $pid = file_get_contents($pidFile);
+                        posix_kill($pid, SIGUSR1); // reload all worker
+    //                    posix_kill($pid, SIGUSR2); // reload all task
+                    } else {
+                        echo 'restart server failed';
+                    }
+                    break;
+            }
+        } catch (\Throwable $e) {
+            if (DEBUG) {
+                var_dump($e->getMessage() .' ' . $e->getFile() . ' ' . $e->getLine());
+            } else {
+                echo 'server ' . $command. '  failed';
+            }
+        }
     }
 }

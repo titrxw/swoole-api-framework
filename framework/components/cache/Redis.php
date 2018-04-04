@@ -13,10 +13,11 @@ namespace framework\components\cache;
 
 class Redis extends Cache implements CacheInterface
 {
+
     protected function init()
     {
         if (!extension_loaded('redis')) {
-            throw new \Exception('not support: redis', 500);
+            $this->triggerException(new \Exception('not support: redis', 500));
         }
         unset($this->_conf);
         $this->_handle = new \Redis();
@@ -28,7 +29,7 @@ class Redis extends Cache implements CacheInterface
         $password = $this->getValueFromConf('password');
         if ('' != $password) {
             if ($this->_handle->auth($password) === false) {
-                throw new \Exception('redis auth password error', 500);
+                $this->triggerException(new \Exception('redis auth password error', 500));
             }
         }
 
@@ -159,15 +160,13 @@ class Redis extends Cache implements CacheInterface
      * @param int $waitIntervalUs  获取锁失败后的每个多少时间再次获取锁  微妙级
      * @return bool|string
      */
-    public function lock($redisKey, $expire = 15, $timeout = 0, $waitIntervalUs = 100000)
+    public function lock($redisKey, $expire = 500, $waitIntervalUs = 100000)
     {
         if (!$redisKey) {
             return false;
         }
-        $now = microtime(true);
-        $timeoutAt = $now + $timeout;
         $retIdentifier = false;
-        $identifier = md5(base64_encode(openssl_random_pseudo_bytes(32)) + $now);
+        $identifier = md5(base64_encode(openssl_random_pseudo_bytes(32)) . microtime(true));
         /**
          * 说明  下面代码中的设置redis有效时间的作用暂时不明白
          */
@@ -176,20 +175,16 @@ class Redis extends Cache implements CacheInterface
             if ($this->_handle->setnx($redisKey, $identifier) != false) {
                 //如果成功后设置有效时间
                 //这里的这个实在一个进程发生其他情况，导致还没执行玩就发生rediskey超时的情况下，该进程放弃了  那么这里就无法执行
-                $this->_handle->expire($redisKey, $expire);
+                $this->_handle->pexpire($redisKey, $expire);
                 //返回当前锁的所有者对于该锁的唯一标示符，  这样再释放的时候保证只有拥有者才能释放锁
                 $retIdentifier = $identifier;
                 break;
             }
             //因为上一步设置值和有效时间不是原子操作  可能再setnx后导致没有设置有效时间，这样的话因为只有锁的所有者才能释放锁，就会导致这个锁无法释放
             //当然这里不是锁的所有者执行，是抢锁的一方执行，避免锁无法释放
-            if ($expire !== 0 && $this->_handle->ttl($redisKey) < 0) {
-                $this->_handle->expire($redisKey, $expire);
-            }
-            /*****循环请求锁部分*****/
-            //如果没设置锁失败的等待时间 或者 已超过最大等待时间了，那就退出
-            if ($timeout <= 0 || $timeoutAt < microtime(true)) {
-                break;
+//            -1 表示key存在但是没设置时间
+            if ($expire !== 0 && $this->_handle->pttl($redisKey) == -1) {
+                $this->_handle->pexpire($redisKey, $expire);
             }
             //这里的重试是再一个进程抢占到锁后其他进程还要抢占锁的时候使用，如果有一个进程抢占了，其他进程不抢占的话可以不设置 也就是设置timeout为0 比如发短信
             //一微秒等于百万分之一秒。

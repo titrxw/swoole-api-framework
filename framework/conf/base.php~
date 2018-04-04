@@ -27,11 +27,9 @@ return array(
             'separator' => '/',
             'defaultSystem' => 'application',
             'defaultSystemKey' => 's',
-            'controllerKey' => 'm',
-            'actionKey' => 'act',
             'defaultController' => 'index',
             'defaultAction' => 'index',
-            'systems' => array('application', 'application1', 'blog')
+            'systems' => array('application', 'application1')
         ),
         'dispatcher' => array(
             'controller' => array(
@@ -40,7 +38,7 @@ return array(
             ),
             'action' => array(
                 'prefix' => '',
-                'suffix' => 'Api'
+                'suffix' => 'Action'
             )
         ),
         'resquest' => array(
@@ -62,21 +60,18 @@ return array(
             'rightDelimiter' => '}'
         ),
         'server' => array(
-            'pid_file' => '/var/www/server.pid',
-            'event' => 'blog\\conf\\ServerEvent',
+            'event' => 'application\\conf\\ServerWebSocketEvent',
             'ip' => '127.0.0.1',
-            'port' => '86',
+            'port' => '85',
             'supportHttp' => false,
             'type' => 'http',
             'factory_mode'=>2,
-//             'daemonize' => 1,
             'dispatch_mode' => 2,
-            'task_worker_num' => 0, //异步任务进程
+            'task_worker_num' => 2, //异步任务进程
             "task_max_request"=>10,
             'max_request'=>3000,
-            'worker_num'=>4,
-            'task_ipc_mode' => 2, 
-            'message_queue_key' => '0x72000100', //指定一个消息队列key。如果需要运行多个swoole_server的实例，务必指定。否则会发生数据错乱
+            'worker_num'=>3,
+            'task_ipc_mode' => 2,
             'log_file' => '/tmp/swoole.log',
             'enable_static_handler' => true,
             'document_root' => '/var/www/php/easy-framework-swoole/public/assets/application/images/' //访问链接是 127.0.0.1:81/jpg文件名

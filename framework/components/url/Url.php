@@ -4,14 +4,8 @@ use framework\base\Component;
 
 class Url extends Component
 {
+
     protected $_defaultType;
-    protected $_defaultSystem;
-    protected $_defaultController;
-    protected $_defaultAction;
-    protected $_defaultSystemKey;
-    protected $_defaultControllerKey;
-    protected $_defaultActionKey;
-    protected $_defaultSeparator;
     protected $_currentModule;
     protected $_curRoute = [];
 
@@ -31,51 +25,65 @@ class Url extends Component
         $type = $this->getType();
         if ($type === '?')
         {
-            $system = empty($_GET[$this->getDefauktSystemKey()]) ? $this->getDefaultSystem() : $_GET[$this->getDefauktSystemKey()];
+            $system = empty($_GET[$this->getValueFromConf('systemKey', 's')]) ? $this->getValueFromConf('defaultSystem') : $_GET[$this->getValueFromConf('systemKey', 's')];
+            if (!file_exists(APP_ROOT. '/' .$system . '/conf/conf.php')) {
+                $this->triggerException(new \Exception('app ' . $system . ' not found', 404));
+            }
+
+
             $urlInfo =  array(
                 'system' => $system,
-                'controller' => empty($_GET[$this->getDefaultControllerKey()]) ? $this->getDefaultController() : $_GET[$this->getDefaultControllerKey()],
-                'action' => empty($_GET[$this->getDefaultActionKey()]) ? $this->getDefaultAction() : $_GET[$this->getDefaultActionKey()]
+                'controller' => empty($_GET[$this->getValueFromConf('controllerKey', 'm')]) ? $this->getValueFromConf('defaultController', 'index') : $_GET[$this->getValueFromConf('controllerKey', 'm')],
+                'action' => empty($_GET[$this->getValueFromConf('actionKey', 'act')]) ? $this->getValueFromConf('defaultAction', 'index') : $_GET[$this->getValueFromConf('actionKey', 'act')]
             );
         }
         else
         {
             $routerKey = $this->getValueFromConf('routerKey');
-            if ($routerKey)
-            {
+            if ($routerKey) {
                 $query = empty($_GET[$routerKey]) ? '' : $_GET[$routerKey];
-            }
-            else
-            {
+            } else {
                 $query = $this->getPathInfo();
                 $query = ltrim($query,'/');
             }
-            $tmpQuery = explode($this->getSeparator(), $query);
+
+
+            $tmpQuery = explode($this->getValueFromConf('separator', '/'), $query);
+            if (!empty($tmpQuery[0]) && $tmpQuery[0] === 'favicon.ico') {
+                return false;
+            }
+
+
             $keyStart = 0;
             if (in_array($tmpQuery[0], $this->getValueFromConf('systems',[]))) {
                 $system = $tmpQuery[0];
                 unset($tmpQuery[0]);
                 $keyStart = 1;
             } else {
-                $system = $this->getDefaultSystem();
+                $system = $this->getValueFromConf('defaultSystem');
             }
+            if (!file_exists(APP_ROOT. '/' .$system . '/conf/conf.php')) {
+                $this->triggerException(new \Exception('app ' . $system . ' not found', 404));
+            }
+
+
             $urlInfo =  array(
                 'system' => $system,
-                'controller' => empty($tmpQuery[0 + $keyStart]) ? $this->getDefaultController() : $tmpQuery[0 + $keyStart],
-                'action' => empty($tmpQuery[1 + $keyStart]) ? $this->getDefaultAction() : $tmpQuery[1 + $keyStart]
+                'controller' => empty($tmpQuery[0 + $keyStart]) ? $this->getValueFromConf('defaultController', 'index') : $tmpQuery[0 + $keyStart],
+                'action' => empty($tmpQuery[1 + $keyStart]) ? $this->getValueFromConf('defaultAction', 'index') : $tmpQuery[1 + $keyStart]
             );
-            if (!empty($tmpQuery[0]) && $tmpQuery[0] === 'favicon.ico') {
-//                处理图标
-                return false;
-            }
             $count = count($tmpQuery);
             $_GET = [];
             for($i=2 + $keyStart;$i < $count; $i+=2)
             {
                 $_GET[$tmpQuery[$i]] = !isset($tmpQuery[$i+1]) ?  '' : $tmpQuery[$i+1];
             }
+
+
             unset($tmpQuery);
         }
+
+
         $this->_curRoute = $urlInfo;
         unset($urlInfo);
 
@@ -103,69 +111,6 @@ class Url extends Component
             }
         }
         return $this->_defaultType;
-    }
-
-    protected function getSeparator()
-    {
-        if(!$this->_defaultSeparator)
-        {
-            $this->_defaultSeparator = $this->getValueFromConf('separator', '/');
-        }
-        return $this->_defaultSeparator;
-    }
-
-    protected function getDefaultController()
-    {
-        if (!$this->_defaultController)
-        {
-            $this->_defaultController = $this->getValueFromConf('defaultController', 'index');
-        }
-        return $this->_defaultController;
-    }
-
-    protected function getDefaultSystem()
-    {
-        if (!$this->_defaultSystem)
-        {
-            $this->_defaultSystem = $this->getValueFromConf('defaultSystem');
-        }
-        return $this->_defaultSystem;
-    }
-
-    protected function getDefaultAction()
-    {
-        if (!$this->_defaultAction)
-        {
-            $this->_defaultAction = $this->getValueFromConf('defaultAction', 'index');
-        }
-        return $this->_defaultAction;
-    }
-
-    protected function getDefauktSystemKey()
-    {
-        if (!$this->_defaultSystemKey)
-        {
-            $this->_defaultSystemKey = $this->getValueFromConf('systemKey', 's');
-        }
-        return $this->_defaultSystemKey;
-    }
-
-    protected function getDefaultControllerKey()
-    {
-        if (!$this->_defaultControllerKey)
-        {
-            $this->_defaultControllerKey = $this->getValueFromConf('controllerKey', 'm');
-        }
-        return $this->_defaultControllerKey;
-    }
-
-    protected function getDefaultActionKey()
-    {
-        if(!$this->_defaultActionKey)
-        {
-            $this->_defaultActionKey = $this->getValueFromConf('actionKey', 'act');
-        }
-        return $this->_defaultActionKey;
     }
 
 

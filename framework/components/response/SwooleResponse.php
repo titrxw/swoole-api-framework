@@ -27,24 +27,23 @@ class SwooleResponse extends Response
         else if (in_array($this->_curType, array('xml','html','json', 'jpg', 'png', 'gif')))
         {
             $response->status($this->_code);
-            if ($result)
+            if (is_array($result)) {
+                $result = json_encode($result);
+            }
+            if (DEBUG)
             {
-                if (is_array($result)) {
-                    $result = json_encode($result);
+                $elseContent = ob_get_clean();
+                if (is_array($elseContent)) {
+                    $elseContent = json_encode($elseContent);
                 }
-                if (DEBUG)
-                {
-                    $elseContent = ob_get_clean();
-                    if (is_array($elseContent)) {
-                        $elseContent = json_encode($elseContent);
-                    }
-                    $result = $elseContent . $result;
-                    unset($elseContent);
-                }
+                $result = $elseContent . $result;
+                unset($elseContent);
+            }
+            if ($result) {
                 $response->write($result);
             }
-        }
 
+        }
         $this->rollback();
         unset($result, $response);
         return $isEnd;
@@ -53,5 +52,11 @@ class SwooleResponse extends Response
     public function sendFile($path)
     {
         $this->_sendFile = $path;
+    }
+
+    protected function rollback()
+    {
+        $this->_sendFile = '';
+        parent::rollback();
     }
 }

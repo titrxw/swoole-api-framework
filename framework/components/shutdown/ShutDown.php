@@ -7,6 +7,7 @@ class ShutDown extends Component
     public function handleShutDown()
     {
         $error = error_get_last();
+        $log = '';
         if (!empty($error))
         {
             $message = $error['message'];

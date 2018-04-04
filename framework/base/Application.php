@@ -20,7 +20,7 @@ class Application extends Base
         $this->setShutDownHandle();
     }
 
-    public static function run($conf)
+    public static function run($conf,$command = '')
     {
         unset($conf);
         return true;
@@ -72,7 +72,8 @@ class Application extends Base
             'url' => 'framework\\components\\url\\Url',
             'dispatcher' => 'framework\\components\\dispatcher\\Dispatcher',
             'request' => 'framework\\components\\request\\Request',
-            'response' => 'framework\\components\\response\\Response'
+            'response' => 'framework\\components\\response\\Response',
+            'helper' => 'framework\\tool\\Helper'
         );
         $this->_container->addComponents(SYSTEM_APP_NAME, $components);
         unset($components);

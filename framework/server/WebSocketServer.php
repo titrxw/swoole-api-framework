@@ -8,7 +8,7 @@
 namespace framework\server;
 use framework\base\Container;
 
-class WebSocketServer extends BaseServer
+class WebSocketServer extends HttpServer
 {
     protected function init()
     {
@@ -33,11 +33,7 @@ class WebSocketServer extends BaseServer
                     $this->_event->onOpen($server, $request);
                 }
             }
-            catch (\Exception $e)
-            {
-                $this->triggerException($e);
-            }
-            catch (\Error $e)
+            catch (\Throwable $e)
             {
                 $this->triggerException($e);
             }
@@ -85,103 +81,6 @@ class WebSocketServer extends BaseServer
         });
     }
 
-    protected function onRequest()
-    {
-        $this->_server->on("request", function (\swoole_http_request $request,\swoole_http_response $response)
-        {
-            if (DEBUG)
-            {
-                ob_start();
-            }
-            if ($this->_event)
-            {
-                $this->_event->onRequest($request,$response);
-            }
-            $container = Container::getInstance();
-            if (!empty($request->get)) {
-                $_GET = $request->get;
-            }
-            if (!empty($request->post)) {
-                $_POST = $request->post;
-            }
-            if (!empty($request->files)) {
-                $_FILES = $request->files;
-//                $container->getComponent('upload')->save('file'); 上传文件测试
-            }
-            if (!empty($request->cookie)) {
-                $_COOKIE = $request->cookie;
-            }
-
-            $hasEnd = false;
-            try
-            {
-                if ($this->_event)
-                {
-                    $this->_event->onResponse($request,$response);
-                }
-                $request->server['HTTP_HOST'] = $request->header['host'];
-                foreach ($request->server as $key => $item)
-                {
-                    $request->server[strtoupper($key)] = $item;
-                    unset($request->server[$key]);
-                }
-                $_SERVER = $request->server;
-                $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
-                if ($urlInfo !== false) {
-                    $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->setSystem($urlInfo['system']);
-                    // 初始化配置项
-                    if (!$container->appHasComponents($urlInfo['system'])) {
-                        $appConf = require_once APP_ROOT. '/' .$urlInfo['system'] . '/conf/conf.php';
-
-                        $appConf['addComponentsMap'] = $appConf['addComponentsMap'] ?? [];
-                        $container->addComponents($urlInfo['system'], $appConf['addComponentsMap']);
-                        $container->setAppComponents($urlInfo['system'] ,array(
-                            'components' => $appConf['components'],
-                            'composer' => $appConf['composer']
-                        ));
-                    }
-                    $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run($urlInfo);
-                    $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
-                    $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
-                    $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->setSystem('');
-                    unset($result);
-                }
-            }
-            catch (\Exception $exception)
-            {
-                $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
-                $response->status($code);
-                if (DEBUG) {
-                    // ob_get_clean();
-                    $response->write($exception->getMessage().$exception->getTraceAsString());
-                }
-                $this->triggerException($exception);
-            }
-            catch (\Error $e)
-            {
-                $code = $e->getCode() > 0 ? $e->getCode() : 500;
-                $response->status($code);
-                if (DEBUG) {
-                    // ob_get_clean();
-                    $response->write($e->getMessage().$e->getTraceAsString());
-                }
-                $this->triggerException($e);
-            }
-            if (!$hasEnd)
-            {
-                $response->end();
-            }
-
-            $_GET = null;
-            $_POST = null;
-            $_FILES = null;
-            $_COOKIE = null;
-            $_SERVER = null;
-            $container->finish($urlInfo['system']);
-            unset($container,$request,$response, $urlInfo);
-        });
-    }
-
     protected function onMessage()
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
@@ -202,23 +101,23 @@ class WebSocketServer extends BaseServer
                 return false;
             }
 
-            if (!empty($this->_event))
-            {
-                $this->_event->onMessage($server, $frame);
-            }
-
-            $container = Container::getInstance();
 
             try
             {
+                if (!empty($this->_event))
+                {
+                    $this->_event->onMessage($server, $frame);
+                }
                 if (!empty($frame->data['data'])) {
                     $_GET = $frame->data['data'];
                 }
+
+
+                $container = Container::getInstance();
                 $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->setSystem($frame->data['system']);
                     // 初始化配置项
                 if (!$container->appHasComponents($frame->data['system'])) {
                     $appConf = require_once APP_ROOT. '/' .$frame->data['system'] . '/conf/conf.php';
-
                     $appConf['addComponentsMap'] = $appConf['addComponentsMap'] ?? [];
                     $container->addComponents($frame->data['system'], $appConf['addComponentsMap']);
                     $container->setAppComponents($frame->data['system'] ,array(
@@ -227,11 +126,11 @@ class WebSocketServer extends BaseServer
                     ));
                 }
 
+
                 $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run(array(
                     'controller' => $frame->data['controller'],
                     'action' => $frame->data['action']
                 ));
-
                 if (is_array($result)) {
                     $result = json_encode($result);
                 }
@@ -242,22 +141,24 @@ class WebSocketServer extends BaseServer
                     $result = $_result . $result;
                     unset($_result);
                 }
+
+
                 $server->push($frame->fd, $result);
                 unset($result);
             }
-            catch (\Exception $exception)
+            catch (\Throwable $exception)
             {
-                ob_get_clean();
-                $server->push($frame->fd, $exception->getMessage());
-                $this->triggerException($exception);
+                $result = $exception->getMessage();
+                if (DEBUG) {
+                    $result = ob_get_clean() . $result;
+                }
+                $server->push($frame->fd, $result);
+                $this->handleException($exception);
             }
-            catch (\Error $e)
-            {
-                ob_get_clean();
-                $server->push($frame->fd, $e->getMessage());
-                $this->triggerException($e);
-            }
+
+
             $container->finish($frame->data['system']);
+            $container->finish(SYSTEM_APP_NAME);
             unset($container, $server, $frame);
             return false;
         });
@@ -272,11 +173,7 @@ class WebSocketServer extends BaseServer
                     $this->_event->onClose($server, $fd);
                 }
             }
-            catch (\Exception $e)
-            {
-                $this->triggerException($e);
-            }
-            catch (\Error $e)
+            catch (\Throwable $e)
             {
                 $this->triggerException($e);
             }

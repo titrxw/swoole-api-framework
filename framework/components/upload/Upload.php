@@ -56,7 +56,7 @@ class Upload extends Component
         {
             case 'md5':
                 $name = mt_rand() . $name;
-                $name = md5($name);
+                $name = md5($name . SYSTEM_WORK_ID . microtime());
                 $length = strlen($name);
                 $particle = ceil($length / $this->_deep);
                 $currentPath = '';
@@ -74,7 +74,7 @@ class Upload extends Component
             case 'time':
             default:
                 $name = mt_rand() . $name;
-                $name = md5($name);
+                $name = md5($name . SYSTEM_WORK_ID . microtime());
                 $subPath = date('Ymd');
                 if (!file_exists($this->_baseDir . '/' . $subPath))
                 {
@@ -105,7 +105,7 @@ class Upload extends Component
         return chmod($newfile, 0666);
     }
 
-    public function save($name, $filename = null, $allow = null)
+    public function save($name)
     {
         //检查请求中是否存在上传的文件
         if (empty($_FILES[$name]))
@@ -140,10 +140,7 @@ class Upload extends Component
         //写入文件
         if ($this->moveUploadFile($_FILES[$name]['tmp_name'], $fileSavePath))
         {
-            $return['size'] = $fileSize;
-            $return['type'] = $ext;
-            $return['path'] = $fileSavePath;
-            return $return;
+            return str_replace(APP_ROOT, '', $fileSavePath);
         }
         else
         {

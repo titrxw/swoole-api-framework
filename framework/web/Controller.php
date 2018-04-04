@@ -11,13 +11,25 @@ use framework\base\Container;
 
 abstract class Controller extends \framework\base\Controller
 {
-    protected $_magicRules = [
+    protected $_sysMagicRules = [
         'url',
         'request',
+        'response',
+        'conf',
+        'helper',
+        'page',
+        'cookie',
+        'taskManager',
+        'server'
+    ];
+    protected $_appMagicRules = [
         'redis',
         'page',
-        'response',
-        'captcha'
+        'captcha',
+        'validate',
+        'view',
+        'tokenBucket',
+        'apireset'
     ];
 
     protected function rule()
@@ -45,8 +57,8 @@ abstract class Controller extends \framework\base\Controller
             unset($rule);
             return true;
         }
-        $data = array('get' => $this->get(),'post' => $this->post());
-        $result = $this->getComponent($this->getSystem(), 'validate')->run($data, $rule[$this->_action]);
+        $data = array('get' => $this->request->get(),'post' => $this->request->post());
+        $result = $this->validate->run($data, $rule[$this->_action]);
         unset($rule, $data);
         return $result;
     }
@@ -54,12 +66,12 @@ abstract class Controller extends \framework\base\Controller
 
     protected function assign($key, $value = null)
     {
-        $this->getComponent($this->getSystem(), 'view')->assign($key, $value);
+        $this->view->assign($key, $value);
     }
 
     protected function display($path = '')
     {
-        return $this->getComponent($this->getSystem(), 'view')->display($path);
+        return $this->view->display($path);
     }
 
     protected function sendFile($path, $type = 'jpg')
@@ -68,10 +80,8 @@ abstract class Controller extends \framework\base\Controller
         {
             return false;
         }
-        $urlComponent = $this->getComponent(SYSTEM_APP_NAME, 'response');
-        $urlComponent->contentType($type);
-        $urlComponent->sendFile($path);
-        unset($urlComponent);
+        $this->response->contentType($type);
+        $this->response->sendFile($path);
         return true;
     }
 
@@ -79,21 +89,21 @@ abstract class Controller extends \framework\base\Controller
     {
         if (!$isAsync)
         {
-            $this->getComponent($this->getSystem(), 'taskManager')->addTask($className, $funcName, $params, $taskId);
+            $this->taskManager->addTask($className, $funcName, $params, $taskId);
         }
         else
         {
-            $this->getComponent($this->getSystem(), 'taskManager')->addAsyncTask($className, $funcName, $params, $taskId);
+            $this->taskManager->addAsyncTask($className, $funcName, $params, $taskId);
         }
     }
 
     public function addTimer($timeStep, callable $callable, $params= [])
     {
-        return $this->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTimer($timeStep, $callable, $params);
+        return $this->server->getServer()->addTimer($timeStep, $callable, $params);
     }
 
     public function addTimerAfter($timeStep, callable $callable, $params= [])
     {
-        return $this->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTimerAfter($timeStep, $callable, $params);
+        return $this->server->getServer()->addTimerAfter($timeStep, $callable, $params);
     }
 }

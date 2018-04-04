@@ -29,13 +29,13 @@ class Log extends Component
 
             $depr = "\r\n---------------------------------------------------------------\r\n";
             // 获取基本信息
-            $current_uri = $_SERVER['HTTP_HOST']?? '' . $_SERVER['REQUEST_URI']?? '';
+            $current_uri = $_SERVER['HTTP_HOST'] ?? '' . empty($_SERVER['REQUEST_URI']) ?  '' : $_SERVER['REQUEST_URI'];
             $server = $_SERVER['SERVER_ADDR']?? '0.0.0.0';
             $remote = $_SERVER['REMOTE_ADDR']?? '0.0.0.0';
 
             $info   = '[ log ] ' . $current_uri . "\r\n server: " .  $server . "\r\n client: " . $remote  . $depr;
 
-            $this->write("[{$time}] $info r\n {$data}\r\n\r\n",$destination);
+            $this->write("[{$time}] $info \r\n {$data}\r\n\r\n",$destination);
             unset($destination);
         }
         unset($data);

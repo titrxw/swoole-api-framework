@@ -9,6 +9,7 @@ namespace framework\base;
 
 class Composer extends Base
 {
+
     protected function init()
     {
         // $this->_conf = $this->_appConf + $this->_conf;
@@ -53,7 +54,7 @@ class Composer extends Base
         }
         catch (\Exception $e)
         {
-            throw new \Exception('composer ' . $name . 'not found' . $e->getMessage(), 500);
+            $this->triggerException(new \Exception('composer ' . $name . 'not found' . $e->getMessage(), 500));
         }
     }
 }

@@ -10,7 +10,7 @@ define('APP_ROOT', dirname(dirname(__FILE__)).'/');
 date_default_timezone_set('PRC');
 
 if(!defined('DEBUG'))
-    define('DEBUG',TRUE);
+    define('DEBUG',true);
 define('SYSTEM_APP_NAME', 'APP');
 
 include __DIR__.'/autoloader.php';
@@ -25,5 +25,9 @@ $conf = array(
     'default' => require_once __DIR__.'/conf/base.php',
     'app' => []
 );
-\framework\web\Application::run($conf);
+
+
+$server = new \framework\server\Server();
+
+\framework\web\Application::run($conf, $argv[1] ?? 'start');
 unset($conf);

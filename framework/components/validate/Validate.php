@@ -12,12 +12,14 @@ use framework\base\Component;
 class Validate extends Component
 {
     protected $_separator;
+    protected $_keySeparator;
     protected $_data;
     protected $_defaultMsg = '参数错误';
 
     protected function init()
     {
         $this->_separator = $this->getValueFromConf('separator', '|');
+        $this->_keySeparator = $this->getValueFromConf('key_separator', ':');
     }
 
     public function run($data, $rule)
@@ -58,22 +60,30 @@ class Validate extends Component
         }
         $data = '';
         $msg = '';
-        if(!empty($key[1]))
+        $valKey = explode($this->_keySeparator, $key[0]);
+        if(!empty($key[1]) && ($key[1] === 'post' || $key[1] === 'get'))
         {
-            if ($key[1] === 'post' || $key[1] === 'get')
-            {
-                $data = isset($this->_data[$key[1]][$key[0]]) ? $this->_data[$key[1]][$key[0]] : null;
-                $msg = empty($key[2]) ? $this->_defaultMsg : $key[2];
+
+            $data = $this->_data[$key[1]];
+            foreach($valKey as $item) {
+                if (!$item) {
+                    continue;
+                }
+                $data = $data[$item] ?? null;
             }
-            else
-            {
-                $msg = empty($key[1]) ? $this->_defaultMsg : $key[1];
-            }
+            $msg = empty($key[2]) ? $this->_defaultMsg : $key[2];
         }
         else
         {
-            $data = isset($this->_data['get'][$key[0]]) ? $this->_data['get'][$key[0]] : (isset($this->_data['post'][$key[0]]) ? $this->_data['post'][$key[0]] : null);
-            $msg = $this->_defaultMsg;
+            $data = array_merge($this->_data['get'], $this->_data['post']);
+            foreach($valKey as $item) {
+                if (!$item) {
+                    continue;
+                }
+                $data = $data[$item] ?? null;
+            }
+            
+            $msg = empty($key[1]) ? $this->_defaultMsg : $key[1];
         }
 
         unset($key);

@@ -16,7 +16,6 @@ abstract class BaseServer extends Base implements ServerInterface
      * @var null
      * 使用trait 添加triggerException 方法
      */
-//    use ExceptionTrait;
 
     protected $_event = null;
     protected $_server;
@@ -52,7 +51,7 @@ abstract class BaseServer extends Base implements ServerInterface
         if (!($event instanceof \framework\server\SwooleEvent))
         {
             unset($event);
-            throw new \Error('swoole event have implement SwooleEvent', 500);
+            $this->triggerException(new \Error('swoole event have implement SwooleEvent', 500));
         }
         $this->_event = $event;
     }
@@ -67,6 +66,8 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->start();
     }
 
+    abstract protected function execApp(&$response);
+
     public function onConnect()
     {
         // TODO: Implement onConnect() method.
@@ -78,11 +79,7 @@ abstract class BaseServer extends Base implements ServerInterface
                     $this->_event->onConnect($server, $client_id, $from_id);
                 }
             }
-            catch (\Exception $e)
-            {
-                $this->triggerException($e);
-            }
-            catch (\Error $e)
+            catch (\Throwable $e)
             {
                 $this->triggerException($e);
             }
@@ -100,11 +97,7 @@ abstract class BaseServer extends Base implements ServerInterface
                     $this->_event->onStart($server);
                 }
             }
-            catch (\Exception $e)
-            {
-                $this->triggerException($e);
-            }
-            catch (\Error $e)
+            catch (\Throwable $e)
             {
                 $this->triggerException($e);
             }
@@ -116,17 +109,15 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onWorkStart() method.
         $this->_server->on("workerStart",function (\swoole_server $server, $workerId)
         {
+            //\opcache_reset();
+            define('SYSTEM_WORK_ID', $workerId);
             try
             {
                 if ($this->_event) {
                     $this->_event->onWorkerStart($server,$workerId);
                 }
             }
-            catch (\Exception $e)
-            {
-                $this->triggerException($e);
-            }
-            catch (\Error $e)
+            catch (\Throwable $e)
             {
                 $this->triggerException($e);
             }
@@ -144,11 +135,7 @@ abstract class BaseServer extends Base implements ServerInterface
                     $this->_event->onWorkStop($server,$workerId);
                 }
             }
-            catch (\Exception $e)
-            {
-                $this->triggerException($e);
-            }
-            catch (\Error $e)
+            catch (\Throwable $e)
             {
                 $this->triggerException($e);
             }
@@ -193,8 +180,8 @@ abstract class BaseServer extends Base implements ServerInterface
                             }
                             else
                             {
-                                throw new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
-                                    ' or action: ' .$taskObj['func'] . ' not found', 500);
+                                $this->triggerException(new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                                    ' or action: ' .$taskObj['func'] . ' not found', 500));
                             }
                         }
                     }
@@ -206,12 +193,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
                     return $taskObj;
                 }
-                catch (\Exception $e)
-                {
-                    $this->triggerException($e);
-                    return false;
-                }
-                catch (\Error $e)
+                catch (\Throwable $e)
                 {
                     $this->triggerException($e);
                     return false;
@@ -224,18 +206,13 @@ abstract class BaseServer extends Base implements ServerInterface
     {
         // TODO: Implement onShutDown() method.
         $this->_server->on("shutdown",function (\swoole_server $server){
-
             try
             {
                 if ($this->_event) {
                     $this->_event->onShutdown($server);
                 }
             }
-            catch (\Exception $e)
-            {
-                $this->triggerException($e);
-            }
-            catch (\Error $e)
+            catch (\Throwable $e)
             {
                 $this->triggerException($e);
             }
@@ -269,20 +246,15 @@ abstract class BaseServer extends Base implements ServerInterface
                             }
                             else
                             {
-                                throw new \Exception('task at finish: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
-                                ' or action: ' .$taskObj['func'] . ' not found', 500);
+                                $this->triggerException(new \Exception('task at finish: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                                    ' or action: ' .$taskObj['func'] . ' not found', 500));
                             }
                         }
                     }
 
                     return false;
                 }
-                catch (\Exception $e)
-                {
-                    $this->triggerException($e);
-                    return false;
-                }
-                catch (\Error $e)
+                catch (\Throwable $e)
                 {
                     $this->triggerException($e);
                     return false;
@@ -325,11 +297,6 @@ abstract class BaseServer extends Base implements ServerInterface
         if ($timeStep === 0) return false;
         if ($timeStep > $this->_maxTickStep) return false;
         return swoole_timer_after($timeStep, $callable, $params);
-    }
-
-    protected function triggerException ($e)
-    {
-        Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'exception')->handleException($e);
     }
 
     public function getTaskWorkerNum()

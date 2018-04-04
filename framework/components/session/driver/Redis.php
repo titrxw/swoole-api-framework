@@ -71,7 +71,6 @@ class Redis extends \SessionHandler
      */
     public function read($sessID)
     {
-        var_dump($sessID);
         return (string) $this->_handler->get($this->_conf['session_name'] . $sessID);
     }
 
@@ -84,7 +83,6 @@ class Redis extends \SessionHandler
      */
     public function write($sessID, $sessData)
     {
-        var_dump('write'.$sessID);
         return true;
 //        return $this->_handler->set($this->_conf['session_name'] . $sessID, $sessData);
     }

@@ -7,11 +7,15 @@ abstract class Controller extends Component
     protected $_action;
     protected $_view;
 
-    protected $_magicRules = [
+    protected $_sysMagicRules = [
         'url',
         'request',
+        'response',
+        'conf',
+        'helper'
+    ];
+    protected $_appMagicRules = [
         'redis',
-        'page'
     ];
 
     protected function init()
@@ -56,7 +60,11 @@ abstract class Controller extends Component
      */
     public function __get($name)
     {
-        if (in_array($name, $this->_magicRules)) {
+        if (in_array($name, $this->_appMagicRules)) {
+            $this->$name = $this->getComponent($this->getSystem(), $name);
+            return $this->$name;
+        }
+        if (in_array($name, $this->_sysMagicRules)) {
             $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
             return $this->$name;
         }

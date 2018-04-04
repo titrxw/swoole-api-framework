@@ -7,9 +7,7 @@ class Request extends Component
     protected $_method;
     protected $_rowBody;
     protected $_headers;
-    protected $_hasCheckGet = false;
-    protected $_hasCheckPost = false;
-    protected $_hasCheckRequest = false;
+    protected $_hasCheck = [];
 
     protected function init()
     {
@@ -30,39 +28,20 @@ class Request extends Component
             return stripslashes($data);
     }
 
-    protected function checkGet()
+    protected function checkData(&$data, $type, $params = '')
     {
-        if(!$this->_hasCheckGet)
+        $hasCheck =  $this->_hasCheck[$type][$params] ?? ($this->_hasCheck[$type.'ALL'] ?? false);
+        if(empty($this->_hasCheck[$type.'ALL']) && !$hasCheck)
         {
             if(function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
             {
-                $_GET = $this->stripSlashes($_GET);
+                $_GET = $this->stripSlashes($params ? $data[$params] : $data);
             }
-            $this->_hasCheckGet = true;
-        }
-    }
-
-    protected function checkPost()
-    {
-        if(!$this->_hasCheckPost)
-        {
-            if(function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
-            {
-                $_POST = $this->stripSlashes($_POST);
+            if ($params) {
+                $this->_hasCheck[$type][$params] = true;
+            } else {
+                $this->_hasCheck[$type.'ALL'] = true;
             }
-            $this->_hasCheckPost = true;
-        }
-    }
-
-    protected function checkRequest()
-    {
-        if(!$this->_hasCheckRequest)
-        {
-            if(function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
-            {
-                $_REQUEST = $this->stripSlashes($_REQUEST);
-            }
-            $this->_hasCheckRequest = true;
         }
     }
 
@@ -71,37 +50,35 @@ class Request extends Component
         return $_SERVER['REQUEST_METHOD'];
     }
 
-    public function get($key = '', $default = '')
+    public function get($key = '', $default = '', $needCheck = true)
     {
-        $this->checkGet();
-        if(!$key)
-            return $_GET;
-        if(!isset($_GET[$key]))
-            return $default;
-        else
-            return $_GET[$key];
+        return $this->data($_GET, 'get',  $key, $default, $needCheck);
     }
 
-    public function post($key = '', $default = '')
+    public function post($key = '', $default = '', $needCheck = true)
     {
-        $this->checkPost();
-        if(!$key)
-            return $_POST;
-        if(!isset($_POST[$key]))
-            return $default;
-        else
-            return $_POST[$key];
+        return $this->data($_POST,'post',  $key, $default, $needCheck);
     }
 
-    public function request($key = '', $default = '')
+    public function request($key = '', $default = '', $needCheck = true)
     {
-        $this->checkRequest();
+        return $this->data($_REQUEST,'request',  $key, $default, $needCheck);
+    }
+
+    protected function data(&$data, $type, $key = '', $default = '', $needCheck = true)
+    {
         if(!$key)
-            return $_REQUEST;
-        if(!isset($_REQUEST[$key]))
+        {
+            $needCheck&&$this->checkData($data, $type, $key);
+            return $data;
+        }
+        else if(!isset($data[$key]))
             return $default;
         else
-            return $_REQUEST[$key];
+        {
+            $needCheck&&$this->checkData($data, $type, $key);
+            return $data[$key];
+        }
     }
 
     public function getRawBody()

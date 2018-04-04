@@ -102,7 +102,7 @@ class Response extends Component
     protected function rollback()
     {
         $this->initHeader();
-        $this->_curType = '';
+        $this->_curType = 'html';
         $this->_code = 200;
     }
 }

@@ -3,6 +3,7 @@ namespace framework\base;
 
 class Container extends Base
 {
+
     protected static $instance;
     protected $_composer;
     protected $_instances;
@@ -67,7 +68,7 @@ class Container extends Base
             unset($conf);
             return true;
         }
-        throw new \Exception('components key or classpath can not be empty');
+        $this->triggerException(new \Exception('components key or classpath can not be empty'));
     }
 
     public function addComponents($system, $components)
@@ -82,7 +83,7 @@ class Container extends Base
         }
         catch (\Exception $e)
         {
-            throw new \Exception('components add failed ' . $e->getMessage());
+            $this->triggerException(new \Exception('components add failed ' . $e->getMessage()));
         }
     }
 
@@ -128,7 +129,7 @@ class Container extends Base
                 else
                 {
                     unset($instance);
-                    throw new \Exception('instance' . $classPath . 'have to instance of Component', 500);
+                    $this->triggerException(new \Exception('instance' . $classPath . 'have to instance of Component', 500));
                 }
             }
             else
@@ -139,7 +140,7 @@ class Container extends Base
                 }
                 else
                 {
-                    throw new \Exception("components {$key} not exists", 500);
+                    $this->triggerException(new \Exception("components {$key} not exists", 500));
                 }
             }
         }
@@ -147,7 +148,13 @@ class Container extends Base
         {
             $msg = $e->getMessage();
             // $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
-            throw new \Exception( $msg, 500);
+            $this->triggerException(new \Exception( $msg, 500));
+        }
+        catch (\Error $e)
+        {
+            $msg = $e->getMessage();
+            // $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
+            $this->triggerException(new \Error( $msg, 500));
         }
 
         return $this->_instances[$haver][$key];
