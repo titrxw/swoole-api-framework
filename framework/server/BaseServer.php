@@ -242,7 +242,7 @@ abstract class BaseServer extends Base implements ServerInterface
                             {
                                 $obj->run($taskObj['func'].'Finish', $taskObj['params'],  $server, $taskId, -1);
                                 unset($obj);
-                                Container::getInstance()->destroyComponentsInstance($taskObj['class']);
+                                Container::getInstance()->destroyComponentsInstance(SYSTEM_APP_NAME, $taskObj['class']);
                             }
                             else
                             {

@@ -33,6 +33,6 @@ abstract class Component extends Base
 
     public function getSystem()
     {
-        return Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'dispatcher')->getSystem();
+        return $_SERVER['CURRENT_SYSTEM'] ?? '';
     }
 }

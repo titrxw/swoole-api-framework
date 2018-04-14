@@ -50,7 +50,15 @@ class Upload extends Component
     {
         if (!file_exists($this->_baseDir))
         {
-            mkdir($this->_baseDir, 0755);
+            $dirs = explode('/', $this->_baseDir);
+            $path = '';
+            foreach ($dirs as $item) {
+                $path .= $item;
+                if (!file_exists($path)) {
+                    mkdir($path, 0755);
+                }
+                $path .= '/';
+            }
         }
         switch ($this->_nameType)
         {

@@ -73,7 +73,6 @@ class Url extends Component
                 'action' => empty($tmpQuery[1 + $keyStart]) ? $this->getValueFromConf('defaultAction', 'index') : $tmpQuery[1 + $keyStart]
             );
             $count = count($tmpQuery);
-            $_GET = [];
             for($i=2 + $keyStart;$i < $count; $i+=2)
             {
                 $_GET[$tmpQuery[$i]] = !isset($tmpQuery[$i+1]) ?  '' : $tmpQuery[$i+1];

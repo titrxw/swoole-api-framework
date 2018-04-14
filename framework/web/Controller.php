@@ -63,7 +63,6 @@ abstract class Controller extends \framework\base\Controller
         return $result;
     }
 
-
     protected function assign($key, $value = null)
     {
         $this->view->assign($key, $value);
@@ -85,7 +84,7 @@ abstract class Controller extends \framework\base\Controller
         return true;
     }
 
-    protected function addTask($className, $funcName, $params, $taskId = -1, $isAsync = false)
+    protected function addTask($className, $funcName, $params,$taskId = -1, $isAsync = false)
     {
         if (!$isAsync)
         {

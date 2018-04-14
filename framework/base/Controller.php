@@ -68,6 +68,14 @@ abstract class Controller extends Component
             $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
             return $this->$name;
         }
+        if (Container::getInstance()->hasComponent($this->getSystem(), $name)) {
+            $this->$name = $this->getComponent($this->getSystem(), $name);
+            return $this->$name;
+        }
+        if (Container::getInstance()->hasComponent(SYSTEM_APP_NAME, $name)) {
+            $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
+            return $this->$name;
+        }
         return null;
     }
 }

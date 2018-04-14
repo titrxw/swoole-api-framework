@@ -33,8 +33,7 @@ class HttpServer extends BaseServer
         $response->hasEnd = false;
         $container = Container::getInstance();
         $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
-        $response->system = $urlInfo['system'];
-
+        $_SERVER['CURRENT_SYSTEM'] = $urlInfo['system'];
 
 
         if ($urlInfo !== false) {
@@ -104,7 +103,6 @@ class HttpServer extends BaseServer
                 $_SERVER = $request->server;
 
 
-
                 $this->execApp($response);
             }
             catch (\Throwable $exception)
@@ -123,15 +121,13 @@ class HttpServer extends BaseServer
             if (!$response->hasEnd) {
                 $response->end();
             }
+            $container->finish($_SERVER['CURRENT_SYSTEM']);
+            $container->finish(SYSTEM_APP_NAME);
             $_GET = [];
             $_POST = [];
             $_FILES = null;
             $_COOKIE = [];
             $_SERVER = [];
-            if (!empty($response->system)) {
-                $container->finish($response->system);
-            }
-            $container->finish(SYSTEM_APP_NAME);
             unset($container,$request,$response, $urlInfo);
         });
     }

@@ -14,6 +14,9 @@ return array(
            return new \Medoo\Medoo($params);      //这里测试composer的加载
        }
     ),
+    'addComponentsMap' => array(
+        'msgTask' => 'blog\\conf\\Task'
+    ),
     'components' => array(
         'log' => array(
             'path' => 'runtime/log/',
@@ -71,7 +74,7 @@ return array(
             'factory_mode'=>2,
 //             'daemonize' => 1,
             'dispatch_mode' => 2,
-            'task_worker_num' => 0, //异步任务进程
+            'task_worker_num' => 2, //异步任务进程
             "task_max_request"=>10,
             'max_request'=>3000,
             'worker_num'=>4,

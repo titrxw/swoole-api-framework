@@ -13,7 +13,6 @@ namespace framework\components\cache;
 
 class Redis extends Cache implements CacheInterface
 {
-
     protected function init()
     {
         if (!extension_loaded('redis')) {

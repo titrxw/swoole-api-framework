@@ -38,6 +38,14 @@ class Container extends Base
         return false;
     }
 
+    public function hasComponent($haver, $component)
+    {
+        if (!empty($this->_components[$haver][$component])) {
+            return true;
+        }
+        return false;
+    }
+
     public function setAppComponents($system, $conf)
     {
         $this->_appConf[$system] = $conf['components'];

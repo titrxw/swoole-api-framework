@@ -15,12 +15,14 @@ class Application extends \framework\base\Application
 
         $components = array(
             'server' => 'framework\\server\\Server',
+            'msgTask' => 'blog\\conf\\Task',
             'log' => 'framework\\components\\log\\Log',
             'conf' => 'framework\\base\\Conf',
             'cookie' => 'framework\\components\\cookie\\SwooleCookie',
             'taskManager' => 'framework\\task\\Task',
             'response' => 'framework\\components\\response\\SwooleResponse'
         );
+        $components = array_merge($components, $this->_conf['addComponentsMap'] ?? []);
         $this->_container->addComponents(SYSTEM_APP_NAME, $components);
 
         unset($components);

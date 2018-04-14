@@ -4,7 +4,6 @@ use framework\base\Component;
 
 class Log extends Component
 {
-
     /**
      * 日志写入接口
      * @access public

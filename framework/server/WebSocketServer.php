@@ -114,6 +114,7 @@ class WebSocketServer extends HttpServer
 
 
                 $container = Container::getInstance();
+                $_SERVER['CURRENT_SYSTEM'] = $frame->data['system'];
                 $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->setSystem($frame->data['system']);
                     // 初始化配置项
                 if (!$container->appHasComponents($frame->data['system'])) {

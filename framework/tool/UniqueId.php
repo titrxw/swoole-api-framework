@@ -1,10 +1,10 @@
 <?php
 namespace framework\tool;
-use framework\traits\Exception;
+use framework\traits\Throwable;
 
 class UniqueId
 {
-    use Exception;
+    use Throwable;
     //开始时间,固定一个小于当前时间的毫秒数即可  
     const twepoch =  1474992000000;//2016/9/28 0:0:0  
   
@@ -21,7 +21,8 @@ class UniqueId
     protected $sequence = 0;  
   
   
-    public function __construct($workId){
+    public function __construct($workId)
+    {
         //机器ID范围判断  
         $maxWorkerId = -1 ^ (-1 << self::workerIdBits);  
         if($workId > $maxWorkerId || $workId< 0){
@@ -32,7 +33,8 @@ class UniqueId
     }  
   
     //生成一个ID  
-    public function nextId(){
+    public function nextId()
+    {
         $timestamp = $this->timeGen();
         $lastTimestamp = $this->lastTimestamp;  
         //判断时钟是否正常  
@@ -61,13 +63,15 @@ class UniqueId
     }  
   
     //取当前时间毫秒  
-    protected function timeGen(){  
+    protected function timeGen()
+    {
         $timestramp = (float)sprintf("%.0f", microtime(true) * 1000);  
         return  $timestramp;  
     }  
   
     //取下一毫秒  
-    protected function tilNextMillis($lastTimestamp) {  
+    protected function tilNextMillis($lastTimestamp)
+    {
         $timestamp = $this->timeGen();  
         while ($timestamp <= $lastTimestamp) {  
             $timestamp = $this->timeGen();  

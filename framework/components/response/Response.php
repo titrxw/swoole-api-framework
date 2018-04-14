@@ -92,7 +92,7 @@ class Response extends Component
         return $data;
     }
 
-    protected function rediret($url)
+    public function rediret($url)
     {
         $this->addHeader('Location', $url);
         $this->setCode(302);
