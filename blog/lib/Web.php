@@ -34,16 +34,16 @@ abstract class Web extends Api
 {
     public function beforeAction()
     {
-//        $this->response->addHeader('Access-Control-Allow-Origin', '*');
+        $this->response->addHeader('Access-Control-Allow-Origin', '*');
 //        $this->tokenBucket->run();
 //        if (!$this->apireset->check($this->request->post('timestamp'),$this->request->post('nonce'),$this->request->post('sign'))) {
 //            return ['ret' => 501, 'msg' => 'permission denied'];
 //        }
-//        $result  = $this->validate();
-//        if ($result !== true)
-//        {
-//            return ['ret' => 500,'msg' => $result];
-//        }
+        $result  = $this->validate();
+        if ($result !== true)
+        {
+            return ['ret' => 500,'msg' => $result];
+        }
         return true;
     }
 

@@ -44,10 +44,10 @@ abstract class User extends Api
         if (!($user = $this->redis->get($token))) {
             return ['ret' => 301, 'msg' => 'login false'];
         }
-        $this->tokenBucket->run();
-        if (!$this->apireset->check($this->request->post('timestamp'),$this->request->post('nonce'),$this->request->post('sign'))) {
-            return ['ret' => 501, 'msg' => 'permission denied'];
-        }
+//        $this->tokenBucket->run();
+//        if (!$this->apireset->check($this->request->post('timestamp'),$this->request->post('nonce'),$this->request->post('sign'))) {
+//            return ['ret' => 501, 'msg' => 'permission denied'];
+//        }
 
 
         $result  = $this->validate();

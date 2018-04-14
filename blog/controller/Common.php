@@ -32,6 +32,11 @@ class Common extends Web
         $this->_userM = $this->model('User');
     }
 
+    public function testApi()
+    {
+        $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
+    }
+
     public function loginApi ()
     {
         var_dump(1);

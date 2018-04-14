@@ -6,21 +6,30 @@
  * Time: 20:58
  */
 namespace blog\controller;
+use blog\lib\Web;
 
-use framework\web\Api;
-
-class Upload extends Api
+class Upload extends Web
 {
+    protected function rule()
+    {
+        return array(
+            'indexApi' => array(
+                'submit|post|参数错误'=>'require',
+            )
+        );
+    }
+
     public function indexApi ()
     {
-        $path = $this->getComponent($this->getSystem(), 'upload')->save($this->request->post());
+//        这里会把上传的参数也获取到  也是post方式，  这样的话就算需要token或者其他的验证也可以通过
+        $path = $this->upload->save($this->request->post());
         if ($path) {
-            $path = $this->getComponent($this->getSystem(),'imageZip')->resize($path);
-            $this->getComponent($this->getSystem(),'imageZip')->resize($path, 100, 100);
-            return ['ret' => 200, 'data' => $path];
+            return [200, $path];
         }
-
-
-        return ['ret' => 501, 'msg' => '上传失败'];
+        return [501,'上传失败'];
+//        if ($path) {
+//            $this->getComponent($this->getSystem(),'imgzip')->resize($path, 600, 300);
+//            return ['ret' => 200, 'data' => $path];
+//        }
     }
 }

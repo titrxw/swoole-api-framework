@@ -10,17 +10,16 @@ return array(
 //        'Logger' => function (array $params) {
 //            return new \Monolog\Logger($params[0]);      //这里测试composer的加载
 //        },
-    'crawler' => function ($params) {
-        return new Symfony\Component\DomCrawler\Crawler();
-    }
-       
+        'crawler' => function ($params) {
+            return new Symfony\Component\DomCrawler\Crawler();
+        }
     ),
     'addComponentsMap' => array(
         'validate' => 'framework\\components\\validate\\Validate',
         'password' => 'framework\\components\\security\\Password',
         'tokenBucket' => 'framework\\tokenbucket\\Bucket',
         'apireset' => 'blog\\lib\\ApiReset',
-        'imageZip' => 'blog\\lib\\ImageZip',
+        'imgzip' => 'framework\\components\\imagic\\Imgzip',
         //'page' => 'framework\\components\\page\\Page',//如果使用api的话这里不需要
         //'view' => 'framework\\components\\view\\View',     //如果使用api的话这里不需要,
         'upload' => 'framework\\components\\upload\\NUpload',
@@ -97,7 +96,8 @@ return array(
             'accept' => array(
                 'jpg',
                 'png'
-            )
+            ),
+            'prefx' => 'rxwyun_102410_ngf_'
         ),
         'captcha' => array(
             'height' => 70,
