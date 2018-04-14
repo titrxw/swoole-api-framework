@@ -15,10 +15,9 @@ class Bucket extends Component
     protected $_bucketsInstance;
     protected function init()
     {
-        $this->_bucketListKey = $this->getSystem() . $this->_bucketListKey;
         $redis = $this->getComponent($this->getSystem(), 'redis');
 //        清空之前的token  防止不生效
-        while ($key = $redis->getHandle()->lpop($this->_bucketListKey))
+        while ($key = $redis->getHandle()->lpop($redis->getCacheKey($this->_bucketListKey)))
         {
             $redis->rm($key);
         }
@@ -49,7 +48,6 @@ class Bucket extends Component
                 $this->triggerException(new \Exception('bucket ' . $class . ' must be instanceof TokenBucket', 500));
             }
             $instance->setStoreHandle($this->getComponent($this->getSystem(), 'redis'));
-            $instance->setSystem($this->getSystem());
             $this->_bucketsInstance[$name] = $instance;
         }
 

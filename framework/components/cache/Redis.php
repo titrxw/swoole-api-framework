@@ -159,11 +159,13 @@ class Redis extends Cache implements CacheInterface
      * @param int $waitIntervalUs  获取锁失败后的每个多少时间再次获取锁  微妙级
      * @return bool|string
      */
-    public function lock($redisKey, $expire = 500, $waitIntervalUs = 100000)
+    public function lock($redisKey, $expire = 500)
     {
         if (!$redisKey) {
             return false;
         }
+        $redisKey = 'lock_' . $redisKey;
+        $redisKey = $this->getCacheKey($redisKey);
         $retIdentifier = false;
         $identifier = md5(base64_encode(openssl_random_pseudo_bytes(32)) . microtime(true));
         /**
@@ -192,16 +194,18 @@ class Redis extends Cache implements CacheInterface
             //当然不添加也可以，添加后可增大一个进程获的锁的几率，不是再同时取锁，而是错开的取，几率大一点
             //假设都是每隔50毫秒取一次  那么下次就是第100毫秒再取，   但是如果加上随机树后第一个再50毫秒取，下一个再80毫秒取，如果第一个取到锁后再30秒内执行完成，然后让出锁，
             //那么当80毫秒的时候获取锁的时候又可以获取锁，几率比一起获取大
-            $rand = mt_rand(0,$waitIntervalUs);
-            usleep($waitIntervalUs + $rand);
+            $rand = mt_rand(0,$expire * 1000);
+            usleep($rand);
         }
         return $retIdentifier;
     }
+
     public function unLock($redisKey, $identifier)
     {
         //保证释放者是锁的拥有者
-        if ($identifier === $this->_handle->get($redisKey)) {
-            $this->_handle->delete($redisKey);
+        $redisKey = 'lock_' . $redisKey;
+        if ($identifier === $this->get($redisKey)) {
+            $this->rm($redisKey);
             return true;
         }
         return false;
