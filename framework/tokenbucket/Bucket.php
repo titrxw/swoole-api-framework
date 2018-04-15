@@ -26,12 +26,21 @@ class Bucket extends Component
         unset($redis);
     }
 
-    public function run($data = [])
+    public function validates($data = [])
     {
         $this->_buckets = $this->getValueFromConf('buckets', []);
         foreach ($this->_buckets as $key => $item) {
+            if (isset($item['auto']) && $item['auto'] == false) {
+                continue;
+            }
             $this->getInstance($key)->run($this->getComponent(SYSTEM_APP_NAME, 'request'), $data);
         }
+    }
+
+    public function validate($item, $data = [])
+    {
+        $this->_buckets = $this->getValueFromConf('buckets', []);
+        $this->getInstance($item)->run($this->getComponent(SYSTEM_APP_NAME, 'request'), $data);
     }
 
     protected function getInstance($name)

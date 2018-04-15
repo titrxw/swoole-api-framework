@@ -15,7 +15,7 @@ abstract class TokenBucket extends Base
     protected $_key;
     protected $_max;
     protected $_addStep = 0;
-    protected $_timeStep = 1000;
+    protected $_timeStep = 0;
     protected $_range;
     protected $_storeHandle = null;
 
@@ -26,7 +26,6 @@ abstract class TokenBucket extends Base
         $this->_addStep = $this->getValueFromConf('addStep', 0);
         $this->_timeStep = $this->getValueFromConf('timeStep', 0);
         $this->_range = $this->getValueFromConf('range', 0);
-        $this->_range /= 1000;
     }
 
     abstract public function run(\framework\components\request\Request $request, $data = []);
