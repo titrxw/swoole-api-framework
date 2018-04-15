@@ -154,10 +154,33 @@ return array(
             'buckets' => [
                 'request' => [
                     'class' => 'framework\\tokenbucket\\Request',
+                    'auto' => true,
                     'conf' => [
-                        'max' => 2000,
-                        'key' => 'bucket_request',
-                        'range' => 2000 * 60, //单位s
+                        'max' => 20,
+                        'key' => 'bucket_b_request',
+                        'range' => 60, //单位s
+                        'addStep' => 0,
+                        'timeStep' => 3//单位s
+                    ]
+                ],
+                'mobile' => [
+                    'class' => 'framework\\tokenbucket\\Mobile',
+                    'auto' => false,
+                    'conf' => [
+                        'max' => 5,
+                        'key' => 'mobile',
+                        'range' => 60, //单位s
+                        'addStep' => 0,
+                        'timeStep' => 3//单位s
+                    ]
+                ],
+                'ip' => [
+                    'class' => 'framework\\tokenbucket\\Ip',
+                    'auto' => false,
+                    'conf' => [
+                        'max' => 3,
+                        'key' => 'ip',
+                        'range' => 5, //单位s
                         'addStep' => 0,
                         'timeStep' => 3//单位s
                     ]
