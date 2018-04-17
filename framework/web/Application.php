@@ -36,13 +36,18 @@ class Application extends \framework\base\Application
         $this->_appConf['composer'] = [];
     }
 
-    public static function run($conf, $command = 'start')
+    public static function run($command = 'start')
     {
         if (PHP_SAPI !== 'cli')
         {
             echo 'have to run at cli';
             return false;
         }
+
+        $conf = array(
+            'default' => require_once __DIR__.'/../conf/base.php',
+            'app' => []
+        );
         
         try {
             switch ($command) {
@@ -83,6 +88,7 @@ class Application extends \framework\base\Application
             } else {
                 echo 'server ' . $command. '  failed';
             }
+            self::handleThrowable($e);
         }
     }
 }

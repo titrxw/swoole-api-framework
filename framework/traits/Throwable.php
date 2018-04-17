@@ -10,12 +10,12 @@ use framework\base\Container;
 
 trait Throwable
 {
-    public function triggerException (\Throwable $e)
+    public static function triggerThrowable (\Throwable $e)
     {
         throw $e;
     }
 
-    public function handleException(\Throwable $e)
+    public static function handleThrowable(\Throwable $e)
     {
         Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'exception')->handleException($e);
     }

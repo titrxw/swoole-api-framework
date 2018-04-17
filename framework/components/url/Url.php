@@ -25,9 +25,13 @@ class Url extends Component
         $type = $this->getType();
         if ($type === '?')
         {
-            $system = empty($_GET[$this->getValueFromConf('systemKey', 's')]) ? $this->getValueFromConf('defaultSystem') : $_GET[$this->getValueFromConf('systemKey', 's')];
-            if (!file_exists(APP_ROOT. '/' .$system . '/conf/conf.php')) {
-                $this->triggerException(new \Exception('app ' . $system . ' not found', 404));
+            $system = $_GET[$this->getValueFromConf('systemKey', 's')] ?? '';
+            if (!empty($system)) {
+                if (!in_array($system, $this->getValueFromConf('systems',[]))) {
+                    $this->triggerThrowable(new \Exception('app ' . $system . ' not found', 404));
+                }
+            } else {
+                $system = $this->getValueFromConf('defaultSystem');
             }
 
 
@@ -61,9 +65,6 @@ class Url extends Component
                 $keyStart = 1;
             } else {
                 $system = $this->getValueFromConf('defaultSystem');
-            }
-            if (!file_exists(APP_ROOT. '/' .$system . '/conf/conf.php')) {
-                $this->triggerException(new \Exception('app ' . $system . ' not found', 404));
             }
 
 

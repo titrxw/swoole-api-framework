@@ -14,9 +14,10 @@ class Model extends Component
         'password',
     ];
     protected $_dbHandle;
+
     protected function init()
     {
-        $this->unInstall();
+        $this->unInstall(true);
     }
 
     public function db()
@@ -39,6 +40,14 @@ class Model extends Component
             return $this->$name;
         }
         if (in_array($name, $this->_sysMagicRules)) {
+            $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
+            return $this->$name;
+        }
+        if (Container::getInstance()->hasComponent($this->getSystem(), $name)) {
+            $this->$name = $this->getComponent($this->getSystem(), $name);
+            return $this->$name;
+        }
+        if (Container::getInstance()->hasComponent(SYSTEM_APP_NAME, $name)) {
             $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
             return $this->$name;
         }

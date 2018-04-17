@@ -13,7 +13,7 @@ class Mobile extends TokenBucket
     {
         $this->_key = $data['mobile'] ?? '';
         if (empty($this->_key) || $this->check() === false) {
-            $this->triggerException(new \Exception('promise refuse', 500));
+            $this->triggerThrowable(new \Exception('promise refuse', 500));
         }
     }
 }

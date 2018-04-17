@@ -18,17 +18,17 @@ abstract class Base implements \ArrayAccess
         unset($conf);
     }
 
-    public function getConf()
+    final public function getConf()
     {
         return $this->_conf;
     }
 
-    public function getAppConf()
+    final public function getAppConf()
     {
         return $this->_appConf;
     }
 
-    protected function getValueFromConf($key, $default = '')
+    final protected function getValueFromConf($key, $default = '')
     {
         if (!isset($this->{$key})) {
             $tmpKey = explode('.',$key);

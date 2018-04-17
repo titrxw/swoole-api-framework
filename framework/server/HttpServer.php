@@ -24,7 +24,6 @@ class HttpServer extends BaseServer
         if ($hasOnRequest) {
             $this->onRequest();
         }
-
     }
 
     protected function execApp(&$response)
@@ -37,23 +36,22 @@ class HttpServer extends BaseServer
 
 
         if ($urlInfo !== false) {
-            $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->setSystem($urlInfo['system']);
             // 初始化配置项
             if (!$container->appHasComponents($urlInfo['system'])) {
+//                这里现在还缺少文件系统
                 $appConf = require_once APP_ROOT. '/' .$urlInfo['system'] . '/conf/conf.php';
-                $appConf['addComponentsMap'] = $appConf['addComponentsMap'] ?? [];
-                $container->addComponents($urlInfo['system'], $appConf['addComponentsMap']);
+                $container->addComponents($urlInfo['system'], $appConf['addComponentsMap'] ?? []);
                 $container->setAppComponents($urlInfo['system'] ,array(
-                    'components' => $appConf['components'],
-                    'composer' => $appConf['composer']
+                    'components' => $appConf['components'] ?? [],
+                    'composer' => $appConf['composer'] ?? []
                 ));
+                unset($appConf);
             }
 
 
             $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run($urlInfo);
             $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
             $response->hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
-            $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->setSystem('');
             unset($result);
         }
 
@@ -113,7 +111,7 @@ class HttpServer extends BaseServer
                     $result = ob_get_clean();
                     $response->write($result . $exception->getMessage().$exception->getTraceAsString());
                 }
-                $this->handleException($exception);
+                $this->handleThrowable($exception);
             }
 
 
@@ -125,7 +123,7 @@ class HttpServer extends BaseServer
             $container->finish(SYSTEM_APP_NAME);
             $_GET = [];
             $_POST = [];
-            $_FILES = null;
+            $_FILES = [];
             $_COOKIE = [];
             $_SERVER = [];
             unset($container,$request,$response, $urlInfo);

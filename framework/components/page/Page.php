@@ -19,7 +19,7 @@ class Page extends Component
 
     protected function init()
     {
-        $this->unInstall(false);
+        $this->unInstall();
     }
 
     protected function initNeedData($count,$pageCount,$param=[])

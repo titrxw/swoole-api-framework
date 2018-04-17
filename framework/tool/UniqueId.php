@@ -26,7 +26,7 @@ class UniqueId
         //机器ID范围判断  
         $maxWorkerId = -1 ^ (-1 << self::workerIdBits);  
         if($workId > $maxWorkerId || $workId< 0){
-            $this->triggerException(new \Exception("workerId can't be greater than ".$this->maxWorkerId." or less than 0", 500));
+            $this->triggerThrowable(new \Exception("workerId can't be greater than ".$this->maxWorkerId." or less than 0", 500));
         }  
         //赋值  
         $this->workId = $workId;  
@@ -40,7 +40,7 @@ class UniqueId
         //判断时钟是否正常  
         if ($timestamp < $lastTimestamp) {
             $time = $lastTimestamp - $timestamp;
-            $this->triggerException(new \Exception("Clock moved backwards.  Refusing to generate id for $time milliseconds", 500));
+            $this->triggerThrowable(new \Exception("Clock moved backwards.  Refusing to generate id for $time milliseconds", 500));
         }  
         //生成唯一序列  
         if ($lastTimestamp == $timestamp) {  

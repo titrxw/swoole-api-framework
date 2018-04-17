@@ -20,7 +20,7 @@ abstract class Controller extends Component
 
     protected function init()
     {
-        $this->unInstall();
+        $this->unInstall(true);
     }
 
     public function beforeAction()

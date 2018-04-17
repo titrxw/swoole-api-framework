@@ -40,7 +40,7 @@ class Password extends Component
     
     protected function init()
     {
-        $this->unInstall(false);
+        $this->unInstall();
     }
     
     public function setPassword($val)

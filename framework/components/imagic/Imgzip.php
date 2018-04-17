@@ -29,7 +29,7 @@ class Imgzip extends ImageZip
         {
             $this->open($path)->resizeTo($width,$height,$crop)->saveTo(APP_ROOT.'/'.$dst);
         } catch (\Throwable $e) {
-            $this->handleException($e);
+            $this->handleThrowable($e);
             return false;
         }
 

@@ -23,7 +23,7 @@ class ImageZip extends Component
     protected function init()
     {
         if (!extension_loaded('imagick')) {
-            $this->triggerException(new \Exception('not support: imagick', 500));
+            $this->triggerThrowable(new \Exception('not support: imagick', 500));
         }
     }
 

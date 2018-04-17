@@ -15,7 +15,7 @@ class Ip extends TokenBucket
         // TODO: Implement run() method.
         $this->_key = $request->getClientIp();
         if ($this->check() === false) {
-            $this->triggerException(new \Exception('promise refuse', 500));
+            $this->triggerThrowable(new \Exception('promise refuse', 500));
         }
     }
 }

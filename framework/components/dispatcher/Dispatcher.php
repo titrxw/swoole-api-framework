@@ -11,11 +11,12 @@ class Dispatcher extends Component
 
     public function run($args = [])
     {
+        $this->_system = $this->getSystem();
         $controllerName = $this->getValueFromConf('controller.prefix') . $args['controller'] . $this->getValueFromConf('controller.suffix');
         $controllerName = ucfirst($controllerName);
         if (!file_exists(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php'))
         {
-            $this->triggerException(new \Exception(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php not exists', 404));
+            $this->triggerThrowable(new \Exception(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php not exists', 404));
         }
 
         $controllerHashName = md5($this->_system.'/controller/'.$controllerName);
@@ -28,7 +29,7 @@ class Dispatcher extends Component
         if (!method_exists($controllerInstance, $actionName))
         {
             unset($controllerInstance, $args);
-            $this->triggerException(new \Exception('action ' . $actionName . ' not found'));
+            $this->triggerThrowable(new \Exception('action ' . $actionName . ' not found'));
         }
 
 
@@ -50,17 +51,6 @@ class Dispatcher extends Component
         $result = $controllerInstance->afterAction($result);
         unset($controllerInstance, $args);
         return $result;
-    }
-
-
-    public function setSystem($system)
-    {
-        $this->_system = $system;
-    }
-
-    public function getSystem ()
-    {
-        return $this->_system;
     }
 
     public function getController ()

@@ -13,6 +13,7 @@ class Application extends Base
     protected function init()
     {
         $this->beforeInit();
+        $this->initEnv();
         $this->initContainer();
         $this->addBaseComponents();
         $this->setExceptionHandle();
@@ -20,16 +21,28 @@ class Application extends Base
         $this->setShutDownHandle();
     }
 
-    public static function run($conf,$command = '')
+    public static function run($command = '')
     {
-        unset($conf);
         return true;
     }
 
     public function initEnv()
     {
+        define('ISSWOOLE', true);
 
-        
+        date_default_timezone_set('PRC');
+
+        if(!defined('DEBUG'))
+            define('DEBUG',true);
+
+        define('SYSTEM_APP_NAME', 'APP');
+
+        if (file_exists(APP_ROOT. 'vendor/autoload.php')) {
+            define('COMPOSER', true);
+            require_once (APP_ROOT. 'vendor/autoload.php');
+        } else {
+            define('COMPOSER', false);
+        }
     }
 
     public function setAppConf($conf)
@@ -41,7 +54,7 @@ class Application extends Base
     {
         $conf = array(
             'default' => $this->_conf['components'],
-            'app' => $this->_appConf['components']
+            'app' => []
         );
         $this->_container = new Container($conf);
 
@@ -49,8 +62,9 @@ class Application extends Base
         {
             $composerConf = array(
                 'default' => $this->_conf['composer'],
-                'app' =>  $this->_appConf['composer']
+                'app' =>  []
             );
+//            系统的composer
             $this->_container->setComposer(new Composer($composerConf));
         }
 

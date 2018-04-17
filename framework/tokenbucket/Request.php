@@ -13,7 +13,7 @@ class Request extends TokenBucket
     {
         // TODO: Implement check() method.
         if ($this->check() === false) {
-            $this->triggerException(new \Exception('promise refuse', 500));
+            $this->triggerThrowable(new \Exception('promise refuse', 500));
         }
     }
 }

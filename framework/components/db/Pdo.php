@@ -60,12 +60,12 @@ class Pdo extends Component implements DbInterface
             }
             catch (\PDOException $e)
             {
-                $this->triggerException(new \Exception($e->getMessage(),500));
+                $this->triggerThrowable(new \Exception($e->getMessage(),500));
             }
         }
         else
         {
-            $this->triggerException(new \Exception("db {$this->_currentDb} not found",500));
+            $this->triggerThrowable(new \Exception("db {$this->_currentDb} not found",500));
         }
     }
 

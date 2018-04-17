@@ -6,16 +6,14 @@
  * Time: 上午2:16
  */
 namespace framework\base;
-use framework\traits\Exception;
 
 
 class Conf extends Component
 {
-    use Exception;
     private $_config;
 
 
-    public function getConfig($name)
+    public function get($name)
     {
         $name = explode('.', $name);
 
@@ -23,7 +21,7 @@ class Conf extends Component
 //            加载配置文件
             $path = APP_ROOT . $this->getSystem() . '/conf/' . $name[0] . '.php';
             if (!file_exists($path)) {
-                $this->triggerException('conf file ' . $name[0] . ' not exists', 500);
+                $this->triggerThrowable('conf file ' . $name[0] . ' not exists', 500);
             }
 
             $this->_config[$this->getSystem()][$name[0]] = include $path;

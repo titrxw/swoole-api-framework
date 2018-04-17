@@ -51,7 +51,7 @@ abstract class BaseServer extends Base implements ServerInterface
         if (!($event instanceof \framework\server\SwooleEvent))
         {
             unset($event);
-            $this->triggerException(new \Error('swoole event have implement SwooleEvent', 500));
+            $this->triggerThrowable(new \Error('swoole event have implement SwooleEvent', 500));
         }
         $this->_event = $event;
     }
@@ -81,7 +81,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerException($e);
+                $this->triggerThrowable($e);
             }
         });
     }
@@ -99,7 +99,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerException($e);
+                $this->triggerThrowable($e);
             }
         });
     }
@@ -119,7 +119,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerException($e);
+                $this->triggerThrowable($e);
             }
         });
     }
@@ -137,7 +137,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerException($e);
+                $this->triggerThrowable($e);
             }
         });
     }
@@ -180,7 +180,7 @@ abstract class BaseServer extends Base implements ServerInterface
                             }
                             else
                             {
-                                $this->triggerException(new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                                $this->triggerThrowable(new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
                                     ' or action: ' .$taskObj['func'] . ' not found', 500));
                             }
                         }
@@ -195,7 +195,7 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
                 catch (\Throwable $e)
                 {
-                    $this->triggerException($e);
+                    $this->triggerThrowable($e);
                     return false;
                 }
             });
@@ -214,7 +214,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerException($e);
+                $this->triggerThrowable($e);
             }
         });
     }
@@ -246,7 +246,7 @@ abstract class BaseServer extends Base implements ServerInterface
                             }
                             else
                             {
-                                $this->triggerException(new \Exception('task at finish: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                                $this->triggerThrowable(new \Exception('task at finish: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
                                     ' or action: ' .$taskObj['func'] . ' not found', 500));
                             }
                         }
@@ -256,7 +256,7 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
                 catch (\Throwable $e)
                 {
-                    $this->triggerException($e);
+                    $this->triggerThrowable($e);
                     return false;
                 }
             });

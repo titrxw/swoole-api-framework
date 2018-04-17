@@ -35,7 +35,7 @@ class WebSocketServer extends HttpServer
             }
             catch (\Throwable $e)
             {
-                $this->triggerException($e);
+                $this->triggerThrowable($e);
             }
         });
     }
@@ -85,16 +85,16 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
         {
-            if (DEBUG)
-            {
-                ob_start();
-            }
 //            目前不支持过大消息和二进制数据
-            if (!$frame->finish || $frame->opcode === 2) {
+            if (!$frame->finish || $frame->opcode !== WEBSOCKET_OPCODE_TEXT) {
                 $server->push($frame->fd, '');
                 return false;
             }
 
+            if (DEBUG)
+            {
+                ob_start();
+            }
             $frame->data = json_decode($frame->data, true);
             if (empty($frame->data['controller']) || empty($frame->data['action']) || empty($frame->data['system'])) {
                 $server->push($frame->fd, 'bad request');
@@ -115,16 +115,14 @@ class WebSocketServer extends HttpServer
 
                 $container = Container::getInstance();
                 $_SERVER['CURRENT_SYSTEM'] = $frame->data['system'];
-                $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->setSystem($frame->data['system']);
                     // 初始化配置项
                 if (!$container->appHasComponents($frame->data['system'])) {
                     $appConf = require_once APP_ROOT. '/' .$frame->data['system'] . '/conf/conf.php';
-                    $appConf['addComponentsMap'] = $appConf['addComponentsMap'] ?? [];
-                    $container->addComponents($frame->data['system'], $appConf['addComponentsMap']);
-                    $container->setAppComponents($frame->data['system'] ,array(
-                        'components' => $appConf['components'],
-                        'composer' => $appConf['composer']
-                    ));
+                    $container->addComponents($frame->data['system'], $appConf['addComponentsMap'] ?? []);
+                    $container->setAppComponents($frame->data['system'] ,[
+                        'components' => $appConf['components'] ?? [],
+                        'composer' => $appConf['composer'] ?? []
+                    ]);
                 }
 
 
@@ -154,7 +152,7 @@ class WebSocketServer extends HttpServer
                     $result = ob_get_clean() . $result;
                 }
                 $server->push($frame->fd, $result);
-                $this->handleException($exception);
+                $this->handleThrowable($exception);
             }
 
 
@@ -176,7 +174,7 @@ class WebSocketServer extends HttpServer
             }
             catch (\Throwable $e)
             {
-                $this->triggerException($e);
+                $this->triggerThrowable($e);
             }
         });
     }

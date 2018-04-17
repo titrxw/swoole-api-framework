@@ -3,7 +3,6 @@ namespace framework\base;
 
 class Container extends Base
 {
-
     protected static $instance;
     protected $_composer;
     protected $_instances;
@@ -30,6 +29,10 @@ class Container extends Base
         $this->_composer = $composer;
     }
 
+
+
+
+//    该方法不应该放这里
     public function appHasComponents($system)
     {
         if (!empty($this->_appConf[$system])) {
@@ -38,6 +41,42 @@ class Container extends Base
         return false;
     }
 
+//    向app中添加components
+    public function setAppComponents($system, $conf)
+    {
+        $this->_appConf[$system] = $conf['components'];
+        $this->_composer->setAppComposers($system, $conf['composer']);
+    }
+
+
+
+
+
+//    设置组件的配置  做到系统组件和app组件的隔离
+    public function setComponentConf($haver, $component, $conf)
+    {
+        if ($haver == SYSTEM_APP_NAME) {
+            $this->_conf[$component] = $conf['default'];
+        } else {
+            $this->_appConf[$haver][$component] = $conf['app'];
+        }
+    }
+
+    public function getComponentConf($haver, $component)
+    {
+        return array(
+            'default' => $haver == SYSTEM_APP_NAME ? $this->_conf[$component] ?? [] : [],
+            'app' => $haver != SYSTEM_APP_NAME ? $this->_appConf[$haver][$component] ?? [] : []
+        );
+    }
+
+    public function getClassPathByKey($haver, $key)
+    {
+        return $this->_components[$haver][$key] ?? null;
+    }
+
+
+//    这里使用  commponents的原因是 组件可能删除 所以要获取实际的情况  但是组件不一定实例化
     public function hasComponent($haver, $component)
     {
         if (!empty($this->_components[$haver][$component])) {
@@ -46,12 +85,6 @@ class Container extends Base
         return false;
     }
 
-    public function setAppComponents($system, $conf)
-    {
-        $this->_appConf[$system] = $conf['components'];
-        $this->_composer->setComposers($system, $conf['composer']);
-        // $this->_appConf[$system]['composer'] = $conf['composer'];
-    }
 
     /**
      * @param $key
@@ -67,16 +100,12 @@ class Container extends Base
             $this->_components[$system][$key] = $classPath;
             if($conf)
             {
-                if ($system == SYSTEM_APP_NAME) {
-                    $this->_conf[$key] = $conf['default'] ?? [];
-                } else {
-                    $this->_appConf[$system][$key] = $conf['app'] ?? [];
-                }
+                $this->setComponentConf($system, $key, $conf);
             }
             unset($conf);
             return true;
         }
-        $this->triggerException(new \Exception('components key or classpath can not be empty'));
+        $this->triggerThrowable(new \Exception('components key or classpath can not be empty'));
     }
 
     public function addComponents($system, $components)
@@ -91,25 +120,8 @@ class Container extends Base
         }
         catch (\Exception $e)
         {
-            $this->triggerException(new \Exception('components add failed ' . $e->getMessage()));
+            $this->triggerThrowable(new \Exception('components add failed ' . $e->getMessage()));
         }
-    }
-
-    public function setComponentConf($haver, $component, $conf)
-    {
-        $this->_conf[$component] = $conf['default'];
-        $this->_appConf[$haver][$component] = $conf['app'];
-    }
-
-    public function getComponentConf($haver, $component)
-    {
-        if ($haver == SYSTEM_APP_NAME && $component !== 'dispatcher') {
-            $haver = $this->getComponent(SYSTEM_APP_NAME, 'dispatcher')->getSystem();
-        }
-        return array(
-            'default' => $this->_conf[$component] ?? [],
-            'app' => $this->_appConf[$haver][$component] ?? []
-        );
     }
 
     public function getComponent($haver, $key, $params = [])
@@ -137,7 +149,7 @@ class Container extends Base
                 else
                 {
                     unset($instance);
-                    $this->triggerException(new \Exception('instance' . $classPath . 'have to instance of Component', 500));
+                    $this->triggerThrowable(new \Exception('instance' . $classPath . 'have to instance of Component', 500));
                 }
             }
             else
@@ -148,7 +160,7 @@ class Container extends Base
                 }
                 else
                 {
-                    $this->triggerException(new \Exception("components {$key} not exists", 500));
+                    $this->triggerThrowable(new \Exception("components {$key} not exists", 500));
                 }
             }
         }
@@ -156,13 +168,13 @@ class Container extends Base
         {
             $msg = $e->getMessage();
             // $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
-            $this->triggerException(new \Exception( $msg, 500));
+            $this->triggerThrowable(new \Exception( $msg, 500));
         }
         catch (\Error $e)
         {
             $msg = $e->getMessage();
             // $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
-            $this->triggerException(new \Error( $msg, 500));
+            $this->triggerThrowable(new \Error( $msg, 500));
         }
 
         return $this->_instances[$haver][$key];
@@ -179,12 +191,7 @@ class Container extends Base
         }
     }
 
-    public function getClassPathByKey($haver, $key)
-    {
-        return $this->_components[$haver][$key] ?? null;
-    }
-
-    protected function destroyComponent($haver, $key)
+    public function destroyComponent($haver, $key)
     {
         if(!$key)
             return false;

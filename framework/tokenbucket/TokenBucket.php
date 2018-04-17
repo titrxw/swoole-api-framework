@@ -38,16 +38,16 @@ abstract class TokenBucket extends Base
     final protected function check()
     {
         if (!$this->_storeHandle) {
-            $this->triggerException(new \Exception('token bucket store can not be null', 500));
+            $this->triggerThrowable(new \Exception('token bucket store can not be null', 500));
         }
         if (!$this->_key) {
-            $this->triggerException(new \Exception('token bucket key can not be null', 500));
+            $this->triggerThrowable(new \Exception('token bucket key can not be null', 500));
         }
         if ($this->_max <= 0) {
-            $this->triggerException(new \Exception('token bucket max mus be greater than 0', 500));
+            $this->triggerThrowable(new \Exception('token bucket max mus be greater than 0', 500));
         }
         if ($this->_range <= 0) {
-            $this->triggerException(new \Exception('token bucket range mus be greater than 0', 500));
+            $this->triggerThrowable(new \Exception('token bucket range mus be greater than 0', 500));
         }
 
         $retIdentifier = $this->_storeHandle->lock($this->_key);

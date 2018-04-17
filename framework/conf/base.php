@@ -28,7 +28,7 @@ return array(
             'routerKey' => '',
             'type' => '/',
             'separator' => '/',
-            'defaultSystem' => 'application',
+            'defaultSystem' => 'blog',
             'defaultSystemKey' => 's',
             'controllerKey' => 'm',
             'actionKey' => 'act',

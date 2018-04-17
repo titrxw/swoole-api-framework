@@ -16,7 +16,7 @@ class Redis extends Cache implements CacheInterface
     protected function init()
     {
         if (!extension_loaded('redis')) {
-            $this->triggerException(new \Exception('not support: redis', 500));
+            $this->triggerThrowable(new \Exception('not support: redis', 500));
         }
         unset($this->_conf);
         $this->_handle = new \Redis();
@@ -28,7 +28,7 @@ class Redis extends Cache implements CacheInterface
         $password = $this->getValueFromConf('password');
         if ('' != $password) {
             if ($this->_handle->auth($password) === false) {
-                $this->triggerException(new \Exception('redis auth password error', 500));
+                $this->triggerThrowable(new \Exception('redis auth password error', 500));
             }
         }
 
