@@ -16,7 +16,6 @@ abstract class Controller extends \framework\base\Controller
         'request',
         'response',
         'conf',
-        'helper',
         'page',
         'cookie',
         'taskManager',
@@ -40,12 +39,12 @@ abstract class Controller extends \framework\base\Controller
     protected function model($name)
     {
         $name = ucfirst($name);
-        $componentModel = md5($this->getSystem() .'/controller/'.$name);
-        Container::getInstance()->addComponent($this->getSystem(), $componentModel,
-            $this->getSystem() .'\\model\\'. $name, Container::getInstance()->getComponentConf($this->getSystem(), 'model'));
+        $componentModel = md5(getModule() .'/controller/'.$name);
+        Container::getInstance()->addComponent(getModule(), $componentModel,
+            getModule() .'\\model\\'. $name, Container::getInstance()->getComponentConf(getModule(), 'model'));
 //        在add之前设置当前model的conf
 //        待开发
-        return $this->getComponent($this->getSystem(), $componentModel);
+        return $this->getComponent(getModule(), $componentModel);
     }
 
 //    需要重写

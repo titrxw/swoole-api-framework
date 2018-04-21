@@ -79,7 +79,7 @@ class Password extends Component
      */
     private function MakeTmpSalt()
     {
-        return $this->getComponent(SYSTEM_APP_NAME, 'helper')->randStr($this->PBKDF2_SALT_BYTE_SIZE);
+        return randStr($this->PBKDF2_SALT_BYTE_SIZE);
     }
     
     /**

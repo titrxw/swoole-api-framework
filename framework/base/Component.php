@@ -1,10 +1,8 @@
 <?php
 namespace framework\base;
-use framework\traits\Common;
 
 abstract class Component extends Base
 {
-    use Common;
     protected $_uniqueId = '';
 
     public function __construct($conf = [])
@@ -24,15 +22,15 @@ abstract class Component extends Base
 
     final protected function unInstall($isComplete = false)
     {
-        Container::getInstance()->unInstall($this->getSystem(), $this->_uniqueId, $isComplete);
+        Container::getInstance()->unInstall(getModule(), $this->_uniqueId, $isComplete);
     }
 
     final protected function unInstallNow($isComplete = false)
     {
         if ($isComplete) {
-            Container::getInstance()->destroyComponentsInstance($this->getSystem(), $this->_uniqueId);
+            Container::getInstance()->destroyComponentsInstance(getModule(), $this->_uniqueId);
         } else {
-            Container::getInstance()->destroyComponent($this->getSystem(), $this->_uniqueId);
+            Container::getInstance()->destroyComponent(getModule(), $this->_uniqueId);
         }
     }
 

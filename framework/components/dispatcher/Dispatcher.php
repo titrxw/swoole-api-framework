@@ -11,7 +11,7 @@ class Dispatcher extends Component
 
     public function run($args = [])
     {
-        $this->_system = $this->getSystem();
+        $this->_system = getModule();
         $controllerName = $this->getValueFromConf('controller.prefix') . $args['controller'] . $this->getValueFromConf('controller.suffix');
         $controllerName = ucfirst($controllerName);
         if (!file_exists(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php'))
@@ -22,10 +22,10 @@ class Dispatcher extends Component
         $controllerHashName = md5($this->_system.'/controller/'.$controllerName);
 
         Container::getInstance()->addComponent($this->_system, $controllerHashName,
-            $this->_system.'\\controller\\'. $controllerName, Container::getInstance()->getComponentConf($this->getSystem(), 'controller'));
+            $this->_system.'\\controller\\'. $controllerName, Container::getInstance()->getComponentConf(getModule(), 'controller'));
 
         $actionName = $this->getValueFromConf('action.prefix') . $args['action'] . $this->getValueFromConf('action.suffix');
-        $controllerInstance = $this->getComponent($this->getSystem(), $controllerHashName);
+        $controllerInstance = $this->getComponent(getModule(), $controllerHashName);
         if (!method_exists($controllerInstance, $actionName))
         {
             unset($controllerInstance, $args);

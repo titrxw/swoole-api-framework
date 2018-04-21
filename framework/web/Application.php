@@ -13,7 +13,7 @@ class Application extends \framework\base\Application
     {
         parent::addBaseComponents();
 
-        $components = array(
+        $components = [
             'server' => 'framework\\server\\Server',
             'msgTask' => 'blog\\conf\\Task',
             'log' => 'framework\\components\\log\\Log',
@@ -21,7 +21,7 @@ class Application extends \framework\base\Application
             'cookie' => 'framework\\components\\cookie\\SwooleCookie',
             'taskManager' => 'framework\\task\\Task',
             'response' => 'framework\\components\\response\\SwooleResponse'
-        );
+        ];
         $components = array_merge($components, $this->_conf['addComponentsMap'] ?? []);
         $this->_container->addComponents(SYSTEM_APP_NAME, $components);
 
@@ -44,10 +44,10 @@ class Application extends \framework\base\Application
             return false;
         }
 
-        $conf = array(
-            'default' => require_once __DIR__.'/../conf/base.php',
+        $conf = [
+            'default' =>  require_file('framework/conf/base.php'),
             'app' => []
-        );
+        ];
         
         try {
             switch ($command) {

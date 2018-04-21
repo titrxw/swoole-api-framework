@@ -11,8 +11,7 @@ abstract class Controller extends Component
         'url',
         'request',
         'response',
-        'conf',
-        'helper'
+        'conf'
     ];
     protected $_appMagicRules = [
         'redis',
@@ -61,15 +60,15 @@ abstract class Controller extends Component
     public function __get($name)
     {
         if (in_array($name, $this->_appMagicRules)) {
-            $this->$name = $this->getComponent($this->getSystem(), $name);
+            $this->$name = $this->getComponent(getModule(), $name);
             return $this->$name;
         }
         if (in_array($name, $this->_sysMagicRules)) {
             $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
             return $this->$name;
         }
-        if (Container::getInstance()->hasComponent($this->getSystem(), $name)) {
-            $this->$name = $this->getComponent($this->getSystem(), $name);
+        if (Container::getInstance()->hasComponent(getModule(), $name)) {
+            $this->$name = $this->getComponent(getModule(), $name);
             return $this->$name;
         }
         if (Container::getInstance()->hasComponent(SYSTEM_APP_NAME, $name)) {

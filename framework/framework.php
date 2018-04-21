@@ -7,6 +7,7 @@
  */
 define('APP_ROOT', dirname(dirname(__FILE__)).'/');
 
+require __DIR__ . '/base/function.php';
 include __DIR__.'/autoloader.php';
 
 \framework\web\Application::run($argv[1] ?? 'start');

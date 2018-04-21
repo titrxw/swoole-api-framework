@@ -15,7 +15,7 @@ class Log extends Component
     {
         if ($this->getValueFromConf('isLog', true)) {
             $time = date('Y-m-d H:i:s');
-            $dirPath = APP_ROOT . $this->getSystem() . '/' . $this->getValueFromConf('path','runtime/log/') . date('Ym') . '/';
+            $dirPath = APP_ROOT . getModule() . '/' . $this->getValueFromConf('path','runtime/log/') . date('Ym') . '/';
             $destination =  date('Ymd') . '.log';
             !is_dir($dirPath) && mkdir($dirPath, 0755, true);
 

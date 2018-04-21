@@ -157,6 +157,6 @@ class Captcha extends Component
     //生成验证码字符串
     private function CreateCode()
     {
-        $this->_code = $this->getComponent(SYSTEM_APP_NAME, 'helper')->randStr($this->_num);
+        $this->_code = randStr($this->_num);
     }
 }

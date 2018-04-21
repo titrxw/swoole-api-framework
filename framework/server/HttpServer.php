@@ -39,7 +39,7 @@ class HttpServer extends BaseServer
             // 初始化配置项
             if (!$container->appHasComponents($urlInfo['system'])) {
 //                这里现在还缺少文件系统
-                $appConf = require_once APP_ROOT. '/' .$urlInfo['system'] . '/conf/conf.php';
+                $appConf = require_file($urlInfo['system'] . '/conf/conf.php');
                 $container->addComponents($urlInfo['system'], $appConf['addComponentsMap'] ?? []);
                 $container->setAppComponents($urlInfo['system'] ,array(
                     'components' => $appConf['components'] ?? [],

@@ -17,17 +17,17 @@ class Conf extends Component
     {
         $name = explode('.', $name);
 
-        if (!isset($this->_config[$this->getSystem()][$name[0]])) {
+        if (!isset($this->_config[getModule()][$name[0]])) {
 //            加载配置文件
-            $path = APP_ROOT . $this->getSystem() . '/conf/' . $name[0] . '.php';
+            $path = APP_ROOT . getModule() . '/conf/' . $name[0] . '.php';
             if (!file_exists($path)) {
                 $this->triggerThrowable('conf file ' . $name[0] . ' not exists', 500);
             }
 
-            $this->_config[$this->getSystem()][$name[0]] = include $path;
+            $this->_config[getModule()][$name[0]] = include $path;
         }
 
-        $ret = $this->_config[$this->getSystem()];
+        $ret = $this->_config[getModule()];
         foreach ($name as $item) {
             $ret = $ret[$item] ?? '';
         }

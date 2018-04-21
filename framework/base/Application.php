@@ -7,13 +7,14 @@ class Application extends Base
 
     protected function beforeInit()
     {
+
         return true;
     }
 
     protected function init()
     {
-        $this->beforeInit();
         $this->initEnv();
+        $this->beforeInit();
         $this->initContainer();
         $this->addBaseComponents();
         $this->setExceptionHandle();
@@ -29,6 +30,7 @@ class Application extends Base
     public function initEnv()
     {
         define('ISSWOOLE', true);
+        define('FRAMEWORK_NAME', 'framework');
 
         date_default_timezone_set('PRC');
 
@@ -39,7 +41,7 @@ class Application extends Base
 
         if (file_exists(APP_ROOT. 'vendor/autoload.php')) {
             define('COMPOSER', true);
-            require_once (APP_ROOT. 'vendor/autoload.php');
+            require_file('vendor/autoload.php');
         } else {
             define('COMPOSER', false);
         }
@@ -86,8 +88,7 @@ class Application extends Base
             'url' => 'framework\\components\\url\\Url',
             'dispatcher' => 'framework\\components\\dispatcher\\Dispatcher',
             'request' => 'framework\\components\\request\\Request',
-            'response' => 'framework\\components\\response\\Response',
-            'helper' => 'framework\\tool\\Helper'
+            'response' => 'framework\\components\\response\\Response'
         );
         $this->_container->addComponents(SYSTEM_APP_NAME, $components);
         unset($components);

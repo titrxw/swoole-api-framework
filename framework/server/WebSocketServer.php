@@ -117,7 +117,7 @@ class WebSocketServer extends HttpServer
                 $_SERVER['CURRENT_SYSTEM'] = $frame->data['system'];
                     // 初始化配置项
                 if (!$container->appHasComponents($frame->data['system'])) {
-                    $appConf = require_once APP_ROOT. '/' .$frame->data['system'] . '/conf/conf.php';
+                    $appConf = require_file($frame->data['system'] . '/conf/conf.php');
                     $container->addComponents($frame->data['system'], $appConf['addComponentsMap'] ?? []);
                     $container->setAppComponents($frame->data['system'] ,[
                         'components' => $appConf['components'] ?? [],
