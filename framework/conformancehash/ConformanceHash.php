@@ -9,7 +9,7 @@
 namespace framework\conformancehash;
 class ConformanceHash extends DoubleList
 {
-    public function addNode(Node &$node)
+    public function addNode(Node $node)
     {
         if(!parent::addNode($node)){
             return false;
@@ -18,7 +18,7 @@ class ConformanceHash extends DoubleList
         $this->resetVirtualNode();
     }
 
-    public function removeNode(Node &$node)
+    public function removeNode(Node $node)
     {
         if (!parent::removeNode($node)) {
             return false;

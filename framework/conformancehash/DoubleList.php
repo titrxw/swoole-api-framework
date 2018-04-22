@@ -11,7 +11,7 @@ class DoubleList
     protected $_node = null;
     protected $_length = 0;
 
-    public function addNode(Node &$node)
+    public function addNode(Node $node)
     {
         if (!$node) {
             return false;
@@ -46,12 +46,11 @@ class DoubleList
             }
             $node->_next = $_node->_next;
             $_node->_next = $node;
-
         }
         ++$this->_length;
     }
 
-    public function removeNode(Node &$node)
+    public function removeNode(Node $node)
     {
         if (!$node) {
             return false;
