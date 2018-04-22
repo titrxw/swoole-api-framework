@@ -19,7 +19,7 @@ class ConformanceNode extends Node
         $this->_ip = $ip;
         $this->_host = $host;
         $this->init();
-        parent::__construct(crc32($this->_uniqueId) % (2 << 8));
+        parent::__construct(crc32($this->_uniqueId) % (2 << 32));
     }
 
     protected function init()

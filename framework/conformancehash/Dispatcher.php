@@ -9,7 +9,7 @@
 namespace framework\conformancehash;
 class Dispatcher
 {
-    protected $_list;
+    public $_list;
     public function __construct()
     {
         $this->_list = new ConformanceHash();
@@ -23,7 +23,7 @@ class Dispatcher
 
     public function removeNode($ip,$host)
     {
-        $node = $this->_list->findNode(crc32($ip . $host) % (2 << 8));
+        $node = $this->_list->findNode(crc32($ip . $host) % (2 << 32));
         $this->_list->removeNode($node);
         unset($node);
     }

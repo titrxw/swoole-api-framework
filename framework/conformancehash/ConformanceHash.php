@@ -43,16 +43,14 @@ class ConformanceHash extends DoubleList
         if ($this->_length == 1) {
             return $this->_node;
         }
-        $value = crc32($value) % (2 << 8);
+        $value = crc32($value) % (2 << 32);
         $node = $this->_node;
-        while ($node->_next) {
-            if (($value >= $node->_value && $value < $node->_next->_value) ||
-                $value >= $node->_value && $node->_next->_isFirst) {
-                if ($value == $node->_value) {
-                    return $node;
-                } else {
-                    return $node->_next;
-                }
+        while ($node) {
+            if ($node->_next->_isFirst) {
+                return $node->_next;
+            }
+            if ($value >= $node->_value && $value < $node->_next->_value) {
+                return $node->_next;
             } else {
                 $node = $node->_next;
             }
