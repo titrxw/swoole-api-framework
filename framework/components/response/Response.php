@@ -25,6 +25,7 @@ class Response extends Component
 
     protected function initHeader()
     {
+//        面向对象的思想，header应该分离出去
         $this->_headers = array(
             'X-Powered-By' => 'esay-framework',
             'server' => 'esay-framework'
@@ -46,6 +47,12 @@ class Response extends Component
 
     public function send($result,$else='')
     {
+        http_response_code($this->_code);
+        foreach ($this->_headers as $key=>$item)
+        {
+            header($key . ':' . $item);
+        }
+
         if (is_array($result)) {
             $result = json_encode($result);
         }
