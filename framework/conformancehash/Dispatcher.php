@@ -9,10 +9,17 @@
 namespace framework\conformancehash;
 class Dispatcher
 {
-    public $_list;
+    protected $_list;
+    protected $_maxNodeNums = 5;
+
     public function __construct()
     {
         $this->_list = new ConformanceHash();
+    }
+
+    public function addVirtualNode()
+    {
+        $this->_list->addVirtualNode($this->_maxNodeNums);
     }
 
     public function addNode($ip,$host)
@@ -28,9 +35,9 @@ class Dispatcher
         unset($node);
     }
 
-    public function findNodeByValue($value)
+    public function findNextNodeByValue($value)
     {
-        $node = $this->_list->findNodeByValue($value);
+        $node = $this->_list->findNextNodeByValue($value);
         var_dump($node);
     }
 }

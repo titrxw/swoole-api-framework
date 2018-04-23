@@ -48,6 +48,7 @@ class DoubleList
             $_node->_next = $node;
         }
         ++$this->_length;
+        return true;
     }
 
     public function removeNode(Node $node)
@@ -70,6 +71,8 @@ class DoubleList
             $node->_next->_isFirst = true;
         }
         unset($node);
+
+        return true;
     }
 
     public function findNode($value)

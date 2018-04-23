@@ -13,17 +13,28 @@ class ConformanceNode extends Node
     public $_ip;
     public $_host;
     public $_isVirtual = false;
+    public $_pValue;
 
-    public function __construct($ip,$host)
+    public function __construct($ip,$host,$rands = '')
     {
         $this->_ip = $ip;
         $this->_host = $host;
         $this->init();
-        parent::__construct(crc32($this->_uniqueId) % (2 << 32));
+        parent::__construct(crc32($this->_uniqueId . $rands) % (2 << 32));
     }
 
     protected function init()
     {
         $this->_uniqueId = $this->_ip . $this->_host;
+    }
+
+
+    public function cloneVN()
+    {
+        $node = new static($this->_ip, $this->_host, randStr(9));
+        $node->_pValue = $this->_value;
+        $node->_isVirtual = true;
+
+        return $node;
     }
 }
