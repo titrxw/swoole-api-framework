@@ -3,16 +3,6 @@ namespace framework\base;
 
 class Model extends Component
 {
-    protected $_sysMagicRules = [
-        'url',
-        'request',
-        'page',
-        'helper'
-    ];
-    protected $_appMagicRules = [
-        'redis',
-        'password',
-    ];
     protected $_dbHandle;
 
     protected function init()
@@ -35,14 +25,6 @@ class Model extends Component
      */
     public function __get($name)
     {
-        if (in_array($name, $this->_appMagicRules)) {
-            $this->$name = $this->getComponent(getModule(), $name);
-            return $this->$name;
-        }
-        if (in_array($name, $this->_sysMagicRules)) {
-            $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
-            return $this->$name;
-        }
         if (Container::getInstance()->hasComponent(getModule(), $name)) {
             $this->$name = $this->getComponent(getModule(), $name);
             return $this->$name;
