@@ -11,26 +11,6 @@ use framework\base\Container;
 
 abstract class Controller extends \framework\base\Controller
 {
-    protected $_sysMagicRules = [
-        'url',
-        'request',
-        'response',
-        'conf',
-        'page',
-        'cookie',
-        'taskManager',
-        'server'
-    ];
-    protected $_appMagicRules = [
-        'redis',
-        'page',
-        'captcha',
-        'validate',
-        'view',
-        'tokenBucket',
-        'apireset'
-    ];
-
     protected function rule()
     {
         return [];
