@@ -107,6 +107,7 @@ class Request extends Component
 
     public function headers()
     {
+
         if(!empty($this->_headers))
             return $this->_headers;
 

@@ -159,4 +159,13 @@ class Captcha extends Component
     {
         $this->_code = randStr($this->_num);
     }
+
+
+    public function __destruct()
+    {
+        if (!empty($this->_img))
+        {
+            imagedestroy($this->_img);
+        }
+    }
 }

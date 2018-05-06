@@ -83,8 +83,7 @@ class Redis extends \SessionHandler
      */
     public function write($sessID, $sessData)
     {
-        return true;
-//        return $this->_handler->set($this->_conf['session_name'] . $sessID, $sessData);
+        return $this->_handler->set($this->_conf['session_name'] . $sessID, $sessData);
     }
 
     /**
@@ -95,7 +94,7 @@ class Redis extends \SessionHandler
      */
     public function destroy($sessID)
     {
-//        $this->_handler->rm($this->_conf['session_name'] . $sessID);
+        $this->_handler->rm($this->_conf['session_name'] . $sessID);
         return true;
     }
 

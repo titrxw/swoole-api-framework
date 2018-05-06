@@ -102,3 +102,17 @@ if (!function_exists('uniqueId')) {
         return $instance->nextId();
     }
 }
+
+if (!function_exists('securityIdCard')) {
+    function securityIdCard($idCard)
+    {
+        return substr_replace($idCard, '***********', 3, 11);
+    }
+}
+
+if (!function_exists('securityMobile')) {
+    function securityMobile($mobile)
+    {
+        return substr_replace($mobile, '****', 3, 4);
+    }
+}
