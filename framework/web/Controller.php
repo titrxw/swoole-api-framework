@@ -54,7 +54,7 @@ abstract class Controller extends \framework\base\Controller
 
     protected function sendFile($path, $type = 'jpg')
     {
-        if (file_exists(!$path))
+        if (!file_exists($path))
         {
             return false;
         }

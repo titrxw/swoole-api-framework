@@ -37,7 +37,7 @@ abstract class Api extends Controller
         return $this->_responseData;
     }
 
-    public function afterAction($data = [])
+    public function after($data = [])
     {
         if (!is_array($data))
         {

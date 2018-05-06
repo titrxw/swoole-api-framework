@@ -39,7 +39,7 @@ class Dispatcher extends Component
         $this->_action = $actionName;
 
 
-        $result = $controllerInstance->beforeAction();
+        $result = $controllerInstance->before();
         if ($result !== true)
         {
             unset($controllerInstance, $args);
@@ -48,7 +48,7 @@ class Dispatcher extends Component
 
         $result = $controllerInstance->$actionName();
         
-        $result = $controllerInstance->afterAction($result);
+        $result = $controllerInstance->after($result);
         unset($controllerInstance, $args);
         return $result;
     }

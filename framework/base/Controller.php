@@ -13,12 +13,12 @@ abstract class Controller extends Component
         $this->unInstall(true);
     }
 
-    public function beforeAction()
+    public function before()
     {
         return true;
     }
 
-    public function afterAction($data = '')
+    public function after($data = '')
     {
         return $data;
     }
