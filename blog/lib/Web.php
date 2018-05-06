@@ -32,10 +32,10 @@ use framework\web\Api;
 
 abstract class Web extends Api
 {
-    public function beforeAction()
+    public function before()
     {
         $this->response->addHeader('Access-Control-Allow-Origin', '*');
-//        $this->tokenBucket->run();
+//        $this->tokenBucket->validates();
 //        if (!$this->apireset->check($this->request->post('timestamp'),$this->request->post('nonce'),$this->request->post('sign'))) {
 //            return ['ret' => 501, 'msg' => 'permission denied'];
 //        }
@@ -47,7 +47,7 @@ abstract class Web extends Api
         return true;
     }
 
-    public function afterAction($data = array())
+    public function after($data = array())
     {
 //        $this->getComponent('session')->destroy();
         if (is_array($data))
