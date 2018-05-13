@@ -35,11 +35,13 @@ class Server extends Component
                 ));
                 $this->_server->start();
                 break;
-            case 'rpc':
-                $this->_server = new RpcServer(array(
+            case 'crontab':
+                $this->_server = new CrontabServer(array(
                     'app' => $this->_appConf,
                     'default' => $this->_conf
                 ));
+                $this->_server->start();
+                break;
         }
     }
 

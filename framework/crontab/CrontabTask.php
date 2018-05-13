@@ -46,6 +46,7 @@ class CrontabTask
     {
         if ($this->_taskTime->check($timeInfo)) {
 //            添加定时任务
+
             return array(
                 'class' => empty($this->_taskRule[0]) ? '' : $this->_taskRule[0],
                 'func' => empty($this->_taskRule[1]) ? '' : $this->_taskRule[1]

@@ -66,8 +66,6 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->start();
     }
 
-    abstract protected function execApp(&$response);
-
     public function onConnect()
     {
         // TODO: Implement onConnect() method.
@@ -175,7 +173,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
                             if ($obj && $obj instanceof BaseTask)
                             {
-                                $obj->run($taskObj['func'], $taskObj['params'], $server, $taskId, $fromId);
+                                $obj->run($taskObj['func'], $taskObj['params'] ?? [], $server, $taskId, $fromId);
                                 unset($obj);
                             }
                             else
@@ -225,10 +223,13 @@ abstract class BaseServer extends Base implements ServerInterface
         $num = $this->getTaskWorkerNum();
         if($num)
         {
+            var_dump(9);
             $this->_server->on("finish", function (\swoole_server $server, $taskId, $taskObj)
             {
+                var_dump(90);
                 try
                 {
+                    var_dump($taskObj);
                     if ($this->_event) {
                         $this->_event->onFinish($server, $taskId, $taskId,$taskObj);
                     }
@@ -240,7 +241,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
                             if ($obj && $obj instanceof BaseTask)
                             {
-                                $obj->run($taskObj['func'].'Finish', $taskObj['params'],  $server, $taskId, -1);
+                                $obj->run($taskObj['func'].'Finish', $taskObj['params'] ?? [],  $server, $taskId, -1);
                                 unset($obj);
                                 Container::getInstance()->destroyComponentsInstance(SYSTEM_APP_NAME, $taskObj['class']);
                             }
@@ -305,5 +306,13 @@ abstract class BaseServer extends Base implements ServerInterface
             $this->_taskWorkerNum = $this->getValueFromConf('task_worker_num', 0);
         }
         return $this->_taskWorkerNum;
+    }
+
+    protected function isWork($pid)
+    {
+        if ($pid < $this->getValueFromConf('worker_num', 1)) {
+            return true;
+        }
+        return false;
     }
 }

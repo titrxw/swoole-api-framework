@@ -20,7 +20,6 @@ class TaskTime
         if ($conf == '*') {
             return true;
         }
-
         $conf = explode('/', $conf);
         if (!empty($conf[1])) {
             if ($conf[1] <= 0) {
@@ -70,7 +69,9 @@ class TaskTime
     private function getEnd($val)
     {
         if ($this->_end === 'auto') {
-            $this->_end = $val + $this->_step;
+            return $val + $this->_step;
+        } else {
+            return $this->_end;
         }
     }
 
@@ -80,9 +81,9 @@ class TaskTime
         if (empty($this->_val)) {
             return true;
         }
-        $this->getEnd($val);
-        if ($this->_start >= 0 && $this->_end >= 0) {
-            if ($val<= $this->_end && is_integer(($val - $this->_start) / $this->_step)) {
+        $end = $this->getEnd($val);
+        if ($this->_start >= 0 && $end >= 0) {
+            if ($val >= $this->_start && $val<= $end && is_integer(($val - $this->_start) / $this->_step)) {
                 return true;
             }
             return false;
