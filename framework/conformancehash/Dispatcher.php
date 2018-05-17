@@ -22,22 +22,20 @@ class Dispatcher
         $this->_list->addVirtualNode($this->_maxNodeNums);
     }
 
-    public function addNode($ip,$host)
+    public function addNode($data)
     {
-        $node = new ConformanceNode($ip, $host);
-        $this->_list->addNode($node);
+        $node = new TaskNode($data);
+        return $this->_list->addNode($node);
     }
 
-    public function removeNode($ip,$host)
+    public function removeNode($data)
     {
-        $node = $this->_list->findNode(crc32($ip . $host) % (2 << 32));
-        $this->_list->removeNode($node);
-        unset($node);
+        $node = $this->_list->findNode(crc32(\serialize($data)) % (2 << 32));
+        return $this->_list->removeNode($node);
     }
 
     public function findNextNodeByValue($value)
     {
-        $node = $this->_list->findNextNodeByValue($value);
-        var_dump($node);
+        return $this->_list->findNextNodeByValue($value);
     }
 }

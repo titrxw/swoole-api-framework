@@ -10,28 +10,26 @@ namespace framework\conformancehash;
 class ConformanceNode extends Node
 {
     protected $_uniqueId;
-    public $_ip;
-    public $_host;
+    public $_info;
     public $_isVirtual = false;
     public $_pValue;
 
-    public function __construct($ip,$host,$rands = '')
+    public function __construct($data, $rands = '')
     {
-        $this->_ip = $ip;
-        $this->_host = $host;
+        $this->_info = $data;
         $this->init();
         parent::__construct(crc32($this->_uniqueId . $rands) % (2 << 32));
     }
 
     protected function init()
     {
-        $this->_uniqueId = $this->_ip . $this->_host;
+        $this->_uniqueId = \serialize($this->_info);
     }
 
 
     public function cloneVN()
     {
-        $node = new static($this->_ip, $this->_host, randStr(9));
+        $node = new static($this->_info, randStr(9));
         $node->_pValue = $this->_value;
         $node->_isVirtual = true;
 
