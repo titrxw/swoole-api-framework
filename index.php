@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: rxw
- * Date: 17-8-26
- * Time: 下午8:54
+ * Date: 17-8-26qw
+ * Time: 下午8:54太容易
  */
-require __DIR__.'/framework/framework.php';
+require __DIR__.'/framework/serverframework.php';
