@@ -17,4 +17,5 @@ interface SwooleEvent
     public function onTask(\swoole_server $server, $taskId, $fromId,$taskObj);
     public function onWorkerError(\swoole_server $server,$worker_id, $worker_pid, $exit_code);
     public function onFinish(\swoole_server $server, $taskId, $taskObj);
+    public function onReceive(\swoole_server $serv, $fd, $from_id, $data);
 }

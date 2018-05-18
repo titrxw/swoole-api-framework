@@ -42,9 +42,11 @@ class CrontabServer extends BaseServer
             {
                 // zhe li hou xu hui tian jia du zan suo ji zhi yi ji dong tai geng xin ren wu gong neng
                 try{
+                    $num = 0;
                     foreach(Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'crontab')->run() as $task_item) {
                         if (!empty($task_item)) {
-                            $this->_server->sendMessage(['cmd' => 'task', 'data' => $task_item], 0);
+                            $this->_server->sendMessage(['cmd' => 'task', 'data' => $task_item, 'no' => $num], 0);
+                            ++$num;
                         }
                     }
                     // 每秒执行一次
@@ -69,7 +71,7 @@ class CrontabServer extends BaseServer
     {
         $this->_nodeHandle->removeNode($client_id) && --$this->_nodeNum;
         
-        return parent::onClose($server, $fd, $reactorId);
+        return parent::afterClose($server, $client_id, $from_id);
     }
 
     protected function onPipMessage()
@@ -111,7 +113,8 @@ class CrontabServer extends BaseServer
         if (!$this->_curNode->_isBusy) {
             if (isset($data['retry'])) unset($data['retry']);
             if (isset($data['rand'])) unset($data['rand']);
-            $this->_server->send($this->_curNode->_info, ['cmd' => 'task', 'data' => $data]);
+            unset($data['no']);
+            $this->_server->send($this->_curNode->_info, \json_encode(['cmd' => 'task', 'data' => $data]));
         } else if ($this->_busyNodeNum != $this->_nodeNum) {
             ++$this->_busyNodeNum;
             $data['retry'] = $this->_busyNodeNum;
@@ -121,7 +124,8 @@ class CrontabServer extends BaseServer
             $this->_curNode = $this->_nodeHandle->findNextNodeByValue(\serialize($data));
             if (isset($data['retry'])) unset($data['retry']);
             if (isset($data['rand'])) unset($data['rand']);
-            $this->_server->send($this->_curNode->_info, ['cmd' => 'task', 'data' => $data]);
+            unset($data['no']);
+            $this->_server->send($this->_curNode->_info, \json_encode(['cmd' => 'task', 'data' => $data]));
         }
     }
 }

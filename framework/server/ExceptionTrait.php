@@ -14,4 +14,4 @@ trait ExceptionTrait
     {
         Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'exception')->handleException($e);
     }
-}
+} 

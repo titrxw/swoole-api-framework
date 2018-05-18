@@ -30,7 +30,7 @@ return array(
             'routerKey' => '',
             'type' => '/',
             'separator' => '/',
-            'defaultSystem' => 'application',
+            'defaultSystem' => 'blog',
             'defaultSystemKey' => 's',
             'controllerKey' => 'm',
             'actionKey' => 'act',
@@ -70,21 +70,26 @@ return array(
             'pid_file' => '/var/www/server.pid',
             'event' => 'blog\\conf\\ServerWebSocketEvent',
             'ip' => '127.0.0.1',
-            'port' => '86',
+            'port' => '8060',
             'supportHttp' => false,
-            'type' => 'http',
-            'factory_mode'=>2,
-//             'daemonize' => 1,
+            'type' => 'crontab',
+            // 'factory_mode'=>2,
+            // 'daemonize' => 1,
             'dispatch_mode' => 2,
-            'task_worker_num' => 2, //异步任务进程
-            "task_max_request"=>10,
+            'task_worker_num' =>1, //异步任务进程
+            // "task_max_request"=>10,
             'max_request'=>3000,
             'worker_num'=>1,
-            'task_ipc_mode' => 2, 
+            // 'task_ipc_mode' => 2, 
             'message_queue_key' => '0x72000100', //指定一个消息队列key。如果需要运行多个swoole_server的实例，务必指定。否则会发生数据错乱
             'log_file' => '/tmp/swoole.log',
-            'enable_static_handler' => true,
-            'document_root' => '/var/www/php/easy-framework-swoole/public/assets/application/images/' //访问链接是 127.0.0.1:81/jpg文件名
+//             'enable_static_handler' => true,
+//             'document_root' => '/var/www/php/easy-framework-swoole/public/assets/application/images/' //访问链接是 127.0.0.1:81/jpg文件名
+        ),
+        'client' => array(
+            'host' => '127.0.0.1',
+            'port' => '8060',
+            'type' => 'crontab'
         ),
         'upload' => array(
             'maxSize' => 2088960
@@ -105,6 +110,7 @@ return array(
         'crontab' => array(
             'tasks' => array(
                 '/1 * * 4-6 *--crontabTask test',
+                '/1 * * 5-6 *--sendMsg sendMsg',
                 // '2 /2 3-8 3,5 1--crontabTask test',
                 // '3 /2 3-8/2 3,5 1--crontabTask test'
             )

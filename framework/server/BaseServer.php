@@ -21,7 +21,7 @@ abstract class BaseServer extends Base implements ServerInterface
     protected $_server;
     protected $_maxTickStep = 86400000;
     protected $_isStart = false;
-    protected $_taskWorkerNum = -1;
+    protected $_taskWorkerNum = -1; 
 
     protected function init()
     {
@@ -30,6 +30,8 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->set($this->_conf);
         $this->setEvent($this->getValueFromConf('event'));
         $this->onConnect();
+        $this->onClose();
+        $this->onReceive();
         $this->onWorkStart();
         $this->onWorkStop();
         $this->onTask();
@@ -66,6 +68,11 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->start();
     }
 
+    protected function afterConnect(\swoole_server $server, $client_id, $from_id)
+    {
+        return true;
+    }
+
     public function onConnect()
     {
         // TODO: Implement onConnect() method.
@@ -76,12 +83,66 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onConnect($server, $client_id, $from_id);
                 }
+
+                $this->afterConnect($server, $client_id, $from_id);
             }
             catch (\Throwable $e)
             {
                 $this->triggerThrowable($e);
             }
         });
+    }
+
+    protected function afterClose(\swoole_server $server, int $fd, int $reactorId)
+    {
+        return false;
+    }
+
+    public function onClose()
+    {
+        // TODO: Implement onConnect() method.
+        $this->_server->on("close",function (\swoole_server $server, int $fd, int $reactorId)
+        {
+            try
+            {
+                if ($this->_event) {
+                    $this->_event->onClose($server, $fd, $reactorId);
+                }
+
+                $this->afterClose($server, $fd, $reactorId);
+            }
+            catch (\Throwable $e)
+            {
+                $this->triggerThrowable($e);
+            }
+        });
+    }
+
+    protected function afterReceive(\swoole_server $serv, $fd, $from_id, $data)
+    {
+        return false;
+    }
+
+    public function onReceive ()
+    {
+        $this->_server->on('receive', function (\swoole_server $serv, $fd, $from_id, $data) {
+            try
+            {
+                if ($this->_event) {
+                    $this->_event->onReceive($serv, $fd, $from_id, $data);
+                }
+                $this->afterReceive($serv, $fd, $from_id, $data);
+            }
+            catch (\Throwable $e)
+            {
+                $this->triggerThrowable($e);
+            }
+        });
+    }
+
+    protected function afterStart(\swoole_server $serv)
+    {
+        return true;
     }
 
     public function onStart()
@@ -94,12 +155,19 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onStart($server);
                 }
+
+                $this->afterStart($server);
             }
             catch (\Throwable $e)
             {
                 $this->triggerThrowable($e);
             }
         });
+    }
+
+    protected function afterWorkStart(\swoole_server $serv, $workerId)
+    {
+        return true;
     }
 
     public function onWorkStart()
@@ -114,12 +182,19 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onWorkerStart($server,$workerId);
                 }
+
+                $this->afterWorkStart($server, $workerId);
             }
             catch (\Throwable $e)
             {
                 $this->triggerThrowable($e);
             }
         });
+    }
+
+    protected function afterWorkStop(\swoole_server $serv, $workerId)
+    {
+        return true;
     }
 
     public function onWorkStop()
@@ -132,12 +207,19 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onWorkStop($server,$workerId);
                 }
+
+                $this->afterWorkStop($server, $workerId);
             }
             catch (\Throwable $e)
             {
                 $this->triggerThrowable($e);
             }
         });
+    }
+
+    protected function afterWorkerError(\swoole_server $server, $worker_id, $worker_pid, $exit_code)
+    {
+        return true;
     }
 
     public function onWorkerError()
@@ -149,6 +231,8 @@ abstract class BaseServer extends Base implements ServerInterface
             if ($this->_event) {
                 $this->_event->onWorkerError($server, $worker_id, $worker_pid, $exit_code);
             }
+
+            $this->afterWorkerError($server, $worker_id, $worker_pid, $exit_code);
         });
     }
 
@@ -200,6 +284,11 @@ abstract class BaseServer extends Base implements ServerInterface
         }
     }
 
+    protected function afterShutdown(\swoole_server $server)
+    {
+        return true;
+    }
+
     public function onShutdown()
     {
         // TODO: Implement onShutDown() method.
@@ -209,6 +298,8 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onShutdown($server);
                 }
+
+                $this->afterShutdown($server);
             }
             catch (\Throwable $e)
             {
@@ -223,13 +314,10 @@ abstract class BaseServer extends Base implements ServerInterface
         $num = $this->getTaskWorkerNum();
         if($num)
         {
-            var_dump(9);
             $this->_server->on("finish", function (\swoole_server $server, $taskId, $taskObj)
             {
-                var_dump(90);
                 try
                 {
-                    var_dump($taskObj);
                     if ($this->_event) {
                         $this->_event->onFinish($server, $taskId, $taskId,$taskObj);
                     }
@@ -308,9 +396,23 @@ abstract class BaseServer extends Base implements ServerInterface
         return $this->_taskWorkerNum;
     }
 
+    public function getWorkerNum()
+    {
+        return $this->getValueFromConf('worker_num', 0);
+    }
+
     protected function isWork($pid)
     {
         if ($pid < $this->getValueFromConf('worker_num', 1)) {
+            return true;
+        }
+        return false;
+    }
+    
+
+    protected function isTask($pid)
+    {
+        if ($pid >= $this->getValueFromConf('worker_num', 1)) {
             return true;
         }
         return false;

@@ -18,12 +18,12 @@ class ConformanceNode extends Node
     {
         $this->_info = $data;
         $this->init();
-        parent::__construct(crc32($this->_uniqueId . $rands) % (2 << 32));
+        parent::__construct($this->_uniqueId . $rands);
     }
 
     protected function init()
     {
-        $this->_uniqueId = \serialize($this->_info);
+        $this->_uniqueId = crc32(\serialize($this->_info))  % (2 << 32);
     }
 
 
