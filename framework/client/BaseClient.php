@@ -38,7 +38,7 @@ class BaseClient extends Base
     });
   }
 
-  protected function afterClose(\swoole_client $cl, $data)
+  protected function afterClose(\swoole_client $cl)
   {
     return true;
   }
@@ -50,7 +50,7 @@ class BaseClient extends Base
     });
   }
 
-  protected function afterErrore(\swoole_client $cl)
+  protected function afterError(\swoole_client $cl)
   {
     return true;
   }
@@ -58,7 +58,7 @@ class BaseClient extends Base
   protected function onError()
   {
     $this->_client->on('error', function (\swoole_client $cli) {
-      $this->afterErrore($cli);
+      $this->afterError($cli);
     });
 
   }
