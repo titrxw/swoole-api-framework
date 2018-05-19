@@ -67,4 +67,14 @@ class BaseClient extends Base
   {
     $this->_client->connect($this->_conf['host'], $this->_conf['port']);
   }
+
+  public function send($data)
+  {
+    $this->_client->send($data);
+  }
+
+  public function close()
+  {
+    $this->_client->close();
+  }
 }

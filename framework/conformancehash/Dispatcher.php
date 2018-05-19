@@ -38,4 +38,10 @@ class Dispatcher
     {
         return $this->_list->findNextNodeByValue($value);
     }
+
+    public function findNode($value)
+    {
+        $value = crc32(\serialize($value)) % (2 << 32);
+        return $this->_list->findNode($value);
+    }
 }

@@ -5,7 +5,7 @@ use framework\crontab\CrontabClient;
 
 class Client extends Component
 {
-  protected $_server = null;
+    protected $_client = null;
 
     public function start()
     {
@@ -16,20 +16,24 @@ class Client extends Component
         switch ($this->getValueFromConf('type' , 'tcp'))
         {
             case 'tcp':
-                $this->_server = new TcpClient(array(
+                $this->_client = new TcpClient(array(
                     'app' => $this->_appConf,
                     'default' => $this->_conf
                 ));
-                $this->_server->connect();
+                $this->_client->connect();
                 break;
-              
             case 'crontab':
-            $this->_server = new CrontabClient(array(
-                'app' => $this->_appConf,
-                'default' => $this->_conf
-            ));
-            $this->_server->connect();
+                $this->_client = new CrontabClient(array(
+                    'app' => $this->_appConf,
+                    'default' => $this->_conf
+                ));
+                $this->_client->connect();
             break;
         }
+    }
+
+    public function getClient()
+    {
+        return $this->_client;
     }
 }

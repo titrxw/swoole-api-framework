@@ -106,7 +106,6 @@ class ConformanceHash extends DoubleList
 
     public function findNextNodeByValue($value)
     {
-        \var_dump($value);
         if (!$this->_node) {
             return false;
         }
@@ -115,7 +114,6 @@ class ConformanceHash extends DoubleList
         }
 
         $value = crc32($value) % (2 << 32);
-        \var_dump($value);
         $node = $this->_node;
         while ($node) {
             if ($node->_next->_isFirst) {
