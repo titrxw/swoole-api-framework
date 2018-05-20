@@ -33,7 +33,7 @@ class CrontabProcess extends Process
     return $this->_isBusy;
   }
 
-  protected function afterDoProcess(\swoole_process $worker, $taskObj = '')
+  protected  function afterDoProcess(\swoole_process $worker, $taskObj = '')
   {
     $taskObj = json_decode($taskObj, true);
     if (is_array($taskObj))

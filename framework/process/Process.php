@@ -3,6 +3,7 @@
 namespace framework\process;
 use framework\base\Base;
 
+
 class Process extends Base
 {
   protected $_handle;
@@ -31,6 +32,7 @@ class Process extends Base
       $data = $worker->read();
       if ($data) {
         if ($data === 'stop') {
+          $worker->write('stop');
           break;
         } else {
           try{
@@ -53,6 +55,10 @@ class Process extends Base
     swoole_event_add($this->_handle->pipe, function($pipe) {
         $recv = $this->_handle->read();
         try{
+          if ($recv === 'stop') {
+            swoole_event_del($pipe);
+            return false;
+          }
           $this->doChildMsg($recv);
         } catch (\Throwable $e) {
           $this->handleThrowable($e);
@@ -86,18 +92,18 @@ class Process extends Base
     }
     $this->checkProcess();
 
-    $this->_hasStart = true;
     $this->_pid = $this->_handle->start();
-    
     $this->readChildMsg();
+    $this->_hasStart = true;
+    
     return $this->_pid;
   }
 
   public function stop()
   {
     if ($this->_hasStart) {
+      $this->_hasStart = false;
       $this->checkProcess();
-      swoole_event_del($this->_handle->pipe);
       $this->_handle->write('stop');
     }
   }

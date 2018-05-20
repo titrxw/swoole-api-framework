@@ -6,6 +6,8 @@ use framework\base\Base;
 class BaseClient extends Base
 {
   protected $_client;
+  protected $_masterId;
+
   protected function init()
   {
     $this->onConnect();
@@ -22,6 +24,7 @@ class BaseClient extends Base
   protected function onConnect()
   {
     $this->_client->on('connect', function (\swoole_client $cl) {
+      $this->_masterId = posix_getpid();
       $this->afterConnect($cl);
     });
   }
@@ -46,7 +49,9 @@ class BaseClient extends Base
   protected function onClose()
   {
     $this->_client->on('close', function (\swoole_client $cli) {
-      $this->afterClose($cli);
+      if ($this->_masterId == posix_getpid()) {
+        $this->afterClose($cli);
+      }
     });
   }
 
