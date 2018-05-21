@@ -36,26 +36,35 @@ class CrontabClient extends TcpClient
   protected function afterConnect(\swoole_client $cl)
   {
     // 创建进程任务
+    $this->send('doer');
     return parent::afterConnect($cl);
   }
 
   protected function afterReceive(\swoole_client $cl, $data)
   {
-    $data = \json_decode($data, true);
-    if (!empty($data['cmd']) && $data['cmd'] == 'task') {
-      $num = 0;
-      unset($data['cmd']);
-      foreach ($this->_processManager->getAllProcess() as $value) {
-        # code...
-        if (!$value->isBusy()) {
-          $value->toBusy();
-          $value->write(json_encode($data['data']));
-          ++$num;
-          $this->checkBusy($num);
-          break;
+    $data = \explode('\n\r', $data);
+    foreach ($data as $cmd) {
+      # code...
+      if (!$cmd) {
+        continue;
+      }
+      $cmd = \json_decode($cmd, true);
+      if (!empty($cmd['cmd']) && $cmd['cmd'] == 'task') {
+        $num = 0;
+        unset($cmd['cmd']);
+        foreach ($this->_processManager->getAllProcess() as $value) {
+          # code...
+          if (!$value->isBusy()) {
+            $value->toBusy();
+            $value->write(json_encode($cmd['data']));
+            ++$num;
+            $this->checkBusy($num);
+            break;
+          }
         }
       }
     }
+    
     
     return parent::afterReceive($cl, $data);
   }

@@ -22,16 +22,22 @@ abstract class BaseServer extends Base implements ServerInterface
     protected $_maxTickStep = 86400000;
     protected $_isStart = false;
     protected $_taskWorkerNum = -1; 
+    protected $_workNum = 0;
 
     protected function init()
     {
 //        防止重新启动
         if ($this->_isStart) return false;
         $this->_server->set($this->_conf);
+        if (empty($this->_conf['worker_num']) || $this->_conf['worker_num'] <= 0) {
+            $this->_workNum = \swoole_cpu_num();
+        } else {
+            $this->_workNum = $this->_conf['worker_num'];
+        }
+        
         $this->setEvent($this->getValueFromConf('event'));
         $this->onConnect();
         $this->onClose();
-        $this->onReceive();
         $this->onWorkStart();
         $this->onWorkStop();
         $this->onTask();
@@ -110,28 +116,6 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
 
                 $this->afterClose($server, $fd, $reactorId);
-            }
-            catch (\Throwable $e)
-            {
-                $this->triggerThrowable($e);
-            }
-        });
-    }
-
-    protected function afterReceive(\swoole_server $serv, $fd, $from_id, $data)
-    {
-        return false;
-    }
-
-    public function onReceive ()
-    {
-        $this->_server->on('receive', function (\swoole_server $serv, $fd, $from_id, $data) {
-            try
-            {
-                if ($this->_event) {
-                    $this->_event->onReceive($serv, $fd, $from_id, $data);
-                }
-                $this->afterReceive($serv, $fd, $from_id, $data);
             }
             catch (\Throwable $e)
             {
@@ -398,12 +382,12 @@ abstract class BaseServer extends Base implements ServerInterface
 
     public function getWorkerNum()
     {
-        return $this->getValueFromConf('worker_num', 0);
+        return $this->_workNum;
     }
 
     protected function isWork($pid)
     {
-        if ($pid < $this->getValueFromConf('worker_num', 1)) {
+        if ($pid < $this->_workNum) {
             return true;
         }
         return false;
@@ -412,7 +396,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function isTask($pid)
     {
-        if ($pid >= $this->getValueFromConf('worker_num', 1)) {
+        if ($pid >= $this->_workNum) {
             return true;
         }
         return false;

@@ -46,8 +46,8 @@ class Manager extends Base
     \swoole_process::signal(SIGCHLD, function($sig)  {
       //必须为false，非阻塞模式
       while($ret =  \swoole_process::wait(false)) {
-          $this->stopProcess($ret['pid']);
-        }
+        $this->stopProcess($ret['pid']);
+      }
     });
   }
 

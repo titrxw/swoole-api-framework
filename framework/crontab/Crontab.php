@@ -22,18 +22,11 @@ class Crontab extends Component
         }
     }
 
-    public function addTask($rule)
+    protected function clear()
     {
-        $this->_tasks[] = new CrontabTask($rule);
-    }
-
-    public function run()
-    {
-        $timeInfo = $this->getTime();
-        foreach ($this->_tasks as $item)
-        {
-            yield $item->doTask($timeInfo);
-        }
+        unset($this->_tasks);
+        $this->_tasks = [];
+        $this->_conf['tasks'] = [];
     }
 
     protected function getTime()
@@ -53,5 +46,47 @@ class Crontab extends Component
         $timeInfo['week'] = date('w');
         $timeInfo['week'] =  $timeInfo['week'] == 0 ? 7 :  $timeInfo['week'];
         return $timeInfo;
+    }
+
+    public function updateLatestTask($tasks)
+    {
+        $tmpTasks = [];
+        try{
+            foreach ($tasks as $value) {
+                # code...
+                $tmpTasks[] = new CrontabTask($value);
+            }
+        } catch (\Throwable $e) {
+            unset($tmpTasks);
+            $this->handleThrowable($e);
+            return false;
+        }
+        
+        $this->clear();
+        $this->_tasks = $tmpTasks;
+        $this->_conf['tasks'] = $tasks;
+        return true;
+    }
+
+    public function addTask($rule)
+    {
+        try{
+            $this->_tasks[] = new CrontabTask($rule);
+            $this->_conf['tasks'][] = $rule;
+        } catch (\Throwable $e) {
+            $this->handleThrowable($e);
+            return false;
+        }
+
+        return true;
+    }
+
+    public function run()
+    {
+        $timeInfo = $this->getTime();
+        foreach ($this->_tasks as $item)
+        {
+            yield $item->doTask($timeInfo);
+        }
     }
 }

@@ -54,7 +54,6 @@ class CrontabProcess extends Process
           {
             $this->triggleThrowable(new \Exception('task at do:  class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
             ' or action: ' .$taskObj['func'] . ' not found', 500));
-            $this->stop();
           }
         } catch (\Exception $e) {
           $worker->write('free');

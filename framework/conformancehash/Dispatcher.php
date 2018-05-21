@@ -31,7 +31,7 @@ class Dispatcher
     public function removeNode($data)
     {
         $node = $this->_list->findNode(crc32(\serialize($data)) % (2 << 32));
-        return $this->_list->removeNode($node);
+        return $node && $this->_list->removeNode($node);
     }
 
     public function findNextNodeByValue($value)
