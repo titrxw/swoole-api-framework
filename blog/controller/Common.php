@@ -34,7 +34,23 @@ class Common extends Web
 
     public function testApi()
     {
-        $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
+        $client = new \swoole_client(SWOOLE_SOCK_TCP);
+        if (!$client->connect('127.0.0.1', 8060, -1))
+        {
+            echo ("connect failed. Error: {$client->errCode}\n");
+        }
+        $client->send('publish');
+        $result = $client->recv();
+        if ($result) {
+            $client->send( \json_encode([
+                '/1 * * 4-6 *--crontabTask test',
+                '/1 * * 5-6 *--sendMsg sendMsg'
+            ]));
+        }
+        $result = $client->recv();
+        \var_dump($result);
+        // $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
+        var_dump(1);
     }
 
     public function loginApi ()
