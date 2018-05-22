@@ -43,10 +43,17 @@ class Manager extends Base
       return false;
     }
     $this->_hasWait = true;
-    \swoole_process::signal(SIGCHLD, function($sig)  {
+    $num = $this->getProcessNum();
+    \swoole_process::signal(SIGCHLD, function($sig) use ($num)  {
       //必须为false，非阻塞模式
+      static $killProcessNum = 0;
       while($ret =  \swoole_process::wait(false)) {
         $this->stopProcess($ret['pid']);
+        ++$killProcessNum;
+        if ($killProcessNum == $num) {
+          // 删除事件循环
+          \swoole_event_exit();
+        }
       }
     });
   }
@@ -75,7 +82,6 @@ class Manager extends Base
     foreach ($this->_process as $key => $value) {
       # code...
       $value->stop();
-      // unset($this->_process[$key]);
     }
   }
 }

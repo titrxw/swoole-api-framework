@@ -45,6 +45,7 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->onStart();
         $this->onShutDown();
         $this->onFinish();
+        $this->onPipMessage();
     }
 
     public function setEvent($event)
@@ -94,7 +95,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerThrowable($e);
+                $this->handleThrowable($e);
             }
         });
     }
@@ -119,7 +120,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerThrowable($e);
+                $this->handleThrowable($e);
             }
         });
     }
@@ -171,7 +172,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerThrowable($e);
+                $this->handleThrowable($e);
             }
         });
     }
@@ -196,7 +197,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerThrowable($e);
+                $this->handleThrowable($e);
             }
         });
     }
@@ -211,12 +212,43 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onError() method.
         $this->_server->on("workererror",function (\swoole_server $server,$worker_id, $worker_pid, $exit_code)
         {
-            Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'log')->save('workerid: ' . $worker_id . '  workerpid: ' . $worker_pid . ' code: ' . $exit_code);
-            if ($this->_event) {
-                $this->_event->onWorkerError($server, $worker_id, $worker_pid, $exit_code);
-            }
+            try
+            {
+                Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'log')->save('workerid: ' . $worker_id . '  workerpid: ' . $worker_pid . ' code: ' . $exit_code);
+                if ($this->_event) {
+                    $this->_event->onWorkerError($server, $worker_id, $worker_pid, $exit_code);
+                }
 
-            $this->afterWorkerError($server, $worker_id, $worker_pid, $exit_code);
+                $this->afterWorkerError($server, $worker_id, $worker_pid, $exit_code);
+            }
+            catch (\Throwable $e)
+            {
+                $this->handleThrowable($e);
+            }
+        });
+    }
+
+    protected function afterPipMessage(\swoole_server $serv, $src_worker_id, $data)
+    {
+        return true;
+    }
+
+    public function onPipMessage()
+    { 
+        // TODO: Implement onShutDown() method.
+        $this->_server->on("pipeMessage",function (\swoole_server $serv, $src_worker_id, $data){
+            try
+            {
+                if ($this->_event) {
+                    $this->_event->onPipMessage($serv, $src_worker_id, $data);
+                }
+
+                $this->afterPipMessage( $serv, $src_worker_id, $data);
+            }
+            catch (\Throwable $e)
+            {
+                $this->handleThrowable($e);
+            }
         });
     }
 
@@ -261,7 +293,7 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
                 catch (\Throwable $e)
                 {
-                    $this->triggerThrowable($e);
+                    $this->handleThrowable($e);
                     return false;
                 }
             });
@@ -287,7 +319,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerThrowable($e);
+                $this->handleThrowable($e);
             }
         });
     }
@@ -329,7 +361,7 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
                 catch (\Throwable $e)
                 {
-                    $this->triggerThrowable($e);
+                    $this->handleThrowable($e);
                     return false;
                 }
             });

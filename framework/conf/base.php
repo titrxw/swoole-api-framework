@@ -67,12 +67,12 @@ return array(
             'rightDelimiter' => '}'
         ),
         'server' => array(
-            'pid_file' => '/var/www/server.pid',
+            'pid_file' => '/var/www/server_http.pid',
             'event' => 'blog\\conf\\ServerWebSocketEvent',
             'ip' => '127.0.0.1',
-            'port' => '8060',
+            'port' => '8061',
             'supportHttp' => false,
-            'type' => 'crontab',
+            'type' => 'http',
             // 'factory_mode'=>2,
             // 'daemonize' => 1,
             'dispatch_mode' => 2,
@@ -109,8 +109,7 @@ return array(
         ),
         'crontab' => array(
             'tasks' => array(
-                '/1 * * 4-6 *--crontabTask test',
-                '/1 * * 5-6 *--sendMsg sendMsg',
+                
                 // '2 /2 3-8 3,5 1--crontabTask test',
                 // '3 /2 3-8/2 3,5 1--crontabTask test'
             )

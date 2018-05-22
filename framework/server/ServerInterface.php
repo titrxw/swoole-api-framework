@@ -16,6 +16,7 @@ interface ServerInterface
     public function onWorkStart();
     public function onWorkStop();
     public function onTask();
+    public function onPipMessage();
     public function onWorkerError();
     public function onFinish();
     public function setEvent($event);
