@@ -20,7 +20,8 @@
     	}
 	},
     "require": {
-//      作为实例  框架并不使用
-        "monolog/monolog": "1.0.*"
+        "monolog/monolog": "1.18.1",
+        "overtrue/wechat": "3.3.1",
+        "diversen/http-send-file": "2.0.3"
     }
 }
