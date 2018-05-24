@@ -45,7 +45,7 @@ class Composer extends Base
             unset($params, $composer);
             return null;
         }
-        catch (\Exception $e)
+        catch (\Throwable $e)
         {
             $this->triggerThrowable(new \Exception('composer ' . $name . 'not found' . $e->getMessage(), 500));
         }

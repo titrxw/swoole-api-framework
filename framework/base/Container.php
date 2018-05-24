@@ -118,7 +118,7 @@ class Container extends Base
             }
             unset($components);
         }
-        catch (\Exception $e)
+        catch (\Throwable $e)
         {
             $this->triggerThrowable(new \Exception('components add failed ' . $e->getMessage()));
         }
@@ -164,17 +164,11 @@ class Container extends Base
                 }
             }
         }
-        catch (\Exception $e)
+        catch (\Throwable $e)
         {
             $msg = $e->getMessage();
             // $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
             $this->triggerThrowable(new \Exception( $msg, 500));
-        }
-        catch (\Error $e)
-        {
-            $msg = $e->getMessage();
-            // $msg = empty($msg) ? ' maybe this class not instance of Components ' : $msg;
-            $this->triggerThrowable(new \Error( $msg, 500));
         }
 
         return $this->_instances[$haver][$key];
