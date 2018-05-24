@@ -10,6 +10,12 @@ use framework\base\Component;
 
 abstract class BaseTask extends Component
 {
+    protected function init()
+    {
+        // 执行完成后释放
+        $this->unInstall();
+    }
+
     public function run($funcName, $params = [], $server, $taskId, $fromId)
     {
         if (!$funcName)

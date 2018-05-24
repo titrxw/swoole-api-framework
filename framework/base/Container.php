@@ -157,6 +157,7 @@ class Container extends Base
                 if (COMPOSER && $this->_composer->checkComposer($haver,$key)) {
                     $_params = $this->getComponentConf($haver, $key);
                     $this->_instances[$haver][$key] = $this->_composer->getComposer($haver, $key, array_merge($_params['default'], $_params['app'], $params));
+                    $this->unInstall($haver, $key);
                 }
                 else
                 {
@@ -174,13 +175,11 @@ class Container extends Base
         return $this->_instances[$haver][$key];
     }
 
-    public function unInstall($haver, $componentKey, $completeDel = true)
+    public function unInstall($haver, $componentKey, $completeDel = false)
     {
         if ($completeDel) {
             $this->_completeDelInstanceComponents[$haver][] = $componentKey;
-        }
-        else
-        {
+        } else {
             $this->_delInstanceComponents[$haver][] = $componentKey;
         }
     }

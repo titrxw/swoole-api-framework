@@ -49,14 +49,16 @@ class CrontabProcess extends Process
               $obj->run($taskObj['func'], array(), $worker, 0, 0);
               unset($obj);
               $worker->write('free');
+              Container::getInstance()->finish(SYSTEM_APP_NAME);
           }
           else
           {
             $this->triggleThrowable(new \Exception('task at do:  class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
             ' or action: ' .$taskObj['func'] . ' not found', 500));
           }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
           $worker->write('free');
+          Container::getInstance()->finish(SYSTEM_APP_NAME);
           $this->triggerThrowable($e);
         }
       }

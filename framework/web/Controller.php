@@ -22,8 +22,6 @@ abstract class Controller extends \framework\base\Controller
         $componentModel = md5(getModule() .'/controller/'.$name);
         Container::getInstance()->addComponent(getModule(), $componentModel,
             getModule() .'\\model\\'. $name, Container::getInstance()->getComponentConf(getModule(), 'model'));
-//        在add之前设置当前model的conf
-//        待开发
         return $this->getComponent(getModule(), $componentModel);
     }
 

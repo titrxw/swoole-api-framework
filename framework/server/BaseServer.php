@@ -347,7 +347,6 @@ abstract class BaseServer extends Base implements ServerInterface
                             {
                                 $obj->run($taskObj['func'].'Finish', $taskObj['params'] ?? [],  $server, $taskId, -1);
                                 unset($obj);
-                                Container::getInstance()->destroyComponentsInstance(SYSTEM_APP_NAME, $taskObj['class']);
                             }
                             else
                             {
@@ -356,11 +355,12 @@ abstract class BaseServer extends Base implements ServerInterface
                             }
                         }
                     }
-
+                    Container::getInstance()->finish(SYSTEM_APP_NAME);
                     return false;
                 }
                 catch (\Throwable $e)
                 {
+                    Container::getInstance()->finish(SYSTEM_APP_NAME);
                     $this->handleThrowable($e);
                     return false;
                 }

@@ -64,8 +64,6 @@ class CrontabClient extends TcpClient
         }
       }
     }
-    
-    
     return parent::afterReceive($cl, $data);
   }
 
