@@ -21,7 +21,6 @@
 	},
     "require": {
         "monolog/monolog": "1.18.1",
-        "overtrue/wechat": "3.3.1",
-        "diversen/http-send-file": "2.0.3"
+        "overtrue/wechat": "3.3.1"
     }
 }
