@@ -19,7 +19,7 @@ class NUpload extends Upload
         parent::init();
     }
 
-    public function saves($files)
+    public function saveAll($files)
     {
         unset($this->_files);
         $this->_files = [];
@@ -57,9 +57,8 @@ class NUpload extends Upload
             $path = $this->doSave($file);
             if ($path) {
                 $paths[] = $path;
-            } else {
-                unlink($file['path']);
             }
+            unlink($file['path']);
         }
 
         return $paths[0] ?? '';
