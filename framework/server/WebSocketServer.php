@@ -20,7 +20,6 @@ class WebSocketServer extends HttpServer
             $this->onRequest();
         }
         $this->onMessage();
-        $this->onCLose();
     }
 
     protected function onOpen()
@@ -96,7 +95,7 @@ class WebSocketServer extends HttpServer
                 ob_start();
             }
             $frame->data = json_decode($frame->data, true);
-            if (empty($frame->data['controller']) || empty($frame->data['action']) || empty($frame->data['system'])) {
+            if (empty($frame->data['system']) || empty($frame->data['controller']) || empty($frame->data['action'])) {
                 $server->push($frame->fd, 'bad request');
                 return false;
             }
@@ -127,6 +126,7 @@ class WebSocketServer extends HttpServer
 
 
                 $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run(array(
+                    'system' => $frame->data['system'],
                     'controller' => $frame->data['controller'],
                     'action' => $frame->data['action']
                 ));
@@ -160,22 +160,6 @@ class WebSocketServer extends HttpServer
             $container->finish(SYSTEM_APP_NAME);
             unset($container, $server, $frame);
             return false;
-        });
-    }
-
-    protected function onCLose()
-    {
-        $this->_server->on('close', function (\swoole_websocket_server $server, $fd) {
-            try
-            {
-                if (!empty($this->_event)) {
-                    $this->_event->onClose($server, $fd);
-                }
-            }
-            catch (\Throwable $e)
-            {
-                $this->triggerThrowable($e);
-            }
         });
     }
 }
