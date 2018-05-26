@@ -15,15 +15,15 @@ class Bucket extends Component
     protected $_bucketsInstance;
     protected function init()
     {
-        $redis = $this->getComponent(getModule(), 'redis');
-//        清空之前的token  防止不生效
-        while ($key = $redis->getHandle()->lpop($redis->getCacheKey($this->_bucketListKey)))
-        {
-            $redis->rm($key);
-        }
-        $redis->rm($this->_bucketListKey);
+        // $redis = $this->getComponent(getModule(), 'redis');
+//        清空之前的token  防止不生效  
+        // while ($key = $redis->getHandle()->lpop($redis->getCacheKey($this->_bucketListKey)))
+        // {
+        //     $redis->rm($key);
+        // }
+        // $redis->rm($this->_bucketListKey);
 
-        unset($redis);
+        // unset($redis);
     }
 
     public function validates($data = [])

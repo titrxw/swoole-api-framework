@@ -11,7 +11,7 @@ use framework\components\cache\Cache;
 
 abstract class TokenBucket extends Base
 {
-    protected $_bucketListKey = 'bucket_token_redis_list';
+    // protected $_bucketListKey = 'bucket_token_redis_list';
     protected $_key;
     protected $_max;
     protected $_addStep = 0;
@@ -54,7 +54,7 @@ abstract class TokenBucket extends Base
         if (!$this->_storeHandle->has($this->_key)) {
             $cur = $this->_max - 1;
             $this->_storeHandle->set($this->_key, ['cur' => $cur, 'last' => time()], $this->_range);
-            $this->_storeHandle->getHandle()->lpush($this->_storeHandle->getCacheKey($this->_bucketListKey), $this->_key);
+            // $this->_storeHandle->getHandle()->lpush($this->_storeHandle->getCacheKey($this->_bucketListKey), $this->_key);
             if ($cur < 0) {
                 $this->_storeHandle->unLock($this->_key, $retIdentifier);
                 return false;

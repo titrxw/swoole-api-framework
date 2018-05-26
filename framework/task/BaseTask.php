@@ -20,11 +20,11 @@ abstract class BaseTask extends Component
     {
         if (!$funcName)
         {
-            return false;
+            $this->triggerThrowable(new \Error('function not be empty', 500));
         }
         if (!method_exists($this, $funcName))
         {
-            return false;
+            $this->triggerThrowable(new \Error('function ' . $funcName . ' not exists', 500));
         }
         return $this->$funcName($params, $server, $taskId, $fromId);
     }
