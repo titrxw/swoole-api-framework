@@ -83,7 +83,7 @@ class ServerApplication extends Application
             }
         } catch (\Throwable $e) {
             if (DEBUG) {
-                var_dump($e->getMessage() .' ' . $e->getFile() . ' ' . $e->getLine());
+                echo ($e->getMessage() .' ' . $e->getFile() . ' ' . $e->getLine());
             } else {
                 echo 'server ' . $command. '  failed';
             }
