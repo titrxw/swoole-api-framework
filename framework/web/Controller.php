@@ -54,7 +54,7 @@ abstract class Controller extends \framework\base\Controller
     {
         if (!file_exists($path))
         {
-            return false;
+            $this->triggerThrowable(new \Error('sendfile: ' . $path . ' not exists', 500));
         }
         $this->response->contentType($type);
         $this->response->sendFile($path);
@@ -63,6 +63,9 @@ abstract class Controller extends \framework\base\Controller
 
     protected function addTask($className, $funcName, $params,$taskId = -1, $isAsync = false)
     {
+        if (!ISSWOOLE) {
+            $this->triggerThrowable(new \Error('addTask not support ', 500));
+        }
         if (!$isAsync)
         {
             $this->taskManager->addTask($className, $funcName, $params, $taskId);
@@ -75,11 +78,17 @@ abstract class Controller extends \framework\base\Controller
 
     public function addTimer($timeStep, callable $callable, $params= [])
     {
+        if (!ISSWOOLE) {
+            $this->triggerThrowable(new \Error('Timer not support ', 500));
+        }
         return $this->server->getServer()->addTimer($timeStep, $callable, $params);
     }
 
     public function addTimerAfter($timeStep, callable $callable, $params= [])
     {
+        if (!ISSWOOLE) {
+            $this->triggerThrowable(new \Error('TimerAfter not support ', 500));
+        }
         return $this->server->getServer()->addTimerAfter($timeStep, $callable, $params);
     }
 }
