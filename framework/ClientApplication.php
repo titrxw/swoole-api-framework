@@ -15,8 +15,6 @@ class ClientApplication extends \framework\base\Application
 
         $components = [
             'client' => 'framework\\client\\Client',
-            'msgTask' => 'blog\\conf\\Task',
-            'log' => 'framework\\components\\log\\Log',
             'conf' => 'framework\\base\\Conf',
             'cookie' => 'framework\\components\\cookie\\SwooleCookie',
             'taskManager' => 'framework\\task\\Task',
