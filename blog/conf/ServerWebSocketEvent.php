@@ -16,7 +16,7 @@ class ServerWebSocketEvent implements SwooleEvent
 {
     public $_connections = array();
 
-    public function onHandShake(\swoole_http_request $request, \swoole_http_response $response)
+    public function onHandShake(\swoole_server $request, \swoole_http_response $response)
     {
 
     }
@@ -110,7 +110,7 @@ class ServerWebSocketEvent implements SwooleEvent
 //        );
     }
 
-    public function onClose(\swoole_websocket_server $server, $frame)
+    public function onClose(\swoole_server $server, $fd, $reactorId)
     {
 //        unset($this->_connections[$frame->fd]);
     }
@@ -131,28 +131,38 @@ class ServerWebSocketEvent implements SwooleEvent
         // TODO: Implement onWorkerStop() method.
     }
 
-    public function onWorkerError(\swoole_http_server $server, $worker_id, $worker_pid, $exit_code)
+    public function onWorkerError(\swoole_server $server, $worker_id, $worker_pid, $exit_code)
     {
         // TODO: Implement onWorkerError() method.
     }
 
-    public function onTask(\swoole_http_server $server, $taskId, $fromId, $taskObj)
+    public function onTask(\swoole_server $server, $taskId, $fromId, $taskObj)
     {
         // TODO: Implement onTask() method.
     }
 
-    public function onStart(\swoole_http_server $server)
+    public function onStart(\swoole_server $server)
     {
         // TODO: Implement onStart() method.
     }
 
-    public function onFinish(\swoole_http_server $server, $taskId, $taskObj)
+    public function onFinish(\swoole_server $server, $taskId, $taskObj)
     {
         // TODO: Implement onFinish() method.
     }
 
-    public function onShutdown(\swoole_http_server $server)
+    public function onShutdown(\swoole_server $server)
     {
         // TODO: Implement onShutdown() method.
+    }
+
+    public function onReceive(\swoole_server $serv, $fd, $from_id, $data)
+    {
+
+    }
+
+    public function onPipMessage(\swoole_server $serv, $src_worker_id, $data)
+    {
+
     }
 }

@@ -72,9 +72,9 @@ return array(
             'ip' => '127.0.0.1',
             'port' => '8080',
             'supportHttp' => false,
-            'type' => 'http',
+            'type' => 'crontab',
             // 'factory_mode'=>2,
-            'daemonize' => 1,
+            // 'daemonize' => 1,
             'dispatch_mode' => 2,
             'task_worker_num' =>1, //异步任务进程
             // "task_max_request"=>10,
@@ -88,7 +88,7 @@ return array(
         ),
         'client' => array(
             'host' => '127.0.0.1',
-            'port' => '8060',
+            'port' => '8080',
             'type' => 'crontab'
         ),
         'upload' => array(

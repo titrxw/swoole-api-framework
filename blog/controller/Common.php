@@ -35,7 +35,7 @@ class Common extends Web
     public function testApi()
     {
         $client = new \swoole_client(SWOOLE_SOCK_TCP);
-        if (!$client->connect('127.0.0.1', 8060, -1))
+        if (!$client->connect('127.0.0.1', 8080, -1))
         {
             echo ("connect failed. Error: {$client->errCode}\n");
         }

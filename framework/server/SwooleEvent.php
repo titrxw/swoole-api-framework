@@ -19,4 +19,5 @@ interface SwooleEvent
     public function onFinish(\swoole_server $server, $taskId, $taskObj);
     public function onReceive(\swoole_server $serv, $fd, $from_id, $data);
     public function onPipMessage(\swoole_server $serv, $src_worker_id, $data);
+    public function onClose(\swoole_server $server, $fd, $reactorId);
 }
