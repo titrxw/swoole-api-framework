@@ -29,11 +29,10 @@ class HttpServer extends BaseServer
     protected function execApp(&$response)
     {
         // TODO: Implement execApp() method.
-        $response->hasEnd = false;
         $container = Container::getInstance();
         $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
         $_SERVER['CURRENT_SYSTEM'] = $urlInfo['system'];
-
+        $result = '';
 
         if ($urlInfo !== false) {
             // 初始化配置项
@@ -48,14 +47,11 @@ class HttpServer extends BaseServer
                 unset($appConf);
             }
 
-
             $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run($urlInfo);
-            $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
-            $response->hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
-            unset($result);
         }
 
         unset($container);
+        return $result;
     }
 
     protected function onRequest()
@@ -101,7 +97,18 @@ class HttpServer extends BaseServer
                 $_SERVER = $request->server;
 
 
-                $this->execApp($response);
+                $result = $this->execApp($response);
+                $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
+                if (DEBUG)
+                {
+                    $elseContent = ob_get_clean();
+                    if (is_array($elseContent)) {
+                        $elseContent = json_encode($elseContent);
+                    }
+                    $result = $elseContent . $result;
+                    unset($elseContent);
+                }
+                $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
             }
             catch (\Throwable $exception)
             {
@@ -115,11 +122,10 @@ class HttpServer extends BaseServer
             }
 
 
-
-            if (!$response->hasEnd) {
+            if (!$hasEnd) {
                 $response->end();
             }
-            $container->finish($_SERVER['CURRENT_SYSTEM']);
+            $container->finish(\getModule());
             $container->finish(SYSTEM_APP_NAME);
             $_GET = [];
             $_POST = [];
@@ -128,5 +134,18 @@ class HttpServer extends BaseServer
             $_SERVER = [];
             unset($container,$request,$response, $urlInfo);
         });
+    }
+
+
+    protected function afterWorkStop(\swoole_server $serv, $workerId)
+    {
+        $container = Container::getInstance();
+        $container->getComponent(SYSTEM_APP_NAME, 'seaslog')->flushBuffer();
+    }
+
+    protected function afterWorkerError(\swoole_server $server, $worker_id, $worker_pid, $exit_code)
+    {
+        $container = Container::getInstance();
+        $container->getComponent(SYSTEM_APP_NAME, 'seaslog')->flushBuffer();
     }
 }

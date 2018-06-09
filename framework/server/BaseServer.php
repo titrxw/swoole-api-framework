@@ -16,7 +16,7 @@ abstract class BaseServer extends Base implements ServerInterface
      * @var null
      * 使用trait 添加triggerException 方法
      */
-
+    public $te;
     protected $_event = null;
     protected $_server;
     protected $_maxTickStep = 86400000;
@@ -34,7 +34,7 @@ abstract class BaseServer extends Base implements ServerInterface
         } else {
             $this->_workNum = $this->_conf['worker_num'];
         }
-        
+                
         $this->setEvent($this->getValueFromConf('event'));
         $this->onConnect();
         $this->onClose();

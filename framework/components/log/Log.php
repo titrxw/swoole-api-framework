@@ -2,7 +2,7 @@
 namespace framework\components\log;
 use framework\base\Component;
 
-class Log extends Component
+class Log extends Component implements LogInterface
 {
     /**
      * 日志写入接口

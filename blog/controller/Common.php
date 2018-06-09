@@ -49,8 +49,9 @@ class Common extends Web
         }
         $result = $client->recv();
         \var_dump($result);
-        // $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
-        var_dump(1);
+        $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
+        $this->seaslog->info('ewrwer');
+        var_dump(\uniqueId());
     }
 
     public function loginApi ()

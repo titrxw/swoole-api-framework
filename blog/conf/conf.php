@@ -26,6 +26,7 @@ return array(
         //'msgTask' => 'blog\\conf\\Task',
         //'crontabTask' => 'blog\\conf\\CrontabTask',
         'redis' => 'framework\\components\\cache\\Redis',
+        'uniqueid' => 'framework\\components\\uniqueid\\UniqueId',
 //        'sessionRedis' => 'framework\\components\\cache\\Redis',
 //        'session' => 'framework\\components\\session\\Session',
         //'captcha' => 'framework\\components\\captcha\\Captcha',

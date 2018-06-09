@@ -56,15 +56,6 @@ class Response extends Component
         if (is_array($result)) {
             $result = json_encode($result);
         }
-        if (DEBUG)
-        {
-            $elseContent = ob_get_clean();
-            if (is_array($elseContent)) {
-                $elseContent = json_encode($elseContent);
-            }
-            $result = $elseContent . $result;
-            unset($elseContent);
-        }
 
         echo $result;
 

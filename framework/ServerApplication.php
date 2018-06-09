@@ -19,7 +19,8 @@ class ServerApplication extends Application
             'conf' => 'framework\\base\\Conf',
             'cookie' => 'framework\\components\\cookie\\SwooleCookie',
             'taskManager' => 'framework\\task\\Task',
-            'response' => 'framework\\components\\response\\SwooleResponse'
+            'response' => 'framework\\components\\response\\SwooleResponse',
+            'seaslog' => 'framework\\components\\log\\SeasLog'
         ];
         $components = array_merge($components, $this->_conf['addComponentsMap'] ?? []);
         $this->_container->addComponents(SYSTEM_APP_NAME, $components);
@@ -48,6 +49,8 @@ class ServerApplication extends Application
             'app' => []
         ];
         
+      
+
         try {
             switch ($command) {
                 case 'start':

@@ -37,64 +37,6 @@ class ServerWebSocketEvent implements SwooleEvent
         Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTimer(28800000, function ($timer_id, $params) {
             Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'meedo')->pdo->getAttribute(\PDO::ATTR_SERVER_INFO);
         });
-        if ($workerId==0) {
-
-            $task_process = new \swoole_process(function(\swoole_process $worker){
-                swoole_set_process_name('php-task-crontab');
-                while(true)
-                {
-                    try{
-                        $taskObj = $worker->pop();
-                        $taskObj = json_decode($taskObj, true);
-                        if (is_array($taskObj))
-                        {
-                            if (!empty($taskObj['class']) && !empty($taskObj['func']))
-                            {
-                                $obj = Container::getInstance()->getComponent($taskObj['class']);
-
-                                if ($obj && $obj instanceof BaseTask)
-                                {
-                                    $obj->run($taskObj['func'], array(), $worker, 0, 0);
-                                    unset($obj);
-                                }
-                                else
-                                {
-                                    throw new \Exception('task at do:  class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
-                                        ' or action: ' .$taskObj['func'] . ' not found', 500);
-                                }
-                            }
-                        }
-                    } catch(\Exception $e) {
-                        Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'exception')->handleException($e);
-                    }
-                }
-            }, false, false);
-
-            $crontab_process = new \swoole_process(function(\swoole_process $worker) use ($task_process){
-                swoole_set_process_name('php-crontab');
-                while(true)
-                {
-                    foreach(Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'crontab')->run() as $task_item) {
-                        if (!empty($task_item)) {
-                            $task_process->push(json_encode($task_item));
-                        }
-                    }
-                    // 每秒执行一次
-                    sleep(1);
-                }
-            }, false, false);
-            
-//             $task_process->useQueue();
-//             $pid=$task_process->start();
-//             // 因为crontab process use 了 task process 所以要在task process 启动后才可以启动crontab process  要不然会导致push的时候无法push
-//             $pid=$crontab_process->start();
-//             \swoole_process::signal(SIGCHLD, function($sig) {
-//                 //必须为false，非阻塞模式
-//                 while($ret =  \swoole_process::wait(false)) {
-//                     echo "PID={$ret['pid']}\n";
-//                 }
-//             });
-        }
     }
 
     public function onWorkStop(\swoole_server $server, $workerId)

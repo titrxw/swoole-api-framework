@@ -47,4 +47,12 @@ abstract class Component extends Base
         $this->_uniqueId = $name;
         $this->init();
     }
+
+
+    public function __destruct()
+    {
+        \var_dump($this->_uniqueId);
+        $this->handleThrowable(new \Exception($this->_uniqueId));
+        // TODO: Implement __destruct() method.
+    }
 }
