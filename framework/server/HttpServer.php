@@ -102,11 +102,13 @@ class HttpServer extends BaseServer
                 if (DEBUG)
                 {
                     $elseContent = ob_get_clean();
-                    if (is_array($elseContent)) {
-                        $elseContent = json_encode($elseContent);
+                    if ($elseContent) {
+                        if (is_array($elseContent)) {
+                            $elseContent = json_encode($elseContent);
+                        }
+                        $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $elseContent);
+                        unset($elseContent);
                     }
-                    $result = $elseContent . $result;
-                    unset($elseContent);
                 }
                 $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
             }

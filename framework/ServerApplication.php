@@ -60,7 +60,7 @@ class ServerApplication extends Application
                         return;
                     }
                     $instance = new static($conf);
-                    $instance->_container->getComponent(SYSTEM_APP_NAME, 'server')->start();
+                    $instance->_container->getComponent(SYSTEM_APP_NAME, 'server')->start($instance);
                     unset($default, $conf, $instance);
                     break;
                 case 'stop':

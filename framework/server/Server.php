@@ -13,13 +13,15 @@ use framework\crontab\CrontabServer;
 class Server extends Component
 {
     protected $_server = null;
+    protected $_app;
 
-    public function start()
+    public function start($instance)
     {
         if (!extension_loaded('swoole')) {
             throw new \Error('not support: swoole', 500);
         }
-
+        
+        $this->_app = $instance;
         switch ($this->getValueFromConf('type' , 'http'))
         {
             case 'http':
@@ -49,5 +51,10 @@ class Server extends Component
     public function getServer()
     {
         return $this->_server;
+    }
+
+    public function getApp()
+    {
+        return $this->_app;
     }
 }
