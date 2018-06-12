@@ -14,26 +14,23 @@ class SwooleResponse extends Response
     public function send($response, $result = '')
     {
         $isEnd = false;
-        foreach ($this->_headers as $key=>$item)
-        {
-            $response->header($key,$item);
-        }
+        $this->_header->send($response);
+
         if ($this->_sendFile)
         {
             $response->sendfile($this->_sendFile);
             $this->_sendFile = null;
             $isEnd = true;
         }
-        else if (in_array($this->_curType, array('xml','html','json', 'jpg', 'png', 'gif')))
+        else if (in_array($this->_header->getCurType(), array('xml','html','json', 'jpg', 'png', 'gif')))
         {
-            $response->status($this->_code);
+            $response->status($this->_header->getCode());
             if (is_array($result)) {
                 $result = json_encode($result);
             }
             if ($result) {
                 $response->write($result);
             }
-
         }
         $this->rollback();
         unset($result, $response);

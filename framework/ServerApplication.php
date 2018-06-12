@@ -19,6 +19,7 @@ class ServerApplication extends Application
             'conf' => 'framework\\base\\Conf',
             'cookie' => 'framework\\components\\cookie\\SwooleCookie',
             'taskManager' => 'framework\\task\\Task',
+            'header' => 'framework\\components\\response\\SwooleHeader',
             'response' => 'framework\\components\\response\\SwooleResponse',
             'seaslog' => 'framework\\components\\log\\SeasLog'
         ];

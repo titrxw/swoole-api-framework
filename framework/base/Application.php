@@ -89,6 +89,7 @@ class Application extends Base
             'log' => 'framework\\components\\log\\Log',
             'dispatcher' => 'framework\\components\\dispatcher\\Dispatcher',
             'request' => 'framework\\components\\request\\Request',
+            'header' => 'framework\\components\\response\\Header',
             'response' => 'framework\\components\\response\\Response'
         );
         $this->_container->addComponents(SYSTEM_APP_NAME, $components);

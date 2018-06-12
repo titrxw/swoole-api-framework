@@ -56,7 +56,7 @@ abstract class Controller extends \framework\base\Controller
         {
             $this->triggerThrowable(new \Error('sendfile: ' . $path . ' not exists', 500));
         }
-        $this->response->contentType($type);
+        $this->header->contentType($type);
         $this->response->sendFile($path);
         return true;
     }

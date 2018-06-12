@@ -217,4 +217,13 @@ class Container extends Base
         $this->_delInstanceComponents[$haver] = [];
         $this->_completeDelInstanceComponents[$haver] = [];
     }
+
+    public function end()
+    {
+        foreach ($this->_instances as  $haver => $item) {
+            foreach ($item as $key => $value) {
+                $this->destroyComponent($haver, $key);
+            }
+        }
+    }
 }

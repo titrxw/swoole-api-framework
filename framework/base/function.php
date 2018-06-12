@@ -116,3 +116,46 @@ if (!function_exists('securityMobile')) {
         return substr_replace($mobile, '****', 3, 4);
     }
 }
+if (!\function_exists('getFiles')) {
+    function getFiles($dir, $type= '*', $ext = '*')
+    {
+        $files = array();
+        if ( $handle = \opendir($dir) ) {
+            while ( ($file = \readdir($handle)) !== false ) {
+                //过滤隐藏文件
+                $ArrFileName = \explode('.', $file);
+                if ( $file != ".." && $file != "." && $ArrFileName[0]) {
+                    $_file=array();
+                    if ($type === '*' || $type === 'dir') {
+                        if (\is_dir($dir . "/" . $file) ) {
+                            $_file['name'] = $dir . "/" . $file;
+                            $_file['time'] = @\filemtime($dir . "/" . $file);
+                            $_file['type'] = 'dir';
+                            $type === 'dir' && $files = \array_merge($files, \getFiles($dir . "/" . $file, $type, $ext));
+                        }
+                    }
+                    if ($type === '*' || $type === 'file') {
+                        if (\is_dir($dir . "/" . $file) ) {
+                            $files = \array_merge($files, \getFiles($dir . "/" . $file, $type, $ext));
+                        } else {
+                            $fext=\strrchr($file,'.');
+                            if ($ext !== '*' && $fext !== $ext) {
+                                continue;
+                            }
+                            $_file['name'] = $dir . "/" . $file;
+                            $_file['time'] = @\filemtime($dir . "/" .$file);
+                            $_file['type'] = 'file';
+                        }
+                    }
+
+                    if(!empty($_file)){
+                        $files[]=$_file;
+                        unset($_file);
+                    }
+                }
+            }
+            \closedir($handle);
+        }
+        return $files;
+    }
+}

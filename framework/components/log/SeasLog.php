@@ -318,4 +318,9 @@ class SeasLog extends Component implements LogInterface
     {
         return \SeasLog::flushBuffer();
     }
+
+    public function __destruct()
+    {
+        $this->flushBuffer();
+    }
 }

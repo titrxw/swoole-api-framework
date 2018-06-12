@@ -36,7 +36,7 @@ abstract class User extends Api
 
     public function beforeAction()
     {
-        $this->response->addHeader('Access-Control-Allow-Origin', '*');
+        $this->header->add('Access-Control-Allow-Origin', '*');
         $token = $this->request->post('token');
         if (!$token) {
             return ['ret' => 302, 'msg' => 'login false'];

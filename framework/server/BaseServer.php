@@ -194,6 +194,7 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
 
                 $this->afterWorkStop($server, $workerId);
+                Container::getInstance()->end();
             }
             catch (\Throwable $e)
             {
@@ -220,6 +221,7 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
 
                 $this->afterWorkerError($server, $worker_id, $worker_pid, $exit_code);
+                Container::getInstance()->end();
             }
             catch (\Throwable $e)
             {

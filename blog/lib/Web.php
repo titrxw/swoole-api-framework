@@ -34,7 +34,7 @@ abstract class Web extends Api
 {
     public function before()
     {
-        $this->response->addHeader('Access-Control-Allow-Origin', '*');
+        $this->header->add('Access-Control-Allow-Origin', '*');
 //        $this->tokenBucket->validates();
 //        if (!$this->apireset->check($this->request->post('timestamp'),$this->request->post('nonce'),$this->request->post('sign'))) {
 //            return ['ret' => 501, 'msg' => 'permission denied'];

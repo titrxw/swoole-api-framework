@@ -1,57 +1,20 @@
 <?php
 namespace framework\components\response;
 use framework\base\Component;
+use framework\base\Container;
 
 class Response extends Component
 {
-    protected $_headers = [];
-    protected $_code = 200;
-    protected $_curType;
-    protected $_contentTypes = array(
-        'xml'  => 'application/xml,text/xml,application/x-xml',
-        'json' => 'application/json,text/x-json,application/jsonrequest,text/json',
-        'png'  => 'image/png',
-        'jpg'  => 'image/jpg,image/jpeg,image/pjpeg',
-        'gif'  => 'image/gif',
-        'csv'  => 'text/csv',
-        'txt' => 'text/plain',
-        'html' => 'text/html,application/xhtml+xml,*/*',
-        'pdf' => 'application/pdf',
-        'xls' => 'application/x-xls',
-        'apk' => 'application/vnd.android.package-archive',
-        'doc' => 'application/msword',
-        'zip' => 'application/zip'
-    );
-
-    protected function initHeader()
-    {
-//        面向对象的思想，header应该分离出去
-        $this->_headers = array(
-            'X-Powered-By' => 'esay-framework',
-            'server' => 'esay-framework'
-        );
-    }
+    protected $_header;
 
     protected function init()
     {
-        $this->initHeader();
-        $this->contentType('html');
-    }
-
-    public function noCache()
-    {
-        $this->addHeader('Cache-Control','no-store, no-cache, must-revalidate');
-        $this->addHeader('Pragma','no-cache');
-//        header("Cache-Control: post-check=0, pre-check=0", false);
+        $this->_header = Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'header');
     }
 
     public function send($result,$else='')
     {
-        http_response_code($this->_code);
-        foreach ($this->_headers as $key=>$item)
-        {
-            header($key . ':' . $item);
-        }
+        $this->_header->send();
 
         if (is_array($result)) {
             $result = json_encode($result);
@@ -64,43 +27,22 @@ class Response extends Component
         return true;
     }
 
-    public function addHeader($key, $header)
-    {
-        if($key && $header)
-            $this->_headers[$key] = $header;
-    }
-
-    public function contentType($type, $charset = '')
-    {
-        $contentType = $this->_contentTypes[$type] ?? $this->_contentTypes[$this->getValueFromConf('defaultType', 'html')];
-        $charset = empty($charset) ? $this->getValueFromConf('charset', 'utf-8') : $charset;
-        $this->_curType = $type;
-        $this->_headers['Content-Type'] = $contentType . '; charset=' . $charset;
-    }
-
-    public function setCode($code)
-    {
-        $this->_code = $code;
-    }
-
     public function ajax($data)
     {
-        $this->noCache();
-        $this->contentType('json');
+        $this->_header->noCache();
+        $this->_header->contentType('json');
         return $data;
     }
 
     public function rediret($url)
     {
-        $this->addHeader('Location', $url);
-        $this->setCode(302);
+        $this->_header->add('Location', $url);
+        $this->_header->setCode(302);
         return '';
     }
 
     protected function rollback()
     {
-        $this->initHeader();
-        $this->_curType = 'html';
-        $this->_code = 200;
+        $this->_header->rollback();
     }
 }

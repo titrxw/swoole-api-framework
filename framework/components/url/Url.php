@@ -4,7 +4,6 @@ use framework\base\Component;
 
 class Url extends Component
 {
-
     protected $_defaultType;
     protected $_currentModule;
     protected $_curRoute = [];

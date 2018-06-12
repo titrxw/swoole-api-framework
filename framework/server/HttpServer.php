@@ -81,7 +81,7 @@ class HttpServer extends BaseServer
                 $_COOKIE = $request->cookie;
             }
 
-
+            $hasEnd = false;
             try
             {
                 if ($this->_event)
@@ -136,18 +136,5 @@ class HttpServer extends BaseServer
             $_SERVER = [];
             unset($container,$request,$response, $urlInfo);
         });
-    }
-
-
-    protected function afterWorkStop(\swoole_server $serv, $workerId)
-    {
-        $container = Container::getInstance();
-        $container->getComponent(SYSTEM_APP_NAME, 'seaslog')->flushBuffer();
-    }
-
-    protected function afterWorkerError(\swoole_server $server, $worker_id, $worker_pid, $exit_code)
-    {
-        $container = Container::getInstance();
-        $container->getComponent(SYSTEM_APP_NAME, 'seaslog')->flushBuffer();
     }
 }
