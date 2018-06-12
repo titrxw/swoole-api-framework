@@ -118,7 +118,7 @@ class HttpServer extends BaseServer
                 $response->status($code);
                 if (DEBUG) {
                     $result = ob_get_clean();
-                    $response->write($result . $exception->getMessage().$exception->getTraceAsString());
+                    $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result . $exception->getMessage().$exception->getTraceAsString());
                 }
                 $this->handleThrowable($exception);
             }

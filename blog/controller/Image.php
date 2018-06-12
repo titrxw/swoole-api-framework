@@ -80,14 +80,14 @@ class Image extends Web
     {
         $data = $this->request->get();
         if (empty($data['img']) || empty($data['w']) || empty($data['h']) || !file_exists($data['img'])) {
-            return $this->response->setCode('404');
+            return $this->header->setCode('404');
         }
         if (!in_array($data['w'] . 'x' . $data['h'], $this->zips)) {
-            return $this->response->setCode('404');
+            return $this->header->setCode('404');
         }
         else {
             $dst = $this->imgzip->resize($data['img'], $data['w'], $data['h']);
-            return $this->response->rediret('http://localhost/imgs/' . $dst);
+            return $this->header->rediret('http://localhost/imgs/' . $dst);
         }
     }
 }
