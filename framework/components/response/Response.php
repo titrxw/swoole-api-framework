@@ -23,7 +23,7 @@ class Response extends Component
         echo $result;
 
         $this->rollback();
-        unset($result, $response);
+        unset($result);
         return true;
     }
 

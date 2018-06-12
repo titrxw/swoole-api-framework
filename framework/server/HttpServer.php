@@ -115,11 +115,12 @@ class HttpServer extends BaseServer
             catch (\Throwable $exception)
             {
                 $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
-                $response->status($code);
+                $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
+                $result = $exception->getMessage().$exception->getTraceAsString();
                 if (DEBUG) {
-                    $result = ob_get_clean();
-                    $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result . $exception->getMessage().$exception->getTraceAsString());
+                    $result .= ob_get_clean();
                 }
+                $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result );
                 $this->handleThrowable($exception);
             }
 
