@@ -56,7 +56,6 @@ class Common extends Web
 
     public function loginApi ()
     {
-        var_dump(1);
         $mobile = $this->request->post('mobile');
         $password = $this->request->post('password');
 
@@ -85,14 +84,14 @@ class Common extends Web
         return [501, '注册失败'];
     }
 
-//     public function imgAction()
-//     {
-// //        $this->getComponent('captcha')->getCode();
-//         return $this->captcha->send();
-//     }
+    public function imgAction()
+    {
+//        $this->getComponent('captcha')->getCode();
+        return $this->captcha->send();
+    }
 
-//     public function downloadAction()
-//     {
-//         return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'jpg');
-//     }
+    public function downloadAction()
+    {
+        return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'jpg');
+    }
 }
