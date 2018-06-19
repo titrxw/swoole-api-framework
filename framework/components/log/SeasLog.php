@@ -64,6 +64,8 @@ class SeasLog extends Component implements LogInterface
      * request Level limit.
      */
     public static $RequestLevel = self::ALL;
+
+    private $_hasLoad = false;
     /**
      * Logging levels from syslog protocol defined in RFC 5424.
      *
@@ -84,8 +86,12 @@ class SeasLog extends Component implements LogInterface
 
     protected function init()
     {
+        if (!extension_loaded('seaslog')) {
+            $this->triggerThrowable(new \Exception('not support: seaslog', 500));
+        }
         $this->unInstall();
         $this->setBasePath(APP_ROOT . '/' . \getModule() . '/runtime/log/');
+        $this->_hasLoad = true;
     }
 
     /**
@@ -321,6 +327,8 @@ class SeasLog extends Component implements LogInterface
 
     public function __destruct()
     {
-        $this->flushBuffer();
+        if ($this->_hasLoad) {
+            $this->flushBuffer();
+        }
     }
 }
