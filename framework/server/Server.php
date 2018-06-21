@@ -45,6 +45,13 @@ class Server extends Component
                 ));
                 $this->_server->start();
                 break;
+            case 'mq':
+                $this->_server = new MqServer(array(
+                    'app' => $this->_appConf,
+                    'default' => $this->_conf
+                ));
+                $this->_server->start();
+            break;
         }
     }
 

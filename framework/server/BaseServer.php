@@ -28,6 +28,10 @@ abstract class BaseServer extends Base implements ServerInterface
     {
 //        防止重新启动
         if ($this->_isStart) return false;
+        if (!$this->_server) {
+            $this->_server = new \swoole_server($this->_conf['ip'], $this->_conf['port']);
+            $this->onReceive();
+          }
         $this->_server->set($this->_conf);
         if (empty($this->_conf['worker_num']) || $this->_conf['worker_num'] <= 0) {
             $this->_workNum = \swoole_cpu_num();
@@ -46,6 +50,23 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->onShutDown();
         $this->onFinish();
         $this->onPipMessage();
+    }
+
+    public function onReceive ()
+    {
+        $this->_server->on('receive', function (\swoole_server $serv, $fd, $from_id, $data) {
+            try
+            {
+                if ($this->_event) {
+                    $this->_event->onReceive($serv, $fd, $from_id, $data);
+                }
+                $this->afterReceive($serv, $fd, $from_id, $data);
+            }
+            catch (\Throwable $e)
+            {
+                $this->triggerThrowable($e);
+            }
+        });
     }
 
     public function setEvent($event)
