@@ -42,7 +42,7 @@ class MqServer extends BaseServer
     parent::init();
   }
 
-  public function process_message($message)
+  public function processMessage($message)
   {
     // 这里需要解包协议
     try{
