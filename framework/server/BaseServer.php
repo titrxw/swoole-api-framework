@@ -275,6 +275,35 @@ abstract class BaseServer extends Base implements ServerInterface
         });
     }
 
+    protected function doTask($taskObj) 
+    {
+        if (is_array($taskObj))
+        {
+            if (!empty($taskObj['class']) && !empty($taskObj['func']))
+            {
+                $obj = Container::getInstance()->getComponent(SYSTEM_APP_NAME, $taskObj['class']);
+
+                if ($obj && $obj instanceof BaseTask)
+                {
+                    $obj->run($taskObj['func'], $taskObj['params'] ?? [], $server, $taskId, $fromId);
+                    unset($obj);
+                }
+                else
+                {
+                    $this->triggerThrowable(new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                        ' or action: ' .$taskObj['func'] . ' not found', 500));
+                }
+            }
+        }
+
+        if($taskObj instanceof \Closure)
+        {
+            return $taskObj($server, $taskId, $fromId);
+        }
+
+        return $taskObj;
+    }
+
     public function onTask()
     {
         // TODO: Implement onTask() method.
@@ -288,31 +317,8 @@ abstract class BaseServer extends Base implements ServerInterface
                     if ($this->_event) {
                         $this->_event->onTask($server, $taskId, $fromId, $taskObj);
                     }
-                    if (is_array($taskObj))
-                    {
-                        if (!empty($taskObj['class']) && !empty($taskObj['func']))
-                        {
-                            $obj = Container::getInstance()->getComponent(SYSTEM_APP_NAME, $taskObj['class']);
-
-                            if ($obj && $obj instanceof BaseTask)
-                            {
-                                $obj->run($taskObj['func'], $taskObj['params'] ?? [], $server, $taskId, $fromId);
-                                unset($obj);
-                            }
-                            else
-                            {
-                                $this->triggerThrowable(new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
-                                    ' or action: ' .$taskObj['func'] . ' not found', 500));
-                            }
-                        }
-                    }
-
-                    if($taskObj instanceof \Closure)
-                    {
-                        return $taskObj($server, $taskId, $fromId);
-                    }
-
-                    return $taskObj;
+                    $this->doTask($taskObj);
+                    
                 }
                 catch (\Throwable $e)
                 {

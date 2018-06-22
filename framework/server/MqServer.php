@@ -13,77 +13,94 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 class MqServer extends BaseServer
 {
+  protected $_start;
+  protected $_mode;
+  protected $_host;
+  protected $_port;
+  protected $_user;
+  protected $_password;
+  protected $_vhost;
   protected $_connection;
   protected $_channel;
 
+  protected function init()
+  {
+    $this->_start = false;
+    $this->_mode = $this->getValueFromConf('mq.mode', 'fanout');
+    $this->_host = $this->getValueFromConf('mq.host');
+    $this->_port = $this->getValueFromConf('mq.port');
+    $this->_user = $this->getValueFromConf('mq.user');
+    $this->_password =  $this->getValueFromConf('mq.password');
+    $this->_vhost = $this->getValueFromConf('mq.host', '/');
+
+    if (!$this->_host) {
+        $this->triggerThrowable(new \Exception('qmqp host can not be empty', 500));
+    }
+    if (!$this->_port) {
+        $this->triggerThrowable(new \Exception('qmqp port can not be empty', 500));
+    }
+    parent::init();
+  }
 
   public function process_message($message)
   {
-      echo "\n--------\n";
-      echo $message->body;
-      echo "\n--------\n";
-      $this->handleThrowable(new \Exception($message->body . getmypid()));
-      $message->delivery_info['channel']->basic_ack($message->delivery_info['delivery_tag']);
-      // Send a message with the string "quit" to cancel the consumer.
-      if ($message->body === 'quit') {
-          $message->delivery_info['channel']->basic_cancel($message->delivery_info['consumer_tag']);
+    // 这里需要解包协议
+    try{
+        $message = \json_decode($message->body);
+        $this->doTask($message);
+        $message->delivery_info['channel']->basic_ack($message->delivery_info['delivery_tag']);
+    } catch (\Exception $e) {
+        $this->handleThrowable($e);
+    }
+  }
+
+  protected function initAMQP()
+  {
+    $this->_connection = new AMQPStreamConnection($this->_host, $this->_port, $this->_user, $this->_password, $this->_vhost);
+    $this->_channel = $this->_connection->channel();
+  }
+
+  protected function startConsumer()
+  {
+      if (!$this->_start) {
+        $this->_start = true;
+        while (count($this->_channel->callbacks)) {
+            $this->_channel->wait();
+        }
       }
   }
-  
+
+  protected function declareMode()
+  {
+    $exchange = $this->getValueFromConf('mq.exchange', 'fanout_exchange');
+    $queue = $this->getValueFromConf('mq.queue', 'fanout_group');
+    $consumerTag = 'consumer' . SYSTEM_WORK_ID;
+    switch ($this->_mode) {
+        case 'fanout':
+        $this->_channel->queue_declare($queue, false, false, false, true);
+        $this->_channel->exchange_declare($exchange, $this->_mode, false, false, true);
+        $this->_channel->queue_bind($queue, $exchange);
+        $this->_channel->basic_consume($queue, $consumerTag, false, false, false, false, [$this, 'processMessage']);
+        break;
+    }
+  }
 
   protected function afterWorkStart(\swoole_server $serv, $workerId)
   {
-    $exchange = 'fanout_example_exchange';
-$queue = 'fanout_group_1';
-$consumerTag = 'consumer' . getmypid();
-$this->_connection = new AMQPStreamConnection($this->_conf['mq']['host'], $this->_conf['mq']['port'], $this->_conf['mq']['user'], $this->_conf['mq']['pass'], $this->_conf['mq']['vhost']);
-$this->_channel = $this->_connection->channel();
+    
 
-/*
-    name: $queue    // should be unique in fanout exchange.
-    passive: false  // don't check if a queue with the same name exists
-    durable: false // the queue will not survive server restarts
-    exclusive: false // the queue might be accessed by other channels
-    auto_delete: true //the queue will be deleted once the channel is closed.
-*/
-$this->_channel->queue_declare($queue, false, false, false, true);
-/*
-    name: $exchange
-    type: direct
-    passive: false // don't check if a exchange with the same name exists
-    durable: false // the exchange will not survive server restarts
-    auto_delete: true //the exchange will be deleted once the channel is closed.
-*/
-$this->_channel->exchange_declare($exchange, 'fanout', false, false, true);
-$this->_channel->queue_bind($queue, $exchange);
-/**
- * @param \PhpAmqpLib\Message\AMQPMessage $message
- */
-
-/*
-    queue: Queue from where to get the messages
-    consumer_tag: Consumer identifier
-    no_local: Don't receive messages published by this consumer.
-    no_ack: Tells the server if the consumer will acknowledge the messages.
-    exclusive: Request exclusive consumer access, meaning only this consumer can access the queue
-    nowait: don't wait for a server response. In case of error the server will raise a channel
-            exception
-    callback: A PHP Callback
-*/
-$this->_channel->basic_consume($queue, $consumerTag, false, false, false, false, [$this, 'process_message']);
-
-
-
-    // Loop as long as the channel has callbacks registered
-    while (count($this->_channel->callbacks)) {
-      $this->_channel->wait();
-    }
+    $this->initAMQP();
+    $this->declareMode();
+    $this->startConsumer();
   }
 
   protected function afterWorkStop(\swoole_server $serv, $workerId)
   {
-    $this->_channel->close();
-    $this->_connection->close();
+    if ($this->_start) {
+        $this->_channel->close();
+        $this->_connection->close();
+    }
+    $this->_start = false;
     return true;
   }
 }
