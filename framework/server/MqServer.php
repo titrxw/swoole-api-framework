@@ -87,8 +87,6 @@ class MqServer extends BaseServer
 
   protected function afterWorkStart(\swoole_server $serv, $workerId)
   {
-    
-
     $this->initAMQP();
     $this->declareMode();
     $this->startConsumer();
