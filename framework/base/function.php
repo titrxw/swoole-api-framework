@@ -159,3 +159,29 @@ if (!\function_exists('getFiles')) {
         return $files;
     }
 }
+if (!function_exists('coroutine')) {
+    function coroutine ($callback, $params = []) {
+        if (!function_exists('go')) {
+            throw new Error('function go not support ', 500);
+        }
+        $id = \Swoole\Coroutine::getuid();
+
+        go (function () use ($id, $callback) {
+            if ($callback instanceof \Closure ) {
+                $callback($params);
+            } else if (is_array($callback)) {
+                call_user_func_array($callback, $params);
+            } else {
+                throw new Error('arg error ', 500);
+            }
+            
+            \Swoole\Coroutine::resume($id);
+        });
+        if (swoole_version() < 4) {
+            \Swoole\Coroutine::suspend($id);
+        } else {
+            \Swoole\Coroutine::suspend();
+        }
+        
+    }
+}

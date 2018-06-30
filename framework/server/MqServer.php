@@ -77,6 +77,7 @@ class MqServer extends BaseServer
     $consumerTag = 'consumer' . SYSTEM_WORK_ID;
     switch ($this->_mode) {
         case 'fanout':
+        // 该模式下 消息会发送到每一个queue  然后再发送到每一个消费者，也就是同一条消息会发到不同的消费者
         $this->_channel->queue_declare($queue, false, false, false, true);
         $this->_channel->exchange_declare($exchange, $this->_mode, false, false, true);
         $this->_channel->queue_bind($queue, $exchange);

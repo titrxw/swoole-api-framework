@@ -32,6 +32,14 @@ class Common extends Web
         $this->_userM = $this->model('User');
     }
 
+    public function goApi() {
+        coroutine(function () {
+            echo 3;
+            \Swoole\Coroutine::sleep(5.2);
+        });
+        echo 1;
+    }
+
     public function testApi()
     {
         $client = new \swoole_client(SWOOLE_SOCK_TCP);
