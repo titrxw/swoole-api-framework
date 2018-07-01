@@ -89,8 +89,6 @@ class CrontabServer extends TcpServer
             $node = $this->_nodeHandle->findNode($fd);
             $node->_isBusy = true;
         } else if ($data === 'free') {
-            // 目前这里的free命令会在每次任务执行完成后自动发出，这里的任务执行完成是每个进程执行完任务后， 所以暂时不能在这里进行任务是否是busy的条件
-            // 如果这里的条件满足的话  下面在查找free节点的时候可以少判断n-1次
             $node = $this->_nodeHandle->findNode($fd);
             $node->_isBusy = false;
         } else if ($fd == $this->_publishFd) {

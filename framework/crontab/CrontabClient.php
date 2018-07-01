@@ -21,7 +21,6 @@ class CrontabClient extends TcpClient
     if ($this->_processManager->getProcessNum() == 0) {
       $this->handleThrowable(new Exception('client create process failed'));
       exit();
-      return false;
     }
     foreach ($this->_processManager->getAllProcess() as $value) {
       $this->_freeProcess[$value->getPid()] = $value;
@@ -40,6 +39,7 @@ class CrontabClient extends TcpClient
       }
     }
 
+    // 告诉server节点，当前client处于free阶段
     if (count($this->_freeProcess) == 1) {
       $this->send('free');
     }
