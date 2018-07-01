@@ -290,15 +290,14 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
                 else
                 {
-                    $this->triggerThrowable(new \Exception('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
+                    $this->triggerThrowable(new \Error('task at do: id: ' . $taskId . ' class: ' . $taskObj['class'] . 'not found or not instance BaseTask'.
                         ' or action: ' .$taskObj['func'] . ' not found', 500));
                 }
             }
-        }
-
-        if($taskObj instanceof \Closure)
-        {
+        } else if($taskObj instanceof \Closure) {
             return $taskObj($server, $taskId, $fromId);
+        } else {
+            $this->triggerThrowable(new \Error('task at do: id: arg error: ' . \json_encode($taskObj), 500));
         }
 
         return $taskObj;

@@ -7,6 +7,8 @@ use framework\process\Manager;
 class CrontabClient extends TcpClient
 {
   protected $_processManager;
+  protected $_freeProcess;
+  protected $_waitList = [];
 
   protected function init()
   {
@@ -20,6 +22,26 @@ class CrontabClient extends TcpClient
       $this->handleThrowable(new Exception('client create process failed'));
       exit();
       return false;
+    }
+    foreach ($this->_processManager->getAllProcess() as $value) {
+      $this->_freeProcess[$value->getPid()] = $value;
+    }
+  }
+
+  public function free($process)
+  {
+    $this->_freeProcess[$process->getPid()] = $process;
+    
+    foreach ($this->_waitList as $key => $value) {
+      # code...
+      unset($this->_waitList[$key]);
+      if (!$this->doTask($value)) {
+        break;
+      }
+    }
+
+    if (count($this->_freeProcess) == 1) {
+      $this->send('free');
     }
   }
 
@@ -40,6 +62,21 @@ class CrontabClient extends TcpClient
     return parent::afterConnect($cl);
   }
 
+  protected function doTask ($cmd) 
+  {
+      if ($this->_freeProcess) {
+        $process = $this->_freeProcess[count($this->_freeProcess) - 1];
+        \array_pop($this->_freeProcess);
+        $process->write(json_encode($cmd['data']));
+        $this->checkBusy();
+        return true;
+      } else {
+        $this->_waitList[] = \json_encode($cmd);
+        return false;
+      }
+    
+  }
+
   protected function afterReceive(\swoole_client $cl, $data)
   {
     $data = \explode('\n\r', $data);
@@ -49,27 +86,16 @@ class CrontabClient extends TcpClient
         continue;
       }
       $cmd = \json_decode($cmd, true);
-      if (!empty($cmd['cmd']) && $cmd['cmd'] == 'task') {
-        $num = 0;
-        unset($cmd['cmd']);
-        foreach ($this->_processManager->getAllProcess() as $value) {
-          # code...
-          if (!$value->isBusy()) {
-            $value->toBusy();
-            $value->write(json_encode($cmd['data']));
-            ++$num;
-            $this->checkBusy($num);
-            break;
-          }
-        }
+      if (!empty($cmd['cmd']) && !empty($cmd['data']) && $cmd['cmd'] == 'task') {
+        $this->doTask($cmd);
       }
     }
     return parent::afterReceive($cl, $data);
   }
 
-  protected function checkBusy($num)
+  protected function checkBusy()
   {
-    if ($num == $this->_processManager->getProcessNum()) {
+    if (count($this->_freeProcess) == 0) {
       $this->send('busy');
     }
   }

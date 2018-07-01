@@ -19,7 +19,7 @@ class CrontabProcess extends Process
       $this->_isBusy = true;
     } else if ($msg == 'free') {
       $this->_isBusy = false;
-      Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'client')->getClient()->send('free');
+      Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'client')->getClient()->free($this);
     }
   }
 
