@@ -34,9 +34,8 @@ class NUpload extends Upload
             $path = $this->doSave($file);
             if ($path) {
                 $paths[] = $path;
-            } else {
-                unlink($file['path']);
             }
+            unlink($file['path']);
         }
 
         return $paths;
