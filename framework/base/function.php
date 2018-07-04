@@ -166,7 +166,7 @@ if (!function_exists('coroutine')) {
         }
         $id = \Swoole\Coroutine::getuid();
 
-        go (function () use ($id, $callback) {
+        go (function () use ($id, $callback, $params) {
             if ($callback instanceof \Closure ) {
                 $callback($params);
             } else if (is_array($callback)) {
