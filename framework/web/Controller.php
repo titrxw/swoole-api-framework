@@ -19,7 +19,7 @@ abstract class Controller extends \framework\base\Controller
     protected function model($name)
     {
         $name = ucfirst($name);
-        $componentModel = md5(getModule() .'/controller/'.$name);
+        $componentModel = md5(getModule() .'/model/'.$name);
         Container::getInstance()->addComponent(getModule(), $componentModel,
             getModule() .'\\model\\'. $name, Container::getInstance()->getComponentConf(getModule(), 'model'));
         return $this->getComponent(getModule(), $componentModel);
