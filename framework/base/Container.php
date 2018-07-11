@@ -65,7 +65,7 @@ class Container extends Base
     public function getComponentConf($haver, $component)
     {
         return array(
-            'default' => $haver == SYSTEM_APP_NAME ? $this->_conf[$component] ?? [] : [],
+            'default' => $this->_conf[$component] ?? [],
             'app' => $haver != SYSTEM_APP_NAME ? $this->_appConf[$haver][$component] ?? [] : []
         );
     }
