@@ -13,8 +13,10 @@ class Container extends Base
     protected function init()
     {
         $this->_components = [];
-//        $this->_components[SYSTEM_APP_NAME] = $this->_conf;
         $this->_instances = [];
+        $conf = $this->_conf;
+        unset($this->_conf);
+        $this->_conf[SYSTEM_APP_NAME] = $conf;
         self::$instance = $this;
     }
 
@@ -23,19 +25,15 @@ class Container extends Base
         return self::$instance;
     }
 
-
     public function setComposer(Composer $composer)
     {
         $this->_composer = $composer;
     }
 
-
-
-
 //    该方法不应该放这里
     public function appHasComponents($system)
     {
-        if (!empty($this->_appConf[$system])) {
+        if (!empty($this->_conf[$system])) {
             return true;
         }
         return false;
@@ -44,7 +42,7 @@ class Container extends Base
 //    向app中添加components
     public function setAppComponents($system, $conf)
     {
-        $this->_appConf[$system] = $conf['components'];
+        $this->_conf[$system] = $conf['components'];
         $this->_composer->setAppComposers($system, $conf['composer']);
     }
 
@@ -55,19 +53,12 @@ class Container extends Base
 //    设置组件的配置  做到系统组件和app组件的隔离
     public function setComponentConf($haver, $component, $conf)
     {
-        if ($haver == SYSTEM_APP_NAME) {
-            $this->_conf[$component] = $conf['default'];
-        } else {
-            $this->_appConf[$haver][$component] = $conf['app'];
-        }
+        $this->_conf[$haver][$component] = $conf['app'];
     }
 
     public function getComponentConf($haver, $component)
     {
-        return array(
-            'default' => $this->_conf[$component] ?? [],
-            'app' => $haver != SYSTEM_APP_NAME ? $this->_appConf[$haver][$component] ?? [] : []
-        );
+        return $this->_conf[$haver][$component] ?? [];
     }
 
     public function getClassPathByKey($haver, $key)
@@ -139,7 +130,8 @@ class Container extends Base
             $classPath = $this->getClassPathByKey($haver, $key);
             if ($classPath)
             {
-                $instance = new $classPath($this->getComponentConf($haver, $key));
+                $_params = $this->getComponentConf($haver, $key);
+                $instance = new $classPath(\array_merge($_params, $params));
 
                 if ($instance instanceof Component) {
                     $instance->setUniqueId($key);
@@ -156,7 +148,7 @@ class Container extends Base
             {
                 if (COMPOSER && $this->_composer->checkComposer($haver,$key)) {
                     $_params = $this->getComponentConf($haver, $key);
-                    $this->_instances[$haver][$key] = $this->_composer->getComposer($haver, $key, array_merge($_params['default'], $_params['app'], $params));
+                    $this->_instances[$haver][$key] = $this->_composer->getComposer($haver, $key, \array_merge($_params, $params));
                     $this->unInstall($haver, $key);
                 }
                 else

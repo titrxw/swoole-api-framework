@@ -4,7 +4,7 @@ use framework\base\Component;
 
 class Header extends Component
 {
-    protected $_response;
+    protected $_header;
     protected $_request;
     protected $_code = 200;
     protected $_curType;
@@ -32,7 +32,7 @@ class Header extends Component
 
   protected function initHeader()
   {
-      $this->_response = array(
+      $this->_header = array(
           'X-Powered-By' => 'esay-framework',
           'server' => 'esay-framework'
       );
@@ -41,13 +41,13 @@ class Header extends Component
   public function add($key, $header)
   {
     if($key && $header)
-      $this->_response[$key] = $header;
+      $this->_header[$key] = $header;
   }
 
   public function del($key)
   {
-    if (!empty($this->_response[$key])) {
-      unset($this->_response[$key]);
+    if (!empty($this->_header[$key])) {
+      unset($this->_header[$key]);
     }
   }
 
@@ -61,7 +61,7 @@ class Header extends Component
       $contentType = $this->_contentTypes[$type] ?? $this->_contentTypes[$this->getValueFromConf('defaultType', 'html')];
       $charset = empty($charset) ? $this->getValueFromConf('charset', 'utf-8') : $charset;
       $this->_curType = $type;
-      $this->_response['Content-Type'] = $contentType . '; charset=' . $charset;
+      $this->_header['Content-Type'] = $contentType . '; charset=' . $charset;
   }
 
   public function noCache()
@@ -83,10 +83,11 @@ class Header extends Component
   public function send($response = '')
   {
     http_response_code($this->_code);
-    foreach ($this->_response as $key=>$item)
+    foreach ($this->_header as $key=>$item)
     {
         header($key . ':' . $item);
     }
+    $this->_header = [];
   }
 
   public function rollback()

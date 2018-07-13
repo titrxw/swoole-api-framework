@@ -92,14 +92,14 @@ class Common extends Web
         return [501, '注册失败'];
     }
 
-    public function imgAction()
+    public function imgApi()
     {
 //        $this->getComponent('captcha')->getCode();
         return $this->captcha->send();
     }
 
-    public function downloadAction()
+    public function downloadApi()
     {
-        return $this->sendFile(APP_ROOT. '/public/assets/' . APP_NAME. '/images/1457781452.jpg', 'jpg');
+        return $this->sendFile(APP_ROOT. '/public/assets/application/images/1457781452.jpg', 'jpg');
     }
 }

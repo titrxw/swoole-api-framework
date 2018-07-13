@@ -29,14 +29,6 @@ class ServerApplication extends Application
         unset($components);
     }
 
-    protected function beforeInit()
-    {
-        $this->_conf['components'] = $this->_conf['components']??[];
-        $this->_appConf['components'] = [];
-        $this->_conf['composer'] = $this->_conf['composer']??[];
-        $this->_appConf['composer'] = [];
-    }
-
     public static function run($command = 'start', $server = true)
     {
         if (PHP_SAPI !== 'cli')
@@ -45,13 +37,8 @@ class ServerApplication extends Application
             return false;
         }
 
-        $conf = [
-            'default' =>  require_file('framework/conf/base.php'),
-            'app' => []
-        ];
+        $conf = require_file('framework/conf/base.php');
         
-      
-
         try {
             switch ($command) {
                 case 'start':

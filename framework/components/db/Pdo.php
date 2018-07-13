@@ -18,8 +18,8 @@ class Pdo extends Component implements DbInterface
     protected function init()
     {
         unset($this->_conf);
-        $this->_appConf['db'] = $this->getValueFromConf('db');
-        foreach ($this->_appConf['db'] as $key=>$item)
+        $this->_conf['db'] = $this->getValueFromConf('db');
+        foreach ($this->_conf['db'] as $key=>$item)
         {
             $this->_defaultDb = $key;
             $this->_currentDb = $this->_defaultDb;
@@ -41,18 +41,18 @@ class Pdo extends Component implements DbInterface
             return $this->_instances[$this->_currentDb];
         }
 
-        if(!empty($this->_appConf['db'][$this->_currentDb]) && is_array($this->_appConf['db'][$this->_currentDb]))
+        if(!empty($this->_conf['db'][$this->_currentDb]) && is_array($this->_conf['db'][$this->_currentDb]))
         {
             try
             {
-                $dsn=$this->_appConf['db'][$this->_currentDb]['type'].":dbname=".$this->_appConf['db'][$this->_currentDb]['dbName'].";host=".$this->_appConf['db'][$this->_currentDb]['host'];
-                if (!empty($this->_appConf['db'][$this->_currentDb]['persistent']) && $this->_appConf['db'][$this->_currentDb]['persistent'] === true)
+                $dsn=$this->_conf['db'][$this->_currentDb]['type'].":dbname=".$this->_conf['db'][$this->_currentDb]['dbName'].";host=".$this->_conf['db'][$this->_currentDb]['host'];
+                if (!empty($this->_conf['db'][$this->_currentDb]['persistent']) && $this->_conf['db'][$this->_currentDb]['persistent'] === true)
                 {
-                    $this->_instances[$this->_currentDb]=new \PDO($dsn, $this->_appConf['db'][$this->_currentDb]['user'], $this->_appConf['db'][$this->_currentDb]['password'], array(\PDO::ATTR_PERSISTENT => true));
+                    $this->_instances[$this->_currentDb]=new \PDO($dsn, $this->_conf['db'][$this->_currentDb]['user'], $this->_conf['db'][$this->_currentDb]['password'], array(\PDO::ATTR_PERSISTENT => true));
                 }
                 else
                 {
-                    $this->_instances[$this->_currentDb]=new \PDO($dsn, $this->_appConf['db'][$this->_currentDb]['user'], $this->_appConf['db'][$this->_currentDb]['password']);
+                    $this->_instances[$this->_currentDb]=new \PDO($dsn, $this->_conf['db'][$this->_currentDb]['user'], $this->_conf['db'][$this->_currentDb]['password']);
                 }
                 $this->_instances[$this->_currentDb]->setAttribute(\PDO::ATTR_ORACLE_NULLS, true);
                 $this->_instances[$this->_currentDb]->query("set names utf8");

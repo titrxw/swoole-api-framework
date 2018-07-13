@@ -29,7 +29,7 @@ return array(
         'uniqueid' => 'framework\\components\\uniqueid\\UniqueId',
 //        'sessionRedis' => 'framework\\components\\cache\\Redis',
 //        'session' => 'framework\\components\\session\\Session',
-        //'captcha' => 'framework\\components\\captcha\\Captcha',
+        'captcha' => 'framework\\components\\captcha\\Captcha',
         //'crontab' => 'framework\\crontab\\Crontab'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(

@@ -65,7 +65,7 @@ class Session extends Component
             // 检查驱动类
             if (class_exists($driverClass))
             {
-                $conf = empty($this->_appConf[$this->_driver['type']])?[]:$this->_appConf[$this->_driver['type']];
+                $conf = empty($this->_conf[$this->_driver['type']])?[]:$this->_conf[$this->_driver['type']];
                 if (!empty($this->_driver['name'])) {
                     $conf['_name'] = $this->_driver['name'];
                 }

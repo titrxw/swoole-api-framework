@@ -7,8 +7,7 @@ abstract class Component extends Base
 
     public function __construct($conf = [])
     {
-        $this->_conf = $conf['default'] ?? [];
-        $this->_appConf = $conf['app'] ?? [];
+        $this->_conf = $conf;
 
         unset($conf);
     }
@@ -32,14 +31,6 @@ abstract class Component extends Base
         } else {
             Container::getInstance()->destroyComponentsInstance(getModule(), $this->_uniqueId);
         }
-    }
-
-    final public function getConfPack ()
-    {
-        return [
-            'default' => $this->_conf,
-            'app' => $this->_appConf
-        ];
     }
 
     final public function setUniqueId($name)

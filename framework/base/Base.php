@@ -8,12 +8,10 @@ abstract class Base implements \ArrayAccess
     use Throwable;
 
     protected $_conf;
-    protected $_appConf;
 
     public function __construct($conf = [])
     {
-        $this->_conf = $conf['default'] ?? [];
-        $this->_appConf = $conf['app']?? [];
+        $this->_conf = $conf;
         $this->init();
         unset($conf);
     }
@@ -23,11 +21,6 @@ abstract class Base implements \ArrayAccess
         return $this->_conf;
     }
 
-    final public function getAppConf()
-    {
-        return $this->_appConf;
-    }
-
     final protected function getValueFromConf($key, $default = '')
     {
         if (!isset($this->{$key})) {
@@ -35,7 +28,6 @@ abstract class Base implements \ArrayAccess
             if (count($tmpKey) > 1)
             {
                 $_confValue = empty($this->_conf[$tmpKey[0]]) ? null : $this->_conf[$tmpKey[0]];
-                $_appConfValue = empty($this->_appConf[$tmpKey[0]]) ? null : $this->_appConf[$tmpKey[0]];
                 unset($tmpKey[0]);
                 foreach ($tmpKey as $item)
                 {
@@ -43,22 +35,15 @@ abstract class Base implements \ArrayAccess
                     {
                         $_confValue = $_confValue[$item] ?? null;
                     }
-                    if ($_appConfValue)
-                    {
-                        $_appConfValue = $_appConfValue[$item] ?? null;
-                    }
                 }
             }
             else
             {
                 $_confValue = !isset($this->_conf[$key]) ? null : $this->_conf[$key];
-                $_appConfValue = !isset($this->_appConf[$key]) ? null : $this->_appConf[$key];
             }
             unset($tmpKey);
 
-            $this->{$key} =  !isset($_appConfValue) ?
-                (!isset($_confValue) ? $default : $_confValue)
-                : $_appConfValue;
+            $this->{$key} =  (!isset($_confValue) ? $default : $_confValue);
         }
 
         return $this->{$key};

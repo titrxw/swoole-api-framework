@@ -7,7 +7,8 @@ class Application extends Base
 
     protected function beforeInit()
     {
-
+        $this->_conf['components'] = $this->_conf['components']??[];
+        $this->_conf['composer'] = $this->_conf['composer']??[];
         return true;
     }
 
@@ -47,35 +48,19 @@ class Application extends Base
         }
     }
 
-    public function setAppConf($conf)
-    {
-        $this->_appConf = $conf;
-    }
-
     protected function initContainer()
     {
-        $conf = array(
-            'default' => $this->_conf['components'],
-            'app' => []
-        );
-        $this->_container = new Container($conf);
+        $this->_container = new Container($this->_conf['components']);
 
         if (COMPOSER)
         {
-            $composerConf = array(
-                'default' => $this->_conf['composer'],
-                'app' =>  []
-            );
 //            系统的composer
-            $this->_container->setComposer(new Composer($composerConf));
+            $this->_container->setComposer(new Composer($this->_conf['composer']));
         }
 
-        unset($conf,
-            $composerConf,
+        unset(
             $this->_conf['components'],
-            $this->_conf['composer'],
-            $this->_appConf['components'],
-            $this->_appConf['composer']
+            $this->_conf['composer']
         );
     }
 

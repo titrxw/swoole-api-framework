@@ -16,17 +16,11 @@ class Client extends Component
         switch ($this->getValueFromConf('type' , 'tcp'))
         {
             case 'tcp':
-                $this->_client = new TcpClient(array(
-                    'app' => $this->_appConf,
-                    'default' => $this->_conf
-                ));
+                $this->_client = new TcpClient($this->_conf);
                 $this->_client->connect();
                 break;
             case 'crontab':
-                $this->_client = new CrontabClient(array(
-                    'app' => $this->_appConf,
-                    'default' => $this->_conf
-                ));
+                $this->_client = new CrontabClient($this->_conf);
                 $this->_client->connect();
             break;
         }

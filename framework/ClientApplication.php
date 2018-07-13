@@ -26,14 +26,6 @@ class ClientApplication extends \framework\base\Application
         unset($components);
     }
 
-    protected function beforeInit()
-    {
-        $this->_conf['components'] = $this->_conf['components']??[];
-        $this->_appConf['components'] = [];
-        $this->_conf['composer'] = $this->_conf['composer']??[];
-        $this->_appConf['composer'] = [];
-    }
-
     public static function run($command = 'start', $server = true)
     {
         if (PHP_SAPI !== 'cli')
@@ -42,11 +34,6 @@ class ClientApplication extends \framework\base\Application
             return false;
         }
 
-        $conf = [
-            'default' =>  require_file('framework/conf/base.php'),
-            'app' => []
-        ];
-        
         try {
             switch ($command) {
                 case 'start':
@@ -55,9 +42,9 @@ class ClientApplication extends \framework\base\Application
                     //     echo 'server has stated';
                     //     return;
                     // }
-                    $instance = new static($conf);
+                    $instance = new static(require_file('framework/conf/base.php'));
                     $instance->_container->getComponent(SYSTEM_APP_NAME, 'client')->start();
-                    unset($default, $conf, $instance);
+                    unset($instance);
                     break;
             }
         } catch (\Throwable $e) {

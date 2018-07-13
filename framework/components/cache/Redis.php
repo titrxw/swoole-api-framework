@@ -23,7 +23,7 @@ class Redis extends Cache implements CacheInterface
 
         $func = $this->getValueFromConf('persistent', false) === true ? 'pconnect' : 'connect';
         $timeout = $this->getValueFromConf('timeout', null);
-        $this->_handle->$func($this->_appConf['host'], $this->_appConf['port'], $timeout);
+        $this->_handle->$func($this->_conf['host'], $this->_conf['port'], $timeout);
 
         $password = $this->getValueFromConf('password');
         if ('' != $password) {
@@ -32,15 +32,15 @@ class Redis extends Cache implements CacheInterface
             }
         }
 
-        $this->_appConf['select'] = $this->getValueFromConf('select', 0);
-        if (0 != $this->_appConf['select']) {
-            $this->_handle->select($this->_appConf['select']);
+        $this->_conf['select'] = $this->getValueFromConf('select', 0);
+        if (0 != $this->_conf['select']) {
+            $this->_handle->select($this->_conf['select']);
         }
     }
 
     public function selectDb(int $no)
     {
-        if ($no == $this->_appConf['select']) {
+        if ($no == $this->_conf['select']) {
             return false;
         }
         $this->_handle->select($no);
@@ -48,8 +48,8 @@ class Redis extends Cache implements CacheInterface
 
     public function selectRollBack()
     {
-        if (0 != $this->_appConf['select']) {
-            $this->_handle->select($this->_appConf['select']);
+        if (0 != $this->_conf['select']) {
+            $this->_handle->select($this->_conf['select']);
         } else {
             $this->_handle->select(0);
         }
@@ -95,7 +95,7 @@ class Redis extends Cache implements CacheInterface
     public function set($name, $value, $expire = null)
     {
         if (is_null($expire)) {
-            $expire = $this->_appConf['expire'];
+            $expire = $this->_conf['expire'];
         }
         $value = (is_object($value) || is_array($value)) ? json_encode($value) : $value;
         if (is_int($expire) && $expire) {

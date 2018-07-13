@@ -63,7 +63,6 @@ class Captcha extends Component
     //输出图像
     public function send()
     {
-
         if (!empty($this->_img))
         {
             imagedestroy($this->_img);
@@ -139,17 +138,17 @@ class Captcha extends Component
     {
         if (imagetypes() & IMG_GIF && $this->_type === 'git')
         {
-            $this->getComponent(SYSTEM_APP_NAME, 'response')->contentType('gif');
+            $this->getComponent(SYSTEM_APP_NAME, 'header')->contentType('gif');
             imagegif($this->_img);
         }
         elseif (function_exists("imagejpeg") && IMG_JPG && $this->_type === 'jpg')
         {
-            $this->getComponent(SYSTEM_APP_NAME, 'response')->contentType('jpg');
+            $this->getComponent(SYSTEM_APP_NAME, 'header')->contentType('jpg');
             imagejpeg($this->_img);
         }
         elseif (imagetypes() & IMG_PNG && $this->_type === 'png')
         {
-            $this->getComponent(SYSTEM_APP_NAME, 'response')->contentType('png');
+            $this->getComponent(SYSTEM_APP_NAME, 'header')->contentType('png');
             imagepng($this->_img);
         }
     }

@@ -11,16 +11,12 @@ class Composer extends Base
 {
     public function setAppComposers($haver, $conf)
     {
-        $this->_appConf[$haver] = $conf;
+        $this->_conf[$haver] = $conf;
     }
 
     public function checkComposer($haver, $name)
     {
-        if (!empty($this->_conf[$name]))
-        {
-            return true;
-        }
-        if (!empty($this->_appConf[$haver][$name]))
+        if (!empty($this->_conf[$haver][$name]))
         {
             return true;
         }
@@ -31,13 +27,7 @@ class Composer extends Base
     {
         try
         {
-            $composer = null;
-            if ($haver == SYSTEM_APP_NAME) {
-                $composer  = $this->_conf[$name];
-            } else {
-                $composer  = $this->_appConf[$haver][$name];
-            }
-            
+            $composer  = $this->_conf[$haver][$name];
             if ($composer instanceof \Closure)
             {
                 return $composer($params);

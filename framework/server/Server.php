@@ -25,31 +25,19 @@ class Server extends Component
         switch ($this->getValueFromConf('type' , 'http'))
         {
             case 'http':
-                $this->_server = new HttpServer(array(
-                    'app' => $this->_appConf,
-                    'default' => $this->_conf
-                ));
+                $this->_server = new HttpServer($this->_conf);
                 $this->_server->start();
                 break;
             case "webSocket":
-                $this->_server = new WebSocketServer(array(
-                    'app' => $this->_appConf,
-                    'default' => $this->_conf
-                ));
+                $this->_server = new WebSocketServer($this->_conf);
                 $this->_server->start();
                 break;
             case 'crontab':
-                $this->_server = new CrontabServer(array(
-                    'app' => $this->_appConf,
-                    'default' => $this->_conf
-                ));
+                $this->_server = new CrontabServer($this->_conf);
                 $this->_server->start();
                 break;
             case 'mq':
-                $this->_server = new MqServer(array(
-                    'app' => $this->_appConf,
-                    'default' => $this->_conf
-                ));
+                $this->_server = new MqServer($this->_conf);
                 $this->_server->start();
             break;
         }
