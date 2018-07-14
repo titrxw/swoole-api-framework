@@ -4,6 +4,7 @@ namespace framework\base;
 abstract class Component extends Base
 {
     protected $_uniqueId = '';
+    protected $_haver = '';
 
     public function __construct($conf = [])
     {
@@ -31,6 +32,11 @@ abstract class Component extends Base
         } else {
             Container::getInstance()->destroyComponentsInstance(getModule(), $this->_uniqueId);
         }
+    }
+
+    final public function setHaver($haver)
+    {
+        $this->_haver = $haver;
     }
 
     final public function setUniqueId($name)

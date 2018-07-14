@@ -32,6 +32,11 @@ class Common extends Web
         $this->_userM = $this->model('User');
     }
 
+    public function zookeeperApi()
+    {
+        var_dump($this->zookeeper->get('test'));
+    }
+
     public function goApi() {
         coroutine(function () {
             echo 3;

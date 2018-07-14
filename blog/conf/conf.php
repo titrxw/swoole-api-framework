@@ -30,9 +30,19 @@ return array(
 //        'sessionRedis' => 'framework\\components\\cache\\Redis',
 //        'session' => 'framework\\components\\session\\Session',
         'captcha' => 'framework\\components\\captcha\\Captcha',
+        'zookeeper' => 'framework\\components\\zookeeper\\ZookeeperConf',
         //'crontab' => 'framework\\crontab\\Crontab'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
+        'zookeeper' => [
+            'hosts' => 'localhost:2181',
+            'watch_node' => [
+                [
+                    'node' => '/blog/conf/test',
+                    'save_path' => 'test.php'
+                ]
+            ]
+        ],
         'redis' => array(
             'host'         => '127.0.0.1', // redis主机
             'port'         => 6379, // redis端口

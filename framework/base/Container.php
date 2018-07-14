@@ -134,6 +134,7 @@ class Container extends Base
                 $instance = new $classPath(\array_merge($_params, $params));
 
                 if ($instance instanceof Component) {
+                    $instance->setHaver($haver);
                     $instance->setUniqueId($key);
                     $this->_instances[$haver][$key] = $instance;
                     unset($instance);
