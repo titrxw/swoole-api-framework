@@ -8,9 +8,13 @@
 namespace framework\server;
 
 use framework\base\Container;
+use framework\process\Manager;
+use framework\process\ZookeeperProcess;
 
 class HttpServer extends BaseServer
 {
+    protected $_pManager;
+
     protected function init()
     {
         $hasOnRequest = false;
@@ -25,6 +29,32 @@ class HttpServer extends BaseServer
             $this->onRequest();
         }
     }
+
+    protected function afterManagerStart(\swoole_server $serv)
+    {
+        if (!empty($this->_conf['zookeeper'])) {
+            $this->_pManager = new Manager();
+            $this->_pManager->addProcess(new ZookeeperProcess());
+            $this->_pManager->start();
+        }
+        return true;
+    }
+
+    protected function afterManagerStop(\swoole_server $serv)
+    {
+        if ($this->_pManager) {
+            $this->_pManager->kill();
+        }
+        return true;
+    }
+
+    // protected function afterShutdown(\swoole_server $server)
+    // {
+    //     if ($this->_pManager) {
+    //         $this->_pManager->kill();
+    //     }
+    //     return true;
+    // }
 
     protected function execApp(&$response)
     {

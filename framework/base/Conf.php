@@ -44,13 +44,4 @@ class Conf extends Component
 
         return $ret;
     }
-
-    protected function byInclude($path) 
-    {
-        if (!file_exists($path)) {
-            $this->triggerThrowable('conf file ' . $name[0] . ' not exists', 500);
-        }
-
-        return include $path;
-    }
 }

@@ -32,6 +32,7 @@ class Manager extends Base
       if (isset($pid)) {
         $this->_pids[$pid] = $key;
       }
+      \var_dump($this->_pids);
     }
 
     $this->wait();
@@ -77,8 +78,15 @@ class Manager extends Base
     return $this->_process;
   }
 
-  public function kill()
+  public function kill($pid = null)
   {
+    if ($pid) {
+      if (isset($this->_pids[$pid])) {
+        $this->_process[$this->_pids[$pid]]->stop();
+      }
+      return true;
+    }
+
     foreach ($this->_process as $key => $value) {
       # code...
       $value->stop();

@@ -50,23 +50,8 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->onShutDown();
         $this->onFinish();
         $this->onPipMessage();
-    }
-
-    public function onReceive ()
-    {
-        $this->_server->on('receive', function (\swoole_server $serv, $fd, $from_id, $data) {
-            try
-            {
-                if ($this->_event) {
-                    $this->_event->onReceive($serv, $fd, $from_id, $data);
-                }
-                $this->afterReceive($serv, $fd, $from_id, $data);
-            }
-            catch (\Throwable $e)
-            {
-                $this->triggerThrowable($e);
-            }
-        });
+        $this->onManagerStart();
+        $this->onManagerStop();
     }
 
     public function setEvent($event)
@@ -94,6 +79,98 @@ abstract class BaseServer extends Base implements ServerInterface
         if ($this->_isStart) return false;
         $this->_isStart = true;
         $this->_server->start();
+    }
+
+    protected function afterStart(\swoole_server $serv)
+    {
+        return true;
+    }
+
+    public function onStart()
+    {
+        // TODO: Implement onStart() method.
+        $this->_server->on("start",function (\swoole_server $server)
+        {
+            try
+            {
+                if ($this->_event) {
+                    $this->_event->onStart($server);
+                }
+
+                $this->afterStart($server);
+            }
+            catch (\Throwable $e)
+            {
+                $this->triggerThrowable($e);
+            }
+        });
+    }
+
+    protected function afterManagerStart(\swoole_server $server)
+    {
+        return true;
+    }
+
+    protected function onManagerStart()
+    {
+        $this->_server->on("managerStart",function (\swoole_server $server)
+        {
+            try
+            {
+                $this->afterManagerStart($server);
+            }
+            catch (\Throwable $e)
+            {
+                $this->handleThrowable($e);
+            }
+        });
+    }
+
+    protected function afterManagerStop(\swoole_server $server)
+    {
+        return true;
+    }
+
+    protected function onManagerStop()
+    {
+        $this->_server->on("managerStop",function (\swoole_server $server)
+        {
+            try
+            {
+                $this->afterManagerStop($server);
+            }
+            catch (\Throwable $e)
+            {
+                $this->handleThrowable($e);
+            }
+        });
+    }
+
+    protected function afterWorkStart(\swoole_server $serv, $workerId)
+    {
+        return true;
+    }
+
+    public function onWorkStart()
+    {
+        // TODO: Implement onWorkStart() method.
+        $this->_server->on("workerStart",function (\swoole_server $server, $workerId)
+        {
+            //\opcache_reset();
+            define('SYSTEM_WORK_ID', $workerId);
+            try
+            {
+                if ($this->_event) {
+                    $this->_event->onWorkerStart($server,$workerId);
+                }
+
+                $this->afterWorkStart($server, $workerId);
+            }
+            catch (\Throwable $e)
+            {
+                $this->handleThrowable($e);
+            }
+        });
     }
 
     protected function afterConnect(\swoole_server $server, $client_id, $from_id)
@@ -138,58 +215,6 @@ abstract class BaseServer extends Base implements ServerInterface
                 }
 
                 $this->afterClose($server, $fd, $reactorId);
-            }
-            catch (\Throwable $e)
-            {
-                $this->handleThrowable($e);
-            }
-        });
-    }
-
-    protected function afterStart(\swoole_server $serv)
-    {
-        return true;
-    }
-
-    public function onStart()
-    {
-        // TODO: Implement onStart() method.
-        $this->_server->on("start",function (\swoole_server $server)
-        {
-            try
-            {
-                if ($this->_event) {
-                    $this->_event->onStart($server);
-                }
-
-                $this->afterStart($server);
-            }
-            catch (\Throwable $e)
-            {
-                $this->triggerThrowable($e);
-            }
-        });
-    }
-
-    protected function afterWorkStart(\swoole_server $serv, $workerId)
-    {
-        return true;
-    }
-
-    public function onWorkStart()
-    {
-        // TODO: Implement onWorkStart() method.
-        $this->_server->on("workerStart",function (\swoole_server $server, $workerId)
-        {
-            //\opcache_reset();
-            define('SYSTEM_WORK_ID', $workerId);
-            try
-            {
-                if ($this->_event) {
-                    $this->_event->onWorkerStart($server,$workerId);
-                }
-
-                $this->afterWorkStart($server, $workerId);
             }
             catch (\Throwable $e)
             {

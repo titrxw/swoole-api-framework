@@ -17,9 +17,19 @@ return array(
     'addComponentsMap' => array(
         'msgTask' => 'blog\\conf\\Task',
         'crontabTask' => 'blog\\conf\\CrontabTask',
-        'crontab' => 'framework\\crontab\\Crontab'
+        'crontab' => 'framework\\crontab\\Crontab',
+        'zookeeper' => 'framework\\components\\zookeeper\\ZookeeperConf',
     ),
     'components' => array(
+        'zookeeper' => [
+            'hosts' => 'localhost:2181',
+            'watch_node' => [
+                [
+                    'node' => '/blog/conf/test',
+                    'save_path' => 'test.php'
+                ]
+            ]
+        ],
         'log' => array(
             'path' => 'runtime/log/',
             'isLog' => true,
@@ -67,6 +77,7 @@ return array(
             'rightDelimiter' => '}'
         ),
         'server' => array(
+            'zookeeper' => 2,
             'pid_file' => '/var/www/server_http.pid',
             'event' => 'blog\\conf\\ServerWebSocketEvent',
             'ip' => '127.0.0.1',
@@ -74,12 +85,12 @@ return array(
             'supportHttp' => false,
             'type' => 'http',
             // 'factory_mode'=>2,
-            'daemonize' => 1,
+            // 'daemonize' => 1,
             'dispatch_mode' => 2,
             'task_worker_num' =>0, //异步任务进程
             // "task_max_request"=>10,
             'max_request'=>3000,
-            'worker_num'=>2,
+            'worker_num'=>1,
             // 'task_ipc_mode' => 2, 
             'message_queue_key' => '0x72000100', //指定一个消息队列key。如果需要运行多个swoole_server的实例，务必指定。否则会发生数据错乱
             'log_file' => '/tmp/swoole.log',

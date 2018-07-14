@@ -1,7 +1,6 @@
 <?php
 namespace framework\client;
 use framework\base\Component;
-use framework\crontab\CrontabClient;
 
 class Client extends Component
 {

@@ -8,7 +8,7 @@
  * 
  * 待处理： 粘包问题  在send的时候进行包分割
  */
-namespace framework\crontab;
+namespace framework\server;
 use framework\base\Container;
 use framework\server\TcpServer;
 

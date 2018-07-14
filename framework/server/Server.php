@@ -8,7 +8,6 @@
 namespace framework\server;
 
 use framework\base\Component;
-use framework\crontab\CrontabServer;
 
 class Server extends Component
 {

@@ -5,6 +5,7 @@ use framework\base\Conf;
 class ZookeeperConf extends Conf
 {
   protected $_watchNode;
+  protected $_zconf ;
   protected $_nodes = [];
   protected $_zookeeper;
 
@@ -12,17 +13,28 @@ class ZookeeperConf extends Conf
   protected function init()
   {
     parent::init();
+    $this->_zconf = new \swoole_table(2048);
+    \var_dump($this->_zconf);
     $this->_watchNode = $this->getValueFromConf('watch_node', [
       ['node' => '/config/' . $this->_haver, 'save_path' => 'main.php']
     ]);
-    $this->_zookeeper = new \framework\components\zookeeper\Zookeeper($this->getValueFromConf('hosts', ''));
-
-    $this->watch();
-    echo 1;
   }
 
-  protected function watch()
+  public function get ($name)
   {
+    \var_dump(getModule());
+    \var_dump($this->_zconf);
+    $conf = $this->_zconf->get(getModule());
+    if ($conf) {
+      $this->_conf[getModule()] = $this->_zconf->get(getModule());
+    }
+    
+    return parent::get($name);
+  }
+
+  public function watch()
+  {
+    $this->_zookeeper = new \framework\components\zookeeper\Zookeeper($this->getValueFromConf('hosts', ''));
     foreach ($this->_watchNode as $key => $value) {
       # code...
       $this->_zookeeper->watch($value['node'], [$this, 'watchCallback']);
@@ -45,6 +57,7 @@ class ZookeeperConf extends Conf
 
   protected function updateConf($path, $version, $node, $index)
   {
+    \var_dump($node);
     $haver = $this->_haver;
     if ($haver == SYSTEM_APP_NAME) {
       $haver = 'framework/conf/';
@@ -74,7 +87,13 @@ class ZookeeperConf extends Conf
             $data = \rtrim($data, '?>');
             $data = eval((string)$data);
             $pathinfo = \pathinfo($this->_watchNode[$index]['save_path']);
-            $this->_config[$this->_haver][$pathinfo['filename']] = $data;
+            $table->set('1', ['id' => 1, 'name' => 'test1', 'age' => 20]);
+            $oconf = $this->_zconf->get($this->_haver);
+            if (!$oconf) {
+              $oconf = [];
+            }
+            $oconf[$pathinfo['filename']] = $data;
+            $this->_zconf->set($this->_haver, $oconf);
             echo 'update success';
             return true;
           }
@@ -84,6 +103,14 @@ class ZookeeperConf extends Conf
       }
     } else {
       $this->triggerThrowable(new \Exception('zookeeper conf update failed with path :' . $path . ' and node: ' . $node . ' and with version:' . $version));
+    }
+  }
+
+  public function __destruct()
+  {
+    foreach ($this->_nodes as $key => $value) {
+      # code...
+      $this->_zookeeper->cancelWatch($value);
     }
   }
 } 

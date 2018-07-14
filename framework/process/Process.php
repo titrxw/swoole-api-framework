@@ -8,6 +8,7 @@ class Process extends Base
 {
   protected $_handle;
   protected $_hasStart;
+  protected $_sureStop = false;
   protected $_pid;
 
   protected function afterInit()
@@ -21,27 +22,38 @@ class Process extends Base
     $this->afterInit();
   }
 
-  protected function afterDoProcess(\swoole_process $worker, $data = '')
+  protected function afterDoProcess(\swoole_process $worker)
+  {
+    return false;
+  }
+
+  protected function doProcessMsg(\swoole_process $worker, $data = '')
   {
     return false;
   }
 
   public function doProcess(\swoole_process $worker)
   {
-    while(true) {
-      $data = $worker->read();
-      if ($data) {
-        if ($data === 'stop') {
-          $worker->write('stop');
-          break;
-        } else {
-          try{
-            $this->afterDoProcess($worker, $data);
-          } catch (\Throwable $e) {
-            $this->handleThrowable($e);
+    try{
+      swoole_event_add($worker->pipe, function($pipe) use ($worker) {
+        $data = $worker->read();
+        if ($data) {
+          if ($data === 'stop') {
+            $this->_sureStop = true;
+            $worker->write('stop');
+            swoole_event_del($pipe);
+          } else {
+            try{
+              $this->doProcessMsg($worker, $data);
+            } catch (\Throwable $e) {
+              $this->triggerThrowable($e);
+            }
           }
         }
-      }
+      });
+      $this->afterDoProcess($worker);
+    } catch (\Throwable $e) {
+      $this->handleThrowable($e);
     }
   }
 
