@@ -14,19 +14,15 @@ class ZookeeperConf extends Conf
   {
     parent::init();
     $this->_zconf = new \swoole_table(2048);
-    \var_dump($this->_zconf);
-    $this->_watchNode = $this->getValueFromConf('watch_node', [
-      ['node' => '/config/' . $this->_haver, 'save_path' => 'main.php']
-    ]);
+    $this->_watchNode = $this->getValueFromConf('watch_node', []);
   }
 
   public function get ($name)
   {
-    \var_dump(getModule());
-    \var_dump($this->_zconf);
-    $conf = $this->_zconf->get(getModule());
+    $conf = $this->_zconf->get($this->_haver);
     if ($conf) {
-      $this->_conf[getModule()] = $this->_zconf->get(getModule());
+      // 这里是给使用这用  所以这里的haver一定是使用者自己
+      $this->_conf[$this->_haver] = $this->_zconf->get($this->_haver);
     }
     
     return parent::get($name);
@@ -57,8 +53,7 @@ class ZookeeperConf extends Conf
 
   protected function updateConf($path, $version, $node, $index)
   {
-    \var_dump($node);
-    $haver = $this->_haver;
+    $haver = $this->_watchNode[$index]['haver'];
     if ($haver == SYSTEM_APP_NAME) {
       $haver = 'framework/conf/';
     } else {
@@ -87,13 +82,12 @@ class ZookeeperConf extends Conf
             $data = \rtrim($data, '?>');
             $data = eval((string)$data);
             $pathinfo = \pathinfo($this->_watchNode[$index]['save_path']);
-            $table->set('1', ['id' => 1, 'name' => 'test1', 'age' => 20]);
-            $oconf = $this->_zconf->get($this->_haver);
+            $oconf = $this->_zconf->get($this->_watchNode[$index]['haver']);
             if (!$oconf) {
               $oconf = [];
             }
             $oconf[$pathinfo['filename']] = $data;
-            $this->_zconf->set($this->_haver, $oconf);
+            $this->_zconf->set($this->_watchNode[$index]['haver'], $oconf);
             echo 'update success';
             return true;
           }

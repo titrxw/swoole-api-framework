@@ -25,7 +25,13 @@ return array(
             'hosts' => 'localhost:2181',
             'watch_node' => [
                 [
+                    'haver' => 'blog',
                     'node' => '/blog/conf/test',
+                    'save_path' => 'test.php'
+                ],
+                [
+                    'haver' => 'APP',
+                    'node' => '/APP/conf/test',
                     'save_path' => 'test.php'
                 ]
             ]
