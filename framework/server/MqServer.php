@@ -98,8 +98,10 @@ class MqServer extends BaseServer
            * 如果这里把queue和router key 和 exchange都绑定了的话 发布端就不需要绑定了 
            * 如果在发布端没有绑定在消费端也没有绑定的话，发布的时候queue的名称默认是route的名称
            */
-          if ($routerKey) {
-            $this->_channel->queue_bind($queue, $exchange, $routerKey);
+          if ($routerKey && is_array($routerKey)) {
+            foreach($routerKey as $item) {
+              $this->_channel->queue_bind($queue, $exchange, $item);
+            }
           } else {
             $this->_channel->queue_bind($queue, $exchange);
           }
