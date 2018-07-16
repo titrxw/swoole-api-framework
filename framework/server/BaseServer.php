@@ -47,6 +47,7 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->onTask();
         $this->onWorkerError();
         $this->onStart();
+        $this->onReceive();
         $this->onShutDown();
         $this->onFinish();
         $this->onPipMessage();
@@ -194,6 +195,29 @@ abstract class BaseServer extends Base implements ServerInterface
             catch (\Throwable $e)
             {
                 $this->handleThrowable($e);
+            }
+        });
+    }
+    
+
+    protected function afterReceive(\swoole_server $serv, $fd, $from_id, $data)
+    {
+        return false;
+    }
+
+    public function onReceive ()
+    {
+        $this->_server->on('receive', function (\swoole_server $serv, $fd, $from_id, $data) {
+            try
+            {
+                if ($this->_event) {
+                    $this->_event->onReceive($serv, $fd, $from_id, $data);
+                }
+                $this->afterReceive($serv, $fd, $from_id, $data);
+            }
+            catch (\Throwable $e)
+            {
+                $this->triggerThrowable($e);
             }
         });
     }

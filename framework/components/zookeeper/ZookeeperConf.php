@@ -1,5 +1,6 @@
 <?php
 namespace framework\components\zookeeper;
+
 use framework\base\Conf;
 
 class ZookeeperConf extends Conf
@@ -73,28 +74,28 @@ class ZookeeperConf extends Conf
       stream_copy_to_stream($src, $dest);
       fclose($dest);
       fclose($src);
-      if (!$this->_supportYaf) {
-        $dest = fopen($savePath, 'r');
-        if ($dest) {
-          $data = \stream_get_contents($dest);
-          if ($data) {
-            $data = \ltrim($data, '<?php');
-            $data = \rtrim($data, '?>');
-            $data = eval((string)$data);
-            $pathinfo = \pathinfo($this->_watchNode[$index]['save_path']);
-            $oconf = $this->_zconf->get($this->_watchNode[$index]['haver']);
-            if (!$oconf) {
-              $oconf = [];
-            }
-            $oconf[$pathinfo['filename']] = $data;
-            $this->_zconf->set($this->_watchNode[$index]['haver'], $oconf);
-            echo 'update success';
-            return true;
+
+      
+      $dest = fopen($savePath, 'r');
+      if ($dest) {
+        $data = \stream_get_contents($dest);
+        if ($data) {
+          $data = \ltrim($data, '<?php');
+          $data = \rtrim($data, '?>');
+          $data = eval((string)$data);
+          $pathinfo = \pathinfo($this->_watchNode[$index]['save_path']);
+          $oconf = $this->_zconf->get($this->_watchNode[$index]['haver']);
+          if (!$oconf) {
+            $oconf = [];
           }
-          fclose($dest);
+          $oconf[$pathinfo['filename']] = $data;
+          $this->_zconf->set($this->_watchNode[$index]['haver'], $oconf);
+          echo 'update success';
+          return true;
         }
-        $this->triggerThrowable(new \Exception('zookeeper conf file write to  path :' . $savePath . ' faile with node: ' . $node . ' and with version:' . $version));
+        fclose($dest);
       }
+      $this->triggerThrowable(new \Exception('zookeeper conf file write to  path :' . $savePath . ' faile with node: ' . $node . ' and with version:' . $version));
     } else {
       $this->triggerThrowable(new \Exception('zookeeper conf update failed with path :' . $path . ' and node: ' . $node . ' and with version:' . $version));
     }

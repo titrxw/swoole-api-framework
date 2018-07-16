@@ -30,7 +30,7 @@ class MqServer extends BaseServer
     $this->_port = $this->getValueFromConf('mq.port');
     $this->_user = $this->getValueFromConf('mq.user');
     $this->_password =  $this->getValueFromConf('mq.password');
-    $this->_vhost = $this->getValueFromConf('mq.host', '/');
+    $this->_vhost = $this->getValueFromConf('mq.vhost', '/');
 
     if (!$this->_host) {
         $this->triggerThrowable(new \Exception('qmqp host can not be empty', 500));
