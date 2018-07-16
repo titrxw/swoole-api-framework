@@ -14,6 +14,7 @@ class ZookeeperConf extends Conf
   {
     parent::init();
     $this->_zconf = new \swoole_table(2048);
+    $this->_zconf->create();
     $this->_watchNode = $this->getValueFromConf('watch_node', []);
   }
 
