@@ -18,6 +18,9 @@ class Zookeeper
 	 * @param string $address CSV list of host:port values (e.g. "host1:2181,host2:2181")
 	 */
 	public function __construct($address) {
+		if (!extension_loaded('zookeeper')) {
+				$this->triggerThrowable(new \Exception('not support: zookeeper', 500));
+		}
 		$this->zookeeper = new \Zookeeper($address);
 	}
 	/**

@@ -72,19 +72,20 @@ class MqServer extends BaseServer
 
   protected function startConsumer()
   {
-      if (!$this->_start) {
-        $this->_start = true;
-        while (count($this->_channel->callbacks)) {
-            $this->_channel->wait();
-        }
+    if (!$this->_start) {
+      $this->_start = true;
+      while (count($this->_channel->callbacks)) {
+          $this->_channel->wait();
       }
+    }
   }
 
   protected function declareMode()
   {
-    $exchange = $this->getValueFromConf('mq.exchange', 'fanout_exchange');
-    $queue = $this->getValueFromConf('mq.queue', 'fanout_group');
+    $exchange = $this->getValueFromConf('mq.exchange', '');
+    $queue = $this->getValueFromConf('mq.queue', '');
     $qos = $this->getValueFromConf('mq.qos', 1);
+    $routerKey = $this->getValueFromConf('mq.router_key', '');
     $consumerTag = 'consumer' . SYSTEM_WORK_ID;
     // 保证一次值接受一个
     $this->_channel->basic_qos(null, $qos, null);
@@ -92,10 +93,20 @@ class MqServer extends BaseServer
         case 'direct':
           $this->_channel->queue_declare($queue, false, true, false, false);
           $this->_channel->exchange_declare($exchange, 'direct', false, true, false);
-          $this->_channel->queue_bind($queue, $exchange);
+          /**
+           * 这里进行绑定的时候如果只绑定了queue和exchange的话，queue和routekey的绑定就必须放到发布端
+           * 如果这里把queue和router key 和 exchange都绑定了的话 发布端就不需要绑定了 
+           * 如果在发布端没有绑定在消费端也没有绑定的话，发布的时候queue的名称默认是route的名称
+           */
+          if ($routerKey) {
+            $this->_channel->queue_bind($queue, $exchange, $routerKey);
+          } else {
+            $this->_channel->queue_bind($queue, $exchange);
+          }
           $this->_channel->basic_consume($queue, $consumerTag, false, false, false, false, [$this, 'processMessage']);
         break;
         case 'fanout':
+        // 该模式下 会忽略route key  
         default:
         // 该模式下 消息会发送到每一个queue  然后再发送到每一个消费者，也就是同一条消息会发到不同的消费者
           $this->_channel->queue_declare($queue, false, false, false, true);

@@ -32,7 +32,6 @@ class Manager extends Base
       if (isset($pid)) {
         $this->_pids[$pid] = $key;
       }
-      \var_dump($this->_pids);
     }
 
     $this->wait();

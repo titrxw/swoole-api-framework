@@ -63,6 +63,6 @@ class CrontabProcess extends Process
         }
       }
     }
-    return parent::afterDoProcess($worker);
+    return parent::doProcessMsg($worker);
   }
 }
