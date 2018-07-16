@@ -108,7 +108,7 @@ class MqServer extends BaseServer
         case 'fanout':
         // 该模式下 会忽略route key  
         default:
-        // 该模式下 消息会发送到每一个queue  然后再发送到每一个消费者，也就是同一条消息会发到不同的消费者
+        // 该模式下 消息会发送到每一个queue  然后再发送到每一个消费者，也就是同一条消息会发到不同的消费者(订阅同一个queue的)
           $this->_channel->queue_declare($queue, false, false, false, true);
           $this->_channel->exchange_declare($exchange, $this->_mode, false, false, true);
           $this->_channel->queue_bind($queue, $exchange);

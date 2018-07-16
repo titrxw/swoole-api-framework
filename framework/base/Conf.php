@@ -11,31 +11,21 @@ namespace framework\base;
 class Conf extends Component
 {
     protected $_config;
-    protected $_supportYaf = false;
 
-    protected function init()
-    {
-        $this->_supportYaf = $this->getValueFromConf('yaf', false);
-    }
 
     public function get($name)
     {
         $name = explode('.', $name);
 
-        if (!$this->_supportYaf) {
-            if (!isset($this->_config[$this->_haver][$name[0]])) {
-                //            加载配置文件
-                $path = APP_ROOT . $this->_haver . '/conf/' . $name[0] . '.php';
-                
-                if (!file_exists($path)) {
-                    $this->triggerThrowable('conf file ' . $name[0] . ' not exists', 500);
-                }
-                $this->_config[$this->_haver][$name[0]] = include $path;
+        if (!isset($this->_config[$this->_haver][$name[0]])) {
+            //            加载配置文件
+            $path = APP_ROOT . $this->_haver . '/conf/' . $name[0] . '.php';
+            
+            if (!file_exists($path)) {
+                $this->triggerThrowable('conf file ' . $name[0] . ' not exists', 500);
             }
-        } else {
-
+            $this->_config[$this->_haver][$name[0]] = include $path;
         }
-        
 
         $ret = $this->_config[$this->_haver];
         foreach ($name as $item) {

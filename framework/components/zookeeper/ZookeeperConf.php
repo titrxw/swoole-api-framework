@@ -12,7 +12,6 @@ class ZookeeperConf extends Conf
 
   protected function init()
   {
-    parent::init();
     $this->_zconf = new \swoole_table(2048);
     $this->_zconf->create();
     $this->_watchNode = $this->getValueFromConf('watch_node', []);
