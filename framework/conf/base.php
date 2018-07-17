@@ -90,13 +90,25 @@ return array(
             'port' => '8081',
             'supportHttp' => false,
             'type' => 'http',
+            'mq' => [
+                'exchange' => 'router',
+                'queue' => 'log_error',
+                'mode' => 'direct',
+                'host' => '127.0.0.1',
+                'port' => '5672',
+                'user' => 'guest',
+                'password' => 'guest',
+                // 'router_key' => [
+                //     'test'
+                // ]
+            ],
             // 'factory_mode'=>2,
             // 'daemonize' => 1,
             'dispatch_mode' => 2,
             'task_worker_num' =>0, //异步任务进程
             // "task_max_request"=>10,
             'max_request'=>3000,
-            'worker_num'=>1,
+            'worker_num'=>3,
             // 'task_ipc_mode' => 2, 
             'message_queue_key' => '0x72000100', //指定一个消息队列key。如果需要运行多个swoole_server的实例，务必指定。否则会发生数据错乱
             'log_file' => '/tmp/swoole.log',

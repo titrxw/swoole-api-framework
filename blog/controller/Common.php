@@ -15,10 +15,10 @@ class Common extends Web
     protected function rule()
     {
         return array(
-            'loginApi' => array(
-               'mobile|post|账号格式错误'=>'regex|/^1[34578]\d{9}$/',
-               'password|post|密码格式错误' => 'require'
-            ),
+            // 'loginApi' => array(
+            //    'mobile|post|账号格式错误'=>'regex|/^1[34578]\d{9}$/',
+            //    'password|post|密码格式错误' => 'require'
+            // ),
             'registerApi' => array(
                 'mobile|post|账号格式错误'=>'regex|/^1[34578]\d{9}$/',
                 'password|post|密码格式错误' => 'require',
@@ -30,6 +30,20 @@ class Common extends Web
     protected function afterInit()
     {
         $this->_userM = $this->model('User');
+    }
+
+    public function zookeeperSetApi()
+    {
+        // 这里是应用配置
+        $this->zookeeper->getHandle()->set( '/blog/conf/test', json_encode([
+            'path' => 'http://127.0.0.1/index.txt',           //配置文件的保存地址
+            'version' => 1.7
+        ]));
+        // APP代表系统配置
+        $this->zookeeper->getHandle()->set( '/APP/conf/test', json_encode([
+            'path' => 'http://127.0.0.1/index.txt',
+            'version' => 1.7
+        ]));
     }
 
     public function zookeeperApi()
@@ -69,6 +83,8 @@ class Common extends Web
 
     public function loginApi ()
     {
+        \var_dump(1);
+        
         $mobile = $this->request->post('mobile');
         $password = $this->request->post('password');
 

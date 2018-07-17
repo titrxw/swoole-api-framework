@@ -18,6 +18,15 @@ class ZookeeperConf extends Conf
     $this->_watchNode = $this->getValueFromConf('watch_node', []);
   }
 
+  public function getHandle ()
+  {
+    if (!$this->_zookeeper) {
+      $this->_zookeeper = new \framework\components\zookeeper\Zookeeper($this->getValueFromConf('hosts', ''));
+    }
+
+    return $this->_zookeeper;
+  }
+
   public function get ($name)
   {
     $conf = $this->_zconf->get($this->_haver);
@@ -31,7 +40,7 @@ class ZookeeperConf extends Conf
 
   public function watch()
   {
-    $this->_zookeeper = new \framework\components\zookeeper\Zookeeper($this->getValueFromConf('hosts', ''));
+    $this->getHandle();
     foreach ($this->_watchNode as $key => $value) {
       # code...
       $this->_zookeeper->watch($value['node'], [$this, 'watchCallback']);
