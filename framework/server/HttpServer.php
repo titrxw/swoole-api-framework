@@ -48,14 +48,6 @@ class HttpServer extends BaseServer
         return true;
     }
 
-    // protected function afterShutdown(\swoole_server $server)
-    // {
-    //     if ($this->_pManager) {
-    //         $this->_pManager->kill();
-    //     }
-    //     return true;
-    // }
-
     protected function execApp(&$response)
     {
         // TODO: Implement execApp() method.
