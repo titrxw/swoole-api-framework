@@ -158,7 +158,7 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->on("workerStart",function (\swoole_server $server, $workerId)
         {
             //\opcache_reset();
-            define('SYSTEM_WORK_ID', $workerId);
+            \define('SYSTEM_WORK_ID', \getmypid());
             try
             {
                 if ($this->_event) {
