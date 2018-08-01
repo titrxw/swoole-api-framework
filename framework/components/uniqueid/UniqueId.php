@@ -52,7 +52,7 @@ class UniqueId extends Component
         }
         //赋值
         $this->workId = SYSTEM_WORK_ID;
-        $this->dataCenterId = SYSTEM_CD_KEY;
+        $this->dataCenterId = crc32(SYSTEM_CD_KEY);;
     }
 
     //生成一个ID
