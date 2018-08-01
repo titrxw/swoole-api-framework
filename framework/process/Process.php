@@ -46,7 +46,7 @@ class Process extends Base
             try{
               $this->doProcessMsg($worker, $data);
             } catch (\Throwable $e) {
-              $this->triggerThrowable($e);
+              $this->handleThrowable($e);
             }
           }
         }

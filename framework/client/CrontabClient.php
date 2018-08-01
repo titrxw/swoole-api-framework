@@ -67,7 +67,7 @@ class CrontabClient extends TcpClient
   protected function doTask ($cmd) 
   {
       if ($this->_freeProcess) {
-        $process = $this->_freeProcess[count($this->_freeProcess) - 1];
+        $process = end($this->_freeProcess);
         \array_pop($this->_freeProcess);
         $process->write(json_encode($cmd['data']));
         $this->checkBusy();

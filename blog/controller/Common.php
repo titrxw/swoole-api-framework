@@ -62,7 +62,7 @@ class Common extends Web
     public function testApi()
     {
         $client = new \swoole_client(SWOOLE_SOCK_TCP);
-        if (!$client->connect('127.0.0.1', 8080, -1))
+        if (!$client->connect('127.0.0.1', 8082, -1))
         {
             echo ("connect failed. Error: {$client->errCode}\n");
         }
@@ -70,8 +70,8 @@ class Common extends Web
         $result = $client->recv();
         if ($result) {
             $client->send( \json_encode([
-                '/1 * * 4-6 *--crontabTask test',
-                '/1 * * 5-6 *--sendMsg sendMsg'
+                '/1 * * * *--crontabTask test',
+                '/1 * * * *--sendMsg sendMsg'
             ]));
         }
         $result = $client->recv();
