@@ -5,4 +5,5 @@ function autoload($classFile)
     require_file($classFile.'.php');
 }
 
+// 保证该加载器在第一个
 spl_autoload_register('autoload', true, true);

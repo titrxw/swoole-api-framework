@@ -39,6 +39,7 @@ class Application extends Base
             define('DEBUG',true);
 
         define('SYSTEM_APP_NAME', 'APP');
+        define('SYSTEM_CD_KEY',\GetMacAddr(PHP_OS));
 
         if (file_exists(APP_ROOT. 'vendor/autoload.php')) {
             define('COMPOSER', true);

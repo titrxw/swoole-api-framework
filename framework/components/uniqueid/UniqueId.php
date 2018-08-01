@@ -4,18 +4,45 @@ use framework\base\Component;
 
 class UniqueId extends Component
 {
-    //开始时间,固定一个小于当前时间的毫秒数即可  
-    const twepoch =  1474992000000;//2016/9/28 0:0:0  
+    /**
+     * Offset from Unix Epoch
+     * Unix Epoch : January 1 1970 00:00:00 GMT
+     * Epoch Offset : January 1 2000 00:00:00 GMT
+     */
+    const EPOCH_OFFSET = 1483200000000;
+    const SIGN_BITS = 1;
+    const TIMESTAMP_BITS = 41;
+    const DATACENTER_BITS = 5;
+    const WORK_ID_BITS = 5;
+    const SEQUENCE_BITS = 12;
 
-    //机器标识占的位数  
-    const workerIdBits = 10;
+    /**
+     * @var int
+     */
+    protected $signLeftShift = self::TIMESTAMP_BITS + self::DATACENTER_BITS + self::WORK_ID_BITS + self::SEQUENCE_BITS;
+    protected $timestampLeftShift = self::DATACENTER_BITS + self::WORK_ID_BITS + self::SEQUENCE_BITS;
+    protected $dataCenterLeftShift = self::WORK_ID_BITS + self::SEQUENCE_BITS;
+    protected $workIdLeftShift = self::SEQUENCE_BITS;
+    protected $maxSequenceId = -1 ^ (-1 << self::SEQUENCE_BITS);
+    protected $maxWorkId = -1 ^ (-1 << self::WORK_ID_BITS);
+    protected $maxDataCenterId = -1 ^ (-1 << self::DATACENTER_BITS);
+    protected $sequenceMask = -1 ^ (-1 << self::SEQUENCE_BITS);
 
-    //毫秒内自增数点的位数  
-    const sequenceBits = 12;
 
-    protected $workId = 0;
+    /**
+     * @var mixed
+     */
+    protected $dataCenterId;
 
-    protected $lastTimestamp = -1;
+    /**
+     * @var mixed
+     */
+    protected $workId;
+
+    /**
+     * @var null|int
+     */
+    protected $lastTimestamp = null;
     protected $sequence = 0;
 
     protected function init()
@@ -25,6 +52,7 @@ class UniqueId extends Component
         }
         //赋值
         $this->workId = SYSTEM_WORK_ID;
+        $this->dataCenterId = SYSTEM_CD_KEY;
     }
 
     //生成一个ID
@@ -39,8 +67,8 @@ class UniqueId extends Component
         }
         //生成唯一序列
         if ($lastTimestamp == $timestamp) {
-            $sequenceMask = -1 ^ (-1 << self::sequenceBits);
-            $this->sequence = ($this->sequence + 1) & $sequenceMask;
+            
+            $this->sequence = ($this->sequence + 1) & $this->sequenceMask;
             if ($this->sequence == 0) {
                 $timestamp = $this->tilNextMillis($lastTimestamp);
             }
@@ -49,18 +77,15 @@ class UniqueId extends Component
         }
         $this->lastTimestamp = $timestamp;
         //
-        //时间毫秒/数据中心ID/机器ID,要左移的位数
-        $timestampLeftShift = self::sequenceBits + self::workerIdBits;
-        $workerIdShift = self::sequenceBits;
         //组合3段数据返回: 时间戳.工作机器.序列
-        $nextId = (($timestamp - self::twepoch) << $timestampLeftShift) | ($this->workId << $workerIdShift) | $this->sequence;
+        $nextId = (($timestamp - self::EPOCH_OFFSET) << $this->timestampLeftShift) | ($this->dataCenterId << $this->dataCenterLeftShift) | ($this->workId << $this->workIdLeftShift) | $this->sequence;
         return $nextId;
     }
 
     //取当前时间毫秒  
     protected function timeGen()
     {
-        $timestramp = (float)sprintf("%.0f", microtime(true) * 1000);
+        $timestramp = (float)\sprintf("%.0f", \microtime(true) * 1000);
         return  $timestramp;
     }
 
