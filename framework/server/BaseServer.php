@@ -12,11 +12,6 @@ use framework\task\BaseTask;
 
 abstract class BaseServer extends Base implements ServerInterface
 {
-    /**
-     * @var null
-     * 使用trait 添加triggerException 方法
-     */
-    public $te;
     protected $_event = null;
     protected $_server;
     protected $_maxTickStep = 86400000;
