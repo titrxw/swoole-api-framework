@@ -48,8 +48,6 @@ class CrontabProcess extends Process
           {
               $obj->run($taskObj['func'], array(), $worker, 0, 0);
               unset($obj);
-              $worker->write('free');
-              Container::getInstance()->finish(SYSTEM_APP_NAME);
           }
           else
           {
@@ -57,9 +55,11 @@ class CrontabProcess extends Process
             ' or action: ' .$taskObj['func'] . ' not found', 500));
           }
         } catch (\Throwable $e) {
-          $worker->write('free');
-          Container::getInstance()->finish(SYSTEM_APP_NAME);
           $this->triggerThrowable($e);
+        }
+        finally {
+          Container::getInstance()->finish(SYSTEM_APP_NAME);
+          $worker->write('free');
         }
       }
     }

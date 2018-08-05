@@ -427,14 +427,17 @@ abstract class BaseServer extends Base implements ServerInterface
                             }
                         }
                     }
-                    Container::getInstance()->finish(SYSTEM_APP_NAME);
                     return false;
                 }
                 catch (\Throwable $e)
                 {
-                    Container::getInstance()->finish(SYSTEM_APP_NAME);
+                    
                     $this->handleThrowable($e);
                     return false;
+                }
+                finally 
+                {
+                    Container::getInstance()->finish(SYSTEM_APP_NAME);
                 }
             });
         }
