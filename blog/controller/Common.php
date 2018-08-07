@@ -59,6 +59,23 @@ class Common extends Web
         echo 1;
     }
 
+
+    /**
+     * @method get
+     * 
+     * @params string  $name 不能为空
+     * @rule mobile|post|账号格式错误 regex|/^1[34578]\d{9}$/  
+     * @rule password|post|密码格式错误 require
+     * @rule sure_password|post|确认密码格式错误 require
+     */
+    public function test1Api()
+    {
+        // $this->cookie->set('rwar', 'dsfsdf');
+        // return $this->_userM->test();
+        var_dump(uniqueId());
+//        $this->addTask('msgTask', 'sendMsg', array('mobile' => '1212121212'));
+    }
+
     public function testApi()
     {
         $client = new \swoole_client(SWOOLE_SOCK_TCP);

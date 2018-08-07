@@ -7,20 +7,21 @@
         "easy"
     ],
     "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "rxw",
-            "email": "1120309488@qq.com"
+    "authors": [{
+        "name": "rxw",
+        "email": "1120309488@qq.com"
+    }],
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
         }
-    ],
-     "repositories": {
-    	"packagist": {
-        	"type": "composer",
-        	"url": "https://packagist.phpcomposer.com"
-    	}
-	},
+    },
     "require": {
-        "monolog/monolog": "1.18.1",
-        "overtrue/wechat": "3.3.1"
+        "overtrue/wechat": "3.3.1",
+        "diversen/http-send-file": "2.0.3",
+        "elasticsearch/elasticsearch": "~6.0",
+        "monolog/monolog": "^1.23",
+        "phpdocumentor/reflection-docblock": "^4.3"
     }
 }

@@ -9,10 +9,7 @@ return array(
     'composer' => array(
 //        'Logger' => function (array $params) {
 //            return new \Monolog\Logger($params[0]);      //这里测试composer的加载
-//        },,
-        'meedo' => function (array $params) {
-            return new \Medoo\Medoo($params);      //这里测试composer的加载
-        },
+//        },
         'crawler' => function ($params) {
             return new Symfony\Component\DomCrawler\Crawler();
         }
@@ -32,7 +29,8 @@ return array(
         'uniqueid' => 'framework\\components\\uniqueid\\UniqueId',
 //        'sessionRedis' => 'framework\\components\\cache\\Redis',
 //        'session' => 'framework\\components\\session\\Session',
-        'captcha' => 'framework\\components\\captcha\\Captcha'
+        'captcha' => 'framework\\components\\captcha\\Captcha',
+        'meedo' => '\Medoo\Medo'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
         'redis' => array(
