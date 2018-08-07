@@ -12,21 +12,6 @@ class Common extends Web
 {
     private $_userM;
 
-    protected function rule()
-    {
-        return array(
-            // 'loginApi' => array(
-            //    'mobile|post|账号格式错误'=>'regex|/^1[34578]\d{9}$/',
-            //    'password|post|密码格式错误' => 'require'
-            // ),
-            'registerApi' => array(
-                'mobile|post|账号格式错误'=>'regex|/^1[34578]\d{9}$/',
-                'password|post|密码格式错误' => 'require',
-                'sure_password|post|确认密码格式错误' => 'require'
-            )
-        );
-    }
-
     protected function afterInit()
     {
         $this->_userM = $this->model('User');
@@ -113,6 +98,14 @@ class Common extends Web
         return [501, '登录失败'];
     }
 
+    /**
+     * @method post
+     * 
+     * @params string  $name 不能为空
+     * @rule mobile|post|账号格式错误 regex|/^1[34578]\d{9}$/  
+     * @rule password|post|密码格式错误 require
+     * @rule sure_password|post|确认密码格式错误 require
+     */
     public function registerApi()
     {
         $mobile = $this->request->post('mobile');
