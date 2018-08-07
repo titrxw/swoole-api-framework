@@ -3,6 +3,7 @@ namespace framework\base;
 
 abstract class Controller extends Component
 {
+    protected $_dbHandle;
     protected $_controller;
     protected $_action;
     protected $_view;
@@ -41,6 +42,14 @@ abstract class Controller extends Component
     public function getAction()
     {
         return $this->_action;
+    }
+
+    public function db()
+    {
+        if (!$this->_dbHandle) {
+            $this->_dbHandle = $this->getComponent(getModule(), $this->getValueFromConf('db','meedo'));
+        }
+        return $this->_dbHandle;
     }
 
     /**

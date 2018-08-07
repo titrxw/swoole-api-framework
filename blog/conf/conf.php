@@ -9,7 +9,10 @@ return array(
     'composer' => array(
 //        'Logger' => function (array $params) {
 //            return new \Monolog\Logger($params[0]);      //这里测试composer的加载
-//        },
+//        },,
+        'meedo' => function (array $params) {
+            return new \Medoo\Medoo($params);      //这里测试composer的加载
+        },
         'crawler' => function ($params) {
             return new Symfony\Component\DomCrawler\Crawler();
         }
@@ -29,20 +32,9 @@ return array(
         'uniqueid' => 'framework\\components\\uniqueid\\UniqueId',
 //        'sessionRedis' => 'framework\\components\\cache\\Redis',
 //        'session' => 'framework\\components\\session\\Session',
-        'captcha' => 'framework\\components\\captcha\\Captcha',
-        'zookeeper' => 'framework\\components\\zookeeper\\ZookeeperConf',
-        //'crontab' => 'framework\\crontab\\Crontab'
+        'captcha' => 'framework\\components\\captcha\\Captcha'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
-        'zookeeper' => [
-            'hosts' => 'localhost:2181',
-            'watch_node' => [
-                [
-                    'node' => '/blog/conf/test',
-                    'save_path' => 'test.php'
-                ]
-            ]
-        ],
         'redis' => array(
             'host'         => '127.0.0.1', // redis主机
             'port'         => 6379, // redis端口
@@ -115,13 +107,6 @@ return array(
             'width' => 200,
             'num' => 5,
             'type' => 'png'   //png jpg gif
-        ),
-        'crontab' => array(
-            'tasks' => array(
-                '* * * 7-12/1 *--crontabTask test',
-                '2 /2 3-8 3,5,8 1--crontabTask test',
-                '3 /2 3-8/2 3,5 1--crontabTask test'
-            )
         ),
         'meedo' => array(
             'database_type' => 'mysql',

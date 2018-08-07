@@ -13,7 +13,7 @@ class Model extends Component
     public function db()
     {
         if (!$this->_dbHandle) {
-            $this->_dbHandle = $this->getComponent(SYSTEM_APP_NAME, $this->getValueFromConf('db','meedo'));
+            $this->_dbHandle = $this->getComponent(getModule(), $this->getValueFromConf('db','meedo'));
         }
         return $this->_dbHandle;
     }

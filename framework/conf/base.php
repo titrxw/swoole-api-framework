@@ -9,10 +9,7 @@ return array(
     'composer' => array(
         'Logger' => function (array $params) {
             return new \Monolog\Logger($params[0]);      //这里测试composer的加载
-        },
-        'meedo' => function (array $params) {
-           return new \Medoo\Medoo($params);      //这里测试composer的加载
-       }
+        }
     ),
     'addComponentsMap' => array(
         'msgTask' => 'blog\\conf\\Task',
