@@ -13,23 +13,6 @@ class UserBlog extends User
     private $_blogM;
     private $_pageSize = 15;
 
-    protected function rule()
-    {
-        return array(
-            'saveApi' => array(
-                'type|post|博客类型错误'=>'require|integer',
-                'name|post|博客名称错误' => 'require',
-                'category_id|post|博客分类错误' => 'require|integer',
-                'user_category_id|post|个人分类错误' => 'require|integer',
-                'summary|post|博客摘要错误' => 'require',
-                'content|post|博客内容错误' => 'require'
-            ),
-            'detailApi' => array(
-                'bu_id|post|参数错误' => 'regex|/^b_\d{18}$/'
-            )
-        );
-    }
-
     protected function afterInit()
     {
         $this->_blogM = $this->model('Blog');

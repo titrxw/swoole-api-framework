@@ -12,15 +12,6 @@ class Blog extends Web
 {
     private $_blogM;
 
-    protected function rule()
-    {
-        return array(
-            'detailApi' => array(
-                'bu_id|post|参数错误' => 'regex|/^b_\d{18}$/'
-            )
-        );
-    }
-
     protected function afterInit()
     {
         $this->_blogM = $this->model('Blog');

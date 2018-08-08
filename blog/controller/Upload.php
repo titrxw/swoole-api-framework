@@ -10,14 +10,6 @@ use blog\lib\Web;
 
 class Upload extends Web
 {
-    protected function rule()
-    {
-        return array(
-            'indexApi' => array(
-                'submit|post|参数错误'=>'require',
-            )
-        );
-    }
 
 //    nginx 文件上传
 
