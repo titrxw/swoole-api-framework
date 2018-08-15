@@ -42,7 +42,7 @@ class ServerApplication extends Application
         try {
             switch ($command) {
                 case 'start':
-                    $pidFile = $conf['default']['components']['server']['pid_file'] ?? '';
+                    $pidFile = $conf['components']['server']['pid_file'] ?? '';
                     if ($pidFile && file_exists($pidFile)) {
                         echo 'server has stated';
                         return;
@@ -52,7 +52,7 @@ class ServerApplication extends Application
                     unset($default, $conf, $instance);
                     break;
                 case 'stop':
-                    $pidFile = $conf['default']['components']['server']['pid_file'] ?? '';
+                    $pidFile = $conf['components']['server']['pid_file'] ?? '';
                     if ($pidFile && file_exists($pidFile)) {
                         $pid = file_get_contents($pidFile);
                         posix_kill($pid,SIGTERM);
@@ -62,7 +62,7 @@ class ServerApplication extends Application
                     }
                     break;
                 case 'restart':
-                    $pidFile = $conf['default']['components']['server']['pid_file'] ?? '';
+                    $pidFile = $conf['components']['server']['pid_file'] ?? '';
                     if ($pidFile && file_exists($pidFile)) {
                         $pid = file_get_contents($pidFile);
                         posix_kill($pid, SIGUSR1); // reload all worker
