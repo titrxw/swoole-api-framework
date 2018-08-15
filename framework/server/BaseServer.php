@@ -114,6 +114,7 @@ abstract class BaseServer extends Base implements ServerInterface
             try
             {
                 $this->afterManagerStart($server);
+                swoole_set_process_name('manager');
             }
             catch (\Throwable $e)
             {
