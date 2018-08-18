@@ -8,6 +8,8 @@
 namespace framework\server;
 
 use framework\base\Component;
+use Thrift\ClassLoader\ThriftClassLoader;
+use Thrift\Server\TServerSocket;
 
 class Server extends Component
 {
@@ -37,6 +39,16 @@ class Server extends Component
                 break;
             case 'mq':
                 $this->_server = new MqServer($this->_conf);
+                $this->_server->start();
+            case 'rpc':
+            
+                require (APP_ROOT."framework/Thrift/ClassLoader/ThriftClassLoader.php");
+                $loader = new ThriftClassLoader();
+                $loader->registerNamespace('Thrift', APP_ROOT. 'framework');
+                $loader->registerNamespace('services', APP_ROOT);
+                $loader->registerDefinition('services',  APP_ROOT);
+                $loader->register(TRUE);
+                $this->_server = new RpcServer($this->_conf);
                 $this->_server->start();
             break;
         }

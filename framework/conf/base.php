@@ -87,7 +87,13 @@ return array(
             'ip' => '127.0.0.1',
             'port' => '8081',
             'supportHttp' => false,
-            'type' => 'http',
+            'type' => 'rpc',
+            'services' => [
+                'HelloService' => [
+                    'handle' => '\\services\\Hello\\Handler',
+                    'process' => '\\services\\Hello\\HelloServiceProcessor'
+                ]
+            ],
             'mq' => [
                 'exchange' => 'router',
                 'queue' => 'log_error',
@@ -103,7 +109,7 @@ return array(
             // 'factory_mode'=>2,
             // 'daemonize' => 1,
             'dispatch_mode' => 2,
-            'task_worker_num' =>1, //异步任务进程
+            'task_worker_num' =>0, //异步任务进程
             // "task_max_request"=>10,
             'max_request'=>3000,
             'worker_num'=>1,
