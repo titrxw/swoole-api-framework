@@ -8,10 +8,13 @@
 namespace framework\server;
 use framework\base\Base;
 use framework\base\Container;
+use framework\process\Manager;
+use framework\process\AutoReloadProcess;
 use framework\task\BaseTask;
 
 abstract class BaseServer extends Base implements ServerInterface
 {
+    protected $_pManager;
     protected $_event = null;
     protected $_server;
     protected $_maxTickStep = 86400000;
@@ -48,6 +51,14 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->onPipMessage();
         $this->onManagerStart();
         $this->onManagerStop();
+    }
+
+    protected function getProcessManager()
+    {
+        if (!$this->_pManager) {
+            $this->_pManager = new Manager();
+        }
+        return $this->_pManager;
     }
 
     public function setEvent($event)
@@ -113,7 +124,17 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
+                if (DEBUG) {
+                    $this->getProcessManager();
+                    $auto =new AutoReloadProcess();
+                    $auto->setServerPid($server->master_pid);
+                    $this->_pManager->addProcess($auto);
+                }
                 $this->afterManagerStart($server);
+                
+                if ($this->_pManager) {
+                    $this->_pManager->start();
+                }
                 swoole_set_process_name('manager');
             }
             catch (\Throwable $e)
@@ -125,6 +146,9 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function afterManagerStop(\swoole_server $server)
     {
+        if ($this->_pManager) {
+            $this->_pManager->kill();
+        }
         return true;
     }
 

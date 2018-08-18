@@ -8,13 +8,10 @@
 namespace framework\server;
 
 use framework\base\Container;
-use framework\process\Manager;
 use framework\process\ZookeeperProcess;
-use framework\process\AutoReloadProcess;
 
 class HttpServer extends BaseServer
 {
-    protected $_pManager;
 
     protected function init()
     {
@@ -36,25 +33,6 @@ class HttpServer extends BaseServer
         if (!empty($this->_conf['zookeeper'])) {
             $this->_pManager = new Manager();
             $this->_pManager->addProcess(new ZookeeperProcess());
-        }
-        if (DEBUG) {
-            if (!$this->_pManager) {
-                $this->_pManager = new Manager();
-            }
-            $auto =new AutoReloadProcess();
-            $auto->setServerPid($serv->master_pid);
-            $this->_pManager->addProcess($auto);
-        }
-        if ($this->_pManager) {
-            $this->_pManager->start();
-        }
-        return true;
-    }
-
-    protected function afterManagerStop(\swoole_server $serv)
-    {
-        if ($this->_pManager) {
-            $this->_pManager->kill();
         }
         return true;
     }
