@@ -16,7 +16,8 @@ return array(
         'crontabTask' => 'blog\\conf\\CrontabTask',
         'crontab' => 'framework\\crontab\\Crontab',
         'zookeeper' => 'framework\\components\\zookeeper\\ZookeeperConf',
-        'doc' => 'framework\\base\\Documentor'
+        'doc' => 'framework\\base\\Documentor',
+        'rpcClient' => 'framework\\client\\RpcClient'
     ),
     'components' => array(
         'zookeeper' => [
