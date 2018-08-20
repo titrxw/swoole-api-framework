@@ -42,7 +42,7 @@ class Server extends Component
                 $this->_server->start();
             case 'rpc':
             
-                require (APP_ROOT."framework/Thrift/ClassLoader/ThriftClassLoader.php");
+                require_once (APP_ROOT."framework/Thrift/ClassLoader/ThriftClassLoader.php");
                 $loader = new ThriftClassLoader();
                 $loader->registerNamespace('Thrift', APP_ROOT. 'framework');
                 $loader->registerNamespace('services', APP_ROOT);
