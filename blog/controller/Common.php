@@ -44,6 +44,11 @@ class Common extends Web
         echo 1;
     }
 
+    public function rpcApi()
+    {
+        $res = $this->rpcClient->call('127.0.0.1',8081,'\\services\\Hello\\HelloServiceClient','sayHello','24324');
+        var_dump($res);
+    }
 
     /**
      * @method get
