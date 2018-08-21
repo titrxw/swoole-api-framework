@@ -14,7 +14,7 @@ abstract class Cache extends Component
 
     public function getCacheKey($name)
     {
-        return getModule().($this->_conf['prefix'] ?? '') . $name;
+        return ($this->_conf['prefix'] ?? '') . $name;
     }
 
     public function getHandle()
