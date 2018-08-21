@@ -12,6 +12,9 @@ return array(
 //        },
         'crawler' => function ($params) {
             return new Symfony\Component\DomCrawler\Crawler();
+        },
+        'meedo' => function (array $params) {
+            return new \Medoo\Medoo($params);      //这里测试composer的加载
         }
     ),
     'addComponentsMap' => array(
@@ -29,8 +32,7 @@ return array(
         'uniqueid' => 'framework\\components\\uniqueid\\UniqueId',
 //        'sessionRedis' => 'framework\\components\\cache\\Redis',
 //        'session' => 'framework\\components\\session\\Session',
-        'captcha' => 'framework\\components\\captcha\\Captcha',
-        'meedo' => '\Medoo\Medo'
+        'captcha' => 'framework\\components\\captcha\\Captcha'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
         'redis' => array(
