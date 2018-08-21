@@ -18,7 +18,6 @@ class Redis extends Cache implements CacheInterface
         if (!extension_loaded('redis')) {
             $this->triggerThrowable(new \Exception('not support: redis', 500));
         }
-        unset($this->_conf);
         $this->_handle = new \Redis();
 
         $func = $this->getValueFromConf('persistent', false) === true ? 'pconnect' : 'connect';
