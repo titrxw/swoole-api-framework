@@ -34,8 +34,11 @@ class ServerWebSocketEvent implements SwooleEvent
     public function onWorkerStart(\swoole_server $server, $workerId)
     {
 //            开启数据库将断开的检测   8小时检测
-        Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTimer(28800000, function ($timer_id, $params) {
-            Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'meedo')->pdo->getAttribute(\PDO::ATTR_SERVER_INFO);
+        Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTimer(288, function ($timer_id, $params) {
+            global $ALL_MODULES;
+            foreach($ALL_MODULES as $key => $item) {
+                Container::getInstance()->getComponent($key, 'meedo')->pdo->getAttribute(\PDO::ATTR_SERVER_INFO);
+            }
         });
     }
 
