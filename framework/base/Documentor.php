@@ -27,7 +27,9 @@ class Documentor extends Component
         }
         $methodReflection = new \ReflectionMethod($class, $method);
         $this->getDocHandle();
-        $this->_docblock[$this->_class][$this->_method] = $this->_handle->create($methodReflection->getDocComment());
+
+        $doc = $methodReflection->getDocComment();
+        $this->_docblock[$this->_class][$this->_method] = $this->_handle->create($doc ? $doc : 'null');
         return $this;
     }
 
