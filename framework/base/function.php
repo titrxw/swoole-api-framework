@@ -5,6 +5,15 @@
  * Date: 18-4-21
  * Time: 下午9:16
  */
+
+
+ /**
+  * 全局变量
+  */
+  $ALL_MODULES = [];
+
+
+
 class MacAddr{
 
     protected $return_array = array(); // 返回带有MAC地址的字串数组
@@ -166,6 +175,10 @@ if (!function_exists('token')) {
 if (!function_exists('getModule')) {
     function getModule()
     {
+        global $ALL_MODULES;
+        if (!empty($_SERVER['CURRENT_SYSTEM'])) {
+            $ALL_MODULES[$_SERVER['CURRENT_SYSTEM']] = true;
+        }
         return $_SERVER['CURRENT_SYSTEM'] ?? '';
     }
 }
