@@ -167,7 +167,7 @@ if (!function_exists('token')) {
     {
         $data = is_array($data) ? json_encode($data) : $data;
         $salt = microtime();
-        $token = md5($prefx.$data.SYSTEM_WORK_ID.$salt);
+        $token = md5($prefx.$data.SYSTEM_CD_KEY.SYSTEM_WORK_ID.$salt);
         return $token;
     }
 }
