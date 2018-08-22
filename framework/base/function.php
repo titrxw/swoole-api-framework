@@ -175,10 +175,6 @@ if (!function_exists('token')) {
 if (!function_exists('getModule')) {
     function getModule()
     {
-        global $ALL_MODULES;
-        if (!empty($_SERVER['CURRENT_SYSTEM'])) {
-            $ALL_MODULES[$_SERVER['CURRENT_SYSTEM']] = true;
-        }
         return $_SERVER['CURRENT_SYSTEM'] ?? '';
     }
 }
