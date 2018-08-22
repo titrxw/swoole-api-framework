@@ -43,6 +43,10 @@ class HttpServer extends BaseServer
         $container = Container::getInstance();
         $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
         $_SERVER['CURRENT_SYSTEM'] = $urlInfo['system'];
+        
+        global $ALL_MODULES;
+        $ALL_MODULES[$_SERVER['CURRENT_SYSTEM']] = true;
+        
         $result = '';
 
         if ($urlInfo !== false) {
