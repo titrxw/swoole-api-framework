@@ -7,6 +7,7 @@ class Request extends Component
     protected $_method;
     protected $_rowBody;
     protected $_headers;
+    protected $_hasSpecialHtml = false;
     protected $_hasCheck = [];
 
     protected function init()
@@ -14,18 +15,20 @@ class Request extends Component
         $this->unInstall();
     }
 
-    protected function stripSlashes(&$data)
+    protected function addStripSlashes(&$data)
     {
         if(is_array($data))
         {
             if(count($data) == 0)
                 return $data;
-            $keys=array_map('stripslashes',array_keys($data));
+            $keys=array_map('addslashes',array_keys($data));
             $data=array_combine($keys,array_values($data));
-            return array_map(array($this,'stripSlashes'),$data);
+            $data = array_map(array($this,'addStripSlashes'),$data);
         }
-        else
-            return stripslashes($data);
+        else {
+            $data = addslashes($data);
+            return $data;
+        }
     }
 
     protected function checkData(&$data, $type, $params = '')
@@ -33,9 +36,13 @@ class Request extends Component
         $hasCheck =  $this->_hasCheck[$type][$params] ?? ($this->_hasCheck[$type.'ALL'] ?? false);
         if(empty($this->_hasCheck[$type.'ALL']) && !$hasCheck)
         {
-            if(function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
+            if (!$this->_hasSpecialHtml){
+                \htmlspecialchars($data);
+                $this->_hasSpecialHtml = true;
+            } 
+            if(!function_exists('get_magic_quotes_gpc') || !get_magic_quotes_gpc())
             {
-                $_GET = $this->stripSlashes($params ? $data[$params] : $data);
+                $this->addStripSlashes($params ? $data[$params] : $data);
             }
             if ($params) {
                 $this->_hasCheck[$type][$params] = true;
@@ -104,6 +111,46 @@ class Request extends Component
         return $result;
     }
 
+    /**
+     * 检测是否使用手机访问
+     * @access public
+     * @return bool
+     */
+    public function isMobile()
+    {
+        if (isset($_SERVER['HTTP_VIA']) && stristr($_SERVER['HTTP_VIA'], "wap")) {
+            return true;
+        } elseif (isset($_SERVER['HTTP_ACCEPT']) && strpos(strtoupper($_SERVER['HTTP_ACCEPT']), "VND.WAP.WML")) {
+            return true;
+        } elseif (isset($_SERVER['HTTP_X_WAP_PROFILE']) || isset($_SERVER['HTTP_PROFILE'])) {
+            return true;
+        } elseif (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/(blackberry|configuration\/cldc|hp |hp-|htc |htc_|htc-|iemobile|kindle|midp|mmp|motorola|mobile|nokia|opera mini|opera |Googlebot-Mobile|YahooSeeker\/M1A1-R2D2|android|iphone|ipod|mobi|palm|palmos|pocket|portalmmm|ppc;|smartphone|sonyericsson|sqh|spv|symbian|treo|up.browser|up.link|vodafone|windows ce|xda |xda_)/i', $_SERVER['HTTP_USER_AGENT'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * 当前是否ssl
+     * @access public
+     * @return bool
+     */
+    public function isSsl()
+    {
+        if (isset($_SERVER['HTTPS']) && ('1' == $_SERVER['HTTPS'] || 'on' == strtolower($_SERVER['HTTPS']))) {
+            return true;
+        } elseif (isset($_SERVER['REQUEST_SCHEME']) && 'https' == $_SERVER['REQUEST_SCHEME']) {
+            return true;
+        } elseif (isset($_SERVER['SERVER_PORT']) && ('443' == $_SERVER['SERVER_PORT'])) {
+            return true;
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && 'https' == $_SERVER['HTTP_X_FORWARDED_PROTO']) {
+            return true;
+        }
+        return false;
+    }
+
 
     public function headers()
     {
@@ -168,17 +215,17 @@ class Request extends Component
         }
         else
         {
-            if (getenv('HTTP_X_FORWARDED_FOR'))
+            if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
             {
-                $realip = getenv('HTTP_X_FORWARDED_FOR');
+                $realip = $_SERVER['HTTP_X_FORWARDED_FOR'];
             }
-            elseif (getenv('HTTP_CLIENT_IP'))
+            elseif (isset($_SERVER['HTTP_CLIENT_IP']))
             {
-                $realip = getenv('HTTP_CLIENT_IP');
+                $realip = $_SERVER['HTTP_CLIENT_IP'];
             }
             else
             {
-                $realip = getenv('REMOTE_ADDR');
+                $realip = $_SERVER['REMOTE_ADDR'];
             }
         }
 
