@@ -139,14 +139,7 @@ class HttpServer extends BaseServer
                 $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result );
                 $this->handleThrowable($exception);
             }
-            //  4.0版本后request回调本身是携程，但是如果处理请求中需要使用携程的话，可以如下使用
-//             $id = \Swoole\Coroutine::getuid();
-//             go (function () use ($id) {
-//                 \Swoole\Coroutine::sleep(5.2);
-//                 \Swoole\Coroutine::resume($id);
-//             });
-//             \Swoole\Coroutine::suspend();
-
+            
             if (!$hasEnd) {
                 $response->end();
             }
