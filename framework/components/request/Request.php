@@ -7,7 +7,6 @@ class Request extends Component
     protected $_method;
     protected $_rowBody;
     protected $_headers;
-    protected $_hasSpecialHtml = false;
     protected $_hasCheck = [];
 
     protected function init()
@@ -27,6 +26,7 @@ class Request extends Component
             return $data;
         }
         else {
+            $data = \htmlspecialchars($data);
             $data = addslashes($data);
             return $data;
         }
@@ -37,10 +37,6 @@ class Request extends Component
         $hasCheck =  $this->_hasCheck[$type][$params] ?? ($this->_hasCheck[$type.'ALL'] ?? false);
         if(empty($this->_hasCheck[$type.'ALL']) && !$hasCheck)
         {
-            if (!$this->_hasSpecialHtml){
-                \htmlspecialchars($data);
-                $this->_hasSpecialHtml = true;
-            } 
             if(!function_exists('get_magic_quotes_gpc') || !get_magic_quotes_gpc())
             {
                 $data = $params ? $data[$params] : $data;
