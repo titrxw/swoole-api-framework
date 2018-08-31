@@ -215,6 +215,9 @@ class Container extends Base
     {
         foreach ($this->_instances as  $haver => $item) {
             foreach ($item as $key => $value) {
+                if ($haver ==SYSTEM_APP_NAME && $key == 'server') {
+                    continue;
+                }
                 $this->destroyComponent($haver, $key);
             }
         }
