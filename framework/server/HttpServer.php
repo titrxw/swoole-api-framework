@@ -73,6 +73,8 @@ class HttpServer extends BaseServer
     {
         $this->_server->on("request", function (\swoole_http_request $request,\swoole_http_response $response)
         {
+            $GLOBALS['ERROR'] = false;
+            $GLOBALS['EXCEPTION'] = false;
             if (DEBUG)
             {
                 ob_start();
@@ -121,25 +123,32 @@ class HttpServer extends BaseServer
                         if (is_array($elseContent)) {
                             $elseContent = json_encode($elseContent);
                         }
-                        $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $elseContent);
+                        $result .= $elseContent;
                         unset($elseContent);
                     }
                 }
-                $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
             }
             catch (\Throwable $exception)
             {
                 $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
                 $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
-                $result = '';
                 if (DEBUG) {
-                    $result = $exception->getMessage().$exception->getTraceAsString();
+                    $result = $result ?? '';
+                    $result .= $exception->getMessage().$exception->getTraceAsString();
                     $result .= ob_get_clean();
+                    $GLOBALS['EXCEPTION'] = false;
                 }
-                $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result );
                 $this->handleThrowable($exception);
             }
-            
+            if (DEBUG) {
+                if ($GLOBALS['EXCEPTION']) {
+                    $result .= $GLOBALS['EXCEPTION'];
+                }
+                if ($GLOBALS['ERROR']) {
+                    $result .= $GLOBALS['ERROR'];
+                }
+            }
+            $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
             if (!$hasEnd) {
                 $response->end();
             }
