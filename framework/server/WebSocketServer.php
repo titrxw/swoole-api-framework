@@ -100,6 +100,8 @@ class WebSocketServer extends HttpServer
                 return false;
             }
 
+            global $ALL_MODULES;
+            $ALL_MODULES[$frame->data['system']] = true;
 
             try
             {
