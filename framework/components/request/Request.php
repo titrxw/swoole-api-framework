@@ -24,6 +24,7 @@ class Request extends Component
             $keys=array_map('addslashes',array_keys($data));
             $data=array_combine($keys,array_values($data));
             $data = array_map(array($this,'addStripSlashes'),$data);
+            return $data;
         }
         else {
             $data = addslashes($data);
