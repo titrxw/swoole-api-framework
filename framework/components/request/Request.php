@@ -42,7 +42,8 @@ class Request extends Component
             } 
             if(!function_exists('get_magic_quotes_gpc') || !get_magic_quotes_gpc())
             {
-                $this->addStripSlashes($params ? $data[$params] : $data);
+                $data = $params ? $data[$params] : $data;
+                $this->addStripSlashes($data);
             }
             if ($params) {
                 $this->_hasCheck[$type][$params] = true;
