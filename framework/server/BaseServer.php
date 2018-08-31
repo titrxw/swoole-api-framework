@@ -177,6 +177,12 @@ abstract class BaseServer extends Base implements ServerInterface
         // TODO: Implement onWorkStart() method.
         $this->_server->on("workerStart",function (\swoole_server $server, $workerId)
         {
+            if ($this->isWork($workerId)) {
+                swoole_set_process_name('worker');
+            } else {
+                swoole_set_process_name('task-worker');
+            }
+            
             //\opcache_reset();
             \define('SYSTEM_WORK_ID', \getmypid());
             try
