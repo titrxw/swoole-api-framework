@@ -84,6 +84,8 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
         {
+            $GLOBALS['ERROR'] = false;
+            $GLOBALS['EXCEPTION'] = false;
 //            目前不支持过大消息和二进制数据
             if (!$frame->finish || $frame->opcode !== WEBSOCKET_OPCODE_TEXT) {
                 $server->push($frame->fd, '');
@@ -100,8 +102,10 @@ class WebSocketServer extends HttpServer
                 return false;
             }
 
+            
             global $ALL_MODULES;
             $ALL_MODULES[$frame->data['system']] = true;
+
 
             try
             {
@@ -142,25 +146,32 @@ class WebSocketServer extends HttpServer
                     $result = $_result . $result;
                     unset($_result);
                 }
-
-
-                $server->push($frame->fd, $result);
-                unset($result);
             }
             catch (\Throwable $exception)
             {
                 $result = $exception->getMessage();
                 if (DEBUG) {
-                    $result = ob_get_clean() . $result;
+                    $result = $result ?? '';
+                    $result .= ob_get_clean();
+                    $GLOBALS['EXCEPTION'] = false;
                 }
-                $server->push($frame->fd, $result);
                 $this->handleThrowable($exception);
             }
+            
+            if (DEBUG) {
+                if ($GLOBALS['EXCEPTION']) {
+                    $result .= $GLOBALS['EXCEPTION'];
+                }
+                if ($GLOBALS['ERROR']) {
+                    $result .= $GLOBALS['ERROR'];
+                }
+            }
 
+            $server->push($frame->fd, $result);
 
             $container->finish($frame->data['system']);
             $container->finish(SYSTEM_APP_NAME);
-            unset($container, $server, $frame);
+            unset($container, $server, $frame, $result);
             return false;
         });
     }
