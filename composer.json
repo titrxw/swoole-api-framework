@@ -22,6 +22,7 @@
         "diversen/http-send-file": "2.0.3",
         "elasticsearch/elasticsearch": "~6.0",
         "monolog/monolog": "^1.23",
-        "phpdocumentor/reflection-docblock": "^4.3"
+        "phpdocumentor/reflection-docblock": "^4.3",
+        "catfan/medoo": "^1.5"
     }
 }
