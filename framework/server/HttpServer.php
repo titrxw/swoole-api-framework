@@ -42,14 +42,15 @@ class HttpServer extends BaseServer
         // TODO: Implement execApp() method.
         $container = Container::getInstance();
         $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
-        $_SERVER['CURRENT_SYSTEM'] = $urlInfo['system'];
         
-        global $ALL_MODULES;
-        $ALL_MODULES[$_SERVER['CURRENT_SYSTEM']] = true;
         
         $result = '';
 
         if ($urlInfo !== false) {
+            $_SERVER['CURRENT_SYSTEM'] = $urlInfo['system'];
+            global $ALL_MODULES;
+            $ALL_MODULES[$_SERVER['CURRENT_SYSTEM']] = true;
+            
             // 初始化配置项
             if (!$container->appHasComponents($urlInfo['system'])) {
 //                这里现在还缺少文件系统
@@ -63,6 +64,8 @@ class HttpServer extends BaseServer
             }
 
             $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run($urlInfo);
+        } else {
+            return FAVICON;
         }
 
         unset($container);
@@ -115,7 +118,7 @@ class HttpServer extends BaseServer
 
 
                 $result = $this->execApp($response);
-                $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
+                $result != FAVICON && $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
                 if (DEBUG)
                 {
                     $elseContent = ob_get_clean();
