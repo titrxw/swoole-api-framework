@@ -143,7 +143,6 @@ class HttpServer extends BaseServer
             }
             
             if (DEBUG) {
-                $result = $result ?? '';
                 if ($GLOBALS['EXCEPTION']) {
                     $result = $GLOBALS['EXCEPTION'];
                 } else if ($GLOBALS['ERROR']) {
