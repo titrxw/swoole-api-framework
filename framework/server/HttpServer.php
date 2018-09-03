@@ -135,22 +135,22 @@ class HttpServer extends BaseServer
             {
                 $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
                 $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
-                if (DEBUG) {
-                    $result = $result ?? '';
-                    $result .= $exception->getMessage().$exception->getTraceAsString();
-                    $result .= ob_get_clean();
-                    $GLOBALS['EXCEPTION'] = false;
-                }
                 $this->handleThrowable($exception);
+                if (DEBUG)
+                {
+                    ob_get_clean();
+                }
             }
+            
             if (DEBUG) {
+                $result = $result ?? '';
                 if ($GLOBALS['EXCEPTION']) {
-                    $result .= $GLOBALS['EXCEPTION'];
-                }
-                if ($GLOBALS['ERROR']) {
-                    $result .= $GLOBALS['ERROR'];
+                    $result = $GLOBALS['EXCEPTION'];
+                } else if ($GLOBALS['ERROR']) {
+                    $result = $GLOBALS['ERROR'];
                 }
             }
+
             $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
             if (!$hasEnd) {
                 $response->end();
