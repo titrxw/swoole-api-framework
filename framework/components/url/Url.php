@@ -25,6 +25,9 @@ class Url extends Component
         $type = $this->getType();
         if ($type === '?')
         {
+            if ($_SERVER['REQUEST_URI'] == '/' . FAVICON){
+                return false;
+            }
             $system = $_GET[$this->getValueFromConf('systemKey', 's')] ?? '';
             if (!empty($system)) {
                 if (!\in_array($system, $this->getValueFromConf('systems',[]))) {
@@ -53,7 +56,7 @@ class Url extends Component
             }
 
             $tmpQuery = \explode($this->getValueFromConf('separator', '/'), $query);
-            if (!empty($tmpQuery[0]) && $tmpQuery[0] === 'favicon.ico') {
+            if (!empty($tmpQuery[0]) && $tmpQuery[0] === FAVICON) {
                 return false;
             }
 
