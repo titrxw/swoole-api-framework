@@ -150,20 +150,17 @@ class WebSocketServer extends HttpServer
             catch (\Throwable $exception)
             {
                 $result = $exception->getMessage();
-                if (DEBUG) {
-                    $result = $result ?? '';
-                    $result .= ob_get_clean();
-                    $GLOBALS['EXCEPTION'] = false;
-                }
                 $this->handleThrowable($exception);
+                if (DEBUG) {
+                    ob_get_clean();
+                }
             }
             
             if (DEBUG) {
                 if ($GLOBALS['EXCEPTION']) {
-                    $result .= $GLOBALS['EXCEPTION'];
-                }
-                if ($GLOBALS['ERROR']) {
-                    $result .= $GLOBALS['ERROR'];
+                    $result = $GLOBALS['EXCEPTION'];
+                } else if ($GLOBALS['ERROR']) {
+                    $result = $GLOBALS['ERROR'];
                 }
             }
 
