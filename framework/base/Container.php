@@ -218,7 +218,7 @@ class Container extends Base
                 if ($haver ==SYSTEM_APP_NAME && $key == 'server') {
                     continue;
                 }
-                $this->destroyComponent($haver, $key);
+                $this->destroyComponentsInstance($haver, $key);
             }
         }
     }
