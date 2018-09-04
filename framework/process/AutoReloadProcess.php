@@ -20,7 +20,7 @@ class AutoReloadProcess extends Process
   public function doProcess(\swoole_process $worker)
   {
     $kit = new \framework\autoreload\AutoReload($this->pid);  
-    $kit->addFileType('.php');
+    $kit->addFileType('php');
     $kit->watch(APP_ROOT);
     $kit->run();
   }
