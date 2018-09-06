@@ -16,7 +16,7 @@ class ServerWebSocketEvent implements SwooleEvent
 {
     public $_connections = array();
 
-    public function onHandShake(\swoole_server $request, \swoole_http_response $response)
+    public function onHandShake(\swoole_http_request $request, \swoole_http_response $response)
     {
 
     }
