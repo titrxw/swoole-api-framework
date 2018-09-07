@@ -89,6 +89,8 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
         {
+            $GLOBALS['ERROR'] = false;
+            $GLOBALS['EXCEPTION'] = false;
 //            目前不支持过大消息和二进制数据
             if (!$frame->finish || $frame->opcode !== WEBSOCKET_OPCODE_TEXT) {
                 $server->push($frame->fd, '');
