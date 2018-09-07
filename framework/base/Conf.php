@@ -22,7 +22,7 @@ class Conf extends Component
             $path = APP_ROOT . $this->_haver . '/conf/' . $name[0] . '.php';
             
             if (!file_exists($path)) {
-                $this->triggerThrowable('conf file ' . $name[0] . ' not exists', 500);
+                $this->triggerThrowable(new \Error('conf file ' . $name[0] . ' not exists', 500));
             }
             $this->_config[$this->_haver][$name[0]] = include $path;
         }
