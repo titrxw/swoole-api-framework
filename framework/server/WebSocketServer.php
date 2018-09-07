@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Created by PhpStorm.
@@ -7,6 +6,7 @@
  * Time: 下午8:54
  */
 namespace framework\server;
+
 use framework\base\Container;
 class WebSocketServer extends HttpServer
 {
@@ -74,6 +74,14 @@ class WebSocketServer extends HttpServer
             }
             $response->status(101);
             $response->end();
+
+            foreach ($request->server as $key => $item)
+            {
+                $request->server[strtoupper($key)] = $item;
+                unset($request->server[$key]);
+            }
+            $_SERVER = $request->server;
+
             return true;
         });
     }
@@ -81,8 +89,6 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
         {
-            $GLOBALS['ERROR'] = false;
-            $GLOBALS['EXCEPTION'] = false;
 //            目前不支持过大消息和二进制数据
             if (!$frame->finish || $frame->opcode !== WEBSOCKET_OPCODE_TEXT) {
                 $server->push($frame->fd, '');
@@ -93,11 +99,16 @@ class WebSocketServer extends HttpServer
                 ob_start();
             }
             $frame->data = json_decode($frame->data, true);
-            if (empty($frame->data['system']) || empty($frame->data['controller']) || empty($frame->data['action'])) {
+
+            if (empty($frame->data['controller']) || empty($frame->data['action'])) {
                 $server->push($frame->fd, 'bad request');
                 return false;
             }
-            
+
+            $container = Container::getInstance();
+            $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
+            $frame->data['system'] = $urlInfo['system'];
+
             global $ALL_MODULES;
             $ALL_MODULES[$frame->data['system']] = true;
             try
@@ -109,7 +120,6 @@ class WebSocketServer extends HttpServer
                 if (!empty($frame->data['data'])) {
                     $_GET = $frame->data['data'];
                 }
-                $container = Container::getInstance();
                 $_SERVER['CURRENT_SYSTEM'] = $frame->data['system'];
                     // 初始化配置项
                 if (!$container->appHasComponents($frame->data['system'])) {
