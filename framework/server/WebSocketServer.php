@@ -8,8 +8,12 @@
 namespace framework\server;
 
 use framework\base\Container;
+
 class WebSocketServer extends HttpServer
 {
+
+    protected $_pathInfo;
+
     protected function init()
     {
         $this->_server = new  \swoole_websocket_server($this->_conf['ip'], $this->_conf['port']);
@@ -33,7 +37,7 @@ class WebSocketServer extends HttpServer
             }
             catch (\Throwable $e)
             {
-                $this->triggerThrowable($e);
+                $this->handleThrowable($e);
             }
         });
     }
@@ -41,47 +45,64 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('handshake', function (\swoole_http_request $request, \swoole_http_response $response)
         {
-            if ($this->_event) {
-                $this->_event->onHandShake($request, $response);
-            }
-            if (!isset($request->header['sec-websocket-key']))
-            {
-                //'Bad protocol implementation: it is not RFC6455.'
+            try {
+                if (!isset($request->header['sec-websocket-key']))
+                {
+                    //'Bad protocol implementation: it is not RFC6455.'
+                    $response->end();
+                    return false;
+                }
+                if (0 === preg_match('#^[+/0-9A-Za-z]{21}[AQgw]==$#', $request->header['sec-websocket-key'])
+                    || 16 !== strlen(base64_decode($request->header['sec-websocket-key']))
+                )
+                {
+                    //Header Sec-WebSocket-Key is illegal;
+                    $response->end();
+                    return false;
+                }
+                $key = base64_encode(sha1($request->header['sec-websocket-key']
+                    . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
+                    true));
+                $headers = array(
+                    'Upgrade'               => 'websocket',
+                    'Connection'            => 'Upgrade',
+                    'Sec-WebSocket-Accept'  => $key,
+                    'Sec-WebSocket-Version' => '13',
+                    'KeepAlive'             => 'off',
+                );
+                foreach ($headers as $key => $val)
+                {
+                    $response->header($key, $val);
+                }
+                $response->status(101);
                 $response->end();
-                return false;
-            }
-            if (0 === preg_match('#^[+/0-9A-Za-z]{21}[AQgw]==$#', $request->header['sec-websocket-key'])
-                || 16 !== strlen(base64_decode($request->header['sec-websocket-key']))
-            )
-            {
-                //Header Sec-WebSocket-Key is illegal;
-                $response->end();
-                return false;
-            }
-            $key = base64_encode(sha1($request->header['sec-websocket-key']
-                . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
-                true));
-            $headers = array(
-                'Upgrade'               => 'websocket',
-                'Connection'            => 'Upgrade',
-                'Sec-WebSocket-Accept'  => $key,
-                'Sec-WebSocket-Version' => '13',
-                'KeepAlive'             => 'off',
-            );
-            foreach ($headers as $key => $val)
-            {
-                $response->header($key, $val);
-            }
-            $response->status(101);
-            $response->end();
 
-            foreach ($request->server as $key => $item)
-            {
-                $request->server[strtoupper($key)] = $item;
-                unset($request->server[$key]);
-            }
-            $_SERVER = $request->server;
+                foreach ($request->server as $key => $item)
+                {
+                    $request->server[strtoupper($key)] = $item;
+                    unset($request->server[$key]);
+                }
+                $_SERVER = $request->server;
+                $container = Container::getInstance();
+                $this->_pathInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
+                $_SERVER['CURRENT_SYSTEM'] = $this->_pathInfo['system'];
+                
+                if (!$container->appHasComponents($this->_pathInfo['system'])) {
+                    $appConf = require_file($this->_pathInfo['system'] . '/conf/conf.php');
+                    $container->addComponents($this->_pathInfo['system'], $appConf['addComponentsMap'] ?? []);
+                    $container->setAppComponents($this->_pathInfo['system'] ,[
+                        'components' => $appConf['components'] ?? [],
+                        'composer' => $appConf['composer'] ?? []
+                    ]);
+                }
 
+                if ($this->_event) {
+                    $this->_event->onHandShake($request, $response);
+                }
+            } catch (\Throwable $e) {
+                $this->handleThrowable($e);
+            }
+            
             return true;
         });
     }
@@ -107,9 +128,7 @@ class WebSocketServer extends HttpServer
                 return false;
             }
 
-            $container = Container::getInstance();
-            $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
-            $frame->data['system'] = $urlInfo['system'];
+            $frame->data['system'] = $this->pathInfo['system'];
 
             global $ALL_MODULES;
             $ALL_MODULES[$frame->data['system']] = true;
@@ -122,16 +141,9 @@ class WebSocketServer extends HttpServer
                 if (!empty($frame->data['data'])) {
                     $_GET = $frame->data['data'];
                 }
-                $_SERVER['CURRENT_SYSTEM'] = $frame->data['system'];
                     // 初始化配置项
-                if (!$container->appHasComponents($frame->data['system'])) {
-                    $appConf = require_file($frame->data['system'] . '/conf/conf.php');
-                    $container->addComponents($frame->data['system'], $appConf['addComponentsMap'] ?? []);
-                    $container->setAppComponents($frame->data['system'] ,[
-                        'components' => $appConf['components'] ?? [],
-                        'composer' => $appConf['composer'] ?? []
-                    ]);
-                }
+                $container = Container::getInstance();
+                
                 $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run(array(
                     'system' => $frame->data['system'],
                     'controller' => $frame->data['controller'],
@@ -144,6 +156,9 @@ class WebSocketServer extends HttpServer
                 {
                     $_result = ob_get_clean();
                     $_result = is_array($_result) ? json_encode($_result) : $_result;
+                    if (\is_array($result)) {
+                        $result = json_encode($result);
+                    }
                     $result = $_result . $result;
                     unset($_result);
                 }
@@ -164,6 +179,7 @@ class WebSocketServer extends HttpServer
                     $result = $GLOBALS['ERROR'];
                 }
             }
+
             $server->push($frame->fd, $result);
             $container->finish($frame->data['system']);
             $container->finish(SYSTEM_APP_NAME);
