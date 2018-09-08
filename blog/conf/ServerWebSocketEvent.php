@@ -18,7 +18,8 @@ class ServerWebSocketEvent implements SwooleEvent
 
     public function onHandShake(\swoole_http_request $request, \swoole_http_response $response)
     {
-
+        // 保存fd
+        Container::getInstance()->getComponent(\getModule(), 'redis')->getHandle()->lpush('blog_ws_user_list', $request->fd);
     }
 
     public function onConnect(\swoole_server $server, $client_id, $from_id)
@@ -61,7 +62,7 @@ class ServerWebSocketEvent implements SwooleEvent
 
     public function onClose(\swoole_server $server, $fd, $reactorId)
     {
-//        unset($this->_connections[$frame->fd]);
+        Container::getInstance()->getComponent(\getModule(), 'redis')->getHandle()->lrem('blog_ws_user_list', $fd);
     }
 
 
