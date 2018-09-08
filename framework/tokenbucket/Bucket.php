@@ -13,18 +13,6 @@ class Bucket extends Component
     protected $_buckets;
     protected $_bucketListKey = 'bucket_token_redis_list';
     protected $_bucketsInstance;
-    protected function init()
-    {
-        // $redis = $this->getComponent(getModule(), 'redis');
-//        清空之前的token  防止不生效  
-        // while ($key = $redis->getHandle()->lpop($redis->getCacheKey($this->_bucketListKey)))
-        // {
-        //     $redis->rm($key);
-        // }
-        // $redis->rm($this->_bucketListKey);
-
-        // unset($redis);
-    }
 
     public function validates($data = [])
     {
@@ -47,11 +35,7 @@ class Bucket extends Component
     {
         if (empty($this->_bucketsInstance[$name]) && !empty($this->_buckets[$name]['class'])) {
             $class = $this->_buckets[$name]['class'];
-            $conf = array(
-                'default' => [],
-                'app' => $this->_buckets[$name]['conf'] ?? []
-            );
-            $instance = new $class($conf);
+            $instance = new $class($this->_buckets[$name]['conf'] ?? []);
             if (!$instance instanceof TokenBucket) {
                 unset($instance);
                 $this->triggerThrowable(new \Exception('bucket ' . $class . ' must be instanceof TokenBucket', 500));
