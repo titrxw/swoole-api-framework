@@ -126,6 +126,9 @@ class HttpServer extends BaseServer
                         if (is_array($elseContent)) {
                             $elseContent = json_encode($elseContent);
                         }
+                        if (\is_array($result)) {
+                            $result = json_encode($result);
+                        }
                         $result .= $elseContent;
                         unset($elseContent);
                     }
