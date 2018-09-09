@@ -55,6 +55,11 @@ abstract class Controller extends \framework\base\Controller
         return $this->view->display($path);
     }
 
+    public function after($data = [])
+    {
+        return $data;
+    }
+
     protected function sendFile($path, $type = 'jpg')
     {
         if (!file_exists($path))
