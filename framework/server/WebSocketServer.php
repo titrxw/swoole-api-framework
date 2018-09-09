@@ -11,8 +11,8 @@ use framework\base\Container;
 
 class WebSocketServer extends HttpServer
 {
-
     protected $_pathInfo;
+    protected $_prePushList = [];
 
     protected function init()
     {
@@ -25,6 +25,28 @@ class WebSocketServer extends HttpServer
         }
         $this->onMessage();
     }
+ 
+    public function push($fd, $data, $now = false)
+    {
+        if ($now) {
+            $this->_server->push($fd,$data);
+        } else {
+            $this->_prePushList[] = [
+                'fd' => $fd,
+                'data' => $data
+            ];
+        }
+    }
+
+    protected function pushAll()
+    {
+        foreach ($this->_prePushList as $key => $value) {
+            # code...
+            $this->_server->push($value['fd'],$value['data']);
+        }
+        $this->_prePushList = [];
+    }
+ 
     protected function onOpen()
     {
         $this->_server->on('open', function (\swoole_websocket_server $server, $request)
@@ -180,7 +202,8 @@ class WebSocketServer extends HttpServer
                 }
             }
 
-            $server->push($frame->fd, $result);
+            $this->push($frame->fd, $result);
+            $this->pushAll();
             $container->finish($frame->data['system']);
             $container->finish(SYSTEM_APP_NAME);
             unset($container, $server, $frame, $result);
