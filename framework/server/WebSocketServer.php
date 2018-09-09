@@ -13,6 +13,7 @@ class WebSocketServer extends HttpServer
 {
     protected $_pathInfo;
     protected $_prePushList = [];
+    protected $_fd;
 
     protected function init()
     {
@@ -45,6 +46,11 @@ class WebSocketServer extends HttpServer
             $this->_server->push($value['fd'],$value['data']);
         }
         $this->_prePushList = [];
+    }
+
+    public function fd()
+    {
+        return $this->_fd;
     }
  
     protected function onOpen()
@@ -165,6 +171,7 @@ class WebSocketServer extends HttpServer
                 }
                     // 初始化配置项
                 $container = Container::getInstance();
+                $this->_fd = $frame->fd;
                 
                 $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run(array(
                     'system' => $frame->data['system'],
