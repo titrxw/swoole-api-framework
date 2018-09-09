@@ -34,13 +34,4 @@ abstract class Api extends Controller
     {
         return $this->_responseData;
     }
-
-    public function after($data = [])
-    {
-        if (!is_array($data))
-        {
-            $data = array($data);
-        }
-        return $data;
-    }
 }
