@@ -129,6 +129,31 @@ if (!function_exists('include_file_once')) {
     }
 }
 
+if (!function_exists('hash32')) {
+    function hash32 ($str)
+    {
+        return crc32($str) >> 16 & 0x7FFFFFFF; 
+    }
+}
+
+if (!function_exists('hash33')) {
+    function hash33 ($str)
+    {
+        $hash = 5381;
+        $s    = md5($str); //相比其它版本，进行了md5加密
+        $seed = 5;
+        $len  = 32;//加密后长度32
+        for ($i = 0; $i < $len; $i++) {
+            // (hash << 5) + hash 相当于 hash * 33
+            //$hash = sprintf("%u", $hash * 33) + ord($s{$i});
+            //$hash = ($hash * 33 + ord($s{$i})) & 0x7FFFFFFF;
+            $hash = ($hash << $seed) + $hash + ord($s{$i});
+        }
+ 
+        return $hash & 0x7FFFFFFF;  
+    }
+}
+
 if (!function_exists('randStr')) {
     function randStr($len = 8)
     {
