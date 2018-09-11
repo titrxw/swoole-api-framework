@@ -29,6 +29,7 @@ class WebSocketServer extends HttpServer
  
     public function push($fd, $data, $now = false)
     {
+        $data = \is_array($data) ? \json_encode($data) : $data;
         if ($now) {
             $this->_server->push($fd,$data);
         } else {
