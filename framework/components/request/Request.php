@@ -39,8 +39,11 @@ class Request extends Component
         {
             if(!function_exists('get_magic_quotes_gpc') || !get_magic_quotes_gpc())
             {
-                $data = $params ? $data[$params] : $data;
-                $this->addStripSlashes($data);
+                if ($params) {
+                    $this->addStripSlashes($data[$params]);
+                } else {
+                    $this->addStripSlashes($data);
+                }
             }
             if ($params) {
                 $this->_hasCheck[$type][$params] = true;
