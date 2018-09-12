@@ -41,9 +41,9 @@ class Dispatcher extends Component
                 }
             }
         }
-
-        $controllerInstance->setController($args['controller']);
-        $controllerInstance->setAction($args['action']);
+        
+        $controllerInstance->setController($controllerName);
+        $controllerInstance->setAction($actionName);
 
         $result = $controllerInstance->before();
         if ($result === true)
