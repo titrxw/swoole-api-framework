@@ -6,14 +6,12 @@ use framework\base\Container;
 class Dispatcher extends Component
 {
     protected $_system;
-    protected $_controller;
-    protected $_action;
 
     public function run($args = [])
     {
         $this->_system = \getModule();
+        $args['controller'] = \ucfirst($args['controller']);
         $controllerName = $this->getValueFromConf('controller.prefix') . $args['controller'] . $this->getValueFromConf('controller.suffix');
-        $controllerName = \ucfirst($controllerName);
         if (!\file_exists(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php'))
         {
             $this->triggerThrowable(new \Exception(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php not exists', 404));
@@ -43,13 +41,9 @@ class Dispatcher extends Component
                 }
             }
         }
-       
 
-
-        $controllerInstance->setController($controllerName);
-        $controllerInstance->setAction($actionName);
-        $this->_controller = $controllerName;
-        $this->_action = $actionName;
+        $controllerInstance->setController($args['controller']);
+        $controllerInstance->setAction($args['action']);
 
 
         $result = $controllerInstance->before();
@@ -64,15 +58,5 @@ class Dispatcher extends Component
         $result = $controllerInstance->after($result);
         unset($controllerInstance, $args);
         return $result;
-    }
-
-    public function getController ()
-    {
-        return $this->_controller;
-    }
-
-    public function getAction ()
-    {
-        return $this->_action;
     }
 }
