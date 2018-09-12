@@ -169,6 +169,8 @@ class WebSocketServer extends HttpServer
                 }
                 if (!empty($frame->data['data'])) {
                     $_GET = $frame->data['data'];
+                } else {
+                    $_GET = [];
                 }
                     // 初始化配置项
                 $container = Container::getInstance();
