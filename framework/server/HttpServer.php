@@ -101,6 +101,7 @@ class HttpServer extends BaseServer
                 $_COOKIE = $request->cookie;
             }
 
+            $result = '';
             $hasEnd = false;
             try
             {
@@ -141,7 +142,17 @@ class HttpServer extends BaseServer
                 $this->handleThrowable($exception);
                 if (DEBUG)
                 {
-                    ob_get_clean();
+                    $elseContent = ob_get_clean();
+                    if ($elseContent) {
+                        if (is_array($elseContent)) {
+                            $elseContent = json_encode($elseContent);
+                        }
+                        if (\is_array($result)) {
+                            $result = json_encode($result);
+                        }
+                        $result .= $elseContent;
+                        unset($elseContent);
+                    }
                 }
             }
             
