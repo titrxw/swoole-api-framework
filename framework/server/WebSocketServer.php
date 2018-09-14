@@ -160,6 +160,7 @@ class WebSocketServer extends HttpServer
             $frame->data['system'] = $this->pathInfo['system'];
 
             global $ALL_MODULES;
+            $result = '';
             $ALL_MODULES[$frame->data['system']] = true;
             try
             {
@@ -200,7 +201,17 @@ class WebSocketServer extends HttpServer
                 $result = $exception->getMessage();
                 $this->handleThrowable($exception);
                 if (DEBUG) {
-                    ob_get_clean();
+                    $elseContent = ob_get_clean();
+                    if ($elseContent) {
+                        if (is_array($elseContent)) {
+                            $elseContent = json_encode($elseContent);
+                        }
+                        if (\is_array($result)) {
+                            $result = json_encode($result);
+                        }
+                        $result .= $elseContent;
+                        unset($elseContent);
+                    }
                 }
             }
             
