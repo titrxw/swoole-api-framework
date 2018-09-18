@@ -75,6 +75,12 @@ class WebSocketServer extends HttpServer
         $this->_server->on('handshake', function (\swoole_http_request $request, \swoole_http_response $response)
         {
             try {
+                if ($this->_event && method_exists($this->_event, 'beforeHandShake')) {
+                    $result = $this->_event->beforeHandShake($request, $response);
+                    if (!$result) {
+                        return false;
+                    }
+                }
                 if (!isset($request->header['sec-websocket-key']))
                 {
                     //'Bad protocol implementation: it is not RFC6455.'
@@ -126,10 +132,11 @@ class WebSocketServer extends HttpServer
                 }
 
                 if ($this->_event) {
-                    $this->_event->onHandShake($request, $response);
+                    return $this->_event->onHandShake($request, $response);
                 }
             } catch (\Throwable $e) {
                 $this->handleThrowable($e);
+                return false;
             }
             
             return true;
