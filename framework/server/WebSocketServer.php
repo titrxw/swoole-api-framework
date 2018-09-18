@@ -26,6 +26,13 @@ class WebSocketServer extends HttpServer
         }
         $this->onMessage();
     }
+
+    public function disConnect($fd)
+    {
+        if ($this->_server->exist($fd)) {
+            $this->_server->disconnect($fd);
+        }
+    }
  
     public function push($fd, $data, $now = false)
     {
@@ -75,12 +82,6 @@ class WebSocketServer extends HttpServer
         $this->_server->on('handshake', function (\swoole_http_request $request, \swoole_http_response $response)
         {
             try {
-                if ($this->_event && method_exists($this->_event, 'beforeHandShake')) {
-                    $result = $this->_event->beforeHandShake($request, $response);
-                    if (!$result) {
-                        return false;
-                    }
-                }
                 if (!isset($request->header['sec-websocket-key']))
                 {
                     //'Bad protocol implementation: it is not RFC6455.'
@@ -95,22 +96,6 @@ class WebSocketServer extends HttpServer
                     $response->end();
                     return false;
                 }
-                $key = base64_encode(sha1($request->header['sec-websocket-key']
-                    . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
-                    true));
-                $headers = array(
-                    'Upgrade'               => 'websocket',
-                    'Connection'            => 'Upgrade',
-                    'Sec-WebSocket-Accept'  => $key,
-                    'Sec-WebSocket-Version' => '13',
-                    'KeepAlive'             => 'off',
-                );
-                foreach ($headers as $key => $val)
-                {
-                    $response->header($key, $val);
-                }
-                $response->status(101);
-                $response->end();
 
                 foreach ($request->server as $key => $item)
                 {
@@ -132,10 +117,33 @@ class WebSocketServer extends HttpServer
                 }
 
                 if ($this->_event) {
-                    return $this->_event->onHandShake($request, $response);
+                    $result = $this->_event->onHandShake($request, $response);
+                    if (!$result) {
+                        $response->end();
+                        return false;
+                    }
                 }
+
+                $key = base64_encode(sha1($request->header['sec-websocket-key']
+                    . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
+                    true));
+                $headers = array(
+                    'Upgrade'               => 'websocket',
+                    'Connection'            => 'Upgrade',
+                    'Sec-WebSocket-Accept'  => $key,
+                    'Sec-WebSocket-Version' => '13',
+                    'KeepAlive'             => 'off',
+                );
+                foreach ($headers as $key => $val)
+                {
+                    $response->header($key, $val);
+                }
+                $response->status(101);
+                $response->end();
+
             } catch (\Throwable $e) {
                 $this->handleThrowable($e);
+                $response->end();
                 return false;
             }
             
@@ -164,7 +172,7 @@ class WebSocketServer extends HttpServer
                 return false;
             }
 
-            $frame->data['system'] = $this->pathInfo['system'];
+            $frame->data['system'] = $this->_pathInfo['system'];
 
             global $ALL_MODULES;
             $result = '';
