@@ -113,6 +113,9 @@ class HttpServer extends BaseServer
                 unset($request->server);
 
                 $result = $this->execApp($response);
+                if (\is_array($result)) {
+                    $result = json_encode($result);
+                }
                 $result != FAVICON && $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
                 
                 if ($this->_event)
@@ -127,9 +130,6 @@ class HttpServer extends BaseServer
                         if (is_array($elseContent)) {
                             $elseContent = json_encode($elseContent);
                         }
-                        if (\is_array($result)) {
-                            $result = json_encode($result);
-                        }
                         $result .= $elseContent;
                         unset($elseContent);
                     }
@@ -142,13 +142,11 @@ class HttpServer extends BaseServer
                 $this->handleThrowable($exception);
                 if (DEBUG)
                 {
+                    $result = $exception->getMessage();
                     $elseContent = ob_get_clean();
                     if ($elseContent) {
                         if (is_array($elseContent)) {
                             $elseContent = json_encode($elseContent);
-                        }
-                        if (\is_array($result)) {
-                            $result = json_encode($result);
                         }
                         $result .= $elseContent;
                         unset($elseContent);
