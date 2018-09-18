@@ -105,21 +105,21 @@ class HttpServer extends BaseServer
             $hasEnd = false;
             try
             {
-                if ($this->_event)
-                {
-                    $this->_event->onResponse($request,$response);
-                }
-                $request->server['HTTP_HOST'] = $request->header['host'];
+                $_SERVER['HTTP_HOST'] = $request->header['host'];
                 foreach ($request->server as $key => $item)
                 {
-                    $request->server[strtoupper($key)] = $item;
-                    unset($request->server[$key]);
+                    $_SERVER[strtoupper($key)] = $item;
                 }
-                $_SERVER = $request->server;
-
+                unset($request->server);
 
                 $result = $this->execApp($response);
                 $result != FAVICON && $container->getComponent(SYSTEM_APP_NAME, 'cookie')->send($response);
+                
+                if ($this->_event)
+                {
+                    $response->ret = $result;
+                    $this->_event->onResponse($request,$response);
+                }
                 if (DEBUG)
                 {
                     $elseContent = ob_get_clean();
