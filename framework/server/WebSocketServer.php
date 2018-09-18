@@ -243,7 +243,7 @@ class WebSocketServer extends HttpServer
             $container->finish($frame->data['system']);
             $container->finish(SYSTEM_APP_NAME);
             unset($container, $server, $frame, $result);
-            return false;
+            return true;
         });
     }
 }
