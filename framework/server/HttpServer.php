@@ -175,7 +175,7 @@ class HttpServer extends BaseServer
             $_FILES = [];
             $_COOKIE = [];
             $_SERVER = [];
-            unset($container,$request,$response, $urlInfo);
+            unset($container,$request,$response);
         });
     }
 }
