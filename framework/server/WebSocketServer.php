@@ -63,6 +63,9 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('handshake', function (\swoole_http_request $request, \swoole_http_response $response)
         {
+            $GLOBALS['ERROR'] = false;
+            $GLOBALS['EXCEPTION'] = false;
+            global $FD_SYSTEM;
             try {
                 if (!isset($request->header['sec-websocket-key']))
                 {
@@ -88,7 +91,6 @@ class WebSocketServer extends HttpServer
                 $container = Container::getInstance();
                 $pathInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
                 $_SERVER['CURRENT_SYSTEM'] = $pathInfo['system'];
-                global $FD_SYSTEM;
                 $FD_SYSTEM[$request->fd] = $pathInfo['system'];
 
                 if (!$container->appHasComponents($pathInfo['system'])) {
@@ -129,6 +131,14 @@ class WebSocketServer extends HttpServer
             } catch (\Throwable $e) {
                 $this->handleThrowable($e);
                 $_SERVER = [];
+                if (!empty($FD_SYSTEM[$request->fd])) unset($FD_SYSTEM[$request->fd]);
+                $response->end();
+                return false;
+            }
+
+            if ($GLOBALS['EXCEPTION'] || $GLOBALS['ERROR']) {
+                $_SERVER = [];
+                if (!empty($FD_SYSTEM[$request->fd])) unset($FD_SYSTEM[$request->fd]);
                 $response->end();
                 return false;
             }
@@ -136,6 +146,7 @@ class WebSocketServer extends HttpServer
             return true;
         });
     }
+
     protected function onMessage()
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
@@ -189,25 +200,19 @@ class WebSocketServer extends HttpServer
                 {
                     $_result = ob_get_clean();
                     $_result = is_array($_result) ? json_encode($_result) : $_result;
-                    if (\is_array($result)) {
-                        $result = json_encode($result);
-                    }
                     $result = $_result . $result;
                     unset($_result);
                 }
             }
             catch (\Throwable $exception)
             {
-                $result = $exception->getMessage();
                 $this->handleThrowable($exception);
                 if (DEBUG) {
+                    $result = $exception->getMessage();
                     $elseContent = ob_get_clean();
                     if ($elseContent) {
                         if (is_array($elseContent)) {
                             $elseContent = json_encode($elseContent);
-                        }
-                        if (\is_array($result)) {
-                            $result = json_encode($result);
                         }
                         $result .= $elseContent;
                         unset($elseContent);
@@ -217,9 +222,9 @@ class WebSocketServer extends HttpServer
             
             if (DEBUG) {
                 if ($GLOBALS['EXCEPTION']) {
-                    $result = $GLOBALS['EXCEPTION'];
+                    $result .= $GLOBALS['EXCEPTION'];
                 } else if ($GLOBALS['ERROR']) {
-                    $result = $GLOBALS['ERROR'];
+                    $result .= $GLOBALS['ERROR'];
                 }
             }
 
