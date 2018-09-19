@@ -110,6 +110,14 @@ class WebSocketServer extends HttpServer
                         return false;
                     }
                 }
+                if ($container->hasComponent($pathInfo['system'], 'wsevent')) {
+                    $result = $container->getComponent($pathInfo['system'], 'wsevent')->onHandShake($request, $response);
+                    if (!$result) {
+                        $_SERVER = [];
+                        $response->end();
+                        return false;
+                    }
+                }
 
                 $key = base64_encode(sha1($request->header['sec-websocket-key']
                     . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
@@ -241,9 +249,14 @@ class WebSocketServer extends HttpServer
 
     protected function afterClose(\swoole_server $server, int $fd, int $reactorId)
     {
-
         global $FD_SYSTEM;
-        unset($FD_SYSTEM[$fd]);
+        $container = Container::getInstance();
+        if ($container->hasComponent($FD_SYSTEM[$fd], 'wsevent')) {
+            $container->getComponent($FD_SYSTEM[$fd], 'wsevent')->onClose($server, $fd, $reactorId);
+        }
+        $container->finish($FD_SYSTEM[$fd]);
+        $container->finish(SYSTEM_APP_NAME);
+        unset($FD_SYSTEM[$fd], $container);
         return true;
     }
 }
