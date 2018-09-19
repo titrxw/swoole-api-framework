@@ -33,6 +33,11 @@ abstract class WebSocket extends Controller
       return $this->server->getServer()->fd();
     }
 
+    protected function disConnect($fd)
+    {
+        $this->_server->getServer()->disConnect($fd);
+    }
+
     protected function assign($key, $value = null)
     {
         $this->_responseData[$key] = $value;
