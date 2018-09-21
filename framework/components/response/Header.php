@@ -93,7 +93,7 @@ class Header extends Component
   public function rollback()
   {
     $this->initHeader();
-    $this->_curType = 'html';
+    $this->contentType('html');
     $this->_code = 200;
   }
 }
