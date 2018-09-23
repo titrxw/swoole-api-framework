@@ -139,14 +139,12 @@ class WebSocketServer extends HttpServer
             } catch (\Throwable $e) {
                 $this->handleThrowable($e);
                 $_SERVER = [];
-                if (!empty($FD_SYSTEM[$request->fd])) unset($FD_SYSTEM[$request->fd]);
                 $response->end();
                 return false;
             }
 
             if ($GLOBALS['EXCEPTION'] || $GLOBALS['ERROR']) {
                 $_SERVER = [];
-                if (!empty($FD_SYSTEM[$request->fd])) unset($FD_SYSTEM[$request->fd]);
                 $response->end();
                 return false;
             }
