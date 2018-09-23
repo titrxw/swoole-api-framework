@@ -243,7 +243,7 @@ abstract class BaseServer extends Base implements ServerInterface
             }
             catch (\Throwable $e)
             {
-                $this->triggerThrowable($e);
+                $this->handleThrowable($e);
             }
         });
     }
