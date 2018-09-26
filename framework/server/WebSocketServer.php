@@ -161,7 +161,7 @@ class WebSocketServer extends HttpServer
             $GLOBALS['EXCEPTION'] = false;
 //            目前不支持过大消息和二进制数据
             if (!$frame->finish || $frame->opcode !== WEBSOCKET_OPCODE_TEXT) {
-                $server->push($frame->fd, '');
+                $server->disconnect($frame->fd);
                 return false;
             }
             if (DEBUG)
@@ -171,7 +171,7 @@ class WebSocketServer extends HttpServer
             $frame->data = json_decode($frame->data, true);
 
             if (empty($frame->data['controller']) || empty($frame->data['action'])) {
-                $server->push($frame->fd, 'bad request');
+                $server->disconnect($frame->fd);
                 return false;
             }
 
