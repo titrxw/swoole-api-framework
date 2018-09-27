@@ -248,6 +248,9 @@ class WebSocketServer extends HttpServer
     protected function afterClose(\swoole_server $server, int $fd, int $reactorId)
     {
         global $FD_SYSTEM;
+        if (empty($FD_SYSTEM[$fd])) {
+            return false;
+        }
         $container = Container::getInstance();
         if ($container->hasComponent($FD_SYSTEM[$fd], 'wsevent')) {
             $container->getComponent($FD_SYSTEM[$fd], 'wsevent')->onClose($server, $fd, $reactorId);
