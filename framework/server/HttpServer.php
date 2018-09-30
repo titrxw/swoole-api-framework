@@ -102,6 +102,7 @@ class HttpServer extends BaseServer
             }
 
             $result = '';
+            $code = 500;
             $hasEnd = false;
             try
             {
@@ -138,7 +139,6 @@ class HttpServer extends BaseServer
             catch (\Throwable $exception)
             {
                 $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
-                $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
                 $this->handleThrowable($exception);
                 if (DEBUG)
                 {
@@ -156,10 +156,11 @@ class HttpServer extends BaseServer
             
             if ($GLOBALS['EXCEPTION']) {
                 DEBUG && $result .= $GLOBALS['EXCEPTION'];
-                $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode(500);
-            } else if ($GLOBALS['ERROR']) {
+                $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
+            }
+            if ($GLOBALS['ERROR']) {
                 DEBUG && $result .= $GLOBALS['ERROR'];
-                $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode(500);
+                $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
             }
 
             $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
