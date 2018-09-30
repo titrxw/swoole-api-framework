@@ -229,7 +229,8 @@ class WebSocketServer extends HttpServer
             if (DEBUG) {
                 if ($GLOBALS['EXCEPTION']) {
                     $result .= $GLOBALS['EXCEPTION'];
-                } else if ($GLOBALS['ERROR']) {
+                }
+                if ($GLOBALS['ERROR']) {
                     $result .= $GLOBALS['ERROR'];
                 }
             }
