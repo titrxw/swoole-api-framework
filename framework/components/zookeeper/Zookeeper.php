@@ -23,6 +23,11 @@ class Zookeeper
 		}
 		$this->zookeeper = new \Zookeeper($address);
 	}
+
+	public function addAuth($name, $password)
+	{
+		$this->zookeeper->addAuth($name, $password);
+	}
 	/**
 	 * Set a node to a value. If the node doesn't exist yet, it is created.
 	 * Existing values of the node are overwritten
@@ -130,6 +135,10 @@ class Zookeeper
 	 	}
 	 }
      
+	 public function getState()
+	 {
+	 		return $this->zookeeper->getState();
+	 }
     /**
 	 * Wath a given path
 	 * @param string $path the path to node
