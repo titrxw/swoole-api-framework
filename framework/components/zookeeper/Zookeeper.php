@@ -24,9 +24,9 @@ class Zookeeper
 		$this->zookeeper = new \Zookeeper($address);
 	}
 
-	public function addAuth($name, $password)
+	public function getHandle()
 	{
-		$this->zookeeper->addAuth($name, $password);
+		return $this->zookeeper;
 	}
 	/**
 	 * Set a node to a value. If the node doesn't exist yet, it is created.
@@ -134,11 +134,6 @@ class Zookeeper
 	 		return $this->zookeeper->delete($path);
 	 	}
 	 }
-     
-	 public function getState()
-	 {
-	 		return $this->zookeeper->getState();
-	 }
     /**
 	 * Wath a given path
 	 * @param string $path the path to node
@@ -206,6 +201,13 @@ class Zookeeper
 			}
 		} else {
 			return null;
+		}
+	}
+
+	public function __destruct() 
+	{
+		if ($this->zookeeper) {
+			$this->zookeeper->close();
 		}
 	}
 }
