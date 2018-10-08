@@ -17,7 +17,7 @@ class ZookeeperProcess extends Process
     while(!$this->_sureStop) {
       sleep(1);
 
-      $state = $zookeeper->getState();
+      $state = $zookeeper->getHandle()->getHandle()->getState();
       if ($state == \Zookeeper::EXPIRED_SESSION_STATE || $state == \Zookeeper::NOTCONNECTED_STATE) {
         Container::getInstance()->unInstall(SYSTEM_APP_NAME, 'zookeeper');
         $zookeeper = Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'zookeeper');
