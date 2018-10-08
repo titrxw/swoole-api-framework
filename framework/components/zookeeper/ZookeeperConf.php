@@ -23,8 +23,8 @@ class ZookeeperConf extends Conf
     if (!$this->_zookeeper) {
       $this->_zookeeper = new \framework\components\zookeeper\Zookeeper($this->getValueFromConf('hosts'));
       if ($this->getValueFromConf('auth', false)) {
-        $this->_zookeeper->addAuth($this->getValueFromConf('name'),$this->getValueFromConf('password'));
-        if ($this->_zookeeper->getState() == \Zookeeper::AUTH_FAILED_STATE) {
+        $this->_zookeeper->getHandle()->addAuth($this->getValueFromConf('name'),$this->getValueFromConf('password'));
+        if ($this->_zookeeper->getHandle()->getState() == \Zookeeper::AUTH_FAILED_STATE) {
           $this->triggerThrowable(new \Exception('zookeeper auth failed', 500));
         }
       }
