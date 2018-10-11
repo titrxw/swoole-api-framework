@@ -170,11 +170,22 @@ class WebSocketServer extends HttpServer
             }
             $frame->data = json_decode($frame->data, true);
 
-            if (empty($frame->data['controller']) || empty($frame->data['action'])) {
+            if (empty($frame->data['action'])) {
                 $server->disconnect($frame->fd);
                 return false;
             }
 
+            $action = explode('_',$frame->data['action']);
+            if (count($action) != 2) {
+                $server->disconnect($frame->fd);
+                return false;
+            }
+            $action[0] = strtolower($action[0]);
+            $action[0] = ucfirst($action[0]);
+            $action[1] = strtolower($action[1]);
+            $frame->data['controller'] = $action[0];
+            $frame->data['action'] = $action[1];
+            
             global $ALL_MODULES, $FD_SYSTEM;
             $_SERVER['CURRENT_SYSTEM'] = $FD_SYSTEM[$frame->fd];
             $frame->data['system'] = $FD_SYSTEM[$frame->fd];
