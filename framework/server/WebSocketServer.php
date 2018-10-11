@@ -25,6 +25,13 @@ class WebSocketServer extends HttpServer
         $this->onMessage();
     }
 
+    protected function afterManagerStart(\swoole_server $serv)
+    { 
+        parent::afterManagerStart($serv);
+
+        define('WEBSOCKET_PING', 'ping');
+    }
+
     public function disConnect($fd)
     {
         if ($this->_server->exist($fd)) {
@@ -157,6 +164,11 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
         {
+            if ($frame->data == WEBSOCKET_PING) {
+                $server->push($frame->fd, 'pong');
+                return false;
+            }
+            
             $GLOBALS['ERROR'] = false;
             $GLOBALS['EXCEPTION'] = false;
 //            目前不支持过大消息和二进制数据
