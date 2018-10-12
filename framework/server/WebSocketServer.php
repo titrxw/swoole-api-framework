@@ -25,11 +25,11 @@ class WebSocketServer extends HttpServer
         $this->onMessage();
     }
 
-    protected function afterManagerStart(\swoole_server $serv)
-    { 
-        parent::afterManagerStart($serv);
 
+    protected function afterWorkStart(\swoole_server $serv, $workerId)
+    {
         define('WEBSOCKET_PING', 'ping');
+        return parent::afterManagerStart($serv, $workerId);
     }
 
     public function disConnect($fd)
