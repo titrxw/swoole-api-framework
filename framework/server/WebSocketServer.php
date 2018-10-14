@@ -26,11 +26,11 @@ class WebSocketServer extends HttpServer
     }
 
 
-    protected function afterWorkStart(\swoole_server $serv, $workerId)
-    {
-        define('WEBSOCKET_PING', 'ping');
-        return parent::afterManagerStart($serv, $workerId);
-    }
+//     protected function afterWorkStart(\swoole_server $serv, $workerId)
+//     {
+//         define('WEBSOCKET_PING', 'ping');
+//         return parent::afterManagerStart($serv, $workerId);
+//     }
 
     public function disConnect($fd)
     {
@@ -164,10 +164,10 @@ class WebSocketServer extends HttpServer
     {
         $this->_server->on('message', function (\swoole_websocket_server $server, $frame)
         {
-            if ($frame->data == WEBSOCKET_PING) {
-                $server->push($frame->fd, 'pong');
-                return false;
-            }
+//             if ($frame->data == WEBSOCKET_PING) {
+//                 $server->push($frame->fd, 'pong');
+//                 return false;
+//             }
             
             $GLOBALS['ERROR'] = false;
             $GLOBALS['EXCEPTION'] = false;
