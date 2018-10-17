@@ -93,7 +93,7 @@ abstract class BaseServer extends Base implements ServerInterface
         return true;
     }
 
-    protected function addProcess()
+    protected function addProcess($server)
     {
         $this->_pManager = new Manager();
         if (!empty($this->_conf['zookeeper'])) {
@@ -118,7 +118,7 @@ abstract class BaseServer extends Base implements ServerInterface
                     $this->_event->onStart($server);
                 }
                 if ($this->getValueFromConf('mode') == SWOOLE_BASE) {
-                    $this->addProcess();
+                    $this->addProcess($server);
                 }
 
                 $this->afterStart($server);
@@ -148,7 +148,7 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
-                $this->addProcess();
+                $this->addProcess($server);
                 $this->afterManagerStart($server);
                 
                 if ($this->_pManager) {
