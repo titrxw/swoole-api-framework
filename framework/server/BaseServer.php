@@ -27,7 +27,7 @@ abstract class BaseServer extends Base implements ServerInterface
 //        防止重新启动
         if ($this->_isStart) return false;
         if (!$this->_server) {
-            $this->_server = new \swoole_server($this->_conf['ip'], $this->_conf['port']);
+            $this->_server = new \swoole_server($this->_conf['ip'], $this->_conf['port'],$this->getValueFromConf('mode', SWOOLE_PROCESS), $this->getValueFromConf('type', SWOOLE_SOCK_TCP));
             $this->onReceive();
           }
         $this->_server->set($this->_conf);
@@ -88,9 +88,23 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->_server->start();
     }
 
-    protected function afterStart(\swoole_server $serv)
+    protected function afterStart(\swoole_server $server)
     {
         return true;
+    }
+
+    protected function addProcess()
+    {
+        $this->_pManager = new Manager();
+        if (!empty($this->_conf['zookeeper'])) {
+            $this->_pManager->addProcess(new ZookeeperProcess());
+        }
+        if (DEBUG) {
+            $this->getProcessManager();
+            $auto =new AutoReloadProcess();
+            $auto->setServerPid($server->master_pid);
+            $this->_pManager->addProcess($auto);
+        }
     }
 
     public function onStart()
@@ -103,8 +117,18 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onStart($server);
                 }
+                if ($this->getValueFromConf('mode') == SWOOLE_BASE) {
+                    $this->addProcess();
+                }
 
                 $this->afterStart($server);
+
+                if ($this->getValueFromConf('mode') == SWOOLE_BASE) {
+                    if ($this->_pManager) {
+                        $this->_pManager->start();
+                    }
+                }
+                swoole_set_process_name('master');
             }
             catch (\Throwable $e)
             {
@@ -124,12 +148,7 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
-                if (DEBUG) {
-                    $this->getProcessManager();
-                    $auto =new AutoReloadProcess();
-                    $auto->setServerPid($server->master_pid);
-                    $this->_pManager->addProcess($auto);
-                }
+                $this->addProcess();
                 $this->afterManagerStart($server);
                 
                 if ($this->_pManager) {
