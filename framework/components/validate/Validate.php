@@ -19,7 +19,7 @@ class Validate extends Component
     protected function init()
     {
         $this->_separator = $this->getValueFromConf('separator', '|');
-        $this->_keySeparator = $this->getValueFromConf('key_separator', ':');
+        $this->_keySeparator = $this->getValueFromConf('key_separator', '.');
     }
 
     public function run($data, $rule)
