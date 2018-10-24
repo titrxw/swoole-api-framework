@@ -60,6 +60,13 @@ abstract class Controller extends \framework\base\Controller
         return $data;
     }
 
+    protected function ajax($data = null)
+    {
+        $this->header->noCache();
+        $this->header->contentType('json');
+        return $data;
+    }
+
     protected function sendFile($path, $type = 'jpg')
     {
         if (!file_exists($path))
