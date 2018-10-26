@@ -42,7 +42,7 @@ abstract class Web extends Api
         $result  = $this->validate();
         if ($result !== true)
         {
-            return ['ret' => 500,'msg' => $result];
+            return [500,$result];
         }
         return true;
     }
@@ -53,8 +53,8 @@ abstract class Web extends Api
         if (is_array($data))
         {
             $data['ret'] = $data[0] ?? 200;
-            $data['data'] = $data[0] == 200 ? $data[1] : '';
-            $data['msg'] = $data[0] == 200 ? '' : $data[1];
+            $data['data'] = $data[0] == 200 ? $data[1] ?? '' : '';
+            $data['msg'] = $data[0] == 200 ? '' : $data[1] ?? '';
             unset($data[0], $data[1]);
         }
 //        这里必须把结果结果返回去，该方法是放回结果前的结果
