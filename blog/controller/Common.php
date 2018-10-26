@@ -53,13 +53,13 @@ class Common extends Web
     /**
      * @method get
      * 
-     * @params string  $name 不能为空
-     * @rule mobile|post|账号格式错误 regex|/^1[34578]\d{9}$/  
-     * @rule password|post|密码格式错误 require
-     * @rule sure_password|post|确认密码格式错误 require
+     * @rule mobile|get|账号格式错误 regex|/^1[34578]\d{9}$/  
+     * @rule password|get|密码格式错误 require
+     * @rule sure_password|get|确认密码格式错误 require
      */
-    public function test1Api()
+    public function test1Api($mobile, $password, $sure_password)
     {
+        var_dump(func_get_args());
         // $this->cookie->set('rwar', 'dsfsdf');
         // return $this->_userM->test();
         var_dump(uniqueId());
