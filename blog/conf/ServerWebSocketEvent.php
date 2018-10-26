@@ -42,7 +42,7 @@ class ServerWebSocketEvent implements SwooleEvent
                     Container::getInstance()->getComponent($key, 'meedo')->pdo->getAttribute(\PDO::ATTR_SERVER_INFO);
                 }
             } catch (\Throwable $e) {
-                $this->handleThrowable($e);
+                Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'exception')->handleException($e);
             }
         });
     }
