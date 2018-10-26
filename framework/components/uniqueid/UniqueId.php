@@ -60,8 +60,8 @@ class UniqueId extends Component
     {
         $timestamp = $this->timeGen();
         $lastTimestamp = $this->lastTimestamp;
-        //判断时钟是否正常
-        if ($timestamp < $lastTimestamp) {
+        //判断时钟是否正常  闰秒 时间回拨
+        if ($timestamp <= $lastTimestamp) {
             $time = $lastTimestamp - $timestamp;
             $this->triggerThrowable(new \Exception("Clock moved backwards.  Refusing to generate id for $time milliseconds", 500));
         }
