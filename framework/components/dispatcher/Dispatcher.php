@@ -48,7 +48,19 @@ class Dispatcher extends Component
         $result = $controllerInstance->before();
         if ($result === true)
         {
-            $result = $controllerInstance->$actionName();
+            // 这里尝试把数据放到action的参数中   只放get的数据
+            $_params = [];
+            $params = new \ReflectionMethod($controllerInstance, $actionName);
+            $params = $params->getParameters();
+            $request = $this->getComponent(SYSTEM_APP_NAME, 'request');
+            foreach($params as $item) {
+                $_params[] = $request->get($item->name);
+            }
+            if ($_params) {
+                $result = $controllerInstance->$actionName(...$_params);
+            } else {
+                $result = $controllerInstance->$actionName();
+            }
         }
 
         $result = $controllerInstance->after($result);
