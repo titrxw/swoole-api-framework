@@ -88,7 +88,7 @@ return array(
             'ip' => '127.0.0.1',
             'port' => '8081',
             'supportHttp' => false,
-            'type' => 'rpc',
+            'type' => 'http',
             'services' => [
                 'HelloService' => [
                     'handle' => '\\services\\Hello\\Handler',
