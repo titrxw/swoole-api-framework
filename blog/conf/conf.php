@@ -15,6 +15,19 @@ return array(
         },
         'meedo' => function (array $params) {
             return new \Medoo\Medoo($params);      //这里测试composer的加载
+        },
+        'smarty' => function (array $params) {
+            include_file("/blog/lib/libs/Autoloader.php"); //包含smarty类文件  
+            include_file("/blog/lib/libs/Smarty.class.php"); //包含smarty类文件  
+            $smarty = new Smarty(); //建立smarty实例对象$smarty   
+            $smarty->compile_dir = APP_ROOT . 'blog/runtime/templates_c/'; //设置模板目录 ——这里的文件很重要的，需要写的模板文件  
+            $smarty->compile_dir = APP_ROOT . 'blog/runtime/templates_c/';; //设置编译目录 ——混编文件，自动生成  
+            $smarty->cache_dir = APP_ROOT . 'blog/runtime/cache/'; //缓存目录   
+            $smarty->cache_lifetime = 0; //缓存时间   
+            $smarty->caching = true; //缓存方式   
+            $smarty->left_delimiter = "{";   
+            $smarty->right_delimiter = "}";
+            return $smarty;
         }
     ),
     'addComponentsMap' => array(
