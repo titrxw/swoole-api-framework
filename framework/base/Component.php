@@ -15,8 +15,6 @@ abstract class Component extends Base
 
     final protected function getComponent($haver, $componentName,$params = [])
     {
-        $params = func_get_args();
-        array_shift($params);
         return Container::getInstance()->getComponent($haver, $componentName, $params);
     }
 
