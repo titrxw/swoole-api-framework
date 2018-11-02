@@ -54,7 +54,11 @@ class Dispatcher extends Component
             $params = $params->getParameters();
             $request = $this->getComponent(SYSTEM_APP_NAME, 'request');
             foreach($params as $item) {
-                $_params[] = $request->get($item->name);
+                $val = $request->get($item->name);
+                if (!$val && $item->isDefaultValueAvailable()) {
+                    $val = $item->getDefaultValue ();
+                }
+                $_params[] = $val;
             }
             if ($_params) {
                 $result = $controllerInstance->$actionName(...$_params);
