@@ -34,7 +34,7 @@ class HttpServer extends BaseServer
         // TODO: Implement execApp() method.
         $container = Container::getInstance();
         $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
-        MONITOR && $urlInfo !== false && $container->getComponent(SYSTEM_APP_NAME, 'monitor')::tick($urlInfo['system'] . '_' . $urlInfo['controller'], $urlInfo['action']);
+        MONITOR && $urlInfo !== false && $container->getComponent(SYSTEM_APP_NAME, 'monitor')::tick('http:'.$urlInfo['system'] . '_' . $urlInfo['controller'], $urlInfo['action']);
         
         $result = '';
 
@@ -160,8 +160,14 @@ class HttpServer extends BaseServer
                 $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
             }
             
-            MONITOR && $result != FAVICON && $container->getComponent(SYSTEM_APP_NAME, 'monitor')::report($this->_urlInfo['system'] . '_' . $this->_urlInfo['controller'], $this->_urlInfo['action'], $success, $code, $result);
-
+            try{
+                MONITOR && $result != FAVICON && $container->getComponent(SYSTEM_APP_NAME, 'monitor')::report('http:'.$this->_urlInfo['system'] . '_' . $this->_urlInfo['controller'], $this->_urlInfo['action'], $success, $code, $result);
+            }
+            catch (\Throwable $exception)
+            {
+                $this->handleThrowable($exception);
+            }
+           
             $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
             if (!$hasEnd) {
                 $response->end();
