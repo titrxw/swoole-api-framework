@@ -63,7 +63,7 @@ class Monitor extends Component
 		$bin_data = Protocol::encode($module, $interface, $cost_time, $success, $code, $msg);
 		if (extension_loaded('swoole')) {
 		    if (! self::$client || ! self::$client->isConnected()) {
-    		    self::$client = new swoole_client(SWOOLE_TCP , SWOOLE_SOCK_SYNC);
+    		    self::$client = new \swoole_client(SWOOLE_TCP , SWOOLE_SOCK_SYNC);
     		    list($ip, $port) = explode(':', $report_address);
     		    self::$client->connect($ip, $port);
 		    }
