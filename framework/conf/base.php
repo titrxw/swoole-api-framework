@@ -21,6 +21,9 @@ return array(
         'monitor' => 'framework\\components\\monitor\\Monitor'
     ),
     'components' => array(
+        'monitor' => [
+            'address' => '127.0.0.1:55656'
+        ],
         'zookeeper' => [
             'hosts' => 'localhost:2181',
             'watch_node' => [

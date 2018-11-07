@@ -14,9 +14,16 @@ class Monitor extends Component
 	 * ..], module=>[interface=>time_start ..], ... ]
 	 * @var array
 	 */
+	protected static $_address;
 	protected static $timeMap = array();
 	
 	protected static $client;
+
+	protected function init()
+	{
+		self::$_address = $this->getValueFromConf('address', '127.0.0.1:55656');
+	}
+
 	/**
 	 * 模块接口上报消耗时间记时
 	 * @param string $module        	
@@ -40,7 +47,7 @@ class Monitor extends Component
 	 */
 	public static function report($module, $interface, $success, $code, $msg, $report_address = '')
 	{
-		$report_address = $report_address ? $report_address : '127.0.0.1:55656';
+		$report_address = $report_address ? $report_address : self::$_address;
 		if (isset(self::$timeMap[$module][$interface]) && self::$timeMap[$module][$interface] > 0) {
 			$time_start = self::$timeMap[$module][$interface];
 			self::$timeMap[$module][$interface] = 0;
