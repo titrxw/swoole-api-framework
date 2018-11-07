@@ -17,7 +17,8 @@ return array(
         'crontab' => 'framework\\crontab\\Crontab',
         'zookeeper' => 'framework\\components\\zookeeper\\ZookeeperConf',
         'doc' => 'framework\\base\\Documentor',
-        'rpcClient' => 'framework\\client\\RpcClient'
+        'rpcClient' => 'framework\\client\\RpcClient',
+        'monitor' => 'framework\\components\\monitor\\Monitor'
     ),
     'components' => array(
         'zookeeper' => [

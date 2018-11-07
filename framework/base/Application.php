@@ -38,6 +38,9 @@ class Application extends Base
         if(!defined('DEBUG'))
             define('DEBUG',true);
 
+        if(!defined('MONITOR'))
+            define('MONITOR',true);
+
         define('FAVICON','favicon.ico');
         define('SYSTEM_APP_NAME', 'APP');
         define('SYSTEM_CD_KEY',\GetMacAddr(PHP_OS));

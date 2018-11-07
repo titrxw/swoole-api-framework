@@ -12,6 +12,7 @@ use framework\process\ZookeeperProcess;
 
 class HttpServer extends BaseServer
 {
+    protected $_urlInfo;
 
     protected function init()
     {
@@ -33,11 +34,12 @@ class HttpServer extends BaseServer
         // TODO: Implement execApp() method.
         $container = Container::getInstance();
         $urlInfo = $container->getComponent(SYSTEM_APP_NAME, 'url')->run();
-        
+        MONITOR && $urlInfo !== false && $container->getComponent(SYSTEM_APP_NAME, 'monitor')::tick($urlInfo['system'] . '_' . $urlInfo['controller'], $urlInfo['action']);
         
         $result = '';
 
         if ($urlInfo !== false) {
+            $this->_urlInfo = $urlInfo;
             $_SERVER['CURRENT_SYSTEM'] = $urlInfo['system'];
             global $ALL_MODULES;
             $ALL_MODULES[$_SERVER['CURRENT_SYSTEM']] = true;
@@ -56,6 +58,7 @@ class HttpServer extends BaseServer
 
             $result = $container->getComponent(SYSTEM_APP_NAME, 'dispatcher')->run($urlInfo);
         } else {
+            $this->_urlInfo = null;
             return FAVICON;
         }
 
@@ -95,6 +98,7 @@ class HttpServer extends BaseServer
             $result = '';
             $code = 500;
             $hasEnd = false;
+            $success = false;
             try
             {
                 $_SERVER['HTTP_HOST'] = $request->header['host'];
@@ -126,6 +130,8 @@ class HttpServer extends BaseServer
                         unset($elseContent);
                     }
                 }
+                $success = true;
+                $code = 200;
             }
             catch (\Throwable $exception)
             {
@@ -153,6 +159,8 @@ class HttpServer extends BaseServer
                 DEBUG && $result .= $GLOBALS['ERROR'];
                 $container->getComponent(SYSTEM_APP_NAME, 'header')->setCode($code);
             }
+            
+            MONITOR && $result != FAVICON && $container->getComponent(SYSTEM_APP_NAME, 'monitor')::report($this->_urlInfo['system'] . '_' . $this->_urlInfo['controller'], $this->_urlInfo['action'], $success, $code, $result);
 
             $hasEnd = $container->getComponent(SYSTEM_APP_NAME, 'response')->send($response, $result);
             if (!$hasEnd) {
