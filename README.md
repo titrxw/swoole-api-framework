@@ -10,3 +10,6 @@
 5. rabbitmq
 6. zookeeper conf
 
+
+新增请求监控功能，监控采用 https://github.com/toxmc/statistics
+
