@@ -93,7 +93,7 @@ class Upload extends Component
         }
     }
 
-    public function getFileExt($file)
+    protected function getFileExt($file)
     {
         $s = strrchr($file, '.');
         if ($s === false)
@@ -111,6 +111,11 @@ class Upload extends Component
             return false;
         }
         return chmod($newfile, 0666);
+    }
+
+    protected function securityVeritify($filePath)
+    {
+        
     }
 
     public function save($name)
@@ -138,7 +143,11 @@ class Upload extends Component
         $mime = $_FILES[$name]['type'];
         if (!(isset($this->_mime[$mime]) && in_array($this->_mime[$mime], $this->_accept)))
         {
+            return false;
+        }
+
 //            进行严格检测
+        if (!$this->securityVeritify($_FILES[$name]['tmp_name'])) {
             return false;
         }
 

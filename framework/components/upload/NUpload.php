@@ -80,7 +80,11 @@ class NUpload extends Upload
         $mime = $file['content_type'];
         if (!(isset($this->_mime[$mime]) && in_array($this->_mime[$mime], $this->_accept)))
         {
-//            进行严格检测
+            return false;
+        }
+
+        //            进行严格检测
+        if (!$this->securityVeritify($file['path'])) {
             return false;
         }
 
