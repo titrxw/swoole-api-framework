@@ -34,7 +34,7 @@ class Upload extends Component
     {
         $this->_baseDir = APP_ROOT . getModule() . '/' . $this->getValueFromConf('baseDir','runtime/upload');
         $this->_accept = $this->getValueFromConf('accept', []);
-        $this->_maxSize = $this->getValueFromConf('maxSize', 0);
+        $this->_maxSize = $this->getValueFromConf('maxSize', get_cfg_var ("upload_max_filesize")?get_cfg_var ("upload_max_filesize"): 0);
         $this->_nameType = $this->getValueFromConf('nameType', 'time');
         if ($this->_nameType !== 'md5')
             return true;
@@ -113,7 +113,7 @@ class Upload extends Component
         return chmod($newfile, 0666);
     }
 
-    protected function securityVeritify($filePath)
+    protected function securityVeritify($filePath, $mime)
     {
         
     }
@@ -147,7 +147,7 @@ class Upload extends Component
         }
 
 //            进行严格检测
-        if (!$this->securityVeritify($_FILES[$name]['tmp_name'])) {
+        if (!$this->securityVeritify($_FILES[$name]['tmp_name'], $mime)) {
             return false;
         }
 

@@ -84,7 +84,7 @@ class NUpload extends Upload
         }
 
         //            进行严格检测
-        if (!$this->securityVeritify($file['path'])) {
+        if (!$this->securityVeritify($file['path'], $mime)) {
             return false;
         }
 
