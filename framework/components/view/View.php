@@ -13,8 +13,6 @@ class View extends Component
     protected $_cacheFile = null;
     protected $_leftDelimiter;
     protected $_rightDelimiter;
-    protected $_controller;
-    protected $_action;
     protected $_viewExt;
     protected $_cacheExpire;
     protected $_isCache;
@@ -60,16 +58,13 @@ class View extends Component
      *
      * @return boolean
      */
-    public function cache($cacheId = null, $expire = null)
+    public function cache($cacheId, $expire = null)
     {
         if (!$this->_isCache)
         {
             return false;
         }
-        //参数分析
-        if (!$cacheId) {
-            $cacheId = $this->_action;
-        }
+
         if (!$expire) {
             $expire = $this->_cacheExpire;
         }
@@ -128,7 +123,7 @@ class View extends Component
      *
      * @return string
      */
-    public function display($fileName = null) {
+    public function display($fileName) {
 
         //模板变量赋值
         if ($this->_options) {
@@ -136,18 +131,12 @@ class View extends Component
             $this->_options = [];
         }
 
-        $currentModule = $this->getComponent(SYSTEM_APP_NAME, 'url')->getCurrentModule();
-        $this->_controller = $currentModule['controller'];
-        $this->_action = $currentModule['action'];
-        unset($currentModule);
 
         //加载编译缓存文件
         ob_start();
-        $cache = $this->cache($this->_controller.'/'.$this->_action);
+        $cache = $this->cache($fileName);
         if (!$cache)
         {
-            //分析视图文件名
-            $fileName    = $this->parseViewName($fileName);
 
             //获取视图模板文件及编译文件的路径
             $viewFile    = $this->getViewFile($fileName);
@@ -189,9 +178,6 @@ class View extends Component
      * @return string
      */
     public function render($fileName = null, $data = [], $return = false) {
-
-        //分析视图文件名
-        $viewName    = $this->parseViewName($fileName);
 
         //获取视图模板文件及编译文件的路径
         $viewFile    = $this->getViewFile($viewName);
@@ -474,30 +460,6 @@ class View extends Component
     }
 
     /**
-     * 分析视图文件名
-     *
-     * @access publice
-     *
-     * @param string $fileName 视图文件名。注:名称中不带.php后缀。
-     *
-     * @return string
-     */
-    protected function parseViewName($fileName = null)
-    {
-        //参数分析
-        if (!$fileName) {
-            return $this->_controller . '/' . $this->_action;
-        }
-
-        $fileName = str_replace('.', '/', $fileName);
-        if (strpos($fileName, '/') === false) {
-            $fileName = $this->_controller . '/' . $fileName;
-        }
-
-        return $fileName;
-    }
-
-    /**
      * 缓存重写分析
      *
      * 判断缓存文件是否需要重新生成. 返回true时,为需要;返回false时,则为不需要
@@ -555,6 +517,6 @@ class View extends Component
      */
     protected function parseCacheFile($cacheId) {
 
-        return $this->_cachePath .'/'. $this->_controller .  '/' . md5($cacheId) . '.action.html';
+        return $this->_cachePath .'/'. md5($cacheId) . '.action.html';
     }
 }

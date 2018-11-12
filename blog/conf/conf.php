@@ -48,6 +48,16 @@ return array(
         'captcha' => 'framework\\components\\captcha\\Captcha'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
+        'controller' => [
+            'controller' => [
+                'prefix' => '',
+                'suffix' => ''
+            ],
+            'action' => [
+                'prefix' => '',
+                'suffix' => 'Api'
+            ]
+        ],
         'redis' => array(
             'host'         => '127.0.0.1', // redis主机
             'port'         => 6379, // redis端口
@@ -136,29 +146,6 @@ return array(
             // [optional] Enable logging (Logging is disabled by default for better performance)
             'logging' => true,
         ),
-        'server' => array(
-            'event' => 'application\\conf\\ServerWebSocketEvent',
-            'ip' => '127.0.0.1',
-            'port' => '85',
-            'supportHttp' => false,
-            'type' => 'http',
-            'factory_mode'=>2,
-            'dispatch_mode' => 2,
-            'task_worker_num' => 2, //异步任务进程
-            "task_max_request"=>10,
-            'max_request'=>3000,
-            'worker_num'=>1,
-            'task_ipc_mode' => 2,
-            'log_file' => '/tmp/swoole.log',
-            'enable_static_handler' => true,
-            'document_root' => '/var/www/php/easy-framework-swoole/public/assets/application/images/' //访问链接是 127.0.0.1:81/jpg文件名
-        ),
-        'dispatcher' => array(
-            'action' => array(
-                'prefix' => '',
-                'suffix' => 'Api'
-            )
-        ),
         'tokenBucket' => [
             'buckets' => [
                 'request' => [
@@ -195,6 +182,32 @@ return array(
                     ]
                 ]
             ],
-        ]
+        ],
+        'view' => array(
+            'templatePath' => 'view',
+            'cachePath' => 'runtime/viewCache',
+            'compilePath' => 'runtime/compile',
+            'viewExt' => '.html',
+            'isCache' => false,
+            'cacheExpire' => 3600,
+            'leftDelimiter' => '{',
+            'rightDelimiter' => '}'
+        ),
+        'upload' => array(
+            'maxSize' => 2088960
+        ),
+        'captcha' => array(
+            'height' => 70,
+            'width' => 200,
+            'num' => 5,
+            'type' => 'png',   //png jpg gif,
+            'response' => 'response'
+        ),
+        'page' => array(
+            'url' => 'url'
+        ),
+        'model' => array(
+            'db' => 'meedo'
+        ),
     )
 );

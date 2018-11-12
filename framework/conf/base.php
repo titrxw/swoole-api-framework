@@ -57,16 +57,6 @@ return array(
             'defaultAction' => 'index',
             'systems' => array('application', 'application1', 'blog')
         ),
-        'dispatcher' => array(
-            'controller' => array(
-                'prefix' => '',
-                'suffix' => ''
-            ),
-            'action' => array(
-                'prefix' => '',
-                'suffix' => 'Api'
-            )
-        ),
         'resquest' => array(
             'separator' => '/',
             'url' => 'url'
@@ -74,16 +64,6 @@ return array(
         'response' => array(
             'defaultType' => 'text',
             'charset' => 'utf-8'
-        ),
-        'view' => array(
-            'templatePath' => 'view',
-            'cachePath' => 'runtime/viewCache',
-            'compilePath' => 'runtime/compile',
-            'viewExt' => '.html',
-            'isCache' => false,
-            'cacheExpire' => 3600,
-            'leftDelimiter' => '{',
-            'rightDelimiter' => '}'
         ),
         'server' => array(
             'zookeeper' => '',
@@ -128,22 +108,6 @@ return array(
             'host' => '127.0.0.1',
             'port' => '8082',
             'type' => 'crontab'
-        ),
-        'upload' => array(
-            'maxSize' => 2088960
-        ),
-        'captcha' => array(
-            'height' => 70,
-            'width' => 200,
-            'num' => 5,
-            'type' => 'png',   //png jpg gif,
-            'response' => 'response'
-        ),
-        'page' => array(
-            'url' => 'url'
-        ),
-        'model' => array(
-            'db' => 'meedo'
         ),
         'crontab' => array(
             'tasks' => array(

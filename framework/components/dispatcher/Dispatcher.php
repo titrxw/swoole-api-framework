@@ -11,18 +11,21 @@ class Dispatcher extends Component
     {
         $this->_system = \getModule();
         $args['controller'] = \ucfirst($args['controller']);
-        $controllerName = $this->getValueFromConf('controller.prefix') . $args['controller'] . $this->getValueFromConf('controller.suffix');
+
+        $conf = Container::getInstance()->getComponentConf(\getModule(), 'controller');
+
+        $controllerName = ($conf['controller']['prefix'] ?? '') . $args['controller'] . ($conf['controller']['suffix'] ?? '');
         if (!\file_exists(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php'))
         {
             $this->triggerThrowable(new \Exception(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php not exists', 404));
         }
-
         $controllerHashName = \md5($this->_system.'/controller/'.$controllerName);
 
-        Container::getInstance()->addComponent($this->_system, $controllerHashName,
-            $this->_system.'\\controller\\'. $controllerName, Container::getInstance()->getComponentConf(\getModule(), 'controller'));
+        $actionName = ($conf['action']['prefix'] ?? '') . $args['action'] . ($conf['action']['suffix'] ?? '');
 
-        $actionName = $this->getValueFromConf('action.prefix') . $args['action'] . $this->getValueFromConf('action.suffix');
+        Container::getInstance()->addComponent($this->_system, $controllerHashName,
+            $this->_system.'\\controller\\'. $controllerName,$conf);
+
         $controllerInstance = $this->getComponent(\getModule(), $controllerHashName);
         if (!\method_exists($controllerInstance, $actionName))
         {
@@ -44,6 +47,8 @@ class Dispatcher extends Component
         
         $controllerInstance->setController($controllerName);
         $controllerInstance->setAction($actionName);
+        $controllerInstance->setRequestController($args['controller']);
+        $controllerInstance->setRequestAction($args['action']);
 
         $result = $controllerInstance->before();
         if ($result === true)
