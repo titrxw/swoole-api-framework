@@ -115,7 +115,7 @@ class Upload extends Component
 
     protected function securityVeritify($filePath, $mime)
     {
-        
+        return true;
     }
 
     public function save($name)
