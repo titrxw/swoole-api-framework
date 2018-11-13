@@ -46,7 +46,8 @@ class Common extends Web
 
     public function rpcApi()
     {
-        $res = $this->rpcClient->call('127.0.0.1',8081,'HelloService','sayHello','24324');
+        $res = $this->rpcClient->call('127.0.0.1',8081,'Hello\\HelloService','sayHello','24324');
+        // $res = $this->rpcClient->call('Hello\\HelloService','sayHello','24324'); zookeeper 下
         var_dump($res);
     }
 

@@ -26,7 +26,7 @@ class RpcClient extends Component
     $transport->open();
 
     $namespace = \substr($service, 0 , \strpos($service, 'Service'));
-    $class = '\\services\\' . $namespace . '\\' . $service . 'Client';
+    $class = '\\services\\' . $service . 'Client';
     $client = new $class($Service);
     $ret = $client->$method(...$args);
     $transport->close();

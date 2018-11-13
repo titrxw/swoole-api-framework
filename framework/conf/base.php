@@ -18,12 +18,16 @@ return array(
         'zookeeper' => 'framework\\components\\zookeeper\\ZookeeperConf',
         'doc' => 'framework\\base\\Documentor',
         'rpcClient' => 'framework\\client\\RpcClient',
+        // 'rpcClient' => 'framework\\client\\ZookeeperRpcClient',
         'monitor' => 'framework\\components\\monitor\\Monitor'
     ),
     'components' => array(
         'monitor' => [
             'address' => '127.0.0.1:55656'
         ],
+        // 'rpcClient' => [
+        //     'conf' => 'zookeeper'
+        // ],
         'zookeeper' => [
             'hosts' => 'localhost:2181',
             'watch_node' => [
@@ -74,7 +78,7 @@ return array(
             'supportHttp' => false,
             'type' => 'http',
             'services' => [
-                'HelloService' => [
+                'Hello\\HelloService' => [
                     'handle' => '\\services\\Hello\\Handler',
                     'process' => '\\services\\Hello\\HelloServiceProcessor'
                 ]
