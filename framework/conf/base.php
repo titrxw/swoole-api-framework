@@ -70,6 +70,7 @@ return array(
             'charset' => 'utf-8'
         ),
         'server' => array(
+            // 是否启用配置管理
             'zookeeper' => '',
             'pid_file' => '/var/www/server_http1.pid',
             'event' => 'blog\\conf\\ServerWebSocketEvent',
@@ -77,6 +78,7 @@ return array(
             'port' => '8081',
             'supportHttp' => false,
             'type' => 'http',
+            'auto_services' => false,
             'services' => [
                 'Hello\\HelloService' => [
                     'handle' => '\\services\\Hello\\Handler',

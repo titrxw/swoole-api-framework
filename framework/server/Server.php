@@ -41,14 +41,17 @@ class Server extends Component
                 $this->_server = new MqServer($this->_conf);
                 $this->_server->start();
             case 'rpc':
-            
                 require_once (APP_ROOT."framework/Thrift/ClassLoader/ThriftClassLoader.php");
                 $loader = new ThriftClassLoader();
                 $loader->registerNamespace('Thrift', APP_ROOT. 'framework');
                 $loader->registerNamespace('services', APP_ROOT);
                 $loader->registerDefinition('services',  APP_ROOT);
                 $loader->register(TRUE);
-                $this->_server = new RpcServer($this->_conf);
+                if (!empty($this->_conf['auto_services'])) {
+                    $this->_server = new ZookeeperRpcServer($this->_conf);
+                } else {
+                    $this->_server = new RpcServer($this->_conf);
+                }
                 $this->_server->start();
             break;
         }
