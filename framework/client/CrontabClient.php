@@ -18,6 +18,8 @@ class CrontabClient extends TcpClient
 
     // 由于process 采用的面向对象的方式  那么当进程kill的时候要销毁所有的变量 也就会销毁CrontabClient的实例，就会触发swoole client的 destruct   会导致和server断开连接
     // 放在这里的话  start 进程的时候 此时的this 还没有和server进行连接  ，这样的话所有的和server的连接控制在主进程
+
+    // 也就是不能在建立连接后在再新建进程（fork 原理）
     $this->_processManager = new Manager();
     $this->initTaskWork();
     if ($this->_processManager->getProcessNum() == 0) {

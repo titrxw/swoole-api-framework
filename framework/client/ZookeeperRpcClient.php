@@ -13,10 +13,11 @@ class ZookeeperRpcClient extends RpcClient
   public function call($service, $method, ...$args)
   {
     // 根据service从zookeeper上获取对应的service的服务器地址
-    $info = $this->_zookeeper->get($service);
+    $info = $this->_zookeeper->getHandle()->get($service);
     if (!$info) {
       return [404];
     }
+    $info = json_encode($info, true);
     if ($info['status'] == 300) {
       return [300];
     }
