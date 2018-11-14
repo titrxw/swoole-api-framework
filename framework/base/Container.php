@@ -53,7 +53,7 @@ class Container extends Base
 //    设置组件的配置  做到系统组件和app组件的隔离
     public function setComponentConf($haver, $component, $conf)
     {
-        $this->_conf[$haver][$component] = $conf['app'];
+        $this->_conf[$haver][$component] = $conf;
     }
 
     public function getComponentConf($haver, $component)
