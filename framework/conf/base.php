@@ -59,7 +59,10 @@ return array(
             'actionKey' => 'act',
             'defaultController' => 'index',
             'defaultAction' => 'index',
-            'systems' => array('application', 'application1', 'blog')
+            'systems' => array('application', 'application1', 'blog'),
+            'alias' => [
+                'v1' => 'blog.v1'
+            ]
         ),
         'resquest' => array(
             'separator' => '/',

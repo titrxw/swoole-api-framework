@@ -15,11 +15,12 @@ class Dispatcher extends Component
         $conf = Container::getInstance()->getComponentConf(\getModule(), 'controller');
 
         $controllerName = ($conf['controller']['prefix'] ?? '') . $args['controller'] . ($conf['controller']['suffix'] ?? '');
-        if (!\file_exists(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php'))
+        $controllerPath = APP_ROOT.$this->_system.'/controller/'. $args['version'] . '/' .$controllerName.'.php';
+        if (!\file_exists($controllerPath))
         {
-            $this->triggerThrowable(new \Exception(APP_ROOT.$this->_system.'/controller/'.$controllerName.'.php not exists', 404));
+            $this->triggerThrowable(new \Exception($controllerPath.' not exists', 404));
         }
-        $controllerHashName = \md5($this->_system.'/controller/'.$controllerName);
+        $controllerHashName = \md5($this->_system.'/controller/'. $args['version'] . '/' .$controllerName);
 
         $actionName = ($conf['action']['prefix'] ?? '') . $args['action'] . ($conf['action']['suffix'] ?? '');
 
@@ -34,7 +35,7 @@ class Dispatcher extends Component
         }
 
         // 请求限制
-        if ($this->getValueFromConf('route', false)) {
+        if ($this->getValueFromConf('route_filter', false)) {
             $methods = Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'doc')->parse($controllerInstance, $actionName)->getTags('method');
             if($methods) {
                 $upMethod = \strtoupper($args['method']);
@@ -45,6 +46,7 @@ class Dispatcher extends Component
             }
         }
         
+        $controllerInstance->setVersion($args['version']);
         $controllerInstance->setController($controllerName);
         $controllerInstance->setAction($actionName);
         $controllerInstance->setRequestController($args['controller']);

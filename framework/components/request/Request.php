@@ -5,9 +5,12 @@ use framework\base\Component;
 class Request extends Component
 {
     protected $_method;
-    protected $_rowBody;
     protected $_headers;
     protected $_hasCheck = [];
+    protected $_get = null;
+    protected $_post = null;
+    protected $_put = null;
+    protected $_input = null;
 
     protected function init()
     {
@@ -53,58 +56,146 @@ class Request extends Component
         }
     }
 
-    public function getMethod()
-    {
-        return $_SERVER['REQUEST_METHOD'];
+    public function method()
+    {  
+        if ($this->_method) {
+            return $this->_method;
+        }
+
+        if (isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])) {
+            $this->_method = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']);
+        } else {
+            $this->_method = IS_CLI ? 'GET' : (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : $_SERVER['REQUEST_METHOD']);
+        }
+        return $this->_method;
     }
 
-    public function get($key = '', $default = '', $needCheck = true)
+    public function get($key = '', $default = null, $filter = true)
     {
-        return $this->data($_GET, 'get',  $key, $default, $needCheck);
+        if (is_null($this->_get)) {
+            $this->_get = $_GET;
+        }
+        return $this->data($this->_get, 'get',  $key, $default, $filter);
     }
 
-    public function post($key = '', $default = '', $needCheck = true)
+    public function post($key = '', $default = null, $filter = true)
     {
-        return $this->data($_POST,'post',  $key, $default, $needCheck);
+        if (is_null($this->_post)) {
+            if (empty($_POST) && 'application/json' == $this->contentType()) {
+                $content = $this->input();
+                $this->_post = (array) json_decode($content, true);
+            } else {
+                $this->_post = $_POST;
+            }
+        }
+        return $this->data($this->_post,'post',  $key, $default, $filter);
     }
 
-    public function request($key = '', $default = '', $needCheck = true)
+    public function request($key = '', $default = null, $filter = true)
     {
-        return $this->data($_REQUEST,'request',  $key, $default, $needCheck);
+        return $this->data($_REQUEST,'request',  $key, $default, $filter);
     }
 
-    protected function data(&$data, $type, $key = '', $default = '', $needCheck = true)
+    public function put($key = '', $default = null, $filter = true)
+    {
+        if (is_null($this->_put)) {
+            $content = $this->input();
+            if ('application/json' == $this->contentType()) {
+                $this->_put = (array) json_decode($content, true);
+            } else {
+                parse_str($content, $this->_put);
+            }
+        }
+
+        return $this->data($this->_put,'put',  $key, $default, $filter);
+    }
+
+    public function delete($key = '', $default = null, $filter = true)
+    {
+        return $this->put($key, $default, $filter);
+    }
+
+    public function patch($key = '', $default = null, $filter = true)
+    {
+        return $this->put($key, $default, $filter);
+    }
+
+    protected function data(&$data, $type, $key = '', $default = '', $filter = true)
     {
         if(!$key)
         {
-            $needCheck&&$this->checkData($data, $type, $key);
+            $filter&&$this->checkData($data, $type, $key);
             return $data;
         }
         else if(!isset($data[$key]))
             return $default;
         else
         {
-            $needCheck&&$this->checkData($data, $type, $key);
+            $filter&&$this->checkData($data, $type, $key);
             return $data[$key];
         }
     }
 
-    public function getRawBody()
+    public function input()
     {
-        if($this->_rowBody === null)
-            $this->_rowBody=file_get_contents('php://input');
-        return $this->_rowBody;
+        if($this->_input === null)
+            $this->_input=file_get_contents('php://input');
+        return $this->_input;
+    }
+
+    
+    /**
+     * 当前请求 HTTP_CONTENT_TYPE
+     * @access public
+     * @return string
+     */
+    public function contentType()
+    {
+        if (isset($_SERVER['CONTENT_TYPE'])) {
+            list($type) = explode(';', $_SERVER['CONTENT_TYPE']);
+            return trim($type);
+        }
+        return '';
+    }
+
+    public function isGet()
+    {
+        return $this->method() == 'GET';
     }
 
     public function isPost()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'post')
+        if ($this->method() === 'POST')
         {
             return true;
         }
         return false;
     }
 
+    public function isPut()
+    {
+        return $this->method() == 'PUT';
+    }
+
+    public function isDelete()
+    {
+        return $this->method() == 'DELETE';
+    }
+
+    public function isHead()
+    {
+        return $this->method() == 'HEAD';
+    }
+
+    public function isPatch()
+    {
+        return $this->method() == 'PATCH';
+    }
+
+    public function isOptions()
+    {
+        return $this->method() == 'OPTIONS';
+    }
 
     public function isAjax()
     {
@@ -151,7 +242,6 @@ class Request extends Component
         }
         return false;
     }
-
 
     public function headers()
     {

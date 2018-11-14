@@ -1,18 +1,36 @@
 <?php
 namespace framework\components\url;
 use framework\base\Component;
+
 class Url extends Component
 {
     protected $_defaultType;
     protected $_curRoute = null;
+    public $_version;
+    public $_system;
+    public $_method;
+    public $_controller;
+    public $_action;
+
     public function run()
     {
         return $this->formatUrl();
     }
+
     public function getCurrentRoute()
     {
         return $this->_curRoute;
     }
+
+    protected function afterFormat()
+    {
+        $this->_version = $this->_curRoute['version'];
+        $this->_system = $this->_curRoute['system'];
+        $this->_method = $this->_curRoute['method'];
+        $this->_controller = $this->_curRoute['controller'];
+        $this->_action = $this->_curRoute['action'];
+    }
+
     protected function formatUrl()
     {
         $type = $this->getType();
@@ -29,7 +47,11 @@ class Url extends Component
             } else {
                 $system = $this->getValueFromConf('defaultSystem');
             }
+            $version = $_GET[$this->getValueFromConf('version', '')] ?? '';
+
+            
             $urlInfo =  array(
+                'version' => $version,
                 'method' => $_SERVER['REQUEST_METHOD'],
                 'system' => $system,
                 'controller' => empty($_GET[$this->getValueFromConf('controllerKey', 'm')]) ? $this->getValueFromConf('defaultController', 'index') : $_GET[$this->getValueFromConf('controllerKey', 'm')],
@@ -54,34 +76,51 @@ class Url extends Component
                 $system = $tmpQuery[0];
                 unset($tmpQuery[0]);
                 $keyStart = 1;
+            } else if (!empty($this->getValueFromConf('alias', [])[$tmpQuery[0]])){
+                $system = $this->getValueFromConf('alias', [])[$tmpQuery[0]];
+                unset($tmpQuery[0]);
+                $keyStart = 1;
             } else {
                 $system = $this->getValueFromConf('defaultSystem');
             }
-            $urlInfo =  array(
-                'method' => $_SERVER['REQUEST_METHOD'],
-                'system' => $system,
-                'controller' => empty($tmpQuery[0 + $keyStart]) ? $this->getValueFromConf('defaultController', 'index') : $tmpQuery[0 + $keyStart],
-                'action' => empty($tmpQuery[1 + $keyStart]) ? $this->getValueFromConf('defaultAction', 'index') : $tmpQuery[1 + $keyStart]
-            );
+            $system = \explode('.', $system);
+            $version = $system[1] ?? '';
+            $system = $system[0];
+
+
             $count = \count($tmpQuery);
             for($i=2 + $keyStart;$i < $count; $i+=2)
             {
                 $_GET[$tmpQuery[$i]] = !isset($tmpQuery[$i+1]) ?  '' : $tmpQuery[$i+1];
             }
+
+
+            $urlInfo =  array(
+                'version' => $version,
+                'method' => $_SERVER['REQUEST_METHOD'],
+                'system' => $system,
+                'controller' => empty($tmpQuery[0 + $keyStart]) ? $this->getValueFromConf('defaultController', 'index') : $tmpQuery[0 + $keyStart],
+                'action' => empty($tmpQuery[1 + $keyStart]) ? $this->getValueFromConf('defaultAction', 'index') : $tmpQuery[1 + $keyStart]
+            );
+            
             unset($tmpQuery);
         }
         $this->_curRoute = $urlInfo;
+        $this->afterFormat();
         unset($urlInfo);
         return $this->_curRoute;
     }
+
     public function getPathInfo()
     {
-        return $_SERVER['PATH_INFO'] ?? '';
+        return !empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'] ;
     }
+
     public function getCurRoute()
     {
         return $this->_curRoute;
     }
+
     public function getType()
     {
         if(!$this->_defaultType)
@@ -93,6 +132,7 @@ class Url extends Component
         }
         return $this->_defaultType;
     }
+
     public function createUrl($url)
     {
         $tmpUrl = $_SERVER['HTTP_HOST'] . $_SERVER['URL'] . '?';

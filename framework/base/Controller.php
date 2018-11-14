@@ -9,6 +9,7 @@ abstract class Controller extends Component
     protected $_requestController;
     protected $_requestAction;
     protected $_view;
+    protected $_version;
 
 
     protected function init()
@@ -24,6 +25,11 @@ abstract class Controller extends Component
     public function after($data = '')
     {
         return $data;
+    }
+
+    public function setVersion($version)
+    {
+        $this->_version = $version;
     }
 
     public function setRequestController($currentController)
