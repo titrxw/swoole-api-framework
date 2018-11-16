@@ -17,10 +17,9 @@ class ZookeeperRpcClient extends RpcClient
     if (!$info) {
       return [404];
     }
-    $info = json_encode($info, true);
-    if ($info['status'] == 300) {
-      return [300];
-    }
+    $info = json_decode($info, true);
+    // 这里是数组
+    $info = $info[mt_rand(0, \count($info) - 1)];
 
     return parent::call($info['host'], $info['port'], $service, $method, ...$args);
     
