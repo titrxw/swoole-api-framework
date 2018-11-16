@@ -38,7 +38,7 @@ class Zookeeper
 	 * @return mixed previous value if set, or null
 	 */
 	public function set($path, $value) {
-		if (!$this->zookeeper->exists($path)) {
+		if (!$this->exists($path)) {
 			$this->makePath($path);
 			$this->makeNode($path, $value);
 		} else {
@@ -59,7 +59,7 @@ class Zookeeper
 		$subpath = '';
 		while (count($parts) > 1) {
 			$subpath .= '/' . array_shift($parts);
-			if (!$this->zookeeper->exists($subpath)) {
+			if (!$this->exists($subpath)) {
 				$this->makeNode($subpath, $value);
 			}
 		}
@@ -74,7 +74,7 @@ class Zookeeper
 	 *
 	 * @return string the path to the newly created node or null on failure
 	 */
-	public function makeNode($path, $value, array $params = array()) {
+	public function makeNode($path, $value, array $params = array(), $mode = null) {
 		if (empty($params)) {
 			$params = array(
 				array(
@@ -84,7 +84,14 @@ class Zookeeper
 				)
 			);
 		}
-		return $this->zookeeper->create($path, $value, $params);
+		return $this->zookeeper->create($path, $value, $params, $mode);
+	}
+
+	public function exists($path) {
+		if (!$this->zookeeper->exists($path)) {
+			return false;
+		}
+		return true;
 	}
 	/**
 	 * Get the value for the node
@@ -94,7 +101,7 @@ class Zookeeper
 	 * @return string|null
 	 */
 	public function get($path) {
-		if (!$this->zookeeper->exists($path)) {
+		if (!$this->exists($path)) {
 			return null;
 		}
 		return $this->zookeeper->get($path);
@@ -125,7 +132,7 @@ class Zookeeper
 	 
 	 public function deleteNode($path)
 	 {
-	 	if(!$this->zookeeper->exists($path))
+	 	if(!$this->exists($path))
 	 	{
 	 		return null;
 	 	}
@@ -146,7 +153,7 @@ class Zookeeper
 			return null;
     }
 		
-		if ($this->zookeeper->exists($path)) {
+		if ($this->exists($path)) {
 			if (!isset($this->callback[$path])) {
 				$this->callback[$path] = array();
 			}
