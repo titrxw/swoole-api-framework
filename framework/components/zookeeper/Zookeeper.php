@@ -19,8 +19,9 @@ class Zookeeper
 	 */
 	public function __construct($address) {
 		if (!extension_loaded('zookeeper')) {
-				$this->triggerThrowable(new \Exception('not support: zookeeper', 500));
+			throw new \Exception('not support: zookeeper', 500);
 		}
+		
 		$this->zookeeper = new \Zookeeper($address);
 	}
 
