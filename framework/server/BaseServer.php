@@ -165,9 +165,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function afterManagerStop(\swoole_server $server)
     {
-        if ($this->_pManager) {
-            $this->_pManager->kill();
-        }
+        
         return true;
     }
 
@@ -178,6 +176,10 @@ abstract class BaseServer extends Base implements ServerInterface
             try
             {
                 $this->afterManagerStop($server);
+                if ($this->_pManager) {
+                    $this->_pManager->kill();
+                }
+                Container::getInstance()->end();
             }
             catch (\Throwable $e)
             {
