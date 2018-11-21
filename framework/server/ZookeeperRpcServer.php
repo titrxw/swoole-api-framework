@@ -36,9 +36,6 @@ class ZookeeperRpcServer extends RpcServer
     return true;
   }
 
-  /**
-   * 目前没有处理一个service多个server的问题
-   */
   protected function registerServices()
   {
     $services = $this->getValueFromConf('services', []);
