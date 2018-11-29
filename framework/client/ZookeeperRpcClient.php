@@ -12,7 +12,10 @@ class ZookeeperRpcClient extends RpcClient
 
   public function getServer($path)
   {
-    $workers = $this->_zookeeper->getHandle()->getChildren($path);     
+    $workers = $this->_zookeeper->getHandle()->getChildren($path); 
+    if (!$workers) {
+      return false;
+    } 
     $worker = mt_rand(0, \count($workers) - 1);
     $res = $this->_zookeeper->getHandle()->get($path . '/' . $worker);
     $res = json_decode($res, true);
