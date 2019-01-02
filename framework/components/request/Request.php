@@ -29,6 +29,9 @@ class Request extends Component
             return $data;
         }
         else {
+            if (gettype($data) !== 'string') {
+                return $data;
+            }
             $data = \htmlspecialchars($data);
             $data = addslashes($data);
             return $data;
