@@ -33,10 +33,10 @@ class Url extends Component
 
     protected function formatUrl()
     {
-        $type = $this->getType();
-        if ($type === '?')
+        var_dump($_SERVER);
+        if ($this->getType() === '?')
         {
-            if ($_SERVER['REQUEST_URI'] == '/' . FAVICON){
+            if ($_SERVER['REQUEST_URI'] == DS . FAVICON){
                 return false;
             }
             $system = $_GET[$this->getValueFromConf('systemKey', 's')] ?? '';
@@ -65,9 +65,9 @@ class Url extends Component
                 $query = empty($_GET[$routerKey]) ? '' : $_GET[$routerKey];
             } else {
                 $query = $this->getPathInfo();
-                $query = ltrim($query,'/');
+                $query = ltrim($query,DS);
             }
-            $tmpQuery = \explode($this->getValueFromConf('separator', '/'), $query);
+            $tmpQuery = \explode($this->getValueFromConf('separator', DS), $query);
             if (!empty($tmpQuery[0]) && $tmpQuery[0] === FAVICON) {
                 return false;
             }
@@ -102,7 +102,6 @@ class Url extends Component
                 'controller' => empty($tmpQuery[0 + $keyStart]) ? $this->getValueFromConf('defaultController', 'index') : $tmpQuery[0 + $keyStart],
                 'action' => empty($tmpQuery[1 + $keyStart]) ? $this->getValueFromConf('defaultAction', 'index') : $tmpQuery[1 + $keyStart]
             );
-            
             unset($tmpQuery);
         }
         $this->_curRoute = $urlInfo;
@@ -113,7 +112,10 @@ class Url extends Component
 
     public function getPathInfo()
     {
-        return !empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'] ;
+        if ($this->getType() === '?') {
+            return $_SERVER['REQUEST_URI'];
+        }
+        return !empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
     }
 
     public function getCurRoute()
@@ -126,7 +128,7 @@ class Url extends Component
         if(!$this->_defaultType)
         {
             $this->_defaultType = $this->getValueFromConf('type', '?');
-            if(!\in_array($this->_defaultType,array('/','?'))) {
+            if(!\in_array($this->_defaultType,array(DS,'?'))) {
                 $this->_defaultType = '?';
             }
         }
@@ -135,7 +137,7 @@ class Url extends Component
 
     public function createUrl($url)
     {
-        $tmpUrl = $_SERVER['HTTP_HOST'] . $_SERVER['URL'] . '?';
+        $tmpUrl = $_SERVER['HTTP_HOST'] . $_SERVER['URL'] . $this->getType();
         if ($this->getType() === '?')
         {
             if(\is_array($url))
@@ -153,9 +155,20 @@ class Url extends Component
         }
         else
         {
-            $tmpUrl .= $url;
+            if(\is_array($url))
+            {
+                foreach ($url as $key=>$item)
+                {
+                    $tmpUrl .= $key . $this->getType() . $item . $this->getType();
+                }
+                $tmpUrl = \trim($tmpUrl, $this->getType());
+            }
+            else
+            {
+                $tmpUrl .= $url;
+            }
         }
-        unset($urlModule, $url);
+        
         return $tmpUrl;
     }
 }
