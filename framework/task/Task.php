@@ -19,6 +19,7 @@ class Task extends Component
             return false;
         }
         $this->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTask(array(
+            'system' => \getModule(),
             'class' => $taskClass,
             'func' => $taskName,
             'params' => $params
@@ -32,6 +33,7 @@ class Task extends Component
             return false;
         }
         $this->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addAsyncTask(array(
+            'system' => \getModule(),
             'class' => $taskClass,
             'func' => $taskName,
             'params' => $params

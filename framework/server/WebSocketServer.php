@@ -100,14 +100,8 @@ class WebSocketServer extends HttpServer
                 $_SERVER['CURRENT_SYSTEM'] = $pathInfo['system'];
                 $FD_SYSTEM[$request->fd] = $pathInfo['system'];
 
-                if (!$container->appHasComponents($pathInfo['system'])) {
-                    $appConf = require_file($pathInfo['system'] . '/conf/conf.php');
-                    $container->addComponents($pathInfo['system'], $appConf['addComponentsMap'] ?? []);
-                    $container->setAppComponents($pathInfo['system'] ,[
-                        'components' => $appConf['components'] ?? [],
-                        'composer' => $appConf['composer'] ?? []
-                    ]);
-                }
+                // 初始化配置项
+                $container->loadModule($urlInfo['system']);
 
                 if ($this->_event) {
                     $result = $this->_event->onHandShake($request, $response);

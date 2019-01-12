@@ -118,6 +118,20 @@ class Container extends Base
         }
     }
 
+    public function loadModule($module)
+    {
+        if (!$this->appHasComponents($module)) {
+            //                这里现在还缺少文件系统
+            $appConf = require_file($module . '/conf/conf.php');
+            $this->addComponents($module, $appConf['addComponentsMap'] ?? []);
+            $this->setAppComponents($module ,array(
+                'components' => $appConf['components'] ?? [],
+                'composer' => $appConf['composer'] ?? []
+            ));
+            unset($appConf);
+        }
+    }
+
     public function getComponent($haver, $key, $params = [])
     {
         try

@@ -377,7 +377,9 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             if (!empty($taskObj['class']) && !empty($taskObj['func']))
             {
-                $obj = Container::getInstance()->getComponent(SYSTEM_APP_NAME, $taskObj['class']);
+                $system = empty($taskObj['system']) ? SYSTEM_APP_NAME : $taskObj['system'];
+                $system !== SYSTEM_APP_NAME && Container::getInstance()->loadModule($urlInfo['system']);
+                $obj = Container::getInstance()->getComponent($system, $taskObj['class']);
 
                 if ($obj && $obj instanceof BaseTask)
                 {
@@ -465,7 +467,8 @@ abstract class BaseServer extends Base implements ServerInterface
                     {
                         if (!empty($taskObj['class']) && !empty($taskObj['func']))
                         {
-                            $obj = Container::getInstance()->getComponent(SYSTEM_APP_NAME, $taskObj['class']);
+                            $system = empty($taskObj['system']) ? SYSTEM_APP_NAME : $taskObj['system'];
+                            $obj = Container::getInstance()->getComponent($system, $taskObj['class']);
 
                             if ($obj && $obj instanceof BaseTask)
                             {
