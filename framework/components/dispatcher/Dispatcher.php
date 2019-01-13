@@ -31,7 +31,7 @@ class Dispatcher extends Component
         if (!\method_exists($controllerInstance, $actionName))
         {
             unset($controllerInstance, $args);
-            $this->triggerThrowable(new \Exception('action ' . $actionName . ' not found'));
+            $this->triggerThrowable(new \Exception('action ' . $args['action'] . ' not found'));
         }
 
         // 请求限制
@@ -41,7 +41,7 @@ class Dispatcher extends Component
                 $upMethod = \strtoupper($args['method']);
                 $lowMethod = \strtolower($args['method']);
                 if (!\in_array($lowMethod,$methods) && !\in_array($upMethod,$methods)) {
-                    $this->triggerThrowable(new \Exception('action ' . $actionName . ' not found', 404));
+                    $this->triggerThrowable(new \Exception('action ' . $args['action'] . ' not found', 404));
                 }
             }
         }
