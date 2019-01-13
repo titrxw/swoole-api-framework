@@ -120,8 +120,6 @@ class File extends Cache implements CacheInterface
      */
     public function get($name, $default = false)
     {
-        $this->readTimes++;
-
         $filename = $this->getCacheKey($name);
 
         if (!is_file($filename)) {
