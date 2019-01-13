@@ -127,6 +127,7 @@ class HttpServer extends BaseServer
             catch (\Throwable $exception)
             {
                 $code = $exception->getCode() > 0 ? $exception->getCode() : 404;
+                DEBUG && $code = 200;
                 $this->handleThrowable($exception);
                 if (DEBUG)
                 {

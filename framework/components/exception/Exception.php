@@ -7,7 +7,7 @@ class Exception extends Component
     public  function handleException($exception)
     {
         $msg = $this->formartMessage($exception);
-        DEBUG && $GLOBALS['EXCEPTION'] = $msg;
+        $GLOBALS['EXCEPTION'] = $msg;
         $this->getComponent(SYSTEM_APP_NAME, 'log')->save($msg);
     }
 
