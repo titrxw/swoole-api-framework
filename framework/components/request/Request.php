@@ -9,6 +9,7 @@ class Request extends Component
     protected $_hasCheck = [];
     protected $_get = null;
     protected $_post = null;
+    protected $_request = null;
     protected $_put = null;
     protected $_input = null;
 
@@ -96,7 +97,15 @@ class Request extends Component
 
     public function request($key = '', $default = null, $filter = true)
     {
-        return $this->data($_REQUEST,'request',  $key, $default, $filter);
+        if (is_null($this->_request)) {
+            if (empty($_REQUEST) && 'application/json' == $this->contentType()) {
+                $content = $this->input();
+                $this->_request = (array) json_decode($content, true);
+            } else {
+                $this->_request = $_REQUEST;
+            }
+        }
+        return $this->data($this->_request,'request',  $key, $default, $filter);
     }
 
     public function put($key = '', $default = null, $filter = true)
