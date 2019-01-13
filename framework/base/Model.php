@@ -14,6 +14,17 @@ class Model extends Component
         $this->unInstall(true);
         $this->afterInit();
     }
+    
+    protected function model($name)
+    {
+        $name = \ucfirst($name);
+        $componentModel = \md5(\getModule() .'/model/'.$name);
+        Container::getInstance()->addComponent(\getModule(), $componentModel,
+            \getModule() .'\\model\\'. $name, Container::getInstance()->getComponentConf(\getModule(), 'model'));
+//        在add之前设置当前model的conf
+//        待开发
+        return $this->getComponent(\getModule(), $componentModel);
+    }
 
     public function db()
     {
