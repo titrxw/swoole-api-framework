@@ -27,7 +27,7 @@ class Validate extends Component
         $this->_data = $data;
         foreach ($rule as $key=>$item)
         {
-            $key = explode($this->_separator, $key);
+            $key = \explode($this->_separator, $key);
             $_data = $this->getDataByKey($key);
             unset($key);
             if (!$_data)
@@ -60,7 +60,7 @@ class Validate extends Component
         }
         $data = '';
         $msg = '';
-        $valKey = explode($this->_keySeparator, $key[0]);
+        $valKey = \explode($this->_keySeparator, $key[0]);
         if(!empty($key[1]) && ($key[1] === 'post' || $key[1] === 'get'))
         {
 
@@ -75,14 +75,14 @@ class Validate extends Component
         }
         else
         {
-            $data = array_merge($this->_data['get'], $this->_data['post']);
+            $data = \array_merge($this->_data['get'], $this->_data['post']);
             foreach($valKey as $item) {
                 if (!$item) {
                     continue;
                 }
                 $data = $data[$item] ?? null;
             }
-            
+
             $msg = empty($key[1]) ? $this->_defaultMsg : $key[1];
         }
 
@@ -100,7 +100,7 @@ class Validate extends Component
             unset($value);
             return true;
         }
-        $rule = explode($this->_separator, $rule);
+        $rule = \explode($this->_separator, $rule);
         $result = true;
         foreach ($rule as $key=>$item)
         {
@@ -112,6 +112,9 @@ class Validate extends Component
             {
                 case 'require':
                     $result = $this->checkEmpty($value);
+                    break;
+                case "array":
+                    $result = $value && \is_array($value);
                     break;
                 case "integer":
                     $result = $this->checkInteger($value);
@@ -127,6 +130,9 @@ class Validate extends Component
 
     protected function checkEmpty($value)
     {
+        if ($this->checkInteger($value)) {
+            return true;
+        }
         if ($value)
         {
             return true;
@@ -136,7 +142,7 @@ class Validate extends Component
 
     protected function checkInteger($value)
     {
-        if ($value === 0 || $value === '0' || preg_match('/^[^0]\d*$/',$value))
+        if ($value === 0 || $value === '0' || \preg_match('/^[^0]\d*$/',$value))
         {
             return true;
         }
@@ -149,7 +155,7 @@ class Validate extends Component
         {
             return true;
         }
-        if (preg_match($rule, $value))
+        if (\preg_match($rule, $value))
         {
             return true;
         }

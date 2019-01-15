@@ -33,11 +33,9 @@ class File extends Cache implements CacheInterface
      */
     protected function serialize($data)
     {
-        if (is_scalar($data) || !$this->_serialize) {
-            return $data;
-        }
+        $data = (\is_object($data) || \is_array($data)) ? \json_encode($data) : $data;
 
-        return serialize($data);
+        return $data;
     }
 
     /**
@@ -48,11 +46,8 @@ class File extends Cache implements CacheInterface
      */
     protected function unserialize($data)
     {
-        if ($this->_serialize) {
-            return unserialize($data);
-        } else {
-            return $data;
-        }
+        $jsonData = \json_decode($data, true);
+        return (null === $jsonData) ? $data : $jsonData;
     }
 
     protected function getExpireTime($expire)

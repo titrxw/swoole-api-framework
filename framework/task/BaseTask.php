@@ -6,7 +6,9 @@
  * Time: 下午9:41
  */
 namespace  framework\task;
+
 use framework\base\Component;
+use framework\base\Container;
 
 abstract class BaseTask extends Component
 {
@@ -14,6 +16,14 @@ abstract class BaseTask extends Component
     {
         // 执行完成后释放
         $this->unInstall();
+    }
+
+    public function db()
+    {
+        if (!$this->_dbHandle) {
+            $this->_dbHandle = $this->getComponent(\getModule(), $this->getValueFromConf('db','meedo'));
+        }
+        return $this->_dbHandle;
     }
 
     public function run($funcName, $params = [], $server, $taskId, $fromId)
@@ -27,5 +37,23 @@ abstract class BaseTask extends Component
             $this->triggerThrowable(new \Error('function ' . $funcName . ' not exists', 500));
         }
         return $this->$funcName($params, $server, $taskId, $fromId);
+    }
+
+    /**
+     * desc component 快捷获取方式
+     * @param $name
+     * @return null
+     */
+    public function __get($name)
+    {
+        if (Container::getInstance()->hasComponent(\getModule(), $name)) {
+            $this->$name = $this->getComponent(\getModule(), $name);
+            return $this->$name;
+        }
+        if (Container::getInstance()->hasComponent(SYSTEM_APP_NAME, $name)) {
+            $this->$name = $this->getComponent(SYSTEM_APP_NAME, $name);
+            return $this->$name;
+        }
+        return null;
     }
 }
