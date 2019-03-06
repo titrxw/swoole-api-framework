@@ -21,6 +21,7 @@ class UniqueId extends Component
      */
     protected $signLeftShift = self::TIMESTAMP_BITS + self::DATACENTER_BITS + self::WORK_ID_BITS + self::SEQUENCE_BITS;
     protected $timestampLeftShift = self::DATACENTER_BITS + self::WORK_ID_BITS + self::SEQUENCE_BITS;
+    // 在使用中datacenter少用   也就是把workerid做成10为  那么就需要把datacenter左移64位  workerid 左移17位
     protected $dataCenterLeftShift = self::WORK_ID_BITS + self::SEQUENCE_BITS;
     protected $workIdLeftShift = self::SEQUENCE_BITS;
     protected $maxSequenceId = -1 ^ (-1 << self::SEQUENCE_BITS);
@@ -51,6 +52,7 @@ class UniqueId extends Component
             $this->triggerThrowable(new \Exception("workerId can't be  less than 0", 500));
         }
         //赋值
+        // 按照占用5为来算的话  范围是0-31
         $this->workId = SYSTEM_WORK_ID;
         $this->dataCenterId = crc32(SYSTEM_CD_KEY);
     }
