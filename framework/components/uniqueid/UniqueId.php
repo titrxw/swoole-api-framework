@@ -21,7 +21,7 @@ class UniqueId extends Component
      */
     protected $signLeftShift = self::TIMESTAMP_BITS + self::DATACENTER_BITS + self::WORK_ID_BITS + self::SEQUENCE_BITS;
     protected $timestampLeftShift = self::DATACENTER_BITS + self::WORK_ID_BITS + self::SEQUENCE_BITS;
-    // 在使用中datacenter少用   也就是把workerid做成10为  那么就需要把datacenter左移64位  workerid 左移17位
+    // 在使用中datacenter少用   也就是把workerid做成10为  那么就需要把datacenter左移64位  workerid 左移17位  可以用zookeeper作为发号器
     protected $dataCenterLeftShift = self::WORK_ID_BITS + self::SEQUENCE_BITS;
     protected $workIdLeftShift = self::SEQUENCE_BITS;
     protected $maxSequenceId = -1 ^ (-1 << self::SEQUENCE_BITS);
@@ -54,7 +54,20 @@ class UniqueId extends Component
         //赋值
         // 按照占用5为来算的话  范围是0-31
         $this->workId = SYSTEM_WORK_ID;
+        // 这里不建议这样，会有重复的可能
         $this->dataCenterId = crc32(SYSTEM_CD_KEY);
+    }
+
+    public function setWrokerId($workerId)
+    {
+        $this->workId = $workerId;
+        return $this;
+    }
+
+    public function setDataCenterId($dataCenterId)
+    {
+        $this->dataCenterId = $dataCenterId;
+        return $this;
     }
 
     //生成一个ID
