@@ -17,12 +17,22 @@ class Zookeeper
 	 *
 	 * @param string $address CSV list of host:port values (e.g. "host1:2181,host2:2181")
 	 */
-	public function __construct($address) {
+	public function __construct($host, $username = '', $password) {
 		if (!extension_loaded('zookeeper')) {
 			throw new \Exception('not support: zookeeper', 500);
 		}
 		
-		$this->zookeeper = new \Zookeeper($address);
+		$this->zookeeper = new \Zookeeper($host);
+
+		if ($username && $password) {
+			$this->_zookeeper->addAuth($username,$password);
+			if ($this->_zookeeper->getState() == \Zookeeper::AUTH_FAILED_STATE) {
+				throw new \Exception('zookeeper auth failed', 500);
+			}
+		}
+		if ($this->_zookeeper->getState() !== \Zookeeper::CONNECTED_STATE ) {
+			throw new \Exception('zookeeper connect failed', 500);
+		}
 	}
 
 	public function getHandle()

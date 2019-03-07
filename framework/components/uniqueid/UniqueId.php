@@ -9,12 +9,12 @@ class UniqueId extends Component
      * Unix Epoch : January 1 1970 00:00:00 GMT
      * Epoch Offset : January 1 2000 00:00:00 GMT
      */
-    const EPOCH_OFFSET = 1483200000000;
-    const SIGN_BITS = 1;
-    const TIMESTAMP_BITS = 41;
-    const DATACENTER_BITS = 5;
-    const WORK_ID_BITS = 5;
-    const SEQUENCE_BITS = 12;
+    protected const EPOCH_OFFSET = 1483200000000;
+    protected const SIGN_BITS = 1;
+    protected const TIMESTAMP_BITS = 41;
+    protected const DATACENTER_BITS = 5;
+    protected const WORK_ID_BITS = 5;
+    protected const SEQUENCE_BITS = 12;
 
     /**
      * @var int
@@ -83,6 +83,7 @@ class UniqueId extends Component
         //生成唯一序列
         if ($lastTimestamp == $timestamp) {
             
+            // 防止超过12位
             $this->sequence = ($this->sequence + 1) & $this->sequenceMask;
             if ($this->sequence == 0) {
                 $timestamp = $this->tilNextMillis($lastTimestamp);

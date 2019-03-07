@@ -21,17 +21,7 @@ class ZookeeperConf extends Conf
   public function getHandle ()
   {
     if (!$this->_zookeeper) {
-      $this->_zookeeper = new \framework\components\zookeeper\Zookeeper($this->getValueFromConf('hosts'));
-
-      if ($this->getValueFromConf('auth', false)) {
-        $this->_zookeeper->getHandle()->addAuth($this->getValueFromConf('name'),$this->getValueFromConf('password'));
-        if ($this->_zookeeper->getHandle()->getState() == \Zookeeper::AUTH_FAILED_STATE) {
-          $this->triggerThrowable(new \Exception('zookeeper auth failed', 500));
-        }
-      }
-      if ($this->_zookeeper->getHandle()->getState() !== \Zookeeper::CONNECTED_STATE ) {
-        $this->triggerThrowable(new \Exception('zookeeper connect failed', 500));
-      }
+      $this->_zookeeper = new \framework\components\zookeeper\Zookeeper($this->getValueFromConf('hosts'),$this->getValueFromConf('name'),$this->getValueFromConf('password'));
     }
 
     return $this->_zookeeper;
