@@ -18,7 +18,7 @@ return array(
         'apireset' => 'blog\\lib\\ApiReset',
         'redis' => 'framework\\components\\cache\\Redis',
         'uniqueid' => 'framework\\components\\uniqueid\\UniqueId',
-        // 'wsevent' => 'chat\\conf\\WsEvent'
+        'wsevent' => 'chat\\conf\\WsEvent'
     ), //该项因为设计上的问题暂时不添加
     'components' => array(
         'redis' => array(

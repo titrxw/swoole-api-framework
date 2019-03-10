@@ -76,7 +76,7 @@ return array(
             // 是否启用配置管理
             'zookeeper' => '',
             'pid_file' => '/var/www/server_http1.pid',
-            'event' => 'blog\\conf\\ServerWebSocketEvent',
+            'event' => 'framework\\web\\ServerEvent',
             'ip' => '127.0.0.1',
             'port' => '8081',
             'supportHttp' => false,

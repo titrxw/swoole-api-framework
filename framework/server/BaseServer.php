@@ -53,12 +53,17 @@ abstract class BaseServer extends Base implements ServerInterface
         $this->onManagerStop();
     }
 
-    protected function getProcessManager()
+    public function getProcessManager()
     {
         if (!$this->_pManager) {
             $this->_pManager = new Manager();
         }
         return $this->_pManager;
+    }
+
+    public function getMode()
+    {
+        return $this->getValueFromConf('mode', SWOOLE_PROCESS);
     }
 
     public function setEvent($event)
@@ -93,12 +98,8 @@ abstract class BaseServer extends Base implements ServerInterface
         return true;
     }
 
-    protected function addProcess($server)
+    protected function addAutoReloadProcess($server)
     {
-        $this->_pManager = new Manager();
-        if (!empty($this->_conf['zookeeper'])) {
-            $this->_pManager->addProcess(new ZookeeperProcess());
-        }
         if (DEBUG) {
             $this->getProcessManager();
             $auto =new AutoReloadProcess();
@@ -117,13 +118,13 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onStart($server);
                 }
-                if ($this->getValueFromConf('mode') == SWOOLE_BASE) {
-                    $this->addProcess($server);
+                if ($this->getMode() == SWOOLE_BASE) {
+                    $this->addAutoReloadProcess($server);
                 }
 
                 $this->afterStart($server);
 
-                if ($this->getValueFromConf('mode') == SWOOLE_BASE) {
+                if ($this->getMode() == SWOOLE_BASE) {
                     if ($this->_pManager) {
                         $this->_pManager->start();
                     }
@@ -148,8 +149,11 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
-                $this->addProcess($server);
+                if ($this->_event) {
+                    $this->_event->onManagerStart($server);
+                }
                 $this->afterManagerStart($server);
+                $this->addAutoReloadProcess($server);
                 
                 if ($this->_pManager) {
                     $this->_pManager->start();
@@ -175,6 +179,9 @@ abstract class BaseServer extends Base implements ServerInterface
         {
             try
             {
+                if ($this->_event) {
+                    $this->_event->onManagerStop($server);
+                }
                 $this->afterManagerStop($server);
                 if ($this->_pManager) {
                     $this->_pManager->kill();

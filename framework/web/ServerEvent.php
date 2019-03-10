@@ -6,10 +6,11 @@
  * Time: 下午2:09
  */
 
-namespace blog\conf;
+namespace framework\web;
 
 use framework\base\Container;
 use framework\server\SwooleEvent;
+use framework\process\ZookeeperProcess;
 
 class ServerEvent implements SwooleEvent
 {
@@ -18,11 +19,30 @@ class ServerEvent implements SwooleEvent
         // TODO: Implement onConnect() method.
     }
 
+    public function onManagerStart(\swoole_server $server)
+    {
+        $server = Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'server');
+        $pManager = $server->getProcessManager();
+        $pManager->addProcess(new ZookeeperProcess());
+    }
+
+    public function onManagerStop(\swoole_server $server)
+    {
+
+    }
+
     public function onWorkerStart(\swoole_server $server, $workerId)
     {
         // TODO: Implement onWorkerStart() method.
         Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'server')->getServer()->addTimer(28800000, function ($timer_id, $params) {
-            Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'meedo')->pdo->getAttribute(\PDO::ATTR_SERVER_INFO);
+            try{
+                global $ALL_MODULES;
+                foreach($ALL_MODULES as $key => $item) {
+                    Container::getInstance()->getComponent($key, 'meedo')->pdo->getAttribute(\PDO::ATTR_SERVER_INFO);
+                }
+            } catch (\Throwable $e) {
+                $this->handleThrowable($e);
+            }
         });
 
     }
@@ -60,6 +80,11 @@ class ServerEvent implements SwooleEvent
     public function onStart(\swoole_http_server $server)
     {
         // TODO: Implement onStart() method.
+        $server = Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'server');
+        if ($server->getMode() == SWOOLE_BASE) {
+            $pManager = $server->getProcessManager();
+            $pManager->addProcess(new ZookeeperProcess());
+        }
     }
 
     public function onFinish(\swoole_http_server $server, $taskId, $taskObj)
