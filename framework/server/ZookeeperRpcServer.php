@@ -24,7 +24,7 @@ class ZookeeperRpcServer extends RpcServer
 
   protected function afterStart(\swoole_server $server)
   {
-    if ($this->getValueFromConf('mode') == SWOOLE_BASE) {
+    if ($this->getMode() == SWOOLE_BASE) {
       $this->registerServices();
     }
     return true;
