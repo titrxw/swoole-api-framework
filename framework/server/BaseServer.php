@@ -27,9 +27,9 @@ abstract class BaseServer extends Base implements ServerInterface
 //        防止重新启动
         if ($this->_isStart) return false;
         if (!$this->_server) {
-            $this->_server = new \swoole_server($this->_conf['ip'], $this->_conf['port'],$this->getValueFromConf('mode', SWOOLE_PROCESS), $this->getValueFromConf('_type', SWOOLE_SOCK_TCP));
+            $this->_server = new \swoole_server($this->_conf['ip'], $this->_conf['port'],$this->getMode(), $this->getValueFromConf('_type', SWOOLE_SOCK_TCP));
             $this->onReceive();
-          }
+        }
         $this->_server->set($this->_conf);
         if (empty($this->_conf['worker_num']) || $this->_conf['worker_num'] <= 0) {
             $this->_workNum = \swoole_cpu_num();
