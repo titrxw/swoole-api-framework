@@ -207,7 +207,7 @@ if (!function_exists('getModule')) {
 if (!function_exists('uniqueId')) {
     function uniqueId()
     {
-        $instance = \framework\base\Container::getInstance()->getComponent(getModule(), 'uniqueid');
+        $instance = \framework\base\Container::getInstance()->getComponent(\getModule(), 'uniqueid');
         return $instance->nextId();
     }
 }

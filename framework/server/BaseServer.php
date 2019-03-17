@@ -169,7 +169,6 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function afterManagerStop(\swoole_server $server)
     {
-        
         return true;
     }
 
@@ -378,7 +377,7 @@ abstract class BaseServer extends Base implements ServerInterface
         });
     }
 
-    protected function doTask($taskObj) 
+    protected function doTask(\swoole_server $server,$taskObj) 
     {
         if (is_array($taskObj))
         {
@@ -421,7 +420,7 @@ abstract class BaseServer extends Base implements ServerInterface
                     if ($this->_event) {
                         $this->_event->onTask($server, $taskId, $fromId, $taskObj);
                     }
-                    $this->doTask($taskObj);
+                    $this->doTask($server,$taskObj);
                     
                 }
                 catch (\Throwable $e)

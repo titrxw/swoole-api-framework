@@ -40,7 +40,7 @@ class Bucket extends Component
                 unset($instance);
                 $this->triggerThrowable(new \Exception('bucket ' . $class . ' must be instanceof TokenBucket', 500));
             }
-            $instance->setStoreHandle($this->getComponent(getModule(), 'redis'));
+            $instance->setStoreHandle($this->getComponent(\getModule(), 'redis'));
             $this->_bucketsInstance[$name] = $instance;
         }
 

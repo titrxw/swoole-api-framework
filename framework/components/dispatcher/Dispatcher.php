@@ -12,7 +12,7 @@ class Dispatcher extends Component
         $this->_system = \getModule();
         $args['controller'] = \ucfirst($args['controller']);
 
-        $conf = Container::getInstance()->getComponentConf(\getModule(), 'controller');
+        $conf = Container::getInstance()->getComponentConf($this->_system, 'controller');
 
         $controllerName = ($conf['controller']['prefix'] ?? '') . $args['controller'] . ($conf['controller']['suffix'] ?? '');
         $controllerPath = APP_ROOT.$this->_system.'/controller/'. $args['version'] . '/' .$controllerName.'.php';
@@ -27,7 +27,7 @@ class Dispatcher extends Component
         Container::getInstance()->addComponent($this->_system, $controllerHashName,
             $this->_system.'\\controller\\'. $controllerName,$conf);
 
-        $controllerInstance = $this->getComponent(\getModule(), $controllerHashName);
+        $controllerInstance = $this->getComponent($this->_system, $controllerHashName);
         if (!\method_exists($controllerInstance, $actionName))
         {
             unset($controllerInstance, $args);

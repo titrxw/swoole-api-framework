@@ -46,8 +46,9 @@ abstract class BaseTask extends Component
      */
     public function __get($name)
     {
-        if (Container::getInstance()->hasComponent(\getModule(), $name)) {
-            $this->$name = $this->getComponent(\getModule(), $name);
+        $module = \getModule();
+        if (Container::getInstance()->hasComponent($module, $name)) {
+            $this->$name = $this->getComponent($module, $name);
             return $this->$name;
         }
         if (Container::getInstance()->hasComponent(SYSTEM_APP_NAME, $name)) {

@@ -32,7 +32,7 @@ class Upload extends Component
 
     protected function init()
     {
-        $this->_baseDir = APP_ROOT . getModule() . '/' . $this->getValueFromConf('baseDir','runtime/upload');
+        $this->_baseDir = APP_ROOT . \getModule() . '/' . $this->getValueFromConf('baseDir','runtime/upload');
         $this->_accept = $this->getValueFromConf('accept', []);
         $this->_maxSize = $this->getValueFromConf('maxSize', get_cfg_var ("upload_max_filesize")?get_cfg_var ("upload_max_filesize"): 0);
         $this->_nameType = $this->getValueFromConf('nameType', 'time');

@@ -18,18 +18,19 @@ class Model extends Component
     protected function model($name)
     {
         $name = \ucfirst($name);
-        $componentModel = \md5(\getModule() .'/model/'.$name);
-        Container::getInstance()->addComponent(\getModule(), $componentModel,
-            \getModule() .'\\model\\'. $name, Container::getInstance()->getComponentConf(\getModule(), 'model'));
+        $module = \getModule();
+        $componentModel = \md5($module .'/model/'.$name);
+        Container::getInstance()->addComponent($module, $componentModel,
+            $module .'\\model\\'. $name, Container::getInstance()->getComponentConf($module, 'model'));
 //        在add之前设置当前model的conf
 //        待开发
-        return $this->getComponent(\getModule(), $componentModel);
+        return $this->getComponent($module, $componentModel);
     }
 
     public function db()
     {
         if (!$this->_dbHandle) {
-            $this->_dbHandle = $this->getComponent(getModule(), $this->getValueFromConf('db','meedo'));
+            $this->_dbHandle = $this->getComponent(\getModule(), $this->getValueFromConf('db','meedo'));
         }
         return $this->_dbHandle;
     }
@@ -41,8 +42,9 @@ class Model extends Component
      */
     public function __get($name)
     {
-        if (Container::getInstance()->hasComponent(getModule(), $name)) {
-            $this->$name = $this->getComponent(getModule(), $name);
+        $module = \getModule();
+        if (Container::getInstance()->hasComponent($module, $name)) {
+            $this->$name = $this->getComponent($module, $name);
             return $this->$name;
         }
         if (Container::getInstance()->hasComponent(SYSTEM_APP_NAME, $name)) {

@@ -16,10 +16,11 @@ abstract class Controller extends \framework\base\Controller
     protected function model($name)
     {
         $name = ucfirst($name);
-        $componentModel = md5(getModule() .'/model/'.$name);
-        Container::getInstance()->addComponent(getModule(), $componentModel,
-            getModule() .'\\model\\'. $name, Container::getInstance()->getComponentConf(getModule(), 'model'));
-        return $this->getComponent(getModule(), $componentModel);
+        $module = \getModule();
+        $componentModel = md5($module .'/model/'.$name);
+        Container::getInstance()->addComponent($module, $componentModel,
+            $module .'\\model\\'. $name, Container::getInstance()->getComponentConf($module, 'model'));
+        return $this->getComponent($module, $componentModel);
     }
 
 //    需要重写
