@@ -9,6 +9,10 @@ namespace framework\server;
 
 use framework\base\Container;
 
+/**
+ * 目前不支持分布式   可以借助rabbitmq实现
+ * https://blog.csdn.net/javacodekit/article/details/81415382
+ */
 class WebSocketServer extends HttpServer
 {
     protected $_prePushList = [];
