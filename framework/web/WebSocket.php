@@ -25,7 +25,13 @@ abstract class WebSocket extends Controller
 
     protected function send($fd, $data, $now = false)
     {
-      $this->server->getServer()->push($fd, $data, $now);
+        if ($this->server->getServer()->exist($fd)) {
+            $this->server->getServer()->push($fd, $data, $now);
+        } else {
+            // 从缓存中找所在的节点
+            
+        }
+      
     }
 
     protected function fd()

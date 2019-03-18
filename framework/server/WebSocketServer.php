@@ -8,6 +8,7 @@
 namespace framework\server;
 
 use framework\base\Container;
+use framework\process\WebsocketSubscribeProcess;
 
 /**
  * 目前不支持分布式   可以借助rabbitmq实现
@@ -28,14 +29,42 @@ class WebSocketServer extends HttpServer
             $this->onRequest();
         }
         $this->onMessage();
-        
     }
+
+    private function addSubscribeProcess()
+    {
+        if ($this->getValueFromConf('distributed')) {
+            $this->getProcessManager();
+            $auto =new WebsocketSubscribeProcess();
+            $this->_pManager->addProcess($auto);
+        }
+    }
+
+    protected function afterStart(\swoole_server $server)
+    {
+        if ($this->getMode() == SWOOLE_BASE) {
+            $this->addSubscribeProcess();
+        }
+        return parent::afterStart($server);
+    }
+
+    protected function afterManagerStart(\swoole_server $server)
+    {
+        $this->addSubscribeProcess();
+        return parent::afterManagerStart($server);
+    }
+
 
     public function disConnect($fd)
     {
-        if ($this->_server->exist($fd)) {
+        if ($this->exist($fd)) {
             $this->_server->disconnect($fd);
         }
+    }
+
+    public function exist($fd)
+    {
+        return $this->_server->exist($fd);
     }
  
     public function push($fd, $data, $now = false)

@@ -95,6 +95,9 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function afterStart(\swoole_server $server)
     {
+        if ($this->getMode() == SWOOLE_BASE) {
+            $this->addAutoReloadProcess($server);
+        }
         return true;
     }
 
@@ -118,9 +121,6 @@ abstract class BaseServer extends Base implements ServerInterface
                 if ($this->_event) {
                     $this->_event->onStart($server);
                 }
-                if ($this->getMode() == SWOOLE_BASE) {
-                    $this->addAutoReloadProcess($server);
-                }
 
                 $this->afterStart($server);
 
@@ -140,6 +140,7 @@ abstract class BaseServer extends Base implements ServerInterface
 
     protected function afterManagerStart(\swoole_server $server)
     {
+        $this->addAutoReloadProcess($server);
         return true;
     }
 
@@ -153,7 +154,6 @@ abstract class BaseServer extends Base implements ServerInterface
                     $this->_event->onManagerStart($server);
                 }
                 $this->afterManagerStart($server);
-                $this->addAutoReloadProcess($server);
                 
                 if ($this->_pManager) {
                     $this->_pManager->start();
