@@ -1,5 +1,5 @@
 <?php
-namespace framework\mq\driver;
+namespace framework\components\mq\driver;
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;

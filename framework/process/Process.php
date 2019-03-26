@@ -32,6 +32,11 @@ class Process extends Base
     return false;
   }
 
+  protected function afterStop()
+  {
+    return false;
+  }
+
   public function doProcess(\swoole_process $worker)
   {
     try{
@@ -41,6 +46,7 @@ class Process extends Base
           if ($data === 'stop') {
             $this->_sureStop = true;
             $worker->write('stop');
+            $this->afterStop();
             swoole_event_del($pipe);
           } else {
             try{

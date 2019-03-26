@@ -1,5 +1,5 @@
 <?php
-namespace framework\mq;
+namespace framework\components\mq;
 
 use framework\base\Component;
 
