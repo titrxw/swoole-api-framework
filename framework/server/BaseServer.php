@@ -105,7 +105,7 @@ abstract class BaseServer extends Base implements ServerInterface
     {
         if (DEBUG) {
             $this->getProcessManager();
-            $auto =new AutoReloadProcess();
+            $auto =new AutoReloadProcess($server);
             $auto->setServerPid($server->master_pid);
             $this->_pManager->addProcess($auto);
         }

@@ -81,7 +81,7 @@ class MacAddr{
 
 
 
-if (!\function_exists('GetMacAddr')) {
+if (!\function_exists('getMacAddr')) {
     function GetMacAddr($os_type)
     {
         $mac = new MacAddr();

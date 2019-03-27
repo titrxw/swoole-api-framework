@@ -1,11 +1,14 @@
 <?php
 
 namespace framework\process;
-use framework\base\Base;
+use framework\traits\Throwable;
 
 
-class Process extends Base
+class Process
 {
+  use Throwable;
+
+  protected $_server;
   protected $_handle;
   protected $_hasStart;
   protected $_sureStop = false;
@@ -14,6 +17,12 @@ class Process extends Base
   protected function afterInit()
   {
     $this->_handle->name('process');
+  }
+
+  public function __construct(\swoole_server $server)
+  {
+    $this->_server = $server;
+    $this->init();
   }
 
   protected function init()
