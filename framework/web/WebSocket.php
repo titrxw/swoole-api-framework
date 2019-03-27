@@ -27,11 +27,7 @@ abstract class WebSocket extends Controller
     {
         if ($this->server->getServer()->exist($fd)) {
             $this->server->getServer()->push($fd, $data, $now);
-        } else {
-            // 从缓存中找所在的节点
-            
         }
-      
     }
 
     protected function fd()
