@@ -19,9 +19,20 @@ return array(
         'doc' => 'framework\\base\\Documentor',
         'rpcClient' => 'framework\\client\\RpcClient',
         // 'rpcClient' => 'framework\\client\\ZookeeperRpcClient',
-        'monitor' => 'framework\\components\\monitor\\Monitor'
+        'monitor' => 'framework\\components\\monitor\\Monitor',
+        'distribute_ws_mq' => 'framework\\components\\mq\\Mq'
     ),
     'components' => array(
+        'controller' => [
+            'distribute_ws_mq' => [
+                'exchange' => 'distribute_ws_mq',
+                'mode' => 'direct',
+                'host' => '127.0.0.1',
+                'port' => '5672',
+                'user' => 'guest',
+                'password' => 'guest'
+            ]
+        ],
         'monitor' => [
             'address' => '127.0.0.1:55656'
         ],
@@ -72,6 +83,17 @@ return array(
             'defaultType' => 'text',
             'charset' => 'utf-8'
         ),
+        'distribute_ws_mq' => [
+            'handle' => 'rabbit',
+            'conf' => [
+                'exchange' => 'distribute_ws_mq',
+                'mode' => 'direct',
+                'host' => '127.0.0.1',
+                'port' => '5672',
+                'user' => 'guest',
+                'password' => 'guest'
+            ]
+        ],
         'server' => array(
             // 是否启用配置管理
             'zookeeper' => '',

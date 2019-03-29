@@ -42,6 +42,21 @@ abstract class Controller extends Component
         $this->_controller = $currentController;
     }
 
+    protected function model($name)
+    {
+        $name = ucfirst($name);
+        $module = \getModule();
+        
+        $bconf = Container::getInstance()->getComponentConf(SYSTEM_APP_NAME, 'controller');
+        $conf = Container::getInstance()->getComponentConf($module, 'model');
+        $conf = array_merge($bconf, $conf);
+
+        $componentModel = md5($module .'/model/'.$name);
+        Container::getInstance()->addComponent($module, $componentModel,
+            $module .'\\model\\'. $name, $conf);
+        return $this->getComponent($module, $componentModel);
+    }
+
     public function getController()
     {
         return $this->_controller;

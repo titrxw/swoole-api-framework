@@ -15,7 +15,7 @@ class WebsocketSubscribeProcess extends Process
 
   protected function afterDoProcess(\swoole_process $worker)
   {
-    $this->_mq = Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'mq');
+    $this->_mq = Container::getInstance()->getComponent(SYSTEM_APP_NAME, 'distribute_ws_mq');
     $this->_mq->setQueue('websocket-send-msg-' . getMacAddr());
     $this->_mq->setHandle(function ($message) {
       $data = \json_decode($message->body, true);

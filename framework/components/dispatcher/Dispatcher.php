@@ -12,7 +12,9 @@ class Dispatcher extends Component
         $this->_system = \getModule();
         $args['controller'] = \ucfirst($args['controller']);
 
+        $bconf = Container::getInstance()->getComponentConf(SYSTEM_APP_NAME, 'controller');
         $conf = Container::getInstance()->getComponentConf($this->_system, 'controller');
+        $conf = array_merge($bconf, $conf);
 
         $controllerName = ($conf['controller']['prefix'] ?? '') . $args['controller'] . ($conf['controller']['suffix'] ?? '');
         $controllerPath = APP_ROOT.$this->_system.'/controller/'. $args['version'] . '/' .$controllerName.'.php';

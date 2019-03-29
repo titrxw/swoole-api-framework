@@ -71,9 +71,15 @@ class RabbitMq extends Mq
            * 如果这里把queue和router key 和 exchange都绑定了的话 发布端就不需要绑定了 
            * 如果在发布端没有绑定在消费端也没有绑定的话，发布的时候queue的名称默认是route的名称
            */
-          if ($this->_router && is_array($this->_router)) {
-            foreach($this->_router as $item) {
-              $this->_channel->queue_bind($this->_queue, $this->_exchange, $item);
+          // https://www.cnblogs.com/yxlblogs/p/10224553.html
+          // 同一个队列绑定不同的routekey实现不同的消费
+          if ($this->_router) {
+            if (is_array($this->_router)) {
+              foreach($this->_router as $item) {
+                $this->_channel->queue_bind($this->_queue, $this->_exchange, $item);
+              }
+            } else {
+              $this->_channel->queue_bind($this->_queue, $this->_exchange, $this->_router);
             }
           } else {
             $this->_channel->queue_bind($this->_queue, $this->_exchange);

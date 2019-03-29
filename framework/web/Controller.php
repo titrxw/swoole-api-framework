@@ -13,16 +13,6 @@ abstract class Controller extends \framework\base\Controller
 {
     static $_rules;
 
-    protected function model($name)
-    {
-        $name = ucfirst($name);
-        $module = \getModule();
-        $componentModel = md5($module .'/model/'.$name);
-        Container::getInstance()->addComponent($module, $componentModel,
-            $module .'\\model\\'. $name, Container::getInstance()->getComponentConf($module, 'model'));
-        return $this->getComponent($module, $componentModel);
-    }
-
 //    需要重写
     protected function validate()
     {
