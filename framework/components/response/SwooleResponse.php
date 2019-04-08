@@ -10,6 +10,7 @@ namespace framework\components\response;
 class SwooleResponse extends Response
 {
     protected $_sendFile; //swoole专有数据
+    protected $_isDelete = true;
 
     public function send($response, $result = '')
     {
@@ -19,6 +20,10 @@ class SwooleResponse extends Response
         if ($this->_sendFile)
         {
             $response->sendfile($this->_sendFile);
+            if ($this->_isDelete) {
+                unlink($this->_sendFile);
+                $this->_isDelete = true;
+            }
             $this->_sendFile = null;
             $isEnd = true;
         }
@@ -37,9 +42,10 @@ class SwooleResponse extends Response
         return $isEnd;
     }
 
-    public function sendFile($path)
+    public function sendFile($path, $isDelete)
     {
         $this->_sendFile = $path;
+        $this->_isDelete = $isDelete;
     }
 
     protected function rollback()

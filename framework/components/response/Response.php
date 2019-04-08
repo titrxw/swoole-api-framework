@@ -27,6 +27,14 @@ class Response extends Component
         return true;
     }
 
+    public function sendFile($path, $isDelete)
+    {
+        $this->getComponent(SYSTEM_APP_NAME,'sendfile', [])->send($path);
+        if ($isDelete) {
+            \unlink($path);
+        }
+    }
+
     public function ajax($data)
     {
         $this->_header->noCache();
