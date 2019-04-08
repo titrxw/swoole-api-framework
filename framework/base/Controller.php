@@ -47,7 +47,7 @@ abstract class Controller extends Component
         $name = ucfirst($name);
         $module = \getModule();
         
-        $bconf = Container::getInstance()->getComponentConf(SYSTEM_APP_NAME, 'controller');
+        $bconf = Container::getInstance()->getComponentConf(SYSTEM_APP_NAME, 'model');
         $conf = Container::getInstance()->getComponentConf($module, 'model');
         $conf = array_merge($bconf, $conf);
 
