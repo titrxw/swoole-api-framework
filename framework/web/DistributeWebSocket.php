@@ -20,11 +20,9 @@ abstract class DistributeWebSocket extends WebSocket
       $this->_cache = $this->getComponent(\getModule(), $this->getValueFromConf('cache', 'redis'));
     }
 
-    protected function send($fd, $data, $now = false)
+    protected function send($fd, $data)
     {
-        if ($this->server->getServer()->exist($fd)) {
-            $this->server->getServer()->push($fd, $data, $now);
-        } else {
+        if (!parent::send($fd, $data, true)) {
           // 找到对应的节点，发送
           // 然后通过消息发送到对应的节点
           // 统一发送

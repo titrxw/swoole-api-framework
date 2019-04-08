@@ -27,7 +27,10 @@ abstract class WebSocket extends Controller
     {
         if ($this->server->getServer()->exist($fd)) {
             $this->server->getServer()->push($fd, $data, $now);
+            return true;
         }
+
+        return false;
     }
 
     protected function fd()
