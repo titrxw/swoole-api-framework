@@ -16,8 +16,5 @@
             "type": "composer",
             "url": "https://packagist.phpcomposer.com"
         }
-    },
-    "require": {
-        "overtrue/wechat": "3.3.1"
     }
 }
